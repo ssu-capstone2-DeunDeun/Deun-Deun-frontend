@@ -1,9 +1,10 @@
+import MyPage from 'pages/MyPage';
 import React from 'react';
 
 function App() {
 	return (
 		//
-		<h1>Issue1</h1>
+		<MyPage />
 	);
 }
 
