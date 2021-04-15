@@ -5,15 +5,15 @@ export const Container = styled.div`
 	flex-wrap: wrap;
 	height: calc(100vh - 38px);
 	flex-flow: column;
+	align-items: center;
 `;
 
 export const Header = styled.header`
 	height: 64px;
 	display: flex;
 	width: 100%;
-	box-shadow: 0 1px 0 var(--saf-0);
-	margin-left: 1em;
 	font-weight: bold;
+	justify-content: center;
 	align-items: center;
 `;
 
