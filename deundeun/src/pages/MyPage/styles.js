@@ -21,15 +21,3 @@ export const ButtonContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 `;
-
-export const AddQuestionButton = styled.button`
-	width: 30px;
-	height: 30px;
-	margin-right: 3em;
-	margin-left: 1em;
-`;
-
-export const DeleteQuestionButton = styled.button`
-	width: 30px;
-	height: 30px;
-`;

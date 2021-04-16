@@ -14,6 +14,7 @@ import SubjectIcon from '@material-ui/icons/Subject';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import QuestionForm from 'components/QuestionForm';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
 
 const StyledMenu = withStyles({
 	paper: {
@@ -72,8 +73,8 @@ const AddQuestionModal = ({ show, onCloseModal }) => {
 		setAnchorEl(e.currentTarget);
 	}, []);
 
-	const onClickDeleteQuestionButton = useCallback((e) => {
-		console.log('delete question');
+	const onClickSaveApplication = useCallback((e) => {
+		console.log('save application');
 	}, []);
 
 	return (
@@ -121,9 +122,9 @@ const AddQuestionModal = ({ show, onCloseModal }) => {
 					</MenuItem>
 				</StyledMenu>
 
-				<LargerTooltip title="질문 삭제" placement="top">
-					<IconButton onClick={onClickDeleteQuestionButton}>
-						<DeleteIcon />
+				<LargerTooltip title="지원서 저장" placement="top">
+					<IconButton onClick={onClickSaveApplication}>
+						<SaveAltIcon />
 					</IconButton>
 				</LargerTooltip>
 			</TooltipContainer>
