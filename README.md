@@ -1,10 +1,6 @@
-# Getting Started with Create React App
+### `yarn install`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
+Installs all packages in this repos.
 
 ### `yarn start`
 
@@ -14,57 +10,22 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `yarn test`
+# 2021-1 캡스톤디자인 프로젝트
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 🔖 Resource
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 공식 사이트
+  - React : [https://reactjs.org/docs/getting-started.html](https://reactjs.org/docs/getting-started.html)
+  - Redux : [https://ko.redux.js.org/introduction/getting-started/](https://ko.redux.js.org/introduction/getting-started/)
+  - Font Awesome : [https://fontawesome.com/](https://fontawesome.com/)
+  - Material UI Icons : [https://material-ui.com/components/material-icons/](https://material-ui.com/components/material-icons/)
+  - NPM : [https://www.npmjs.com/package/package](https://www.npmjs.com/package/package)
+  - MDN Docs : [https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference)
+  - Google Form : [https://www.google.com/forms/about/](https://www.google.com/forms/about/)
+  - Bootstrap : [https://getbootstrap.com/docs/5.0/getting-started/introduction/](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+  - react-bootstrap : [https://react-bootstrap.github.io/](https://react-bootstrap.github.io/)
+- 유용한 사이트들
+  - 깃허브 간단 정리 : [https://backlog.com/git-tutorial/kr/](https://backlog.com/git-tutorial/kr/)
+  - Flexbox Tutorial(MDN Docs) : [https://developer.mozilla.org/ko/docs/Learn/CSS/CSS_layout/Flexbox](https://developer.mozilla.org/ko/docs/Learn/CSS/CSS_layout/Flexbox)
+  - Flexbox 간단 정리(네이버 D2) : [https://d2.naver.com/helloworld/8540176](https://d2.naver.com/helloworld/8540176)
+  - 설문 양식용 컴포넌트 : [https://material-ui.com/components/text-fields/](https://material-ui.com/components/text-fields/)
