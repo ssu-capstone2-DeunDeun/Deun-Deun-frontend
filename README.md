@@ -24,6 +24,8 @@ You will also see any lint errors in the console.
   - Google Form : [https://www.google.com/forms/about/](https://www.google.com/forms/about/)
   - Bootstrap : [https://getbootstrap.com/docs/5.0/getting-started/introduction/](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
   - react-bootstrap : [https://react-bootstrap.github.io/](https://react-bootstrap.github.io/)
+  - Open Color : [https://yeun.github.io/open-color/](https://yeun.github.io/open-color/)
+  - React Icons : [https://react-icons.github.io/react-icons/icons?name=io5](https://react-icons.github.io/react-icons/icons?name=io5)
 - 유용한 사이트들
   - 깃허브 간단 정리 : [https://backlog.com/git-tutorial/kr/](https://backlog.com/git-tutorial/kr/)
   - Flexbox Tutorial(MDN Docs) : [https://developer.mozilla.org/ko/docs/Learn/CSS/CSS_layout/Flexbox](https://developer.mozilla.org/ko/docs/Learn/CSS/CSS_layout/Flexbox)
