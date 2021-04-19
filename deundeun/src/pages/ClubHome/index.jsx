@@ -36,19 +36,22 @@ const ClubHome = () => {
 				</IconContainer>
 			</Header>
 			<SideBar>
-				<Link to="/home">
-					<Button className={`${clickHome ? 'clicked' : 'not-clicked'}`} onClick={onClickClubHome}>
-						Home
+				<Link to="/club/home">
+					<Button>
+						<span>Home</span>
 					</Button>
 				</Link>
-				<Link to="/category">
-					<Button className={`${clickCategory ? 'clicked' : 'not-clicked'}`} onClick={onClickClubCategory}>
-						Category
+
+				<Link to="/club/category">
+					<Button>
+						<span>Category</span>
 					</Button>
 				</Link>
 			</SideBar>
 		</>
 	);
+	// className={`${clickHome ? 'clicked' : 'not-clicked'}`} onClick={onClickClubHome}
+	// className={`${clickCategory ? 'clicked' : 'not-clicked'}`} onClick={onClickClubCategory}
 };
 
 export default ClubHome;
