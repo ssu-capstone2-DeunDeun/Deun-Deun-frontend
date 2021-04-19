@@ -1,10 +1,12 @@
 import RecruitingClubList from 'components/RecruitingClubList';
 import RecruitingClubCarousel from 'components/RecruitingClubCarousel';
 import { ContentKorean, TitleKorean } from 'pages/ClubPage/styles';
-import React from 'react';
+import React, { useState } from 'react';
 import { Content, Header } from './styles';
 
 const RecruitingClubSection = ({ onClickSeeAll }) => {
+	const [focusClubImage, setFocusClubImage] = useState(0);
+
 	return (
 		//
 		<>
@@ -19,8 +21,8 @@ const RecruitingClubSection = ({ onClickSeeAll }) => {
 				</ContentKorean>
 			</Header>
 			<Content>
-				<RecruitingClubCarousel />
-				<RecruitingClubList />
+				<RecruitingClubCarousel setFocusClubImage={setFocusClubImage} />
+				<RecruitingClubList focusClubImage={focusClubImage} />
 			</Content>
 		</>
 	);

@@ -91,6 +91,14 @@ export const Button = styled.button`
 		font-family: 'GmarketSansBold';
 		background-color: lightgrey;
 	}
+	&.category {
+		font-family: 'NotoSansKR';
+		font-size: 1.125rem;
+	}
+	&.clicked-category {
+		font-family: 'NotoSansKRBold';
+		font-weight: '900';
+	}
 `;
 
 export const TitleEnglish = styled.h1`
