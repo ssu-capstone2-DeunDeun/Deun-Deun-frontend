@@ -48,7 +48,7 @@ export const Container = styled.div`
 export const MainPage = styled.div`
 	width: 75%;
 	padding-top: 3em;
-	background-color: lightgrey;
+	background-color: #fff;
 `;
 
 export const SideBar = styled.div`
@@ -106,4 +106,9 @@ export const TitleEnglish = styled.h1`
 export const TitleKorean = styled.h1`
 	font-family: 'NotoSansKR';
 	font-weight: 900;
+`;
+
+export const ContentKorean = styled.span`
+	font-family: 'NotoSansKR';
+	font-size: 1.25rem;
 `;

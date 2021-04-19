@@ -7,15 +7,15 @@ import {
 	Container,
 	MainPage,
 	Logo,
-	TitleEnglish,
-	TitleKorean
+	TitleEnglish
 } from 'pages/ClubPage/styles';
 import React, { useCallback, useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
-import ClubImageSlider from 'components/ClubImageSlider';
 import GlobalFonts from 'fonts/fonts';
-import styled from 'styled-components';
+import RecruitingClubSection from 'components/RecruitingClubSection';
+import PopularClubSection from 'components/PopularClubSection';
+import ClubPostSection from 'components/ClubPostSection';
 
 const ClubHome = () => {
 	const [clickHome, setClickHome] = useState(true);
@@ -36,6 +36,10 @@ const ClubHome = () => {
 		setClickCategory(true);
 		setClickHome(false);
 		console.log('club category');
+	}, []);
+
+	const onClickSeeAll = useCallback((e) => {
+		console.log(e.target.id);
 	}, []);
 
 	return (
@@ -63,13 +67,14 @@ const ClubHome = () => {
 				<MainPage>
 					{clickHome && (
 						<>
-							<TitleEnglish>HOME</TitleEnglish>
+							<TitleEnglish style={{ marginBottom: '3.68em' }}>HOME</TitleEnglish>
 							<GlobalFonts />
-							<TitleKorean>모집중인 동아리</TitleKorean>
-							<ClubImageSlider />
+							<RecruitingClubSection onClickSeeAll={onClickSeeAll} />
+							<PopularClubSection onClickSeeAll={onClickSeeAll} />
+							<ClubPostSection onClickSeeAll={onClickSeeAll} />
 						</>
 					)}
-					{clickCategory && <h1>Category</h1>}
+					{clickCategory && <TitleEnglish>Category</TitleEnglish>}
 				</MainPage>
 			</Container>
 		</>
