@@ -12,8 +12,11 @@ const RecruitingClubList = () => {
 				<ContentKorean style={{ marginRight: '1em' }}>최신순</ContentKorean>
 			</Header>
 			<ClubList>
-				<li>1 IT동아리 트와이스</li>
-				<li>1 IT동아리 트와이스</li>
+				<li>IT동아리 트와이스</li>
+				<li>IT동아리 트와이스</li>
+				<li>IT동아리 트와이스</li>
+				<li>IT동아리 트와이스</li>
+				<li>IT동아리 트와이스</li>
 			</ClubList>
 		</Container>
 	);

@@ -12,7 +12,7 @@ export const Header = styled.div`
 	flex-direction: row;
 `;
 
-export const ClubList = styled.ul`
+export const ClubList = styled.ol`
 	display: flex;
 	flex-direction: column;
 `;
