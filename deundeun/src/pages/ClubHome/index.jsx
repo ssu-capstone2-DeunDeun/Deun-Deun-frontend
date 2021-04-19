@@ -13,14 +13,12 @@ const ClubHome = () => {
 	}, []);
 
 	const onClickClubHome = useCallback((e) => {
-		e.preventDefault();
 		setClickHome(true);
 		setClickCategory(false);
 		console.log('club home');
 	}, []);
 
 	const onClickClubCategory = useCallback((e) => {
-		e.preventDefault();
 		setClickCategory(true);
 		setClickHome(false);
 		console.log('club category');
@@ -37,21 +35,18 @@ const ClubHome = () => {
 			</Header>
 			<SideBar>
 				<Link to="/club/home">
-					<Button>
+					<Button className={`${clickHome ? 'clicked' : 'not-clicked'}`} onClick={onClickClubHome}>
 						<span>Home</span>
 					</Button>
 				</Link>
-
 				<Link to="/club/category">
-					<Button>
+					<Button className={`${clickCategory ? 'clicked' : 'not-clicked'}`} onClick={onClickClubCategory}>
 						<span>Category</span>
 					</Button>
 				</Link>
 			</SideBar>
 		</>
 	);
-	// className={`${clickHome ? 'clicked' : 'not-clicked'}`} onClick={onClickClubHome}
-	// className={`${clickCategory ? 'clicked' : 'not-clicked'}`} onClick={onClickClubCategory}
 };
 
 export default ClubHome;
