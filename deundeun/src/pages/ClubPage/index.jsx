@@ -46,7 +46,9 @@ const ClubHome = () => {
 	return (
 		<>
 			<Header>
-				<Logo>Logo</Logo>
+				<Link to="/club/home">
+					<Logo onClick={onClickClubHome}>Logo</Logo>
+				</Link>
 				<IconContainer>
 					<SearchIcon />
 					<ProfileIcon onClick={onClickProfile} />

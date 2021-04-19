@@ -20,6 +20,7 @@ export const Logo = styled.div`
 	letter-spacing: normal;
 	text-align: left;
 	color: #282828;
+	cursor: pointer;
 `;
 
 export const IconContainer = styled.div`
