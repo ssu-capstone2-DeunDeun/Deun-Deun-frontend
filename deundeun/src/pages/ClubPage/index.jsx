@@ -7,7 +7,8 @@ import {
 	Container,
 	MainPage,
 	Logo,
-	TitleEnglish
+	TitleEnglish,
+	Footer
 } from 'pages/ClubPage/styles';
 import React, { useCallback, useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
@@ -75,6 +76,7 @@ const ClubHome = () => {
 						</>
 					)}
 					{clickCategory && <TitleEnglish>Category</TitleEnglish>}
+					<Footer />
 				</MainPage>
 			</Container>
 		</>

@@ -112,3 +112,9 @@ export const ContentKorean = styled.span`
 	font-family: 'NotoSansKR';
 	font-size: 1.25rem;
 `;
+
+export const Footer = styled.div`
+	height: 100px;
+	margin-top: 5em;
+	background-color: #fff;
+`;

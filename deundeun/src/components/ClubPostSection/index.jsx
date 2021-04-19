@@ -1,6 +1,7 @@
 import React from 'react';
-import { Content, Header } from 'components/RecruitingClubSection/styles';
+import { Content, Header } from 'components/PopularClubSection/styles';
 import { ContentKorean, TitleKorean } from 'pages/ClubPage/styles';
+import ClubPostCard from 'components/ClubPostCard';
 
 const ClubPostSection = ({ onClickSeeAll }) => {
 	return (
@@ -16,7 +17,11 @@ const ClubPostSection = ({ onClickSeeAll }) => {
 					전체보기
 				</ContentKorean>
 			</Header>
-			<Content></Content>
+			<Content>
+				<ClubPostCard />
+				<ClubPostCard />
+				<ClubPostCard />
+			</Content>
 		</>
 	);
 };
