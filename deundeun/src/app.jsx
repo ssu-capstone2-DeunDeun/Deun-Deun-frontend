@@ -3,8 +3,7 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import loadable from '@loadable/component';
 
-const ClubHome = loadable(() => import('pages/ClubHome'));
-const ClubDetail = loadable(() => import('pages/ClubDetail'));
+const ClubPage = loadable(() => import('pages/ClubPage'));
 
 const App = () => {
 	return (
@@ -15,7 +14,7 @@ const App = () => {
 			</Route>
 			{/* <Route path="/login" component={LogIn} />
 			<Route path="/signup" component={SignUp} /> */}
-			<Route path="/club" component={ClubHome} />
+			<Route path="/club" component={ClubPage} />
 		</Switch>
 	);
 };

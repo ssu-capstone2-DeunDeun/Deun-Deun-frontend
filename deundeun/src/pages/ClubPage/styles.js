@@ -10,7 +10,7 @@ export const Header = styled.header`
 	align-items: center;
 `;
 
-export const Title = styled.div`
+export const Logo = styled.div`
 	width: 59px;
 	height: 24px;
 	font-size: 1.3125rem;
@@ -39,8 +39,20 @@ export const ProfileIcon = styled.div`
 	cursor: pointer;
 `;
 
+export const Container = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+`;
+
+export const MainPage = styled.div`
+	width: 75%;
+	padding-top: 3em;
+	background-color: lightgrey;
+`;
+
 export const SideBar = styled.div`
-	width: 440px;
+	width: 25%;
 	height: 100vh;
 	background-color: #fff;
 	display: flex;
@@ -50,6 +62,21 @@ export const SideBar = styled.div`
 `;
 
 export const Button = styled.button`
+	@font-face {
+		font-family: 'GmarketSansMedium';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'GmarketSansBold';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	font-family: 'GmarketSansMedium';
 	width: 274px;
 	height: 4em;
 	background-color: #fff;
@@ -60,7 +87,7 @@ export const Button = styled.button`
 		background-color: #e3e3e3;
 	}
 	&.clicked {
-		font-weight: bold;
+		font-family: 'GmarketSansBold';
 		background-color: lightgrey;
 	}
 `;
