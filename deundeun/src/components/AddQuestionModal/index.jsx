@@ -4,7 +4,6 @@ import React, { useCallback, useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { TooltipContainer } from './styles';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import DeleteIcon from '@material-ui/icons/Delete';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
@@ -82,7 +81,7 @@ const AddQuestionModal = ({ show, onCloseModal }) => {
 		<Modal show={show} onCloseModal={onCloseModal}>
 			<span>새로운 지원서 양식 생성하기</span>
 			<TooltipContainer>
-				<LargerTooltip title="질문 추가" placement="top">
+				<LargerTooltip title="질문 추가">
 					<IconButton aria-controls="select-question-type" aria-haspopup="true" onClick={onClickAddQuestionButton}>
 						<AddCircleOutlineIcon />
 					</IconButton>
@@ -122,7 +121,7 @@ const AddQuestionModal = ({ show, onCloseModal }) => {
 					</MenuItem>
 				</StyledMenu>
 
-				<LargerTooltip title="지원서 저장" placement="top">
+				<LargerTooltip title="지원서 저장">
 					<IconButton onClick={onClickSaveApplication}>
 						<SaveAltIcon />
 					</IconButton>
