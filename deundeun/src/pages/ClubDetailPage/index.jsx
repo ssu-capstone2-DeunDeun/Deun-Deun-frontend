@@ -26,9 +26,9 @@ const ClubDetailPage = () => {
 				</IconContainer>
 			</Header>
 			<ClubInfo />
+			{/* <ClubRecruitInfo /> */}
+			{/* <ClubPosts /> */}
 		</>
-		// <RecruitingInfo />
-		// <ClubPost />
 	);
 };
 

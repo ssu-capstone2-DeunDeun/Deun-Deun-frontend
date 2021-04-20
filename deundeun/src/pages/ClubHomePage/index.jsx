@@ -68,12 +68,12 @@ const ClubHome = () => {
 			</Header>
 			<Container>
 				<SideBar>
-					<Link to="/club/home">
+					<Link style={{ width: '180px' }} to="/club/home">
 						<Button className={`${clickHomeTab ? 'clicked' : 'not-clicked'}`} onClick={onClickHomeTab}>
 							Home
 						</Button>
 					</Link>
-					<Link to="/club/category/1">
+					<Link style={{ width: '180px' }} to="/club/category/1">
 						<Button className={`${clickCategoryTab ? 'clicked' : 'not-clicked'}`} onClick={onClickCategoryTab}>
 							Category
 						</Button>
