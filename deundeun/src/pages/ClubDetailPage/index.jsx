@@ -2,7 +2,9 @@ import { Header, Logo, IconContainer, ProfileIcon } from 'pages/ClubHomePage/sty
 import React, { useCallback } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
-import ClubInfo from 'components/ClubInfo';
+import ClubInfoSection from 'components/ClubInfoSection';
+import RecruitInfoSection from 'components/RecruitInfoSection';
+import PostSection from 'components/PostSection';
 
 const ClubDetailPage = () => {
 	const onClickProfile = useCallback((e) => {
@@ -25,9 +27,9 @@ const ClubDetailPage = () => {
 					<ProfileIcon onClick={onClickProfile} />
 				</IconContainer>
 			</Header>
-			<ClubInfo />
-			{/* <ClubRecruitInfo /> */}
-			{/* <ClubPosts /> */}
+			<ClubInfoSection />
+			<RecruitInfoSection />
+			<PostSection />
 		</>
 	);
 };
