@@ -29,6 +29,11 @@ const ClubHome = () => {
 		console.log('profile');
 	}, []);
 
+	const onClickSearch = useCallback((e) => {
+		e.preventDefault();
+		console.log('search');
+	}, []);
+
 	const onClickHomeTab = useCallback((e) => {
 		setClickHomeTab(true);
 		setClickCategoryTab(false);
@@ -57,7 +62,7 @@ const ClubHome = () => {
 					<Logo onClick={onClickHomeTab}>Logo</Logo>
 				</Link>
 				<IconContainer>
-					<SearchIcon />
+					<SearchIcon style={{ cursor: 'pointer' }} onClick={onClickSearch} />
 					<ProfileIcon onClick={onClickProfile} />
 				</IconContainer>
 			</Header>

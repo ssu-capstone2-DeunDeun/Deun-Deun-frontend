@@ -16,10 +16,13 @@ import { useHistory } from 'react-router';
 const RecruitingClubList = ({ focusClubImage }) => {
 	const history = useHistory();
 
-	const onClickClubName = useCallback((e) => {
-		history.push('/club/detail');
-		console.log(e.target.id);
-	}, []);
+	const onClickClubName = useCallback(
+		(e) => {
+			history.push('/club/detail');
+			console.log(e.target.id);
+		},
+		[history]
+	);
 
 	return (
 		//

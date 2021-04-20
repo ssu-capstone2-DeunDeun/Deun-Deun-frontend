@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Card, Container } from './styles';
 
@@ -46,6 +46,10 @@ const ClubImageCarousel = ({ setFocusClubImage }) => {
 		},
 		[setFocusClubImage]
 	);
+
+	useEffect(() => {
+		setFocusClubImage(0);
+	}, []);
 
 	return (
 		//

@@ -8,6 +8,9 @@ export const Header = styled.header`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	&.detail {
+		background-color: #a3a3a3;
+	}
 `;
 
 export const Logo = styled.div`

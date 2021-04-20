@@ -4,7 +4,7 @@ import { ContentKorean, TitleKorean } from 'pages/ClubHomePage/styles';
 import React, { useState } from 'react';
 import { Content, Header } from './styles';
 
-const RecruitingClubSection = ({ onClickSeeAll }) => {
+const RecruitingClubSection = ({ onClickHomeTab, onClickProfile, onClickSeeAll }) => {
 	const [focusClubImage, setFocusClubImage] = useState(0);
 
 	return (
