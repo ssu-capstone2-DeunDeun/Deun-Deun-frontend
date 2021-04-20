@@ -45,6 +45,7 @@ export const RecruitingOrder = styled.span`
 export const ClubName = styled.span`
 	font-family: 'NotoSansKR';
 	margin-right: 1em;
+	cursor: pointer;
 `;
 
 export const ClubCategory = styled.span`

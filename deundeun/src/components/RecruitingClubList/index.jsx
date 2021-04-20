@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import GlobalFonts from 'fonts/fonts';
-import { ContentKorean } from 'pages/ClubPage/styles';
+import { ContentKorean } from 'pages/ClubHomePage/styles';
 import {
 	Container,
 	Header,
@@ -12,7 +12,15 @@ import {
 	ClubCategory,
 	Deadline
 } from './styles';
+import { useHistory } from 'react-router';
 const RecruitingClubList = ({ focusClubImage }) => {
+	const history = useHistory();
+
+	const onClickClubName = useCallback((e) => {
+		history.push('/club/detail');
+		console.log(e.target.id);
+	}, []);
+
 	return (
 		//
 		<Container>
@@ -24,7 +32,9 @@ const RecruitingClubList = ({ focusClubImage }) => {
 			<ClubList>
 				<ClubListItem className={`${focusClubImage === 0 ? 'focus' : 'unfocus'}`}>
 					<RecruitingOrder className="first">1</RecruitingOrder>
-					<ClubName>IT동아리 트와이스</ClubName>
+					<ClubName id="first" onClick={onClickClubName}>
+						IT동아리 트와이스
+					</ClubName>
 					<ClubCategory>IT / 개발</ClubCategory>
 					<Deadline>D-4</Deadline>
 				</ClubListItem>

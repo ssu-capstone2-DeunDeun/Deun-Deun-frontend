@@ -1,4 +1,4 @@
-import { ContentKorean, TitleKorean } from 'pages/ClubPage/styles';
+import { ContentKorean, TitleKorean } from 'pages/ClubHomePage/styles';
 import PopularClubCard from 'components/PopularClubCard';
 import React from 'react';
 import { Header, Content } from './styles';

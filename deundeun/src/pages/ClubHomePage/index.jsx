@@ -10,7 +10,7 @@ import {
 	TitleEnglish,
 	TitleKorean,
 	Footer
-} from 'pages/ClubPage/styles';
+} from 'pages/ClubHomePage/styles';
 import React, { useCallback, useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
