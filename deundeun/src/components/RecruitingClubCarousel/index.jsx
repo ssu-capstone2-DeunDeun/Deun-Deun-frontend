@@ -42,7 +42,10 @@ const ClubImageCarousel = ({ setFocusClubImage }) => {
 
 	const onChangeCarousel = useCallback(
 		(e) => {
-			setFocusClubImage(e);
+			if (e === 0) return;
+			else {
+				setFocusClubImage(e);
+			}
 		},
 		[setFocusClubImage]
 	);

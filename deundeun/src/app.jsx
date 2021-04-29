@@ -5,6 +5,7 @@ import loadable from '@loadable/component';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const ClubDetailPage = loadable(() => import('pages/ClubDetailPage'));
+const MyPage = loadable(() => import('pages/MyPage'));
 
 const App = () => {
 	return (
@@ -15,8 +16,9 @@ const App = () => {
 			</Route>
 			{/* <Route path="/login" component={LogIn} />
 			<Route path="/signup" component={SignUp} /> */}
-			<Route path={['/club/home', '/club/category']} component={ClubHomePage} />
+			<Route path={['/club/home', '/club/category', '/mypage']} component={ClubHomePage} />
 			<Route exact path="/club/detail" component={ClubDetailPage} />
+			{/* <Route exact path="/mypage" component={MyPage} /> */}
 		</Switch>
 	);
 };

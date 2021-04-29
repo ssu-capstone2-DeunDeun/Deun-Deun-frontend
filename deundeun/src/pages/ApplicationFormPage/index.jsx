@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Header, Container, ButtonContainer } from 'pages/MyPage/styles';
+import { Header, Container, ButtonContainer } from 'pages/ApplicationFormPage/styles';
 import AddQuestionModal from 'components/AddQuestionModal';
 import { IconButton, Tooltip } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';

@@ -99,8 +99,9 @@ export const Button = styled.button`
 		font-size: 1.125rem;
 	}
 	&.clicked-category {
-		font-family: 'NotoSansKRBold';
-		font-weight: '900';
+		font-family: 'NotoSansKR';
+		font-size: 1.125rem;
+		font-weight: 900;
 	}
 `;
 
