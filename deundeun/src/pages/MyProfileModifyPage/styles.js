@@ -17,6 +17,7 @@ export const ProfileImage = styled.div`
 export const InputContainer = styled.div`
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	margin-left: 5.438em;
 	width: 780px;
 	height: 457px;
@@ -28,8 +29,26 @@ export const TitleKorean = styled.span`
 	font-weight: 900;
 `;
 
+export const InputBoxContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	width: 780px;
+	height: 61px;
+`;
+
 export const InputBox = styled.input`
 	width: 611px;
 	height: 61px;
 	background-color: #f7f7f7;
+	border: none;
+	padding-left: 1.8em;
+`;
+
+export const SubmitButton = styled.button`
+	width: 168px;
+	height: 61px;
+	background-color: #e6e6e6;
+	border: none;
+	font-weight: bold;
+	font-family: 'NotoSansKR';
 `;

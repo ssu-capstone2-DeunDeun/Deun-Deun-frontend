@@ -5,7 +5,6 @@ import loadable from '@loadable/component';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const ClubDetailPage = loadable(() => import('pages/ClubDetailPage'));
-const MyPage = loadable(() => import('pages/MyPage'));
 
 const App = () => {
 	return (
