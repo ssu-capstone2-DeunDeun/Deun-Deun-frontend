@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Card, Container } from './styles';
 
@@ -40,18 +40,24 @@ const ClubImageCarousel = ({ setFocusClubImage }) => {
 		}
 	];
 
+	const [mounted, setMounted] = useState(false);
+
 	const onChangeCarousel = useCallback(
 		(e) => {
-			if (e === 0) return;
-			else {
+			if (mounted) {
 				setFocusClubImage(e);
 			}
 		},
-		[setFocusClubImage]
+		[setFocusClubImage, mounted]
 	);
 
 	useEffect(() => {
 		setFocusClubImage(0);
+		setMounted(true);
+	}, []);
+
+	useEffect(() => {
+		return () => setMounted(false);
 	}, []);
 
 	return (

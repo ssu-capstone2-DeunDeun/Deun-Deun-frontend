@@ -19,6 +19,7 @@ import RecruitingClubSection from 'components/RecruitingClubSection';
 import PopularClubSection from 'components/PopularClubSection';
 import ClubPostSection from 'components/ClubPostSection';
 import MyProfileModifyPage from 'pages/MyProfileModifyPage';
+import MyClubsPage from 'pages/MyClubsPage';
 
 const ClubHome = () => {
 	const [clickHomeTab, setClickHomeTab] = useState(true);
@@ -29,7 +30,7 @@ const ClubHome = () => {
 	const [clickApplication, setClickApplication] = useState(false);
 	const [clickLikes, setClickLikes] = useState(false);
 	const [clickNotify, setClickNotify] = useState(false);
-	// const [clickCategory, setClickCategory] = useState(false);
+	const [clickCategory, setClickCategory] = useState(false);
 
 	const onClickProfile = useCallback((e) => {
 		e.preventDefault();
@@ -56,7 +57,7 @@ const ClubHome = () => {
 	}, []);
 
 	const onClickCategory = useCallback((e) => {
-		// setClickCategory(true);
+		setClickCategory(true);
 		console.log('clicked category');
 	}, []);
 
@@ -234,10 +235,10 @@ const ClubHome = () => {
 					{clickMyPageTab && (
 						<>
 							{clickModify && <MyProfileModifyPage />}
-							{/* {clickClubs && <MyPage />} */}
-							{/* {clickApplication && <MyPage />}
-							{clickLikes && <MyPage />}
-							{clickNotify && <MyPage />} */}
+							{clickClubs && <MyClubsPage />}
+							{/* {clickApplication && <MyApplicationPage />}
+							{clickLikes && <MyLikesPage />}
+							{clickNotify && <MyNotificationPage />} */}
 						</>
 					)}
 					<Footer />
