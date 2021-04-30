@@ -20,6 +20,7 @@ import PopularClubSection from 'components/PopularClubSection';
 import ClubPostSection from 'components/ClubPostSection';
 import MyProfileModifyPage from 'pages/MyProfileModifyPage';
 import MyClubsPage from 'pages/MyClubsPage';
+import MyApplicationPage from 'pages/MyApplicationPage';
 
 const ClubHome = () => {
 	const [clickHomeTab, setClickHomeTab] = useState(true);
@@ -236,8 +237,8 @@ const ClubHome = () => {
 						<>
 							{clickModify && <MyProfileModifyPage />}
 							{clickClubs && <MyClubsPage />}
-							{/* {clickApplication && <MyApplicationPage />}
-							{clickLikes && <MyLikesPage />}
+							{clickApplication && <MyApplicationPage />}
+							{/* {clickLikes && <MyLikesPage />}
 							{clickNotify && <MyNotificationPage />} */}
 						</>
 					)}

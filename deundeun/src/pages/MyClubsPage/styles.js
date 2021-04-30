@@ -15,6 +15,7 @@ export const ContentContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	margin-top: 0.75em;
+	color: #484848;
 `;
 
 export const Content = styled.div`
