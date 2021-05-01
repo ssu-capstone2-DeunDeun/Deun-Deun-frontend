@@ -32,3 +32,11 @@ export const ContentKorean = styled.span`
 	font-weight: 500;
 	margin-left: auto;
 `;
+
+export const CardContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 467px;
+	margin-top: 4.5em;
+`;

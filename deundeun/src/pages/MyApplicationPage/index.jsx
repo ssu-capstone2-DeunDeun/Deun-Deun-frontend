@@ -1,4 +1,4 @@
-import { TitleKorean, ContentContainer, Content } from 'pages/MyClubsPage/styles';
+import { TitleKorean, ContentContainer, Content } from 'pages/MyClubListPage/styles';
 import { ContentKorean } from 'components/ClubPostCard/styles';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import React from 'react';

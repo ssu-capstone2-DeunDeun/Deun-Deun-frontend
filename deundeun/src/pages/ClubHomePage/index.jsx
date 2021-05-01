@@ -11,7 +11,7 @@ import {
 	TitleKorean,
 	Footer
 } from 'pages/ClubHomePage/styles';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
 import GlobalFonts from 'fonts/fonts';
@@ -19,8 +19,10 @@ import RecruitingClubSection from 'components/RecruitingClubSection';
 import PopularClubSection from 'components/PopularClubSection';
 import ClubPostSection from 'components/ClubPostSection';
 import MyProfileModifyPage from 'pages/MyProfileModifyPage';
-import MyClubsPage from 'pages/MyClubsPage';
+import MyClubListPage from 'pages/MyClubListPage';
 import MyApplicationPage from 'pages/MyApplicationPage';
+import CategoryITPage from 'pages/CategoryITPage';
+import MyLikeListPage from 'pages/MyLikeListPage';
 
 const ClubHome = () => {
 	const [clickHomeTab, setClickHomeTab] = useState(true);
@@ -32,6 +34,7 @@ const ClubHome = () => {
 	const [clickLikes, setClickLikes] = useState(false);
 	const [clickNotify, setClickNotify] = useState(false);
 	const [clickCategory, setClickCategory] = useState(false);
+	const [clickCategoryOne, setClickCategoryOne] = useState(false);
 
 	const onClickProfile = useCallback((e) => {
 		e.preventDefault();
@@ -54,12 +57,17 @@ const ClubHome = () => {
 		setClickCategoryTab(true);
 		setClickHomeTab(false);
 		setClickMyPageTab(false);
+		setClickCategoryOne(true);
 		console.log('club category');
 	}, []);
 
 	const onClickCategory = useCallback((e) => {
 		setClickCategory(true);
 		console.log('clicked category');
+	}, []);
+
+	const onClickCategoryOne = useCallback((e) => {
+		console.log('IT / 개발 카테고리');
 	}, []);
 
 	const onClickMyPageTab = useCallback((e) => {
@@ -149,8 +157,11 @@ const ClubHome = () => {
 					{clickCategoryTab && (
 						<>
 							<Link to="/club/category/1">
-								<Button className="category" onClick={onClickCategory}>
-									카테고리 1
+								<Button
+									className={`${clickCategoryOne ? 'clicked-category' : 'category'}`}
+									onClick={onClickCategoryOne}
+								>
+									IT / 개발
 								</Button>
 							</Link>
 							<Link to="/club/category/2">
@@ -228,18 +239,14 @@ const ClubHome = () => {
 							<ClubPostSection onClickSeeAll={onClickSeeAll} />
 						</>
 					)}
-					{clickCategoryTab && (
-						<>
-							<TitleKorean>카테고리 1</TitleKorean>
-						</>
-					)}
+					{clickCategoryTab && <>{clickCategoryOne && <CategoryITPage />}</>}
 					{clickMyPageTab && (
 						<>
 							{clickModify && <MyProfileModifyPage />}
-							{clickClubs && <MyClubsPage />}
+							{clickClubs && <MyClubListPage />}
 							{clickApplication && <MyApplicationPage />}
-							{/* {clickLikes && <MyLikesPage />}
-							{clickNotify && <MyNotificationPage />} */}
+							{clickLikes && <MyLikeListPage />}
+							{/* {clickNotify && <MyNotificationPage />} */}
 						</>
 					)}
 					<Footer />

@@ -17,7 +17,6 @@ const App = () => {
 			<Route path="/signup" component={SignUp} /> */}
 			<Route path={['/club/home', '/club/category', '/mypage']} component={ClubHomePage} />
 			<Route exact path="/club/detail" component={ClubDetailPage} />
-			{/* <Route exact path="/mypage" component={MyPage} /> */}
 		</Switch>
 	);
 };
