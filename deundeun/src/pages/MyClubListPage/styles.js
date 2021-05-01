@@ -26,7 +26,6 @@ export const Content = styled.div`
 export const ClubInfoCardContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 	margin-top: 2.25em;
 	width: 1364px;
 	height: 60vh;

@@ -5,6 +5,7 @@ export const Container = styled.div`
 	flex-direction: row;
 	height: 238px;
 	background-color: #f7f7f7;
+	margin-bottom: 2.75em;
 `;
 
 export const ClubImage = styled.img`
