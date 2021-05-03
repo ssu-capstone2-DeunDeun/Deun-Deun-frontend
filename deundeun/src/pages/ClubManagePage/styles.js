@@ -6,4 +6,4 @@ export const HeaderContainer = styled.div`
 	align-items: center;
 `;
 
-export const Container = styled.div``;
+export const MenuContainer = styled.div``;

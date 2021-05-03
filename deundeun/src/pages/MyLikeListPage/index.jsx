@@ -4,29 +4,32 @@ import { ClubListCardContainer, ClubPostCardContainer } from './styles';
 import React from 'react';
 import ClubListCard from 'components/ClubListCard';
 import ClubPostCard from 'components/ClubPostCard';
+import { ContainerColumn } from 'styles';
 
 const MyLikeListPage = () => {
 	return (
 		//
 		<>
-			<TitleKorean>관심있는 동아리</TitleKorean>
-			<ContentContainer>
-				<ContentKorean>관심있는 동아리가 2개 있습니다.</ContentKorean>
-			</ContentContainer>
-			<ClubListCardContainer>
-				<ClubListCard />
-				<ClubListCard />
-			</ClubListCardContainer>
+			<ContainerColumn>
+				<TitleKorean>관심있는 동아리</TitleKorean>
+				<ContentContainer>
+					<ContentKorean>관심있는 동아리가 2개 있습니다.</ContentKorean>
+				</ContentContainer>
+				<ClubListCardContainer>
+					<ClubListCard />
+					<ClubListCard />
+				</ClubListCardContainer>
 
-			<TitleKorean style={{ marginTop: '3.69em' }}>관심있는 게시글</TitleKorean>
-			<ContentContainer>
-				<ContentKorean>관심있는 게시글이 2개 있습니다.</ContentKorean>
-			</ContentContainer>
-			<ClubPostCardContainer>
-				<ClubPostCard />
-				<ClubPostCard />
-				<ClubPostCard />
-			</ClubPostCardContainer>
+				<TitleKorean style={{ marginTop: '3.69em' }}>관심있는 게시글</TitleKorean>
+				<ContentContainer>
+					<ContentKorean>관심있는 게시글이 2개 있습니다.</ContentKorean>
+				</ContentContainer>
+				<ClubPostCardContainer>
+					<ClubPostCard />
+					<ClubPostCard />
+					<ClubPostCard />
+				</ClubPostCardContainer>
+			</ContainerColumn>
 		</>
 	);
 };

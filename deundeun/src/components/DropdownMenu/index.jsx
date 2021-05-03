@@ -1,7 +1,7 @@
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import React, { useState } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-const DropdownMenu = ({ options, setSelectedIndex }) => {
+const DropdownMenu = ({ options, selectedIndex, setSelectedIndex }) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 
@@ -38,7 +38,7 @@ const DropdownMenu = ({ options, setSelectedIndex }) => {
 				}}
 			>
 				{options.map((option, index) => (
-					<MenuItem key={option} onClick={(event) => onClickMenuItem(event, index)}>
+					<MenuItem key={option} selected={index === selectedIndex} onClick={(event) => onClickMenuItem(event, index)}>
 						{option}
 					</MenuItem>
 				))}

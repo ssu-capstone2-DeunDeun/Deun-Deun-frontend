@@ -1,12 +1,12 @@
 import AddApplicationFormCard from 'components/AddApplicationFormCard';
 import ApplicationFormCard from 'components/ApplicationFormCard';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container } from './styles';
-const ApplicationManagePage = () => {
+const ApplicationManagePage = ({ setAddNewForm }) => {
 	return (
 		//
 		<Container>
-			<AddApplicationFormCard />
+			<AddApplicationFormCard setAddNewForm={setAddNewForm} />
 			<ApplicationFormCard />
 			<ApplicationFormCard />
 		</Container>
