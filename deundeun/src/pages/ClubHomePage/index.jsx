@@ -23,6 +23,7 @@ import MyClubListPage from 'pages/MyClubListPage';
 import MyApplicationPage from 'pages/MyApplicationPage';
 import CategoryITPage from 'pages/CategoryITPage';
 import MyLikeListPage from 'pages/MyLikeListPage';
+import ClubManagePage from 'pages/ClubManagePage';
 
 const ClubHome = () => {
 	const [clickHomeTab, setClickHomeTab] = useState(true);
@@ -35,6 +36,7 @@ const ClubHome = () => {
 	const [clickNotify, setClickNotify] = useState(false);
 	const [clickCategory, setClickCategory] = useState(false);
 	const [clickCategoryOne, setClickCategoryOne] = useState(false);
+	const [clickClubManageTab, setClickClubManageTab] = useState(false);
 
 	const onClickProfile = useCallback((e) => {
 		e.preventDefault();
@@ -50,6 +52,7 @@ const ClubHome = () => {
 		setClickHomeTab(true);
 		setClickCategoryTab(false);
 		setClickMyPageTab(false);
+		setClickClubManageTab(false);
 		console.log('club home');
 	}, []);
 
@@ -57,7 +60,10 @@ const ClubHome = () => {
 		setClickCategoryTab(true);
 		setClickHomeTab(false);
 		setClickMyPageTab(false);
+		setClickClubManageTab(false);
+
 		setClickCategoryOne(true);
+
 		console.log('club category');
 	}, []);
 
@@ -74,11 +80,14 @@ const ClubHome = () => {
 		setClickCategoryTab(false);
 		setClickHomeTab(false);
 		setClickMyPageTab(true);
+		setClickClubManageTab(false);
+
 		setClickModify(true);
 		setClickClubs(false);
 		setClickApplication(false);
 		setClickLikes(false);
 		setClickNotify(false);
+
 		console.log('My page');
 	}, []);
 
@@ -127,6 +136,13 @@ const ClubHome = () => {
 		console.log('notify');
 	}, []);
 
+	const onClickClubManageTab = useCallback((e) => {
+		setClickHomeTab(false);
+		setClickCategoryTab(false);
+		setClickMyPageTab(false);
+		setClickClubManageTab(true);
+	}, []);
+
 	const onClickSeeAll = useCallback((e) => {
 		console.log(e.target.id);
 	}, []);
@@ -144,12 +160,12 @@ const ClubHome = () => {
 			</Header>
 			<Container>
 				<SideBar>
-					<Link style={{ width: '180px' }} to="/club/home">
+					<Link style={{ width: '9.4vh' }} to="/club/home">
 						<Button className={`${clickHomeTab ? 'clicked' : 'not-clicked'}`} onClick={onClickHomeTab}>
 							Home
 						</Button>
 					</Link>
-					<Link style={{ width: '180px' }} to="/club/category/1">
+					<Link style={{ width: '9.4vh' }} to="/club/category/1">
 						<Button className={`${clickCategoryTab ? 'clicked' : 'not-clicked'}`} onClick={onClickCategoryTab}>
 							Category
 						</Button>
@@ -191,7 +207,7 @@ const ClubHome = () => {
 							</Link>
 						</>
 					)}
-					<Link style={{ width: '180px' }} to="/mypage/modify">
+					<Link style={{ width: '9.4vh' }} to="/mypage/modify">
 						<Button className={`${clickMyPageTab ? 'clicked' : 'not-clicked'}`} onClick={onClickMyPageTab}>
 							My Page
 						</Button>
@@ -228,6 +244,11 @@ const ClubHome = () => {
 							</Link>
 						</>
 					)}
+					<Link style={{ width: '15vw' }} to="/club/manage">
+						<Button className={`${clickClubManageTab ? 'clicked' : 'not-clicked'}`} onClick={onClickClubManageTab}>
+							Club Management
+						</Button>
+					</Link>
 				</SideBar>
 				<MainPage>
 					{clickHomeTab && (
@@ -247,6 +268,11 @@ const ClubHome = () => {
 							{clickApplication && <MyApplicationPage />}
 							{clickLikes && <MyLikeListPage />}
 							{/* {clickNotify && <MyNotificationPage />} */}
+						</>
+					)}
+					{clickClubManageTab && (
+						<>
+							<ClubManagePage />
 						</>
 					)}
 					<Footer />

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Header = styled.header`
 	width: 100%;
-	height: 88px;
+	height: 8.15vh;
 	padding: 19px 20px 19px 48px;
 	background-color: #f4f4f4;
 	display: flex;
@@ -14,8 +14,8 @@ export const Header = styled.header`
 `;
 
 export const Logo = styled.div`
-	width: 59px;
-	height: 24px;
+	width: 2.8125vw;
+	height: 2.22vh;
 	font-size: 1.3125rem;
 	font-weight: bold;
 	font-style: normal;
@@ -34,8 +34,8 @@ export const IconContainer = styled.div`
 `;
 
 export const ProfileIcon = styled.div`
-	width: 50px;
-	height: 50px;
+	width: 4.62vh;
+	height: 4.62vh;
 	margin-left: auto;
 	background-color: black;
 	border-radius: 35px;
@@ -50,13 +50,13 @@ export const Container = styled.div`
 `;
 
 export const MainPage = styled.div`
-	width: 75%;
+	width: 70vw;
 	padding-top: 3em;
 	background-color: #fff;
 `;
 
 export const SideBar = styled.div`
-	width: 25%;
+	width: 30vw;
 	height: 100vh;
 	background-color: #fff;
 	display: flex;
@@ -81,7 +81,7 @@ export const Button = styled.button`
 	}
 
 	font-family: 'GmarketSansMedium';
-	width: 274px;
+	width: 15vw;
 	height: 4em;
 	background-color: #fff;
 	border: none;
