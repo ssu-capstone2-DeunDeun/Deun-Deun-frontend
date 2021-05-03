@@ -6,6 +6,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DropdownMenu from 'components/DropdownMenu';
 import ClubModifyPage from 'pages/ClubModifyPage';
 import { Redirect } from 'react-router';
+import ApplicationManagePage from 'pages/ApplicationManagePage';
 
 const ClubManagePage = () => {
 	const [menuIndex, setMenuIndex] = useState(0);
@@ -35,25 +36,25 @@ const ClubManagePage = () => {
 				{menuIndex === 1 && (
 					<>
 						<Redirect to="/club/manage/application" />
-						<ClubModifyPage />
+						<ApplicationManagePage />
 					</>
 				)}
 				{menuIndex === 2 && (
 					<>
 						<Redirect to="/club/manage/recruit" />
-						<ClubModifyPage />
+						{/* <RecruitManagePage /> */}
 					</>
 				)}
 				{menuIndex === 3 && (
 					<>
 						<Redirect to="/club/manage/applicant" />
-						<ClubModifyPage />
+						{/* <ApplicantManagePage /> */}
 					</>
 				)}
 				{menuIndex === 4 && (
 					<>
 						<Redirect to="/club/manage/member" />
-						<ClubModifyPage />
+						{/* <MemberManagePage /> */}
 					</>
 				)}
 			</Container>

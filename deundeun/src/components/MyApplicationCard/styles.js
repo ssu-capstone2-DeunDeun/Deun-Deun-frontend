@@ -33,8 +33,8 @@ export const ButtonContainer = styled.div`
 `;
 
 export const Button = styled.button`
-	width: 146.7px;
-	height: 55.2px;
+	width: 7.6vw;
+	height: 5.2vh;
 	border: solid 1px #707070;
 	background-color: transparent;
 	font-family: 'NotoSansKR';
@@ -45,5 +45,9 @@ export const Button = styled.button`
 
 	&:hover {
 		background-color: #d3d3d3;
+	}
+
+	@media (max-width: 1440px) {
+		font-size: 0.8rem;
 	}
 `;

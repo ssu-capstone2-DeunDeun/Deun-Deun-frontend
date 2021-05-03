@@ -24,7 +24,3 @@ yarn-error.log*
 
 # API Keys
 .env
-
-# template file
-template.jsx
-template.js
