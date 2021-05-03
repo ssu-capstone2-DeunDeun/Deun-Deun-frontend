@@ -11,19 +11,6 @@ const ClubManagePage = () => {
 	const [menuIndex, setMenuIndex] = useState(0);
 	const menuOptions = ['정보 수정', '지원서 양식', '모집 공고', '지원자 관리', '멤버 관리'];
 
-	useEffect(
-		(menuIndex) => {
-			switch (menuIndex) {
-				case 1:
-					<Redirect to="/modify" />;
-					break;
-				default:
-					<Redirect to="/modify" />;
-			}
-		},
-		[menuIndex]
-	);
-
 	return (
 		//
 		<>
@@ -39,11 +26,36 @@ const ClubManagePage = () => {
 				</div>
 			</HeaderContainer>
 			<Container>
-				{menuIndex === 0 && <ClubModifyPage />}
-				{/* {(menuIndex === 0) && <ClubModifyPage />} */}
-				{/* {(menuIndex === 0) && <ClubModifyPage />} */}
-				{/* {(menuIndex === 0) && <ClubModifyPage />} */}
-				{/* {(menuIndex === 0) && <ClubModifyPage />} */}
+				{menuIndex === 0 && (
+					<>
+						<Redirect to="/club/manage/modify" />
+						<ClubModifyPage />
+					</>
+				)}
+				{menuIndex === 1 && (
+					<>
+						<Redirect to="/club/manage/application" />
+						<ClubModifyPage />
+					</>
+				)}
+				{menuIndex === 2 && (
+					<>
+						<Redirect to="/club/manage/recruit" />
+						<ClubModifyPage />
+					</>
+				)}
+				{menuIndex === 3 && (
+					<>
+						<Redirect to="/club/manage/applicant" />
+						<ClubModifyPage />
+					</>
+				)}
+				{menuIndex === 4 && (
+					<>
+						<Redirect to="/club/manage/member" />
+						<ClubModifyPage />
+					</>
+				)}
 			</Container>
 		</>
 	);
