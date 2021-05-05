@@ -1,6 +1,6 @@
 import { ContentKorean, TitleEnglish } from 'pages/ClubHomePage/styles';
 import React from 'react';
-import { ContainerColumn } from 'styles';
+import { ContainerColumn, ContainerPage } from 'styles';
 import {
 	Header,
 	Container,
@@ -16,7 +16,7 @@ const MyPage = () => {
 	return (
 		//
 		<>
-			<ContainerColumn>
+			<ContainerPage>
 				<Header>
 					<TitleEnglish>MY PROFILE</TitleEnglish>
 					<ContentKorean>내 정보 수정</ContentKorean>
@@ -46,7 +46,7 @@ const MyPage = () => {
 						</InputBoxContainer>
 					</InputContainer>
 				</Container>
-			</ContainerColumn>
+			</ContainerPage>
 		</>
 	);
 };

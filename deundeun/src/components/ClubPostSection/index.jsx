@@ -1,6 +1,6 @@
 import React from 'react';
 import { Content, Header, CardContainer } from './styles';
-import { ContentKorean, TitleKorean } from 'pages/ClubHomePage/styles';
+import { ContentKorean, TitleKorean } from 'components/RecruitingClubSection/styles';
 import ClubPostCard from 'components/ClubPostCard';
 
 const ClubPostSection = ({ onClickSeeAll }) => {

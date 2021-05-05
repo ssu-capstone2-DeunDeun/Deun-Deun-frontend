@@ -4,12 +4,13 @@ import { ContentContainer, Content } from 'pages/MyClubListPage/styles';
 import { ContentKorean } from 'components/ClubPostCard/styles';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import ClubListCard from 'components/ClubListCard';
-import { Container, CardContainer } from './styles';
+import { CardContainer } from './styles';
+import { ContainerPage } from 'styles';
 const CategoryITPage = () => {
 	return (
 		//
 		<>
-			<Container>
+			<ContainerPage>
 				<TitleEnglish>IT / 개발</TitleEnglish>
 				<ContentContainer>
 					<ContentKorean>123개의 동아리가 있습니다.</ContentKorean>
@@ -23,7 +24,7 @@ const CategoryITPage = () => {
 					<ClubListCard />
 					<ClubListCard />
 				</CardContainer>
-			</Container>
+			</ContainerPage>
 		</>
 	);
 };

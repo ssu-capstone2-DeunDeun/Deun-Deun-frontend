@@ -13,7 +13,6 @@ export const ApplicationLoadCard = styled.div`
 	align-items: center;
 	cursor: pointer;
 	background-color: #f7f7f7;
-	width: 68vw;
 	height: 10vh;
 	color: #b5b5b5;
 	margin-top: 1em;
@@ -49,7 +48,7 @@ export const RecruitingOrderButton = styled.div`
 `;
 
 export const RecruitTitleInput = styled.input`
-	width: 100%;
+	width: 63.99vw;
 	height: 6vh;
 	background-color: #f7f7f7;
 	border: none;
@@ -92,7 +91,7 @@ export const Tilde = styled.div`
 `;
 
 export const RecruitInfoTextarea = styled.textarea`
-	width: 100%;
+	width: 68vw;
 	min-height: 40vh;
 	border: none;
 	background-color: #f7f7f7;
@@ -120,13 +119,12 @@ export const ImageButton = styled.img`
 
 export const SubmitButton = styled.button`
 	margin-left: auto;
-	width: 19vw;
-	height: 11vh;
+	width: 15vw;
+	height: 10vh;
 	background-color: #cccccc;
 	font-family: 'NotoSansKR';
 	font-size: 1.313rem;
 	color: #282828;
 	font-weight: bold;
 	border: none;
-	margin-bottom: 8em;
 `;

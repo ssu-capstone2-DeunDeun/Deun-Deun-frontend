@@ -13,21 +13,22 @@ const SideBar = () => {
 	const [clickCategory, setClickCategory] = useState(false);
 	const [clickCategoryOne, setClickCategoryOne] = useState(false);
 	const [clickClubManageTab, setClickClubManageTab] = useState(false);
-
+	const [clickClubAddTab, setClickClubAddTab] = useState(false);
+	const [clickMyClubTab, setClickMyClubTab] = useState(false);
 	// let location = useLocation();
 
 	const onClickHomeTab = useCallback((e) => {
 		setClickHomeTab(true);
 		setClickCategoryTab(false);
 		setClickMyPageTab(false);
-		setClickClubManageTab(false);
+		setClickMyClubTab(false);
 	}, []);
 
 	const onClickCategoryTab = useCallback((e) => {
 		setClickCategoryTab(true);
 		setClickHomeTab(false);
 		setClickMyPageTab(false);
-		setClickClubManageTab(false);
+		setClickMyClubTab(false);
 
 		setClickCategoryOne(true);
 	}, []);
@@ -42,7 +43,7 @@ const SideBar = () => {
 		setClickCategoryTab(false);
 		setClickHomeTab(false);
 		setClickMyPageTab(true);
-		setClickClubManageTab(false);
+		setClickMyClubTab(false);
 
 		setClickModify(true);
 		setClickClubs(false);
@@ -89,14 +90,26 @@ const SideBar = () => {
 		setClickApplication(false);
 		setClickLikes(false);
 		setClickNotify(true);
-		console.log('notify');
 	}, []);
 
-	const onClickClubManageTab = useCallback((e) => {
+	const onClickMyClubTab = useCallback((e) => {
 		setClickHomeTab(false);
 		setClickCategoryTab(false);
 		setClickMyPageTab(false);
+		setClickMyClubTab(true);
+
 		setClickClubManageTab(true);
+		setClickClubAddTab(false);
+	});
+
+	const onClickClubManageTab = useCallback((e) => {
+		setClickClubManageTab(true);
+		setClickClubAddTab(false);
+	}, []);
+
+	const onClickClubAddTab = useCallback((e) => {
+		setClickClubManageTab(false);
+		setClickClubAddTab(true);
 	}, []);
 
 	return (
@@ -180,11 +193,28 @@ const SideBar = () => {
 					</Link>
 				</>
 			)}
-			<Link style={{ width: '15vw' }} to="/club/manage">
-				<Button className={`${clickClubManageTab ? 'clicked' : 'not-clicked'}`} onClick={onClickClubManageTab}>
-					Club Management
+			<Link style={{ width: '9.4vh' }} to="/club/manage/modify">
+				<Button className={`${clickMyClubTab ? 'clicked' : 'not-clicked'}`} onClick={onClickMyClubTab}>
+					My Club
 				</Button>
 			</Link>
+			{clickMyClubTab && (
+				<>
+					<Link style={{ width: '15vw' }} to="/club/manage/modify">
+						<Button
+							className={`${clickClubManageTab ? 'clicked-category' : 'category'}`}
+							onClick={onClickClubManageTab}
+						>
+							내 동아리 관리
+						</Button>
+					</Link>
+					<Link style={{ width: '15vw' }} to="/club/add">
+						<Button className={`${clickClubAddTab ? 'clicked-category' : 'category'}`} onClick={onClickClubAddTab}>
+							새 동아리 등록
+						</Button>
+					</Link>
+				</>
+			)}
 		</Container>
 	);
 };

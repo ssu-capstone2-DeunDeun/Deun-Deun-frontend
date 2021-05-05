@@ -4,7 +4,7 @@ import GlobalFonts from 'fonts/fonts';
 import RecruitingClubSection from 'components/RecruitingClubSection';
 import PopularClubSection from 'components/PopularClubSection';
 import ClubPostSection from 'components/ClubPostSection';
-import { ContainerColumn } from 'styles';
+import { ContainerColumn, ContainerPage } from 'styles';
 const ClubHome = () => {
 	const onClickSeeAll = useCallback((e) => {
 		console.log('see all');
@@ -13,7 +13,7 @@ const ClubHome = () => {
 	return (
 		//
 		<>
-			<ContainerColumn>
+			<ContainerPage>
 				<>
 					<TitleEnglish style={{ marginBottom: '3.68em' }}>HOME</TitleEnglish>
 					<GlobalFonts />
@@ -21,7 +21,7 @@ const ClubHome = () => {
 					<PopularClubSection onClickSeeAll={onClickSeeAll} />
 					<ClubPostSection onClickSeeAll={onClickSeeAll} />
 				</>
-			</ContainerColumn>
+			</ContainerPage>
 		</>
 	);
 };

@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import GlobalFonts from 'fonts/fonts';
-import { ContentKorean } from 'pages/ClubHomePage/styles';
 import {
 	Container,
 	Header,
@@ -10,7 +9,8 @@ import {
 	ClubListItem,
 	ClubName,
 	ClubCategory,
-	Deadline
+	Deadline,
+	ContentKorean
 } from './styles';
 import { useHistory } from 'react-router';
 const RecruitingClubList = ({ focusClubImage }) => {

@@ -4,12 +4,12 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import React from 'react';
 import MyApplicationCard from 'components/MyApplicationCard';
 import { CardContainer } from './styles';
-import { ContainerColumn } from 'styles';
+import { ContainerPage } from 'styles';
 const MyApplicationPage = () => {
 	return (
 		//
 		<>
-			<ContainerColumn>
+			<ContainerPage>
 				<TitleKorean>나의 지원 목록</TitleKorean>
 				<ContentContainer>
 					<ContentKorean>현재 3개의 동아리에 지원했습니다.</ContentKorean>
@@ -23,7 +23,7 @@ const MyApplicationPage = () => {
 					<MyApplicationCard />
 					<MyApplicationCard />
 				</CardContainer>
-			</ContainerColumn>
+			</ContainerPage>
 		</>
 	);
 };

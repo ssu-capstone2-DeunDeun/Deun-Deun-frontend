@@ -4,13 +4,13 @@ import { ClubListCardContainer, ClubPostCardContainer } from './styles';
 import React from 'react';
 import ClubListCard from 'components/ClubListCard';
 import ClubPostCard from 'components/ClubPostCard';
-import { ContainerColumn } from 'styles';
+import { ContainerPage } from 'styles';
 
 const MyLikeListPage = () => {
 	return (
 		//
 		<>
-			<ContainerColumn>
+			<ContainerPage>
 				<TitleKorean>관심있는 동아리</TitleKorean>
 				<ContentContainer>
 					<ContentKorean>관심있는 동아리가 2개 있습니다.</ContentKorean>
@@ -29,7 +29,7 @@ const MyLikeListPage = () => {
 					<ClubPostCard />
 					<ClubPostCard />
 				</ClubPostCardContainer>
-			</ContainerColumn>
+			</ContainerPage>
 		</>
 	);
 };

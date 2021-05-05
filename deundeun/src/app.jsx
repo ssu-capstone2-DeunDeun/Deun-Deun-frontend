@@ -10,6 +10,7 @@ const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
 const ClubDetailPage = loadable(() => import('pages/ClubDetailPage'));
 const ClubManagePage = loadable(() => import('pages/ClubManagePage'));
+const ClubAddPage = loadable(() => import('pages/ClubAddPage'));
 const MyProfileModifyPage = loadable(() => import('pages/MyProfileModifyPage'));
 const MyClubListPage = loadable(() => import('pages/MyClubListPage'));
 const MyApplicationPage = loadable(() => import('pages/MyApplicationPage'));
@@ -24,7 +25,7 @@ const App = () => {
 			</Route>
 			{/* <Route path="/login" component={LogIn} />
 			<Route path="/signup" component={SignUp} /> */}
-			<Route path="/club/home">
+			<Route exact path="/club/home">
 				<Header />
 				<ContainerRow>
 					<SideBar />
@@ -45,11 +46,18 @@ const App = () => {
 					<MyPage />
 				</ContainerRow>
 			</Route>
-			<Route path="/club/manage">
+			<Route path="/club/manage/">
 				<Header />
 				<ContainerRow>
 					<SideBar />
 					<ClubManagePage />
+				</ContainerRow>
+			</Route>
+			<Route exact path="/club/add">
+				<Header />
+				<ContainerRow>
+					<SideBar />
+					<ClubAddPage />
 				</ContainerRow>
 			</Route>
 

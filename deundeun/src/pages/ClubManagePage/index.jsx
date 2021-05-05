@@ -8,7 +8,7 @@ import ClubModifyPage from 'pages/ClubModifyPage';
 import { Redirect } from 'react-router';
 import ApplicationManagePage from 'pages/ApplicationManagePage';
 import ApplicationAddPage from 'pages/ApplicationAddPage';
-import { ContainerColumn } from 'styles';
+import { ContainerPage } from 'styles';
 import RecruitManagePage from 'pages/RecruitManagePage';
 import RecruitAddPage from 'pages/RecruitAddPage';
 
@@ -24,7 +24,7 @@ const ClubManagePage = () => {
 	return (
 		//
 		<>
-			<ContainerColumn>
+			<ContainerPage>
 				<HeaderContainer>
 					<TitleKorean style={{ marginRight: '2.76vw' }}>동아리 관리</TitleKorean>
 					<div>
@@ -80,7 +80,7 @@ const ClubManagePage = () => {
 						</>
 					)}
 				</MenuContainer>
-			</ContainerColumn>
+			</ContainerPage>
 		</>
 	);
 };

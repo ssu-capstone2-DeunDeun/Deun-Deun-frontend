@@ -12,11 +12,17 @@ export const Header = styled.div`
 export const Content = styled.div`
 	margin-right: 7em;
 	display: flex;
-	flex-wrap: wrap;
 	justify-content: space-between;
 	align-content: space-around;
+
+	@media (max-width: 720px) {
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+	}
 `;
 
 export const CardContainer = styled.div`
-	width: 1480px;
+	width: 105%;
+	margin-bottom: 10em;
 `;

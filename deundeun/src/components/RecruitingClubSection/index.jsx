@@ -1,6 +1,6 @@
 import RecruitingClubList from 'components/RecruitingClubList';
 import RecruitingClubCarousel from 'components/RecruitingClubCarousel';
-import { ContentKorean, TitleKorean } from 'pages/ClubHomePage/styles';
+import { ContentKorean, TitleKorean } from './styles';
 import React, { useState } from 'react';
 import { Content, Header } from './styles';
 

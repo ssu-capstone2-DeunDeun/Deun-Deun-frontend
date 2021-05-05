@@ -15,4 +15,8 @@ export const Content = styled.div`
 	flex-wrap: wrap;
 	justify-content: space-around;
 	align-content: space-around;
+
+	@media (max-width: 1440px) {
+		flex-direction: column;
+	}
 `;

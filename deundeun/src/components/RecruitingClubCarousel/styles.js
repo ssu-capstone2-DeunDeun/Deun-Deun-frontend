@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-	width: 719px;
+	width: 37vw;
 	&.ClubImageCarousel {
-		height: 413px;
+		height: 47vh;
 	}
 `;
 
 export const Card = styled.div`
-	width: 719px;
-	height: 413px;
+	width: 37vw;
+	height: 47vh;
 	background-color: #e8e8e8;
 `;

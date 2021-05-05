@@ -33,4 +33,67 @@ export const Menu = styled.span`
 	font-size: 1rem;
 	font-weight: bold;
 	color: #282828;
+	margin-bottom: 0.7em;
+`;
+
+export const DropdownContainer = styled.div`
+	width: 15.9vw;
+	height: 6vh;
+	background-color: #f7f7f7;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.9rem;
+	margin-bottom: 3em;
+`;
+
+export const ClubNameInput = styled.input`
+	border: none;
+	background-color: #f7f7f7;
+	width: 32vw;
+	height: 6vh;
+	padding-left: 1em;
+	font-size: 0.8rem;
+`;
+
+export const DuplicateCheckButton = styled.button`
+	border: none;
+	width: 8.75vw;
+	background-color: #e6e6e6;
+	font-size: 0.9rem;
+	font-family: 'NotoSansKR';
+	font-weight: bold;
+	color: #383838;
+`;
+
+export const ClubInfoTextarea = styled.textarea`
+	padding-top: 1em;
+	padding-left: 0.8em;
+	height: 17vh;
+	font-family: 'NotoSansKR';
+	border: none;
+	background-color: #f7f7f7;
+	font-size: 0.8rem;
+	margin-bottom: 2em;
+`;
+
+export const AddHashtagButton = styled.button`
+	border: none;
+	background-color: #f7f7f7;
+	width: 8.1vw;
+	height: 6vh;
+	font-size: 0.8rem;
+	color: #9a9a9a;
+`;
+
+export const SubmitButton = styled.button`
+	margin-left: auto;
+	width: 15vw;
+	height: 10vh;
+	background-color: #cccccc;
+	font-family: 'NotoSansKR';
+	font-size: 1rem;
+	color: #282828;
+	font-weight: bold;
+	border: none;
 `;

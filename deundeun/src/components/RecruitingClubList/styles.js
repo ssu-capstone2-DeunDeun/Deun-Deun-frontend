@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-	width: 653px;
-	height: 413px;
+	width: 34.05vw;
+	height: 47vh;
 	background-color: #f7f7f7;
 `;
 
@@ -18,6 +18,10 @@ export const ClubList = styled.ol`
 	margin-top: 2em;
 	margin-left: 1em;
 	list-style: none;
+
+	@media (max-width: 1440px) {
+		margin-top: 0.7em;
+	}
 `;
 
 export const ClubListItem = styled.li`
@@ -31,14 +35,32 @@ export const ClubListItem = styled.li`
 	&.focus {
 		font-weight: 900;
 	}
+
+	@media (max-width: 1440px) {
+		font-size: 1.1rem;
+	}
+`;
+
+export const ContentKorean = styled.span`
+	font-family: 'NotoSansKR';
+
+	font-size: 1.25rem;
+
+	@media (max-width: 1440px) {
+		font-size: 1.1rem;
+	}
 `;
 
 export const RecruitingOrder = styled.span`
 	font-family: 'GmarketSansBold';
 	font-size: 1.25rem;
 	margin-right: 2em;
-	&.first {
+	/* &.first {
 		font-size: 1.34rem;
+	} */
+
+	@media (max-width: 1440px) {
+		font-size: 1.1rem;
 	}
 `;
 
@@ -59,7 +81,7 @@ export const Deadline = styled.span`
 `;
 
 export const Divider = styled.div`
-	width: 537px;
+	width: 95%;
 	opacity: 0.21;
 	border: solid 1px #707070;
 `;

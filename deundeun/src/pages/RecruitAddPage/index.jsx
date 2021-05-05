@@ -23,7 +23,7 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 
 	return (
 		//
-		<ContainerColumn style={{ marginTop: '4em' }}>
+		<ContainerColumn style={{ marginTop: '4em', width: '68vw' }}>
 			<TitleKorean>모집 공고 제목</TitleKorean>
 			<ApplicationLoadCard>
 				<InnerContainer className="inner">
