@@ -6,7 +6,7 @@ import SideBar from 'components/SideBar';
 import Header from 'components/Header';
 import { ContainerRow } from 'styles';
 
-const ClubHome = loadable(() => import('pages/ClubHome'));
+const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
 const ClubDetailPage = loadable(() => import('pages/ClubDetailPage'));
 const ClubManagePage = loadable(() => import('pages/ClubManagePage'));
@@ -28,14 +28,14 @@ const App = () => {
 				<Header />
 				<ContainerRow>
 					<SideBar />
-					<ClubHome />
+					<ClubHomePage />
 				</ContainerRow>
 			</Route>
-			<Route path="/club/category/:name">
+			<Route path="/club/category/:id">
 				<Header />
 				<ContainerRow>
 					<SideBar />
-					<CategoryITPage />
+					<ClubCategory />
 				</ContainerRow>
 			</Route>
 			<Route path="/mypage/:name">
@@ -69,6 +69,14 @@ const MyPage = () => {
 			{name === 'likes' && <MyLikeListPage />}
 			{/* {name === 'notify' && <MyNotificationPage />} */}
 		</>
+	);
+};
+
+const ClubCategory = () => {
+	const { id } = useParams();
+	return (
+		//
+		<>{id === '1' && <CategoryITPage />}</>
 	);
 };
 

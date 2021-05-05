@@ -1,7 +1,7 @@
 import { ContentKorean } from 'components/ClubPostCard/styles';
 import { TitleKorean } from 'pages/MyClubListPage/styles';
 import React, { useEffect, useState } from 'react';
-import { HeaderContainer, Container, MenuContainer } from './styles';
+import { HeaderContainer, MenuContainer } from './styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DropdownMenu from 'components/DropdownMenu';
 import ClubModifyPage from 'pages/ClubModifyPage';
@@ -9,6 +9,8 @@ import { Redirect } from 'react-router';
 import ApplicationManagePage from 'pages/ApplicationManagePage';
 import ApplicationAddPage from 'pages/ApplicationAddPage';
 import { ContainerColumn } from 'styles';
+import RecruitManagePage from 'pages/RecruitManagePage';
+import RecruitAddPage from 'pages/RecruitAddPage';
 
 const ClubManagePage = () => {
 	const [menuIndex, setMenuIndex] = useState(0);
@@ -53,12 +55,18 @@ const ClubManagePage = () => {
 								<ApplicationManagePage setAddNewForm={setAddNewForm} />
 							</>
 						))}
-					{menuIndex === 2 && (
-						<>
-							<Redirect to="/club/manage/recruit" />
-							{/* <RecruitManagePage /> */}
-						</>
-					)}
+					{menuIndex === 2 &&
+						(addNewForm ? (
+							<>
+								<Redirect to="/club/manage/recruit/new" />
+								<RecruitAddPage setAddNewForm={setAddNewForm} />
+							</>
+						) : (
+							<>
+								<Redirect to="/club/manage/recruit" />
+								<RecruitManagePage setAddNewForm={setAddNewForm} />
+							</>
+						))}
 					{menuIndex === 3 && (
 						<>
 							<Redirect to="/club/manage/applicant" />

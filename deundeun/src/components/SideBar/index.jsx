@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button, Container } from './styles';
 const SideBar = () => {
 	const [clickHomeTab, setClickHomeTab] = useState(true);
@@ -14,22 +14,13 @@ const SideBar = () => {
 	const [clickCategoryOne, setClickCategoryOne] = useState(false);
 	const [clickClubManageTab, setClickClubManageTab] = useState(false);
 
-	const onClickProfile = useCallback((e) => {
-		e.preventDefault();
-		console.log('profile');
-	}, []);
-
-	const onClickSearch = useCallback((e) => {
-		e.preventDefault();
-		console.log('search');
-	}, []);
+	// let location = useLocation();
 
 	const onClickHomeTab = useCallback((e) => {
 		setClickHomeTab(true);
 		setClickCategoryTab(false);
 		setClickMyPageTab(false);
 		setClickClubManageTab(false);
-		console.log('club home');
 	}, []);
 
 	const onClickCategoryTab = useCallback((e) => {
@@ -39,18 +30,13 @@ const SideBar = () => {
 		setClickClubManageTab(false);
 
 		setClickCategoryOne(true);
-
-		console.log('club category');
 	}, []);
 
 	const onClickCategory = useCallback((e) => {
 		setClickCategory(true);
-		console.log('clicked category');
 	}, []);
 
-	const onClickCategoryOne = useCallback((e) => {
-		console.log('IT / 개발 카테고리');
-	}, []);
+	const onClickCategoryOne = useCallback((e) => {}, []);
 
 	const onClickMyPageTab = useCallback((e) => {
 		setClickCategoryTab(false);
@@ -63,8 +49,6 @@ const SideBar = () => {
 		setClickApplication(false);
 		setClickLikes(false);
 		setClickNotify(false);
-
-		console.log('My page');
 	}, []);
 
 	const onClickModify = useCallback((e) => {
@@ -73,7 +57,6 @@ const SideBar = () => {
 		setClickApplication(false);
 		setClickLikes(false);
 		setClickNotify(false);
-		console.log('modify');
 	}, []);
 
 	const onClickClubs = useCallback((e) => {
@@ -82,7 +65,6 @@ const SideBar = () => {
 		setClickApplication(false);
 		setClickLikes(false);
 		setClickNotify(false);
-		console.log('clubs');
 	}, []);
 
 	const onClickApplication = useCallback((e) => {
@@ -91,7 +73,6 @@ const SideBar = () => {
 		setClickApplication(true);
 		setClickLikes(false);
 		setClickNotify(false);
-		console.log('my application');
 	}, []);
 
 	const onClickLikes = useCallback((e) => {
@@ -100,7 +81,6 @@ const SideBar = () => {
 		setClickApplication(false);
 		setClickLikes(true);
 		setClickNotify(false);
-		console.log('my likes');
 	}, []);
 
 	const onClickNotify = useCallback((e) => {
