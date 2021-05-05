@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button, Container } from './styles';
-const SideBar = () => {
+const SideBar = ({ location }) => {
 	const [clickHomeTab, setClickHomeTab] = useState(true);
 	const [clickCategoryTab, setClickCategoryTab] = useState(false);
 	const [clickMyPageTab, setClickMyPageTab] = useState(false);
@@ -10,36 +10,74 @@ const SideBar = () => {
 	const [clickApplication, setClickApplication] = useState(false);
 	const [clickLikes, setClickLikes] = useState(false);
 	const [clickNotify, setClickNotify] = useState(false);
-	const [clickCategory, setClickCategory] = useState(false);
 	const [clickCategoryOne, setClickCategoryOne] = useState(false);
 	const [clickClubManageTab, setClickClubManageTab] = useState(false);
 	const [clickClubAddTab, setClickClubAddTab] = useState(false);
 	const [clickMyClubTab, setClickMyClubTab] = useState(false);
-	// let location = useLocation();
 
 	const onClickHomeTab = useCallback((e) => {
+		setHomeTab();
+	});
+
+	const onClickCategoryTab = useCallback((e) => {
+		setCategoryTab();
+	}, []);
+
+	const onClickCategoryOne = useCallback((e) => {}, []);
+
+	const onClickMyPageTab = useCallback((e) => {
+		setMypageTab();
+	}, []);
+
+	const onClickModify = useCallback((e) => {
+		setModifyTab();
+	}, []);
+
+	const onClickClubs = useCallback((e) => {
+		setClubsTab();
+	}, []);
+
+	const onClickApplication = useCallback((e) => {
+		setApplicationTab();
+	}, []);
+
+	const onClickLikes = useCallback((e) => {
+		setLikesTab();
+	}, []);
+
+	const onClickNotify = useCallback((e) => {
+		setNotifyTab();
+	}, []);
+
+	const onClickMyClubTab = useCallback((e) => {
+		setMyClubTab();
+	});
+
+	const onClickClubManageTab = useCallback((e) => {
+		setClubManageTab();
+	}, []);
+
+	const onClickClubAddTab = useCallback((e) => {
+		setClubAddTab();
+	}, []);
+
+	const setHomeTab = () => {
 		setClickHomeTab(true);
 		setClickCategoryTab(false);
 		setClickMyPageTab(false);
 		setClickMyClubTab(false);
-	}, []);
+	};
 
-	const onClickCategoryTab = useCallback((e) => {
+	const setCategoryTab = () => {
 		setClickCategoryTab(true);
 		setClickHomeTab(false);
 		setClickMyPageTab(false);
 		setClickMyClubTab(false);
 
 		setClickCategoryOne(true);
-	}, []);
+	};
 
-	const onClickCategory = useCallback((e) => {
-		setClickCategory(true);
-	}, []);
-
-	const onClickCategoryOne = useCallback((e) => {}, []);
-
-	const onClickMyPageTab = useCallback((e) => {
+	const setMypageTab = () => {
 		setClickCategoryTab(false);
 		setClickHomeTab(false);
 		setClickMyPageTab(true);
@@ -50,49 +88,49 @@ const SideBar = () => {
 		setClickApplication(false);
 		setClickLikes(false);
 		setClickNotify(false);
-	}, []);
+	};
 
-	const onClickModify = useCallback((e) => {
+	const setModifyTab = () => {
 		setClickModify(true);
 		setClickClubs(false);
 		setClickApplication(false);
 		setClickLikes(false);
 		setClickNotify(false);
-	}, []);
+	};
 
-	const onClickClubs = useCallback((e) => {
+	const setClubsTab = () => {
 		setClickModify(false);
 		setClickClubs(true);
 		setClickApplication(false);
 		setClickLikes(false);
 		setClickNotify(false);
-	}, []);
+	};
 
-	const onClickApplication = useCallback((e) => {
+	const setApplicationTab = () => {
 		setClickModify(false);
 		setClickClubs(false);
 		setClickApplication(true);
 		setClickLikes(false);
 		setClickNotify(false);
-	}, []);
+	};
 
-	const onClickLikes = useCallback((e) => {
+	const setLikesTab = () => {
 		setClickModify(false);
 		setClickClubs(false);
 		setClickApplication(false);
 		setClickLikes(true);
 		setClickNotify(false);
-	}, []);
+	};
 
-	const onClickNotify = useCallback((e) => {
+	const setNotifyTab = () => {
 		setClickModify(false);
 		setClickClubs(false);
 		setClickApplication(false);
 		setClickLikes(false);
 		setClickNotify(true);
-	}, []);
+	};
 
-	const onClickMyClubTab = useCallback((e) => {
+	const setMyClubTab = () => {
 		setClickHomeTab(false);
 		setClickCategoryTab(false);
 		setClickMyPageTab(false);
@@ -100,17 +138,52 @@ const SideBar = () => {
 
 		setClickClubManageTab(true);
 		setClickClubAddTab(false);
-	});
+	};
 
-	const onClickClubManageTab = useCallback((e) => {
+	const setClubManageTab = () => {
 		setClickClubManageTab(true);
 		setClickClubAddTab(false);
-	}, []);
+	};
 
-	const onClickClubAddTab = useCallback((e) => {
+	const setClubAddTab = () => {
 		setClickClubManageTab(false);
 		setClickClubAddTab(true);
-	}, []);
+	};
+
+	useEffect(() => {
+		// console.log(location.pathname);
+		switch (location.pathname) {
+			case '/club/home':
+				setHomeTab();
+				break;
+			case '/club/category/1':
+				setCategoryTab();
+				break;
+			case '/mypage/modify':
+				setMypageTab();
+				break;
+			case '/mypage/clubs':
+				setClubsTab();
+				break;
+			case '/mypage/application':
+				setApplicationTab();
+				break;
+			case '/mypage/likes':
+				setLikesTab();
+				break;
+			case '/mypage/notify':
+				setNotifyTab();
+				break;
+			case '/club/manage/modify':
+				setClubManageTab();
+				break;
+			case '/club/add':
+				setClubAddTab();
+				break;
+			default:
+				break;
+		}
+	}, [location]);
 
 	return (
 		//
@@ -133,29 +206,19 @@ const SideBar = () => {
 						</Button>
 					</Link>
 					<Link to="/club/category/2">
-						<Button className="category" onClick={onClickCategory}>
-							카테고리 2
-						</Button>
+						<Button className="category">카테고리 2</Button>
 					</Link>
 					<Link to="/club/category/3">
-						<Button className="category" onClick={onClickCategory}>
-							카테고리 3
-						</Button>
+						<Button className="category">카테고리 3</Button>
 					</Link>
 					<Link to="/club/category/4">
-						<Button className="category" onClick={onClickCategory}>
-							카테고리 4
-						</Button>
+						<Button className="category">카테고리 4</Button>
 					</Link>
 					<Link to="/club/category/5">
-						<Button className="category" onClick={onClickCategory}>
-							카테고리 5
-						</Button>
+						<Button className="category">카테고리 5</Button>
 					</Link>
 					<Link to="/club/category/6">
-						<Button className="category" onClick={onClickCategory}>
-							카테고리 6
-						</Button>
+						<Button className="category">카테고리 6</Button>
 					</Link>
 				</>
 			)}

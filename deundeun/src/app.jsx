@@ -1,6 +1,6 @@
 // import MyPage from 'pages/MyPage';
-import React from 'react';
-import { Redirect, Route, Switch, useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Redirect, Route, Switch, useLocation, useParams } from 'react-router-dom';
 import loadable from '@loadable/component';
 import SideBar from 'components/SideBar';
 import Header from 'components/Header';
@@ -17,6 +17,12 @@ const MyApplicationPage = loadable(() => import('pages/MyApplicationPage'));
 const MyLikeListPage = loadable(() => import('pages/MyLikeListPage'));
 
 const App = () => {
+	let location = useLocation();
+
+	useEffect(() => {
+		// console.log(location);
+	}, [location]);
+
 	return (
 		//
 		<Switch>
@@ -28,35 +34,35 @@ const App = () => {
 			<Route exact path="/club/home">
 				<Header />
 				<ContainerRow>
-					<SideBar />
+					<SideBar location={location} />
 					<ClubHomePage />
 				</ContainerRow>
 			</Route>
 			<Route path="/club/category/:id">
 				<Header />
 				<ContainerRow>
-					<SideBar />
+					<SideBar location={location} />
 					<ClubCategory />
 				</ContainerRow>
 			</Route>
 			<Route path="/mypage/:name">
 				<Header />
 				<ContainerRow>
-					<SideBar />
+					<SideBar location={location} />
 					<MyPage />
 				</ContainerRow>
 			</Route>
 			<Route path="/club/manage/">
 				<Header />
 				<ContainerRow>
-					<SideBar />
+					<SideBar location={location} />
 					<ClubManagePage />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/add">
 				<Header />
 				<ContainerRow>
-					<SideBar />
+					<SideBar location={location} />
 					<ClubAddPage />
 				</ContainerRow>
 			</Route>
