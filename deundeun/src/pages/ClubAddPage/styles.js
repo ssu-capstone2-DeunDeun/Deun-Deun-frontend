@@ -84,6 +84,7 @@ export const AddHashtagButton = styled.button`
 	height: 6vh;
 	font-size: 0.8rem;
 	color: #9a9a9a;
+	margin-right: 0.5em;
 `;
 
 export const SubmitButton = styled.button`
