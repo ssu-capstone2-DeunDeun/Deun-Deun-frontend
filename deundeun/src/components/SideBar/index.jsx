@@ -163,21 +163,26 @@ const SideBar = ({ location }) => {
 				setMypageTab();
 				break;
 			case '/mypage/clubs':
+				setMypageTab();
 				setClubsTab();
 				break;
 			case '/mypage/application':
+				setMypageTab();
 				setApplicationTab();
 				break;
 			case '/mypage/likes':
+				setMypageTab();
 				setLikesTab();
 				break;
 			case '/mypage/notify':
+				setMypageTab();
 				setNotifyTab();
 				break;
 			case '/club/manage/modify':
-				setClubManageTab();
+				setMyClubTab();
 				break;
 			case '/club/add':
+				setMyClubTab();
 				setClubAddTab();
 				break;
 			default:
