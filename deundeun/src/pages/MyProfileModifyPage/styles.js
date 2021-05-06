@@ -9,8 +9,10 @@ export const Container = styled.div`
 `;
 
 export const ProfileImage = styled.div`
-	width: 472px;
-	height: 457px;
+	/* width: 472px;
+	height: 457px; */
+	width: 24.6vw;
+	height: 42.32vh;
 	background-color: #f0f0f0;
 `;
 
@@ -19,8 +21,15 @@ export const InputContainer = styled.div`
 	flex-direction: column;
 	justify-content: space-between;
 	margin-left: 5.438em;
-	width: 780px;
-	height: 457px;
+	/* width: 780px;
+	height: 457px; */
+
+	width: 40.625vw;
+	height: 42.32vh;
+
+	@media (max-width: 1440px) {
+		margin-left: 2em;
+	}
 `;
 
 export const TitleKorean = styled.span`
@@ -32,8 +41,12 @@ export const TitleKorean = styled.span`
 export const InputBoxContainer = styled.div`
 	display: flex;
 	flex-direction: row;
-	width: 780px;
-	height: 61px;
+	/* width: 780px;
+	height: 61px; */
+	width: 40.625vw;
+	/* height: 42.32vh; */
+
+	margin-bottom: 1.2em;
 `;
 
 export const InputBox = styled.input`
@@ -45,8 +58,10 @@ export const InputBox = styled.input`
 `;
 
 export const SubmitButton = styled.button`
-	width: 168px;
-	height: 61px;
+	/* width: 168px;
+	height: 61px; */
+
+	width: 15vw;
 	background-color: #e6e6e6;
 	border: none;
 	font-weight: bold;

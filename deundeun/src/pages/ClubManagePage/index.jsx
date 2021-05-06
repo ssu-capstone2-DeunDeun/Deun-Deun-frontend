@@ -11,6 +11,8 @@ import ApplicationAddPage from 'pages/ApplicationAddPage';
 import { ContainerPage } from 'styles';
 import RecruitManagePage from 'pages/RecruitManagePage';
 import RecruitAddPage from 'pages/RecruitAddPage';
+import MemberManagePage from 'pages/MemberManagePage';
+import ApplicantManagePage from 'pages/ApplicantManagePage';
 
 const ClubManagePage = () => {
 	const [menuIndex, setMenuIndex] = useState(0);
@@ -70,13 +72,13 @@ const ClubManagePage = () => {
 					{menuIndex === 3 && (
 						<>
 							<Redirect to="/club/manage/applicant" />
-							{/* <ApplicantManagePage /> */}
+							<ApplicantManagePage />
 						</>
 					)}
 					{menuIndex === 4 && (
 						<>
 							<Redirect to="/club/manage/member" />
-							{/* <MemberManagePage /> */}
+							<MemberManagePage />
 						</>
 					)}
 				</MenuContainer>
