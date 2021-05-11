@@ -195,12 +195,12 @@ const SideBar = ({ location }) => {
 		<Container>
 			<Link style={{ width: '9.4vh' }} to="/club/home">
 				<Button className={`${clickHomeTab ? 'clicked' : 'not-clicked'}`} onClick={onClickHomeTab}>
-					Home
+					홈
 				</Button>
 			</Link>
 			<Link style={{ width: '9.4vh' }} to="/club/category/1">
 				<Button className={`${clickCategoryTab ? 'clicked' : 'not-clicked'}`} onClick={onClickCategoryTab}>
-					Category
+					카테고리
 				</Button>
 			</Link>
 			{clickCategoryTab && (
@@ -229,7 +229,7 @@ const SideBar = ({ location }) => {
 			)}
 			<Link style={{ width: '9.4vh' }} to="/mypage/modify">
 				<Button className={`${clickMyPageTab ? 'clicked' : 'not-clicked'}`} onClick={onClickMyPageTab}>
-					My Page
+					마이페이지
 				</Button>
 			</Link>
 			{clickMyPageTab && (
@@ -241,29 +241,29 @@ const SideBar = ({ location }) => {
 					</Link>
 					<Link to="/mypage/clubs">
 						<Button className={`${clickClubs ? 'clicked-category' : 'category'}`} onClick={onClickClubs}>
-							나의 동아리 목록
+							가입 동아리 목록
 						</Button>
 					</Link>
 					<Link to="/mypage/application">
 						<Button className={`${clickApplication ? 'clicked-category' : 'category'}`} onClick={onClickApplication}>
-							나의 지원 목록
+							지원 목록
 						</Button>
 					</Link>
 					<Link to="/mypage/likes">
 						<Button className={`${clickLikes ? 'clicked-category' : 'category'}`} onClick={onClickLikes}>
-							나의 좋아요 목록
+							관심 목록
 						</Button>
 					</Link>
-					<Link to="/mypage/notify">
+					{/* <Link to="/mypage/notify">
 						<Button className={`${clickNotify ? 'clicked-category' : 'category'}`} onClick={onClickNotify}>
 							나의 알림 신청
 						</Button>
-					</Link>
+					</Link> */}
 				</>
 			)}
 			<Link style={{ width: '9.4vh' }} to="/club/manage/modify">
 				<Button className={`${clickMyClubTab ? 'clicked' : 'not-clicked'}`} onClick={onClickMyClubTab}>
-					My Club
+					나의 동아리
 				</Button>
 			</Link>
 			{clickMyClubTab && (
@@ -273,12 +273,12 @@ const SideBar = ({ location }) => {
 							className={`${clickClubManageTab ? 'clicked-category' : 'category'}`}
 							onClick={onClickClubManageTab}
 						>
-							내 동아리 관리
+							동아리 관리
 						</Button>
 					</Link>
 					<Link style={{ width: '15vw' }} to="/club/add">
 						<Button className={`${clickClubAddTab ? 'clicked-category' : 'category'}`} onClick={onClickClubAddTab}>
-							새 동아리 등록
+							동아리 등록
 						</Button>
 					</Link>
 				</>

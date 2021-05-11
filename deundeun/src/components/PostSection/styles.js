@@ -3,40 +3,32 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
 	width: 100%;
 	height: 700px;
+
 	display: flex;
-	flex-direction: column;
-	margin-top: 27em;
-	align-items: center;
+	justify-content: center;
+
+	margin-top: 4.375em;
 `;
 
 export const PostContainer = styled.div`
-	width: 1592px;
-	height: 60px;
+	width: 1160px;
+	height: 100%;
 `;
 
-export const TextContainer = styled.div`
+export const Header = styled.div`
 	display: flex;
 	flex-direction: row;
-	align-items: baseline;
 `;
 
 export const TitleKorean = styled.span`
 	font-family: 'NotoSansKR';
 	font-weight: 900;
-	font-size: 2.25rem;
-`;
-
-export const ContentKorean = styled.span`
-	font-size: 1.375rem;
-	line-height: 1.5;
-	font-weight: 500;
-	margin-left: auto;
+	font-size: 1.25rem;
 `;
 
 export const CardContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	height: 467px;
-	margin-top: 4.5em;
+	margin-top: 1.6em;
 `;

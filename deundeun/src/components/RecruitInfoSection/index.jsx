@@ -1,6 +1,5 @@
-import { Container, RecruitInfoContainer, RecruitDetail, ContentKorean, TitleKorean } from './styles';
+import { Container, RecruitInfoContainer, RecruitDetail, ContentKorean, TitleKorean, SeeAll } from './styles';
 import React, { useCallback } from 'react';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import RecruitInfoCard from 'components/RecruitInfoCard';
 
 const RecruitAnnounceSection = () => {
@@ -14,14 +13,9 @@ const RecruitAnnounceSection = () => {
 			<RecruitInfoContainer>
 				<TitleKorean>모집 공고</TitleKorean>
 				<RecruitDetail>
-					<ContentKorean>1개의 모집 공고가 있습니다.</ContentKorean>
-					<CheckCircleIcon
-						style={{ marginLeft: 'auto', marginRight: '0.4em', cursor: 'pointer' }}
-						onClick={onClickSeePrev}
-					/>
-					<ContentKorean>이전 공고 모두 보기</ContentKorean>
+					<ContentKorean>1개의 진행중인 모집 공고가 있습니다.</ContentKorean>
+					<SeeAll>전체보기</SeeAll>
 				</RecruitDetail>
-				<RecruitInfoCard />
 				<RecruitInfoCard />
 			</RecruitInfoContainer>
 		</Container>

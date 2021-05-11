@@ -2,27 +2,20 @@ import styled from '@emotion/styled';
 
 export const Container = styled.header`
 	width: 100vmax;
-	height: 9vh;
+	height: 7vh;
 	padding: 19px 20px 19px 48px;
-	background-color: #f4f4f4;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	&.detail {
 		background-color: #a3a3a3;
 	}
+	border-bottom: solid 1px #d3d3d3;
 `;
 
-export const Logo = styled.div`
-	width: 2.8125vw;
-	height: 2.22vh;
-	font-size: 1.3125rem;
-	font-weight: bold;
-	font-style: normal;
-	line-height: 1.19;
-	letter-spacing: normal;
-	text-align: left;
-	color: #282828;
+export const Logo = styled.img`
+	width: 110px;
+	height: 44.1px;
 	cursor: pointer;
 `;
 

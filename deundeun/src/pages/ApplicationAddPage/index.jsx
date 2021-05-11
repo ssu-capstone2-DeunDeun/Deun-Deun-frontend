@@ -10,7 +10,9 @@ import {
 	DropdownContainer,
 	InnerContainer,
 	QuestionInput,
-	QuestionNumber
+	QuestionNumber,
+	SubmitButton,
+	Header
 } from './styles';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 const ApplicationAddPage = ({ setAddNewForm }) => {
@@ -28,7 +30,8 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 		//
 		<ContainerPage style={{ width: '68vw', minHeight: '150vh' }}>
 			<ContainerColumn>
-				<TitleKorean>지원서 제목</TitleKorean>
+				<Header>새 지원서 추가하기</Header>
+				<TitleKorean>제목</TitleKorean>
 				<ApplicationTitleInput placeholder="제목을 입력해주세요."></ApplicationTitleInput>
 			</ContainerColumn>
 			<ContainerColumn>
@@ -82,6 +85,7 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 						질문 추가하기
 					</InnerContainer>
 				</AddQuestionButton>
+				<SubmitButton>지원서 등록하기</SubmitButton>
 			</ContainerColumn>
 		</ContainerPage>
 	);

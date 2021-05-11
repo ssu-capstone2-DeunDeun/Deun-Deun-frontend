@@ -11,6 +11,12 @@ export const TitleKorean = styled.span`
 	color: #282828;
 `;
 
+export const HeaderContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+`;
+
 export const ContentContainer = styled.div`
 	display: flex;
 	flex-direction: row;

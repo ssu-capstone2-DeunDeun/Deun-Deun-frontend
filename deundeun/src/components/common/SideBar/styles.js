@@ -25,19 +25,23 @@ export const Button = styled.button`
 		font-style: normal;
 	}
 
-	font-family: 'GmarketSansMedium';
+	font-family: 'NotoSansKR';
 	width: 15vw;
 	height: 4em;
 	background-color: #fff;
 	border: none;
 	text-align: left;
 	padding-left: 3em;
+	font-size: 18px;
+	color: #bababa;
+	font-weight: bold;
 	&:hover {
-		background-color: #e3e3e3;
+		background-color: #9ddfd3;
 	}
 	&.clicked {
-		font-family: 'GmarketSansBold';
-		background-color: lightgrey;
+		font-family: 'NotoSansKR';
+		background-color: #9ddfd3;
+		color: #282828;
 	}
 	&.category {
 		font-family: 'NotoSansKR';
@@ -47,6 +51,7 @@ export const Button = styled.button`
 		font-family: 'NotoSansKR';
 		font-size: 1.125rem;
 		font-weight: 900;
+		color: #282828;
 	}
 `;
 

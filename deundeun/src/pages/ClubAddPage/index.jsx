@@ -1,5 +1,6 @@
 import { ContentKorean } from 'components/ClubPostCard/styles';
 import DropdownMenu from 'components/DropdownMenu';
+import { Background, CoverImage, CoverImageContainer } from 'pages/ClubModifyPage/styles';
 import { TitleKorean } from 'pages/MyClubListPage/styles';
 import { ImageButton } from 'pages/RecruitAddPage/styles';
 import React, { useState } from 'react';
@@ -16,7 +17,8 @@ import {
 	DuplicateCheckButton,
 	ClubInfoTextarea,
 	AddHashtagButton,
-	SubmitButton
+	SubmitButton,
+	Footer
 } from './styles';
 
 const ClubManagePage = () => {
@@ -28,8 +30,7 @@ const ClubManagePage = () => {
 		<>
 			<ContainerPage>
 				<HeaderContainer>
-					<TitleKorean style={{ marginBottom: '1.12vh' }}>새 동아리 등록</TitleKorean>
-					<ContentKorean style={{ marginBottom: '3.31vh' }}>새로운 동아리 등록하기</ContentKorean>
+					<TitleKorean style={{ marginBottom: '2.6em' }}>동아리 등록</TitleKorean>
 				</HeaderContainer>
 				<Container>
 					<ImageContainer>
@@ -56,15 +57,18 @@ const ClubManagePage = () => {
 						<ContainerRow style={{ marginBottom: '2em' }}>
 							<AddHashtagButton>+ 태그 추가하기</AddHashtagButton>
 						</ContainerRow>
-						<Menu>이미지 업로드</Menu>
+						<Menu>커버 이미지 업로드</Menu>
+						<CoverImageContainer>{/* <Background /> */}</CoverImageContainer>
+						<Menu>소개 이미지 업로드</Menu>
 						<ContainerRow style={{ marginBottom: '2em' }}>
 							<ImageButton />
 							<ImageButton />
 							<ImageButton />
 						</ContainerRow>
-						<SubmitButton>동아리 등록 신청 완료</SubmitButton>
+						<SubmitButton>동아리 등록 신청</SubmitButton>
 					</MenuContainer>
 				</Container>
+				<Footer />
 			</ContainerPage>
 		</>
 	);

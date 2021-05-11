@@ -1,9 +1,10 @@
 import { ContentKorean } from 'components/ClubPostCard/styles';
-import { ContentContainer, TitleKorean } from 'pages/MyClubListPage/styles';
+import { ContentContainer, HeaderContainer, TitleKorean } from 'pages/MyClubListPage/styles';
 import { ClubListCardContainer, ClubPostCardContainer } from './styles';
 import React from 'react';
 import ClubListCard from 'components/ClubListCard';
 import ClubPostCard from 'components/ClubPostCard';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { ContainerPage } from 'styles';
 
 const MyLikeListPage = () => {
@@ -11,7 +12,11 @@ const MyLikeListPage = () => {
 		//
 		<>
 			<ContainerPage>
-				<TitleKorean>관심있는 동아리</TitleKorean>
+				<HeaderContainer>
+					<ContentKorean>마이페이지</ContentKorean>
+					<ChevronRightIcon />
+					<ContentKorean>관심 목록</ContentKorean>
+				</HeaderContainer>
 				<ContentContainer>
 					<ContentKorean>관심있는 동아리가 2개 있습니다.</ContentKorean>
 				</ContentContainer>

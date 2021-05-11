@@ -1,44 +1,88 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-	width: 1592px;
-	height: 260px;
+	width: 100%;
+	height: 120px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	margin-bottom: 1em;
+	background-color: #f3f3f3;
+`;
+
+export const InnerContainer = styled.div`
+	width: 90%;
+	height: 80%;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+`;
+
+export const RecruitingInfoContainer = styled.div`
 	display: flex;
 	flex-direction: row;
-	margin-bottom: 1em;
+	align-items: center;
 `;
 
-export const RecruitInfoImage = styled.div`
-	width: 436px;
-	height: 260px;
-	background-color: #e8e8e8;
-`;
-
-export const RecruitInfoDetail = styled.div`
+export const RecruitingInfo = styled.div`
 	display: flex;
-	flex-direction: column;
-	padding-left: 2.44em;
-	width: 1156px;
-	background-color: #f7f7f7;
-	color: #282828;
+	align-items: center;
+	justify-content: center;
+
+	width: 40px;
+	height: 20px;
+	border-radius: 14px;
+	border: solid 1.5px #04cbac;
+
+	font-family: 'GmarketSans';
+	font-size: 0.813rem;
+	font-weight: 700;
+	color: #04cbac;
 `;
 
-export const HeaderDetail = styled.span`
-	font-family: 'GmarketSansMedium';
-	font-size: 1rem;
-	margin-top: 2.625em;
+export const ClubName = styled.span`
+	font-family: 'NotoSansKR';
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #282828;
+
+	margin-left: 0.5em;
 `;
 
 export const RecruitTitle = styled.span`
 	font-family: 'NotoSansKR';
 	font-weight: bold;
-	font-size: 2.25em;
-	margin-top: 0.563em;
+	font-size: 1.3rem;
+	color: #282828;
 `;
 
-export const RecruitDetail = styled.div`
-	width: 677px;
-	font-size: 1.125rem;
+export const ApplyButtonContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+
+	align-items: center;
+`;
+
+export const Deadline = styled.span`
 	font-family: 'NotoSansKR';
-	margin-top: 1.125em;
+	font-size: 1rem;
+	color: #282828;
+
+	font-weight: 700;
+`;
+
+export const ApplyButton = styled.button`
+	width: 130px;
+	height: 45px;
+
+	border-radius: 23px;
+	background-color: #06cbad;
+	border: none;
+
+	font-size: 1rem;
+	font-weight: 700;
+	color: #fff;
 `;

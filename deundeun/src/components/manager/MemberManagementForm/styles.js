@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 export const BasicBlock = styled.div`
-	margin: 0 86px;
 	display: flex;
 	position: relative;
 `;
@@ -63,7 +62,7 @@ export const ContentBlock = styled.div`
 		}
 	}
 	.main {
-		margin-top: 60px;
+		/* margin-top: 60px; */
 		width: 1400px;
 		.mainTitle {
 			margin-top: 26px;

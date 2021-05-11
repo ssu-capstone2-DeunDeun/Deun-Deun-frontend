@@ -25,7 +25,7 @@ const MyPage = () => {
 
 	const onCloseModal = useCallback(() => {
 		setShowAddQuestionModal(false);
-	});
+	}, []);
 
 	return (
 		//

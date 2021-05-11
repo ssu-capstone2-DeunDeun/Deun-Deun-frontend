@@ -13,13 +13,14 @@ export const Container = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-	width: 23vw;
-	margin-right: 6.25vw;
+	width: 345px;
+	height: 345px;
+	margin-right: 10em;
 `;
 
 export const ClubImage = styled.img`
 	width: 100%;
-	height: 40vh;
+	height: 100%;
 	background-color: #f0f0f0;
 `;
 
@@ -89,12 +90,17 @@ export const AddHashtagButton = styled.button`
 
 export const SubmitButton = styled.button`
 	margin-left: auto;
-	width: 15vw;
-	height: 10vh;
-	background-color: #cccccc;
+	width: 260px;
+	height: 66px;
+	background-color: #1f1f1f;
 	font-family: 'NotoSansKR';
 	font-size: 1rem;
-	color: #282828;
+	color: #fff;
 	font-weight: bold;
 	border: none;
+`;
+
+export const Footer = styled.div`
+	width: 1px;
+	height: 5em;
 `;

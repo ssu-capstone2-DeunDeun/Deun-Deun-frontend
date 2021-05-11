@@ -8,15 +8,26 @@ import {
 	RecruitDeadline,
 	Tilde,
 	RecruitInfoTextarea,
-	ImageButton,
-	SubmitButton
+	ImageButton
 } from './styles';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ContainerColumn, ContainerRow } from 'styles';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { ContentKorean } from 'components/ClubPostCardSmall/styles';
+import { Header, SubmitButton } from 'pages/ApplicationAddPage/styles';
+import LoadApplicationModal from 'components/modal/LoadApplicationModal';
 
 const RecruitAddPage = ({ setAddNewForm }) => {
+	const [showLoadApplicationModal, setShowLoadApplicationModal] = useState(false);
+
+	const onClickLoadApplication = useCallback((e) => {
+		setShowLoadApplicationModal(true);
+	}, []);
+
+	const onCloseModal = useCallback((e) => {
+		setShowLoadApplicationModal(false);
+	}, []);
+
 	useEffect(() => {
 		return () => setAddNewForm(false);
 	}, []);
@@ -24,8 +35,9 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 	return (
 		//
 		<ContainerColumn style={{ marginTop: '2em', width: '68vw' }}>
+			<Header>새 모집 공고 추가하기</Header>
 			<TitleKorean>모집 공고 제목</TitleKorean>
-			<ApplicationLoadCard>
+			<ApplicationLoadCard onClick={onClickLoadApplication}>
 				<InnerContainer className="inner">
 					<AddCircleOutlineIcon style={{ marginRight: '0.4em' }} />
 					<ContentKorean>지원서 불러오기</ContentKorean>
@@ -72,6 +84,7 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 				<ImageButton />
 			</ContainerRow>
 			<SubmitButton>모집 공고 등록하기</SubmitButton>
+			<LoadApplicationModal show={showLoadApplicationModal} onCloseModal={onCloseModal} />
 		</ContainerColumn>
 	);
 };

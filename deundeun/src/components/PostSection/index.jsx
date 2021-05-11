@@ -1,17 +1,17 @@
 import ClubPostCardSmall from 'components/ClubPostCardSmall';
 import React from 'react';
-import { Container, PostContainer, TitleKorean, ContentKorean, TextContainer, CardContainer } from './styles';
+import { Container, PostContainer, CardContainer, Header } from './styles';
+import { TitleKorean, SeeAll } from 'components/RecruitInfoSection/styles';
 const PostSection = () => {
 	return (
 		//
 		<Container>
 			<PostContainer>
-				<TextContainer>
-					<TitleKorean>게시판</TitleKorean>
-					<ContentKorean>최신순</ContentKorean>
-				</TextContainer>
+				<Header>
+					<TitleKorean>동아리 게시글</TitleKorean>
+					<SeeAll>전체보기</SeeAll>
+				</Header>
 				<CardContainer>
-					<ClubPostCardSmall />
 					<ClubPostCardSmall />
 					<ClubPostCardSmall />
 					<ClubPostCardSmall />

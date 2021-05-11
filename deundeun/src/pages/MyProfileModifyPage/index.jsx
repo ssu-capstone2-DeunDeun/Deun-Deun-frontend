@@ -1,6 +1,7 @@
-import { ContentKorean, TitleEnglish } from 'pages/ClubHomePage/styles';
+import { ContentKorean, TitleEnglish } from 'components/ClubPostCard/styles';
 import React from 'react';
-import { ContainerColumn, ContainerPage } from 'styles';
+import { ContainerColumn, ContainerPage, ContainerRow } from 'styles';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {
 	Header,
 	Container,
@@ -9,7 +10,11 @@ import {
 	TitleKorean,
 	InputBoxContainer,
 	SubmitButton,
-	InputBox
+	InputBox,
+	UserName,
+	UserEmail,
+	SocialImage,
+	EmailContainer
 } from './styles';
 
 const MyPage = () => {
@@ -18,31 +23,29 @@ const MyPage = () => {
 		<>
 			<ContainerPage>
 				<Header>
-					<TitleEnglish>MY PROFILE</TitleEnglish>
+					<ContentKorean>마이페이지</ContentKorean>
+					<ChevronRightIcon />
 					<ContentKorean>내 정보 수정</ContentKorean>
 				</Header>
 				<Container>
 					<ProfileImage />
+					<UserName>신상현</UserName>
+
+					<EmailContainer>
+						<SocialImage src="/images/icons/kakao.png"></SocialImage>
+						<UserEmail>qwerty123@kakao.com</UserEmail>
+					</EmailContainer>
+
 					<InputContainer>
-						<TitleKorean>이름</TitleKorean>
+						<TitleKorean style={{ marginLeft: '7.8em' }}>닉네임 *</TitleKorean>
 						<InputBoxContainer>
-							<InputBox placeholder="이름을 입력해주세요"></InputBox>
-							<SubmitButton type="submit">등록하기</SubmitButton>
+							<InputBox placeholder="닉네임"></InputBox>
+							<SubmitButton type="submit">닉네임 변경</SubmitButton>
 						</InputBoxContainer>
-						<TitleKorean>닉네임</TitleKorean>
+						<TitleKorean style={{ marginLeft: '7.8em' }}>휴대폰 번호 *</TitleKorean>
 						<InputBoxContainer>
-							<InputBox placeholder="닉네임을 입력해주세요"></InputBox>
-							<SubmitButton type="submit">중복 검사</SubmitButton>
-						</InputBoxContainer>
-						<TitleKorean>휴대폰 번호</TitleKorean>
-						<InputBoxContainer>
-							<InputBox placeholder="휴대폰 번호를 입력해주세요"></InputBox>
-							<SubmitButton type="submit">인증하기</SubmitButton>
-						</InputBoxContainer>
-						<TitleKorean>이메일</TitleKorean>
-						<InputBoxContainer>
-							<InputBox placeholder="이메일을 입력해주세요"></InputBox>
-							<SubmitButton type="submit">인증하기</SubmitButton>
+							<InputBox placeholder="010-1234-5678"></InputBox>
+							<SubmitButton type="submit">전화번호 변경</SubmitButton>
 						</InputBoxContainer>
 					</InputContainer>
 				</Container>

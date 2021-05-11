@@ -13,6 +13,7 @@ import RecruitManagePage from 'pages/RecruitManagePage';
 import RecruitAddPage from 'pages/RecruitAddPage';
 import MemberManagePage from 'pages/MemberManagePage';
 import ApplicantManagePage from 'pages/ApplicantManagePage';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 const ClubManagePage = () => {
 	const [menuIndex, setMenuIndex] = useState(0);
@@ -28,7 +29,8 @@ const ClubManagePage = () => {
 		<>
 			<ContainerPage>
 				<HeaderContainer>
-					<TitleKorean style={{ marginRight: '2.76vw' }}>동아리 관리</TitleKorean>
+					<TitleKorean style={{ marginRight: '0.5em' }}>동아리 관리</TitleKorean>
+					<ChevronRightIcon style={{ marginRight: '0.5em' }} />
 					<div>
 						<ContentKorean style={{ marginRight: '0.625vw' }}>IT동아리 트와이스</ContentKorean>
 						<ExpandMoreIcon style={{ marginRight: '1.56vw' }} />

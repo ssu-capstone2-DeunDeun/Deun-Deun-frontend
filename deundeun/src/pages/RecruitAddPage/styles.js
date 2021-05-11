@@ -13,7 +13,7 @@ export const ApplicationLoadCard = styled.div`
 	align-items: center;
 	cursor: pointer;
 	background-color: #f7f7f7;
-	height: 10vh;
+	height: 8vh;
 	color: #b5b5b5;
 	margin-top: 1em;
 	margin-bottom: 2em;
@@ -27,7 +27,7 @@ export const ApplicationLoadCard = styled.div`
 `;
 
 export const InnerContainer = styled.div`
-	width: 20%;
+	width: 15%;
 	height: 45%;
 	display: flex;
 	flex-direction: row;
@@ -115,16 +115,4 @@ export const ImageButton = styled.img`
 	margin-right: 0.5em;
 	margin-top: 1em;
 	margin-bottom: 4em;
-`;
-
-export const SubmitButton = styled.button`
-	margin-left: auto;
-	width: 15vw;
-	height: 10vh;
-	background-color: #cccccc;
-	font-family: 'NotoSansKR';
-	font-size: 1.313rem;
-	color: #282828;
-	font-weight: bold;
-	border: none;
 `;

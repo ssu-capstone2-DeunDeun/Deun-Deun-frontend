@@ -1,19 +1,31 @@
 import React from 'react';
-import { Container, RecruitInfoImage, RecruitInfoDetail, HeaderDetail, RecruitTitle, RecruitDetail } from './styles';
+import {
+	Container,
+	RecruitTitle,
+	InnerContainer,
+	RecruitingInfoContainer,
+	RecruitingInfo,
+	ClubName,
+	ApplyButtonContainer,
+	Deadline,
+	ApplyButton
+} from './styles';
 
 const RecruitInfoCard = () => {
 	return (
 		//
 		<Container>
-			<RecruitInfoImage />
-			<RecruitInfoDetail>
-				<HeaderDetail>D-4 모집 마감 | 21.01.01 ~ 21.06.01</HeaderDetail>
-				<RecruitTitle>[3기] 야! 너도 트와이스 할 수 있어!</RecruitTitle>
-				<RecruitDetail>
-					동아리 모집 공고 소개. 동아리 모집 공고 소개. 동아리 모집 공고 소개. 동아리 모집 공고 소개. 동아리 모집 공고
-					소개.
-				</RecruitDetail>
-			</RecruitInfoDetail>
+			<InnerContainer>
+				<RecruitingInfoContainer>
+					<RecruitingInfo>ON</RecruitingInfo>
+					<ClubName>트와이스</ClubName>
+				</RecruitingInfoContainer>
+				<RecruitTitle>[3기] 모집 공고 제목 모집 공고 제목</RecruitTitle>
+				<ApplyButtonContainer>
+					<Deadline>D-4</Deadline>
+					<ApplyButton>지원하기</ApplyButton>
+				</ApplyButtonContainer>
+			</InnerContainer>
 		</Container>
 	);
 };

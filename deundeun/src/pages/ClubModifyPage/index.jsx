@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
-import { ContentKorean } from 'components/ClubPostCard/styles';
 import DropdownMenu from 'components/DropdownMenu';
-import { TitleKorean } from 'pages/MyClubListPage/styles';
 import { ContainerPage, ContainerRow } from 'styles';
 import {
-	HeaderContainer,
 	Container,
-	ImageContainer,
 	MenuContainer,
-	ClubImage,
 	Menu,
 	DropdownContainer,
 	ClubNameInput,
 	DuplicateCheckButton,
 	ClubInfoTextarea,
 	AddHashtagButton,
-	SubmitButton
+	SubmitButton,
+	Footer
 } from 'pages/ClubAddPage/styles';
 import { ImageButton } from 'pages/RecruitAddPage/styles';
+import { ImageContainer, ClubImage, CoverImage, Background, CoverImageContainer } from './styles';
 
 const ClubModifyPage = () => {
 	const menuOptions = ['IT / 개발', '카테고리 2', '카테고리 3', '카테고리 4', '카테고리 5'];
@@ -28,9 +25,7 @@ const ClubModifyPage = () => {
 		<>
 			<ContainerPage>
 				<Container>
-					<ImageContainer>
-						<ClubImage></ClubImage>
-					</ImageContainer>
+					<ClubImage></ClubImage>
 					<MenuContainer>
 						<Menu>동아리 카테고리</Menu>
 						<DropdownContainer>
@@ -54,7 +49,12 @@ const ClubModifyPage = () => {
 							<AddHashtagButton>IT / 개발</AddHashtagButton>
 							<AddHashtagButton>IT / 개발</AddHashtagButton>
 						</ContainerRow>
-						<Menu>이미지 업로드</Menu>
+						<Menu>커버 이미지 업로드</Menu>
+						<CoverImageContainer>
+							<Background>1920 * 348 사이즈의 커버 이미지를 등록해 주세요.</Background>
+							<CoverImage></CoverImage>
+						</CoverImageContainer>
+						<Menu>소개 이미지 업로드</Menu>
 						<ContainerRow style={{ marginBottom: '2em' }}>
 							<ImageButton />
 							<ImageButton />
@@ -63,6 +63,7 @@ const ClubModifyPage = () => {
 						<SubmitButton>정보 수정하기</SubmitButton>
 					</MenuContainer>
 				</Container>
+				<Footer />
 			</ContainerPage>
 		</>
 	);

@@ -2,8 +2,8 @@
 import React, { useEffect } from 'react';
 import { Redirect, Route, Switch, useLocation, useParams } from 'react-router-dom';
 import loadable from '@loadable/component';
-import SideBar from 'components/SideBar';
-import Header from 'components/Header';
+import SideBar from 'components/common/SideBar';
+import Header from 'components/common/Header';
 import { ContainerRow } from 'styles';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));

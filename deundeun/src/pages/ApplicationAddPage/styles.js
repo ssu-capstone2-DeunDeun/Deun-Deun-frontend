@@ -1,5 +1,18 @@
 import styled from '@emotion/styled';
 
+export const Header = styled.div`
+	width: 100%;
+	height: 60px;
+	border-bottom: solid 1px #d9d9d9;
+	background-color: transparent;
+	margin-bottom: 1em;
+
+	font-family: 'NotoSansKR';
+	font-size: 2rem;
+	font-weight: 900;
+	color: #282828;
+`;
+
 export const ApplicationTitleInput = styled.input`
 	border: none;
 	background-color: #f7f7f7;
@@ -74,11 +87,11 @@ export const AddSelectionButton = styled.div`
 `;
 
 export const AddQuestionButton = styled.div`
-	margin-top: 5em;
+	margin-top: 1em;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 10em;
+	/* margin-bottom: 10em; */
 	height: 20vh;
 `;
 
@@ -87,11 +100,24 @@ export const InnerContainer = styled.div`
 	cursor: pointer;
 	align-items: center;
 	justify-content: center;
-	width: 15%;
-	height: 30%;
+	width: 13%;
+	height: 20%;
 	&:hover {
 		background-color: #a1a1a1;
 		color: #fff;
 	}
 	border-radius: 1em;
+`;
+
+export const SubmitButton = styled.button`
+	width: 250px;
+	height: 66px;
+	background-color: #1f1f1f;
+
+	font-family: 'NotoSansKR';
+	font-size: 1.1rem;
+	font-weight: bold;
+	color: #fff;
+
+	margin: 0 auto;
 `;

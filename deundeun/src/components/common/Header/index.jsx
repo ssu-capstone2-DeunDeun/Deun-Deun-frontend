@@ -15,7 +15,7 @@ const Header = () => {
 		//
 		<Container>
 			<Link to="/club/home">
-				<Logo>Logo</Logo>
+				<Logo src="/images/logo/GROOPY.png" />
 			</Link>
 			<IconContainer>
 				<SearchIcon style={{ cursor: 'pointer' }} onClick={onClickSearch} />

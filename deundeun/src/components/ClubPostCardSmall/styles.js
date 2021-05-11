@@ -5,10 +5,6 @@ export const Container = styled.div`
 	height: 467px;
 `;
 
-export const PostImage = styled.div`
-	height: 188px;
-	background-color: #e8e8e8;
-`;
 export const PostOverview = styled.div`
 	height: 279px;
 	padding-left: 1.25em;
@@ -34,12 +30,20 @@ export const ContentKorean = styled.span`
 	font-weight: 500;
 `;
 
+export const PostDate = styled.span`
+	font-family: 'NotoSansKR';
+	font-size: 1rem;
+	color: #9b9b9b;
+	margin-left: auto;
+	margin-top: 2em;
+	margin-bottom: 1em;
+`;
+
 export const NicknameAndLike = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	height: 68.4px;
-	margin-top: 4.163em;
+	height: 65px;
 	border-top: solid 1px #d9d9d9;
 `;
 
@@ -47,11 +51,20 @@ export const Nickname = styled.span`
 	font-family: 'NotoSansKR';
 	font-size: 1rem;
 `;
-
-export const Like = styled.span`
+export const Comment = styled.span`
 	margin-left: auto;
 	font-family: 'GmarketSansMedium';
 	font-weight: 500;
-	font-size: 0.75rem;
+	font-size: 0.9rem;
 	line-height: 1.17;
+	margin-right: 0.3em;
+	color: #282828;
+`;
+
+export const Like = styled.span`
+	font-family: 'GmarketSansMedium';
+	font-weight: 500;
+	font-size: 0.9rem;
+	line-height: 1.17;
+	color: #282828;
 `;
