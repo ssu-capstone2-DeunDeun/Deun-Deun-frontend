@@ -14,6 +14,7 @@ import RecruitAddPage from 'pages/RecruitAddPage';
 import MemberManagePage from 'pages/MemberManagePage';
 import ApplicantManagePage from 'pages/ApplicantManagePage';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { CategoryKorean } from 'pages/MyLikeListPage/styles';
 
 const ClubManagePage = () => {
 	const [menuIndex, setMenuIndex] = useState(0);
@@ -29,14 +30,14 @@ const ClubManagePage = () => {
 		<>
 			<ContainerPage>
 				<HeaderContainer>
-					<TitleKorean style={{ marginRight: '0.5em' }}>동아리 관리</TitleKorean>
+					<CategoryKorean style={{ marginRight: '0.5em' }}>동아리 관리</CategoryKorean>
 					<ChevronRightIcon style={{ marginRight: '0.5em' }} />
 					<div>
-						<ContentKorean style={{ marginRight: '0.625vw' }}>IT동아리 트와이스</ContentKorean>
+						<CategoryKorean style={{ marginRight: '0.625vw' }}>IT동아리 트와이스</CategoryKorean>
 						<ExpandMoreIcon style={{ marginRight: '1.56vw' }} />
 					</div>
 					<div>
-						<ContentKorean style={{ marginRight: '0.625vw' }}>{`${menuOptions[menuIndex]}`}</ContentKorean>
+						<CategoryKorean style={{ marginRight: '0.625vw' }}>{`${menuOptions[menuIndex]}`}</CategoryKorean>
 						<DropdownMenu options={menuOptions} selectedIndex={menuIndex} setSelectedIndex={setMenuIndex} />
 					</div>
 				</HeaderContainer>

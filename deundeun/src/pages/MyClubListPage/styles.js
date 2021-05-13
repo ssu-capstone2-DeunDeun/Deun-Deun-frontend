@@ -9,6 +9,8 @@ export const TitleKorean = styled.span`
 	line-height: 1.5;
 	letter-spacing: normal;
 	color: #282828;
+
+	margin-bottom: 0.813em;
 `;
 
 export const HeaderContainer = styled.div`
@@ -29,10 +31,9 @@ export const Content = styled.div`
 	flex-direction: row;
 `;
 
-export const ClubInfoCardContainer = styled.div`
+export const JoinedClubCardContainer = styled.div`
 	display: flex;
-	flex-direction: column;
-	margin-top: 2.25em;
+	flex-flow: row wrap;
+	margin-top: 1.625em;
 	width: 1364px;
-	height: 60vh;
 `;

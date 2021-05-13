@@ -9,22 +9,12 @@ export const Container = styled.div`
 
 	margin-right: 2.375em;
 	margin-bottom: 1.75em;
-
-	&.quit {
-		background-color: #f0f0f0;
-	}
-`;
-
-export const ClubImage = styled.img`
-	width: 160px;
-	height: 160px;
-
-	/* src: url('/images/sample/') */
 `;
 
 export const ClubInfo = styled.div`
 	width: 444px;
-
+	display: flex;
+	flex-direction: column;
 	background-color: #f2f2f2;
 
 	padding-top: 1.125em;
@@ -32,22 +22,19 @@ export const ClubInfo = styled.div`
 	padding-right: 1.338em;
 `;
 
-export const ClubName = styled.span`
-	cursor: pointer;
-
-	font-family: 'NotoSansKR';
-	font-size: 1.125rem;
-	font-weight: bold;
-`;
-
-export const DetailContainer = styled.div`
-	width: 375px;
-	margin-top: 0.7em;
-`;
-
 export const ClubDetail = styled.span`
 	font-family: 'NotoSansKR';
 	font-size: 0.875rem;
 	font-weight: 500;
 	color: #282828;
+
+	margin-top: 1em;
+`;
+
+export const JoinedDate = styled.span`
+	font-family: NotoSansKR;
+	font-size: 12px;
+	color: #9a9a9a;
+
+	margin-top: 1.563em;
 `;
