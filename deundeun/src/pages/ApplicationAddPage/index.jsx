@@ -1,4 +1,4 @@
-import DropdownMenu from 'components/DropdownMenu';
+import DropdownMenu from 'components/common/DropdownMenu';
 import { TitleKorean } from 'pages/RecruitAddPage/styles';
 import React, { useEffect, useState } from 'react';
 import { ContainerColumn, ContainerPage, ContainerRow } from 'styles';

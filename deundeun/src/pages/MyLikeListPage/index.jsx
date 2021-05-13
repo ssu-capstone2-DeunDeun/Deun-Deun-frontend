@@ -1,11 +1,11 @@
 import { ContentKorean } from 'components/ClubPostCard/styles';
-import { ContentContainer, HeaderContainer, TitleKorean } from 'pages/MyClubListPage/styles';
-import { ClubListCardContainer, ClubPostCardContainer } from './styles';
+import { HeaderContainer, TitleKorean } from 'pages/MyClubListPage/styles';
+import { ClubListCardContainer, ClubPostCardContainer, SeeAll } from './styles';
 import React from 'react';
 import ClubListCard from 'components/ClubListCard';
 import ClubPostCard from 'components/ClubPostCard';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { ContainerPage } from 'styles';
+import { ContainerColumn, ContainerPage, ContainerRow } from 'styles';
 
 const MyLikeListPage = () => {
 	return (
@@ -17,19 +17,26 @@ const MyLikeListPage = () => {
 					<ChevronRightIcon />
 					<ContentKorean>관심 목록</ContentKorean>
 				</HeaderContainer>
-				<ContentContainer>
-					<ContentKorean>관심있는 동아리가 2개 있습니다.</ContentKorean>
-				</ContentContainer>
+				<ContainerColumn style={{ marginTop: '1.75em', width: '1242px' }}>
+					<TitleKorean>관심 동아리 목록</TitleKorean>
+					<ContainerRow style={{ marginTop: '0.25em', width: '100%' }}>
+						<ContentKorean>관심있는 동아리가 6개 있습니다.</ContentKorean>
+						<SeeAll>전체보기</SeeAll>
+					</ContainerRow>
+				</ContainerColumn>
 				<ClubListCardContainer>
+					<ClubListCard />
+					<ClubListCard />
 					<ClubListCard />
 					<ClubListCard />
 				</ClubListCardContainer>
 
-				<TitleKorean style={{ marginTop: '3.69em' }}>관심있는 게시글</TitleKorean>
-				<ContentContainer>
-					<ContentKorean>관심있는 게시글이 2개 있습니다.</ContentKorean>
-				</ContentContainer>
+				<ContainerRow style={{ marginTop: '7em', width: '1242px' }}>
+					<TitleKorean>관심 글 목록</TitleKorean>
+					<SeeAll>전체보기</SeeAll>
+				</ContainerRow>
 				<ClubPostCardContainer>
+					<ClubPostCard />
 					<ClubPostCard />
 					<ClubPostCard />
 					<ClubPostCard />

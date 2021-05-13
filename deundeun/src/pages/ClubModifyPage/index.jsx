@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DropdownMenu from 'components/DropdownMenu';
+import DropdownMenu from 'components/common/DropdownMenu';
 import { ContainerPage, ContainerRow } from 'styles';
 import {
 	Container,

@@ -32,3 +32,25 @@ export const CardContainer = styled.div`
 	justify-content: space-between;
 	margin-top: 1.6em;
 `;
+
+export const ButtonContainer = styled.div`
+	margin-top: 4em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
+export const SubmitButton = styled.button`
+	width: 300px;
+	height: 66px;
+	background-color: #1f1f1f;
+	color: #fff;
+
+	font-family: 'NotoSansKR';
+	font-weight: bold;
+	font-size: 1.125rem;
+`;
+
+export const Footer = styled.div`
+	height: 10em;
+`;

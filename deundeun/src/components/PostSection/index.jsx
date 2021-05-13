@@ -1,6 +1,6 @@
 import ClubPostCardSmall from 'components/ClubPostCardSmall';
 import React from 'react';
-import { Container, PostContainer, CardContainer, Header } from './styles';
+import { Container, PostContainer, CardContainer, Header, SubmitButton, ButtonContainer, Footer } from './styles';
 import { TitleKorean, SeeAll } from 'components/RecruitInfoSection/styles';
 const PostSection = () => {
 	return (
@@ -16,6 +16,10 @@ const PostSection = () => {
 					<ClubPostCardSmall />
 					<ClubPostCardSmall />
 				</CardContainer>
+				<ButtonContainer>
+					<SubmitButton>게시글 작성</SubmitButton>
+				</ButtonContainer>
+				<Footer />
 			</PostContainer>
 		</Container>
 	);

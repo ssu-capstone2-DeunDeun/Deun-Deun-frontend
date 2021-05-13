@@ -3,7 +3,7 @@ import { TitleKorean } from 'pages/MyClubListPage/styles';
 import React, { useEffect, useState } from 'react';
 import { HeaderContainer, MenuContainer } from './styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import DropdownMenu from 'components/DropdownMenu';
+import DropdownMenu from 'components/common/DropdownMenu';
 import ClubModifyPage from 'pages/ClubModifyPage';
 import { Redirect } from 'react-router';
 import ApplicationManagePage from 'pages/ApplicationManagePage';

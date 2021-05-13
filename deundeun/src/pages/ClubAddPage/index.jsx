@@ -1,5 +1,5 @@
 import { ContentKorean } from 'components/ClubPostCard/styles';
-import DropdownMenu from 'components/DropdownMenu';
+import DropdownMenu from 'components/common/DropdownMenu';
 import { Background, CoverImage, CoverImageContainer } from 'pages/ClubModifyPage/styles';
 import { TitleKorean } from 'pages/MyClubListPage/styles';
 import { ImageButton } from 'pages/RecruitAddPage/styles';

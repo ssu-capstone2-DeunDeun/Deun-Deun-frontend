@@ -1,38 +1,20 @@
-import { ClubDetail } from 'components/ClubInfoCard/styles';
-import NumberOfLikes from 'components/NumberOfLikes';
 import React from 'react';
-import {
-	Container,
-	ClubImage,
-	ClubInfo,
-	HeaderInfo,
-	RecruitDeadline,
-	LikeContainer,
-	ClubName,
-	HashtagContainer,
-	Hashtag
-} from './styles';
+import { ContainerRow } from 'styles';
+import { Container, ClubImage, ClubInfo, ClubName, ClubDetail } from './styles';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 const ClubListCard = () => {
 	return (
 		//
 		<Container>
 			<ClubImage />
 			<ClubInfo>
-				<HeaderInfo>
-					<RecruitDeadline>모집중 | D-4</RecruitDeadline>
-					<LikeContainer>
-						<NumberOfLikes />
-					</LikeContainer>
-				</HeaderInfo>
-				<ClubName>IT동아리 트와이스</ClubName>
-				<ClubDetail style={{ marginBottom: '-2em' }}>
+				<ContainerRow>
+					<ClubName>IT동아리 트와이스</ClubName>
+					<FavoriteIcon style={{ width: '20px', height: '20px', marginLeft: 'auto' }} />
+				</ContainerRow>
+				<ClubDetail>
 					다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파.
 				</ClubDetail>
-				<HashtagContainer>
-					<Hashtag># 해시태그 1</Hashtag>
-					<Hashtag># 해시태그 2</Hashtag>
-					<Hashtag># 해시태그 3</Hashtag>
-				</HashtagContainer>
 			</ClubInfo>
 		</Container>
 	);
