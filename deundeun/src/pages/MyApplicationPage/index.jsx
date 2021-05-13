@@ -1,4 +1,4 @@
-import { TitleKorean, ContentContainer, Content, HeaderContainer } from 'pages/MyClubListPage/styles';
+import { ContentContainer, Content, HeaderContainer } from 'pages/MyClubListPage/styles';
 import { ContentKorean } from 'components/ClubPostCard/styles';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import React from 'react';
@@ -6,15 +6,16 @@ import MyApplicationCard from 'components/MyApplicationCard';
 import { CardContainer } from './styles';
 import { ContainerPage } from 'styles';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { CategoryKorean } from 'pages/MyLikeListPage/styles';
 const MyApplicationPage = () => {
 	return (
 		//
 		<>
 			<ContainerPage>
 				<HeaderContainer>
-					<ContentKorean>마이페이지</ContentKorean>
+					<CategoryKorean>마이페이지</CategoryKorean>
 					<ChevronRightIcon />
-					<ContentKorean>지원 목록</ContentKorean>
+					<CategoryKorean>지원 목록</CategoryKorean>
 				</HeaderContainer>
 				<ContentContainer>
 					<ContentKorean>현재 3개의 동아리에 지원했습니다.</ContentKorean>

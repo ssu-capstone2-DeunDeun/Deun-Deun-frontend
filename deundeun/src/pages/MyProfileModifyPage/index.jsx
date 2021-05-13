@@ -1,6 +1,5 @@
-import { ContentKorean, TitleEnglish } from 'components/ClubPostCard/styles';
 import React from 'react';
-import { ContainerColumn, ContainerPage, ContainerRow } from 'styles';
+import { ContainerPage } from 'styles';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import {
 	Header,
@@ -16,6 +15,7 @@ import {
 	SocialImage,
 	EmailContainer
 } from './styles';
+import { CategoryKorean } from 'pages/MyLikeListPage/styles';
 
 const MyPage = () => {
 	return (
@@ -23,9 +23,9 @@ const MyPage = () => {
 		<>
 			<ContainerPage>
 				<Header>
-					<ContentKorean>마이페이지</ContentKorean>
+					<CategoryKorean>마이페이지</CategoryKorean>
 					<ChevronRightIcon />
-					<ContentKorean>내 정보 수정</ContentKorean>
+					<CategoryKorean>내 정보 수정</CategoryKorean>
 				</Header>
 				<Container>
 					<ProfileImage />

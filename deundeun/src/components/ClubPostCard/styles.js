@@ -1,73 +1,84 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-	width: 22.35vw;
-	height: 70vh;
+	width: 296px;
+	height: 372px;
+
+	margin-right: 1.25em;
 `;
 
 export const PostImage = styled.div`
-	height: 40%;
+	height: 150px;
 	background-color: #e8e8e8;
 `;
 export const PostOverview = styled.div`
-	height: 60%;
-	padding-left: 1.438em;
-	padding-right: 1.438em;
+	height: 167.4px;
 	background-color: #f7f7f7;
 	display: flex;
 	flex-direction: column;
+	padding-top: 1.063em;
+	padding-left: 0.938em;
 `;
 
 export const TitleKorean = styled.span`
 	font-family: 'NotoSansKR';
-	font-weight: 900;
-	font-size: 1.438rem;
-	line-height: 1.48;
-	margin-top: 1.813em;
-	margin-bottom: 0.625em;
+	font-weight: bold;
+	font-size: 0.813rem;
+	color: #282828;
+`;
 
-	@media (max-width: 1440px) {
-		font-size: 1.2rem;
-	}
+export const ContentContainer = styled.div`
+	width: 246px;
+	height: 72px;
 `;
 
 export const ContentKorean = styled.span`
 	font-family: 'NotoSansKR';
-	font-size: 1.25rem;
-	line-height: 1.45;
-	font-weight: 500;
-
-	@media (max-width: 1440px) {
-		font-size: 1.1rem;
-	}
+	font-size: 0.75rem;
+	color: #282828;
 `;
 
-export const NicknameAndLike = styled.div`
+export const DetailContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	height: 13vh;
-	margin-top: 5em;
+	width: 100%;
+	height: 53.6px;
 	border-top: solid 1px #d9d9d9;
+	background-color: #f7f7f7;
+	padding-left: 0.963em;
+	padding-right: 1.106em;
 `;
 
-export const Nickname = styled.span`
+export const PostDate = styled.span`
 	font-family: 'NotoSansKR';
-	font-size: 1.125rem;
-
-	@media (max-width: 1440px) {
-		font-size: 0.9rem;
-	}
+	font-size: 0.688rem;
+	color: #9b9b9b;
+	margin-left: auto;
+	margin-right: 1.294em;
+	margin-top: 3.294em;
 `;
 
-export const Like = styled.span`
+export const ClubName = styled.span`
+	font-family: 'NotoSansKR';
+	font-weight: 500;
+	font-size: 0.688rem;
+	color: #282828;
+`;
+
+export const Comment = styled.div`
 	margin-left: auto;
 	font-family: 'GmarketSansMedium';
 	font-weight: 500;
-	font-size: 1.2rem;
-	line-height: 1.17;
+	font-size: 0.625rem;
+	color: #282828;
+	margin-right: 1em;
+`;
 
-	@media (max-width: 1440px) {
-		font-size: 0.9rem;
-	}
+export const Like = styled.div`
+	margin-left: auto;
+	font-family: 'GmarketSansMedium';
+	font-weight: 500;
+	font-size: 0.625rem;
+	color: #282828;
 `;
