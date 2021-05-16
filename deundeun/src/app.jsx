@@ -16,7 +16,7 @@ const MyClubListPage = loadable(() => import('pages/MyClubListPage'));
 const MyApplicationPage = loadable(() => import('pages/MyApplicationPage'));
 const MyLikeListPage = loadable(() => import('pages/MyLikeListPage'));
 
-const App = () => {
+const App = ({ FileInput }) => {
 	let location = useLocation();
 
 	useEffect(() => {
@@ -63,7 +63,7 @@ const App = () => {
 				<Header />
 				<ContainerRow>
 					<SideBar location={location} />
-					<ClubAddPage />
+					<ClubAddPage FileInput={FileInput} />
 				</ContainerRow>
 			</Route>
 

@@ -1,9 +1,9 @@
-import { ContentKorean } from 'components/ClubPostCard/styles';
 import DropdownMenu from 'components/common/DropdownMenu';
+import LoadingSpinner from 'components/common/LoadingSpinner';
 import { Background, CoverImage, CoverImageContainer } from 'pages/ClubModifyPage/styles';
 import { TitleKorean } from 'pages/MyClubListPage/styles';
 import { ImageButton } from 'pages/RecruitAddPage/styles';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ContainerPage, ContainerRow } from 'styles';
 import {
 	HeaderContainer,
@@ -18,12 +18,18 @@ import {
 	ClubInfoTextarea,
 	AddHashtagButton,
 	SubmitButton,
+	InputButtonContainer,
 	Footer
 } from './styles';
 
-const ClubManagePage = () => {
+const ClubManagePage = ({ FileInput }) => {
 	const menuOptions = ['IT / 개발', '카테고리 2', '카테고리 3', '카테고리 4', '카테고리 5'];
 	const [menuIndex, setMenuIndex] = useState(-1);
+	const [imageLoading, setImageLoading] = useState(false);
+
+	const onChangeFile = useCallback((file) => {
+		console.log(file.url);
+	}, []);
 
 	return (
 		//
@@ -61,7 +67,10 @@ const ClubManagePage = () => {
 						<CoverImageContainer>{/* <Background /> */}</CoverImageContainer>
 						<Menu>소개 이미지 업로드</Menu>
 						<ContainerRow style={{ marginBottom: '2em' }}>
-							<ImageButton />
+							<InputButtonContainer>
+								<FileInput onChangeFile={onChangeFile} setImageLoading={setImageLoading} />
+							</InputButtonContainer>
+							<ImageButton>{true && <LoadingSpinner />}</ImageButton>
 							<ImageButton />
 							<ImageButton />
 						</ContainerRow>

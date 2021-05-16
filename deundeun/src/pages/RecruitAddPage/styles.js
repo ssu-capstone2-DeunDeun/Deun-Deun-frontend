@@ -102,15 +102,16 @@ export const RecruitInfoTextarea = styled.textarea`
 	margin-bottom: 2em;
 `;
 
-export const ImageButton = styled.img`
+export const ImageButton = styled.div`
 	border: none;
 	cursor: pointer;
 	background-color: #f7f7f7;
 	width: 8vw;
 	height: 16vh;
 
-	&.upload {
-	}
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
 	margin-right: 0.5em;
 	margin-top: 1em;

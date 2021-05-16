@@ -37,6 +37,20 @@ export const Menu = styled.span`
 	margin-bottom: 0.7em;
 `;
 
+export const InputButtonContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 8vw;
+	height: 16vh;
+	background-color: #f7f7f7;
+
+	margin-right: 0.5em;
+	margin-top: 1em;
+	margin-bottom: 4em;
+`;
+
 export const DropdownContainer = styled.div`
 	width: 15.9vw;
 	height: 6vh;
