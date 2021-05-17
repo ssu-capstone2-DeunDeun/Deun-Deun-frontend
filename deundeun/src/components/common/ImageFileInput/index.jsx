@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import { Container, Input, InputButton, Add } from './styles';
 
-const ImageFileInput = ({ imageUploader, onChangeFile, setImageLoading }) => {
+const ImageFileInput = ({ imageUploader, imageIndex, setImageIndex, onChangeFile, setImageLoading }) => {
 	const inputRef = useRef();
 	const onClickInputButton = useCallback(() => {
 		inputRef.current.click();
@@ -14,10 +14,12 @@ const ImageFileInput = ({ imageUploader, onChangeFile, setImageLoading }) => {
 			const uploaded = await imageUploader.upload(e.target.files[0]);
 			setImageLoading(false);
 			onChangeFile({
+				id: imageIndex,
 				url: uploaded.url
 			});
+			setImageIndex(imageIndex + 1);
 		},
-		[imageUploader, onChangeFile, setImageLoading]
+		[imageUploader, onChangeFile, setImageLoading, imageIndex, setImageIndex]
 	);
 
 	return (

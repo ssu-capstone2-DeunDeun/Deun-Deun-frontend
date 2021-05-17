@@ -12,16 +12,25 @@ export const Container = styled.div`
 	flex-direction: row;
 `;
 
-export const ImageContainer = styled.div`
+export const ClubImageUploadButton = styled.button`
+	width: 36.8px;
+	height: 36.8px;
+	background-color: #505050;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.125rem;
+	font-weight: bold;
+
+	margin-left: auto;
+	margin-top: auto;
+`;
+
+export const ClubImageContainer = styled.div`
 	width: 345px;
 	height: 345px;
 	margin-right: 10em;
-`;
-
-export const ClubImage = styled.img`
-	width: 100%;
-	height: 100%;
-	background-color: #f0f0f0;
 `;
 
 export const MenuContainer = styled.div`
@@ -42,8 +51,8 @@ export const InputButtonContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	width: 8vw;
-	height: 16vh;
+	width: 122px;
+	height: 122px;
 	background-color: #f7f7f7;
 
 	margin-right: 0.5em;
@@ -117,4 +126,14 @@ export const SubmitButton = styled.button`
 export const Footer = styled.div`
 	width: 1px;
 	height: 5em;
+`;
+
+export const ImageDeleteButton = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 0.9em;
+	height: 0.9em;
+	margin-left: auto;
+	background-color: #f7f7f7;
 `;

@@ -2,15 +2,14 @@ import DropdownMenu from 'components/common/DropdownMenu';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import { Background, CoverImage, CoverImageContainer } from 'pages/ClubModifyPage/styles';
 import { TitleKorean } from 'pages/MyClubListPage/styles';
-import { ImageButton } from 'pages/RecruitAddPage/styles';
 import React, { useCallback, useState } from 'react';
+import CloseIcon from '@material-ui/icons/Close';
 import { ContainerPage, ContainerRow } from 'styles';
 import {
 	HeaderContainer,
 	Container,
-	ImageContainer,
+	ClubImageContainer,
 	MenuContainer,
-	ClubImage,
 	Menu,
 	DropdownContainer,
 	ClubNameInput,
@@ -19,17 +18,79 @@ import {
 	AddHashtagButton,
 	SubmitButton,
 	InputButtonContainer,
-	Footer
+	Footer,
+	ImageDeleteButton,
+	ClubImageUploadButton
 } from './styles';
+import styled from 'styled-components';
+
+const ClubImage = styled.div`
+	width: 100%;
+	height: 100%;
+	background-color: #f0f0f0;
+
+	display: flex;
+
+	/* background-image: url(${(props) => props.imageURL || ''});
+	background-size: cover; */
+`;
+
+const UploadedImage = styled.div`
+	border: none;
+	cursor: pointer;
+	background-color: #f7f7f7;
+	width: 122px;
+	height: 122px;
+
+	margin-right: 0.5em;
+	margin-top: 1em;
+	margin-bottom: 4em;
+
+	background-image: url(${(props) => props.imageURL || ''});
+	background-size: cover;
+`;
 
 const ClubManagePage = ({ FileInput }) => {
 	const menuOptions = ['IT / 개발', '카테고리 2', '카테고리 3', '카테고리 4', '카테고리 5'];
 	const [menuIndex, setMenuIndex] = useState(-1);
+	const [imageIndex, setImageIndex] = useState(1);
 	const [imageLoading, setImageLoading] = useState(false);
 
-	const onChangeFile = useCallback((file) => {
-		console.log(file.url);
+	const [imageFileList, setImageFileList] = useState({});
+
+	const onChangeFile = (image) => {
+		if (image.url) {
+			console.log(image.id);
+			console.log(image.url);
+			updateImage(image);
+		}
+	};
+
+	const onUploadClubImage = useCallback(() => {
+		console.log('club image upload');
 	}, []);
+
+	const onClickImageDeleteButton = useCallback((e) => {
+		e.preventDefault();
+		const image = e.currentTarget;
+		deleteImage(image);
+	}, []);
+
+	const updateImage = (image) => {
+		setImageFileList((images) => {
+			const updated = { ...images };
+			updated[image.id] = image;
+			return updated;
+		});
+	};
+
+	const deleteImage = (image) => {
+		setImageFileList((images) => {
+			const updated = { ...images };
+			delete updated[image.id];
+			return updated;
+		});
+	};
 
 	return (
 		//
@@ -39,9 +100,11 @@ const ClubManagePage = ({ FileInput }) => {
 					<TitleKorean style={{ marginBottom: '2.6em' }}>동아리 등록</TitleKorean>
 				</HeaderContainer>
 				<Container>
-					<ImageContainer>
-						<ClubImage></ClubImage>
-					</ImageContainer>
+					<ClubImageContainer>
+						<ClubImage>
+							<ClubImageUploadButton onClick={onUploadClubImage}>+</ClubImageUploadButton>
+						</ClubImage>
+					</ClubImageContainer>
 					<MenuContainer>
 						<Menu>동아리 카테고리</Menu>
 						<DropdownContainer>
@@ -68,11 +131,22 @@ const ClubManagePage = ({ FileInput }) => {
 						<Menu>소개 이미지 업로드</Menu>
 						<ContainerRow style={{ marginBottom: '2em' }}>
 							<InputButtonContainer>
-								<FileInput onChangeFile={onChangeFile} setImageLoading={setImageLoading} />
+								<FileInput
+									onChangeFile={onChangeFile}
+									setImageLoading={setImageLoading}
+									imageIndex={imageIndex}
+									setImageIndex={setImageIndex}
+								/>
 							</InputButtonContainer>
-							<ImageButton>{true && <LoadingSpinner />}</ImageButton>
-							<ImageButton />
-							<ImageButton />
+							{Object.keys(imageFileList).map((key) => (
+								<>
+									<UploadedImage key={key} id={imageFileList[key].id} imageURL={imageFileList[key].url}>
+										<ImageDeleteButton id={imageFileList[key].id} onClick={onClickImageDeleteButton}>
+											<CloseIcon style={{ width: '.9em', height: '.9em', color: '#8f8f8f' }} />
+										</ImageDeleteButton>
+									</UploadedImage>
+								</>
+							))}
 						</ContainerRow>
 						<SubmitButton>동아리 등록 신청</SubmitButton>
 					</MenuContainer>
