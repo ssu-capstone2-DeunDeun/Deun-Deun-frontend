@@ -14,6 +14,7 @@ export const buttonStyle = css`
     background-color:#bababa;
     font-size:18px;
     text-decoration:none;
+    
 
     ${props =>
         props.registerBtn1 &&

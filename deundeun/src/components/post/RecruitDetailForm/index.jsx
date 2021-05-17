@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { CommentListItemBlock, PostDetailFormBlock, StyledButton, StyledTextarea } from './styles';
 import { FiShare2 } from "react-icons/fi";
 import { AiOutlineHeart } from "react-icons/ai";
-// import HealthClub from '../../../../public/img/club/HealthClub.jpeg';
 
 const CommentList = ({ comments }) => {
 	return (
@@ -134,3 +133,5 @@ const RecruitDetailForm = () => {
 	);
 };
 export default RecruitDetailForm;
+
+

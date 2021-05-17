@@ -1,7 +1,7 @@
-import styled from '@emotion/styled';
+// import styled from '@emotion/styled';
 import Button from 'components/common/Button/Button';
 // import HealthClub from '../../../../public/img/club/HealthClub.jpeg';
-
+import styled from 'styled-components';
 
 export const PostDetailFormBlock = styled.div`
     width:1080px;

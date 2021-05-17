@@ -67,7 +67,7 @@ const MemberManagementForm = () => {
 	const [click, setClick] = useState(false);
 	return (
 		<BasicBlock>
-			<MenuBlock>
+			{/* <MenuBlock>
 				<div className="menu">
 					<div className="menuItem" >
 						<div className="menuTitle">Home</div>
@@ -91,10 +91,10 @@ const MemberManagementForm = () => {
 						</div>
 					</div>
 				</div>
-			</MenuBlock>
+			</MenuBlock> */}
 
 			<ContentBlock>
-				<div className="header">
+				{/* <div className="header">
 					<div className="headerTitle">
 						<div>동아리 관리</div>
 						<MdKeyboardArrowRight />
@@ -107,7 +107,7 @@ const MemberManagementForm = () => {
 						<div>지원자 관리</div>
 						<MdKeyboardArrowDown />
 					</div>
-				</div>
+				</div> */}
 
 				<div className="main">
 					<div className="mainHeader">

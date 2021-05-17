@@ -9,7 +9,7 @@ export const BasicTemplateBlock = styled.div`
 `;
 export const BasicHeaderBlock = styled.div` 
     height:348px;
-    background:url("/img/illli.jpg") no-repeat;
+    background:url("/img/club/illi.jpg") no-repeat;
     background-size:cover;
     margin:0 0 76px;
 `;

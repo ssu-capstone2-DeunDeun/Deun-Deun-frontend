@@ -71,7 +71,7 @@ const ApplicantManagementForm = () => {
 	const [click, setClick] = useState(false);
 	return (
 		<BasicBlock>
-			<MenuBlock>
+			{/* <MenuBlock>
 				<div className="menu">
 					<div className="menuItem" >
 						<div className="menuTitle">홈</div>
@@ -96,10 +96,10 @@ const ApplicantManagementForm = () => {
 						</div>
 					</div>
 				</div>
-			</MenuBlock>
+			</MenuBlock> */}
 
 			<ContentBlock>
-				<div className="header">
+				{/* <div className="header">
 					<div className="headerTitle">
 						<div>동아리 관리</div>
 						<MdKeyboardArrowRight />
@@ -112,7 +112,7 @@ const ApplicantManagementForm = () => {
 						<div>지원자 관리</div>
 						<MdKeyboardArrowDown />
 					</div>
-				</div>
+				</div> */}
 
 				<div className="main">
 					<div className="mainInfo">
