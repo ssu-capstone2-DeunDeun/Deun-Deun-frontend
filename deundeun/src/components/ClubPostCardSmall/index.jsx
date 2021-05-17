@@ -1,11 +1,11 @@
 import React from 'react';
 import {
 	Container,
-	PostImage,
 	PostOverview,
 	TitleKorean,
 	ContentKorean,
-	NicknameAndLike,
+	DetailContainer,
+	ClubName,
 	Like,
 	Comment,
 	PostDate
@@ -31,18 +31,18 @@ const ClubPostCardSmall = () => {
 					다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴 에 타고파. 다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파…
 				</ContentKorean>
 				<PostDate>2021.01.01</PostDate>
-				<NicknameAndLike>
-					<ContentKorean>동아리명</ContentKorean>
-					<Comment>
-						<ChatBubbleOutlineIcon style={{ marginRight: '0.2em', cursor: 'pointer' }} />
-						123
-					</Comment>
-					<Like>
-						<FavoriteIcon style={{ marginRight: '0.1em', cursor: 'pointer' }} />
-						123
-					</Like>
-				</NicknameAndLike>
 			</PostOverview>
+			<DetailContainer>
+				<ClubName>동아리명</ClubName>
+				<Comment>
+					<ChatBubbleOutlineIcon style={{ marginRight: '0.2em', cursor: 'pointer' }} />
+					123
+				</Comment>
+				<Like>
+					<FavoriteIcon style={{ marginRight: '0.1em', cursor: 'pointer' }} />
+					123
+				</Like>
+			</DetailContainer>
 		</Container>
 	);
 };

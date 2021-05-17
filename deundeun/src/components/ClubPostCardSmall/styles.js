@@ -6,7 +6,7 @@ export const Container = styled.div`
 `;
 
 export const PostOverview = styled.div`
-	height: 279px;
+	height: 196.1px;
 	padding-left: 1.25em;
 	padding-right: 1.25em;
 	background-color: #f7f7f7;
@@ -35,19 +35,23 @@ export const PostDate = styled.span`
 	font-size: 1rem;
 	color: #9b9b9b;
 	margin-left: auto;
-	margin-top: 2em;
+	margin-top: 1.25em;
 	margin-bottom: 1em;
 `;
 
-export const NicknameAndLike = styled.div`
+export const DetailContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	height: 65px;
+	height: 62.9px;
 	border-top: solid 1px #d9d9d9;
+	background-color: #f7f7f7;
+
+	padding-left: 1.125em;
+	padding-right: 1.125em;
 `;
 
-export const Nickname = styled.span`
+export const ClubName = styled.span`
 	font-family: 'NotoSansKR';
 	font-size: 1rem;
 `;
@@ -57,7 +61,7 @@ export const Comment = styled.span`
 	font-weight: 500;
 	font-size: 0.9rem;
 	line-height: 1.17;
-	margin-right: 0.3em;
+	margin-right: 1em;
 	color: #282828;
 `;
 

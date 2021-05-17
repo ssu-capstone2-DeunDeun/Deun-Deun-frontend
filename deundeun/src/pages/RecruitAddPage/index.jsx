@@ -16,6 +16,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { ContentKorean } from 'components/ClubPostCardSmall/styles';
 import { Header, SubmitButton } from 'pages/ApplicationAddPage/styles';
 import LoadApplicationModal from 'components/modal/LoadApplicationModal';
+import { Footer } from 'components/PostSection/styles';
 
 const RecruitAddPage = ({ setAddNewForm }) => {
 	const [showLoadApplicationModal, setShowLoadApplicationModal] = useState(false);
@@ -85,6 +86,7 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 			</ContainerRow>
 			<SubmitButton>모집 공고 등록하기</SubmitButton>
 			<LoadApplicationModal show={showLoadApplicationModal} onCloseModal={onCloseModal} />
+			<Footer />
 		</ContainerColumn>
 	);
 };
