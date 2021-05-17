@@ -1,27 +1,24 @@
 import styled from '@emotion/styled';
 
 export const BasicTemplateBlock = styled.div`
-	width: 1920px;
-	height: 2078px;
-	padding: 0 0 325.5px;
-	background-color: #ffffff;
+    width:1920px;
+    height:2078px;
+    padding:0 0 325.5px;
+    background-color:#ffffff;
 `;
 
 export const BasicLogoBlock = styled.div`
-	height: 66px;
-	background-color: #a3a3a3;
-	margin: 0 0 89px;
-	display: flex;
-	align-items: center;
-	.logo {
-		margin-left: 47.5px;
-		font-family: GmarketSans;
-		font-size: 15px;
-		font-weight: bold;
-		font-stretch: normal;
-		font-style: normal;
-		letter-spacing: normal;
-		text-align: left;
-		color: #ffffff;
-	}
+    height:69.5px;
+    background-color:#ffffff;
+    /* margin:0 0 79.5px; */
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid #d3d3d3;
+    .logo{
+        img{
+            width:110px;
+            height:44.1px;
+            margin-left:35px;
+        }
+    }
 `;
