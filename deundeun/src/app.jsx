@@ -39,11 +39,11 @@ const App = ({ FileInput }) => {
 		//
 		<Switch>
 			<Route exact path="/">
-				<Redirect to="/club/home" />
+				<Redirect to="/home" />
 			</Route>
 			{/* <Route path="/login" component={LogIn} />
 			<Route path="/signup" component={SignUp} /> */}
-			<Route exact path="/club/home">
+			<Route exact path="/home">
 				<Header />
 				<ContainerRow>
 					<SideBar location={location} />

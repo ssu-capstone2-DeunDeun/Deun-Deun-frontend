@@ -13,7 +13,7 @@ const Header = () => {
 
 	return (
 		<Container>
-			<Link to="/club/home">
+			<Link to="/home">
 				<Logo src="/images/logo/GROOPY.png" />
 			</Link>
 			<IconContainer>

@@ -22,7 +22,7 @@ const ClubInfo = () => {
 	const history = useHistory();
 	const onClickLogo = useCallback(
 		(e) => {
-			history.push('/club/home');
+			history.push('/home');
 		},
 		[history]
 	);

@@ -153,7 +153,7 @@ const SideBar = ({ location }) => {
 	useEffect(() => {
 		// console.log(location.pathname);
 		switch (location.pathname) {
-			case '/club/home':
+			case '/home':
 				setHomeTab();
 				break;
 			case '/club/category/1':
@@ -193,7 +193,7 @@ const SideBar = ({ location }) => {
 	return (
 		//
 		<Container>
-			<Link style={{ width: '9.4vh' }} to="/club/home">
+			<Link style={{ width: '9.4vh' }} to="/home">
 				<Button className={`${clickHomeTab ? 'clicked' : 'not-clicked'}`} onClick={onClickHomeTab}>
 					홈
 				</Button>
