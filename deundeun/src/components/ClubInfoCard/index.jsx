@@ -14,6 +14,7 @@ import {
 } from './styles';
 
 const ClubInfoCard = () => {
+	// test commit
 	return (
 		//
 		<Container>
