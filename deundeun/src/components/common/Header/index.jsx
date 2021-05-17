@@ -12,7 +12,6 @@ const Header = () => {
 	}, []);
 
 	return (
-		//
 		<Container>
 			<Link to="/club/home">
 				<Logo src="/images/logo/GROOPY.png" />
@@ -26,3 +25,4 @@ const Header = () => {
 };
 
 export default Header;
+

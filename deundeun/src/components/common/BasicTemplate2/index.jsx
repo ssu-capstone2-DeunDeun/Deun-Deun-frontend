@@ -4,7 +4,9 @@ const BasicTemplate2 = ({ children }) => {
 	return (
 		<BasicTemplateBlock>
 			<BasicLogoBlock>
-				<div className="logo">Logo</div>
+				<div class="logo">
+					<img src="/img/logo/GROOPY.png" alt="logo"></img>
+				</div>
 			</BasicLogoBlock>
 			{children}
 		</BasicTemplateBlock>

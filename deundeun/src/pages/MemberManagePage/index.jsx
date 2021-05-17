@@ -5,8 +5,9 @@ import React from 'react';
 const MemberManagePage = () => {
 	return (
 		// <BasicTemplate2>
-		<MemberManagementForm />
+		// 	<MemberManagementForm />
 		// </BasicTemplate2>
+		<MemberManagementForm />
 	);
 };
 
