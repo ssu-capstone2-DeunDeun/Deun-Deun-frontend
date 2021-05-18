@@ -23,6 +23,7 @@ import {
 	ClubImageUploadButton
 } from './styles';
 import styled from 'styled-components';
+import ImageModal from 'components/modal/ImageModal/index';
 
 const ClubImage = styled.div`
 	width: 100%;
@@ -48,6 +49,8 @@ const UploadedImage = styled.div`
 
 	background-image: url(${(props) => props.imageURL || ''});
 	background-size: cover;
+
+	z-index: 50;
 `;
 
 const ClubManagePage = ({ FileInput }) => {
@@ -55,7 +58,7 @@ const ClubManagePage = ({ FileInput }) => {
 	const [menuIndex, setMenuIndex] = useState(-1);
 	const [imageIndex, setImageIndex] = useState(1);
 	const [imageLoading, setImageLoading] = useState(false);
-
+	const [showImageModal, setShowImageModal] = useState(false);
 	const [imageFileList, setImageFileList] = useState({});
 
 	const onChangeFile = (image) => {
@@ -66,6 +69,14 @@ const ClubManagePage = ({ FileInput }) => {
 
 	const onUploadClubImage = useCallback(() => {
 		console.log('club image upload');
+	}, []);
+
+	const onClickImage = useCallback(() => {
+		setShowImageModal(true);
+	}, []);
+
+	const onCloseModal = useCallback(() => {
+		setShowImageModal(false);
 	}, []);
 
 	const onClickImageDeleteButton = useCallback((e) => {
@@ -138,7 +149,12 @@ const ClubManagePage = ({ FileInput }) => {
 							</InputButtonContainer>
 							{Object.keys(imageFileList).map((key) => (
 								<>
-									<UploadedImage key={key} id={imageFileList[key].id} imageURL={imageFileList[key].url}>
+									<UploadedImage
+										key={key}
+										id={imageFileList[key].id}
+										imageURL={imageFileList[key].url}
+										onClick={onClickImage}
+									>
 										<ImageDeleteButton key={key} id={imageFileList[key].id} onClick={onClickImageDeleteButton}>
 											<CloseIcon style={{ width: '.9em', height: '.9em', color: '#8f8f8f' }} />
 										</ImageDeleteButton>
@@ -149,6 +165,7 @@ const ClubManagePage = ({ FileInput }) => {
 						<SubmitButton>동아리 등록 신청</SubmitButton>
 					</MenuContainer>
 				</Container>
+				<ImageModal show={showImageModal} onCloseModal={onCloseModal} />
 				<Footer />
 			</ContainerPage>
 		</>

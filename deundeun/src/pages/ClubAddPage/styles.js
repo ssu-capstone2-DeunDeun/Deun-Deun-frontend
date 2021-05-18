@@ -136,4 +136,6 @@ export const ImageDeleteButton = styled.div`
 	height: 0.9em;
 	margin-left: auto;
 	background-color: #f7f7f7;
+
+	z-index: 100;
 `;
