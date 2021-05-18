@@ -24,6 +24,18 @@ export const IconContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+
+	.sign{
+		display:flex;
+		margin-right:60px;
+		a{
+			text-decoration:none;
+			color:black;
+		}
+		div{
+			margin:0 15px;
+		}
+	}
 `;
 
 export const ProfileIcon = styled.div`

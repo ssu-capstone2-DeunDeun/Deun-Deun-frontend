@@ -1,4 +1,4 @@
-import styled, { css } from '@emotion/styled';
+import styled, { css } from 'styled-components';
 
 export const CheckListBlock = styled.div`
     display:flex;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { BasicHeaderBlock, BasicLogoBlock, BasicTemplateBlock, BasicTitleBlock } from './styles';
 
 const BasicTemplate = ({ children, club, sector }) => {
@@ -6,9 +7,9 @@ const BasicTemplate = ({ children, club, sector }) => {
 		<BasicTemplateBlock>
 			<BasicHeaderBlock>
 				<BasicLogoBlock>
-					<div class="logo">
+					<Link to="/home" class="logo">
 						<img src="/img/logo/GROOPY.png" alt="logo"></img>
-					</div>
+					</Link>
 				</BasicLogoBlock>
 				<BasicTitleBlock>
 					<div class="sector">{sector}</div>

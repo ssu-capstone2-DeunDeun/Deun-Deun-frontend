@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 // import illi from '../../../../public/img/illli.jpg';
 
 export const BasicTemplateBlock = styled.div`
