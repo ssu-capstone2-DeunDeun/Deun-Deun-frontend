@@ -1,6 +1,6 @@
 import Button from 'components/common/Button/Button';
 import React from 'react';
-import { ButtonBlock, RegisterFormBlock, RegisterInfoBox, TagsBox } from './styles';
+import { ButtonBlock, RegisterFormBlock, RegisterInfoBox, TagsBox, Background, CoverImage } from './styles';
 
 
 const RegisterForm2 = () => {
@@ -24,6 +24,7 @@ const RegisterForm2 = () => {
 			thisEle.classList.add("active");
 			count += 1;
 			setLists = setLists.concat(thisEle.innerText);
+			console.log(thisEle.classList);
 			console.log(setLists);
 		}
 
@@ -40,14 +41,38 @@ const RegisterForm2 = () => {
 			</RegisterInfoBox>
 
 			<TagsBox>
-				<div className="tags tag1" onClick={onInsert}>{tag1[0]}</div>
-				<div className="tags tag2" onClick={onInsert}>{tag1[1]}</div>
-				<div className="tags tag3" onClick={onInsert}>{tag1[2]}</div>
-				<div className="tags tag4" onClick={onInsert}>{tag1[3]}</div>
-				<div className="tags tag5" onClick={onInsert}>{tag1[4]}</div>
-				<div className="tags tag6" onClick={onInsert}>{tag1[5]}</div>
-				<div className="tags tag7" onClick={onInsert}>{tag1[6]}</div>
-				<div className="tags tag8" onClick={onInsert}>{tag1[7]}</div>
+				<div className="tags tag1" onClick={onInsert}>
+					<div className="background">{tag1[0]}</div>
+					<div className="image"></div>
+				</div>
+				<div className="tags tag2" onClick={onInsert}>
+					<div className="background">{tag1[1]}</div>
+					<div className="image"></div>
+				</div>
+				<div className="tags tag3" onClick={onInsert}>
+					<div className="background">{tag1[2]}</div>
+					<div className="image"></div>
+				</div>
+				<div className="tags tag4" onClick={onInsert}>
+					<div className="background">{tag1[3]}</div>
+					<div className="image"></div>
+				</div>
+				<div className="tags tag5" onClick={onInsert}>
+					<div className="background">{tag1[4]}</div>
+					<div className="image"></div>
+				</div>
+				<div className="tags tag6" onClick={onInsert}>
+					<div className="background">{tag1[5]}</div>
+					<div className="image"></div>
+				</div>
+				<div className="tags tag7" onClick={onInsert}>
+					<div className="background">{tag1[6]}</div>
+					<div className="image"></div>
+				</div>
+				<div className="tags tag8" onClick={onInsert}>
+					<div className="background">{tag1[7]}</div>
+					<div className="image"></div>
+				</div>
 			</TagsBox>
 
 			<ButtonBlock>

@@ -62,47 +62,77 @@ export const TagsBox = styled.div`
         width:156px;
         height:156px;
         border-radius:50%;
-        display:flex;
-        align-items:center;
-        justify-content:center;
         color:white;
-        background-size:contain;
+
         margin:0 0  63px 45px;
         font-size:22px;
         font-weight:500;
         cursor:pointer;
         color:#ffffff;
-        filter:brightness(50%);
 
+        .background{
+            background-color: rgba(0, 0, 0, 0.6);
+            width:156px;
+            height:156px;
+            position: absolute;
+            border-radius:50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
+        }
+        .active{
+            background-color: rgba(34, 185, 127, 0.6);
+        }
+
+        .image{
+            width: 100%;
+            height:100%;
+            border-radius:50%;
+            background-size:cover;
+            background-repeat:no-repeat;
+        }
     }
-    .active{
-            filter:brightness(100%);
-    }
+    
     .tag1{
-        background-image:url("/img/tag/development.jpg");
+        .image{
+            background-image:url("/img/tag/development.jpg");
+        }
     }
     .tag2{
-        background-image:url("/img/tag/design.jpg");
+        .image{
+            background-image:url("/img/tag/design.jpg");
+        }
     }
     .tag3{
-        background-image:url("/img/tag/economy.jpg");
+        .image{
+            background-image:url("/img/tag/economy.jpg");
+        }
     }
     .tag4{
-        background-image:url("/img/tag/employment.jpg");
+        .image{
+            background-image:url("/img/tag/employment.jpg");
+        }
     }
     .tag5{
-        background-image:url("/img/tag/friend.jpg");
+        .image{
+            background-image:url("/img/tag/friend.jpg");
+        }
     }
     .tag6{
-        background-image:url("/img/tag/sports.jpg");
+        .image{
+            background-image:url("/img/tag/sports.jpg");
+        }
     }
     .tag7{
-        background-image:url("/img/tag/voca.jpg");
+        .image{
+            background-image:url("/img/tag/voca.jpg");
+        }
     }
     .tag8{
-        background-image:url("/img/tag/volunteer.jpg");
-
+        .image{
+            background-image:url("/img/tag/volunteer.jpg");
+        }
     }
     
 `;
@@ -110,4 +140,8 @@ export const TagsBox = styled.div`
 export const ButtonBlock = styled.div`
     text-align:center;
     margin-top:47px; 
+    a{
+        text-decoration:none;
+        color:#ffffff;
+    }
 `;

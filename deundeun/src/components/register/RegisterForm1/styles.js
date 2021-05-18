@@ -52,7 +52,7 @@ export const FormContent = styled.div`
         button{
             position:absolute;
             top:15.5%;
-            right:-2.5%;
+            right:0;
             border:none;
             width:263px;
             background:#505050;
@@ -84,4 +84,8 @@ export const StyledInput = styled.input`
 export const ButtonBlock = styled.div`
     margin-top:76px;
     text-align:center;
+    a{
+        text-decoration:none;
+        color:#ffffff;
+    }
 `;
