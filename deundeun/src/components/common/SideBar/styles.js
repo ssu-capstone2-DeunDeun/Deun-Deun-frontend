@@ -34,13 +34,13 @@ export const Button = styled.button`
 	padding-left: 3em;
 	font-size: 18px;
 	color: #bababa;
-	font-weight: bold;
+	font-weight: 900;
 	&:hover {
-		background-color: #9ddfd3;
+		background-color: rgba(31, 208, 181, 0.6);
 	}
 	&.clicked {
 		font-family: 'NotoSansKR';
-		background-color: #9ddfd3;
+		background-color: rgba(31, 208, 181, 0.6);
 		color: #282828;
 	}
 	&.category {

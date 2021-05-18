@@ -60,10 +60,8 @@ const ClubManagePage = ({ FileInput }) => {
 
 	const onChangeFile = (image) => {
 		if (image.url) {
-			console.log(image.id);
-			console.log(image.url);
 			updateImage(image);
-		}
+		} else return;
 	};
 
 	const onUploadClubImage = useCallback(() => {
@@ -141,7 +139,7 @@ const ClubManagePage = ({ FileInput }) => {
 							{Object.keys(imageFileList).map((key) => (
 								<>
 									<UploadedImage key={key} id={imageFileList[key].id} imageURL={imageFileList[key].url}>
-										<ImageDeleteButton id={imageFileList[key].id} onClick={onClickImageDeleteButton}>
+										<ImageDeleteButton key={key} id={imageFileList[key].id} onClick={onClickImageDeleteButton}>
 											<CloseIcon style={{ width: '.9em', height: '.9em', color: '#8f8f8f' }} />
 										</ImageDeleteButton>
 									</UploadedImage>
