@@ -11,7 +11,7 @@ import {
 	ApplyButton
 } from './styles';
 
-const RecruitInfoCard = () => {
+const RecruitInfoCard = ({ }) => {
 	return (
 		//
 		<Container>

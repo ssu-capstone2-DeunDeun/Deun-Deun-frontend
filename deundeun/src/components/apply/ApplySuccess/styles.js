@@ -18,4 +18,8 @@ export const ApplySuccessBlock = styled.div`
         color:#282828;
         margin-bottom:99px;
     }
+    a{
+        text-decoration:none;
+        color:#ffffff;
+    }
 `;

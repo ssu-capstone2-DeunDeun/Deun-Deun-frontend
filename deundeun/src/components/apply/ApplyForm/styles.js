@@ -57,6 +57,9 @@ export const StyledTextarea = styled.textarea`
 
 
 export const ButtonBlock = styled.div`
-    /* margin-top:73px; */
     text-align:center;
+    a{
+        text-decoration:none;
+        color:#ffffff;
+    }
 `;
