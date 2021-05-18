@@ -67,7 +67,7 @@ const RecruitDetailForm = () => {
 					<div className="recruit">모집공고</div>
 					<div className="info">
 						<div className="title">{recruitDetailTitle}</div>
-						<div className="btn">
+						<div className="function">
 							<div className="heart"><AiOutlineHeart /></div>
 							<div>{likesNum}</div>
 							<div className="share"><FiShare2 /></div>
@@ -118,7 +118,7 @@ const RecruitDetailForm = () => {
 			<div className="footer">
 				<div className="addComment">
 					<StyledTextarea placeholder="댓글을 입력하세요." ></StyledTextarea>
-					<div className="btn">
+					<div className="registerBtn">
 						<button>등록하기</button>
 					</div>
 				</div>

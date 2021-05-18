@@ -17,15 +17,16 @@ export const PostDetailFormBlock = styled.div`
             }
             .info{
                 display:flex;
+                align-items:center;
                 justify-content:space-between;
                 .title{
                     font-size:28px;
                     font-weight:900;
                     color:#282828;
                 }
-                .btn{
+                .function{
                     display:flex;
-                    align-items:center;
+                    /* align-items:center; */
                     color:#282828;
                     font-size:15px;
                     .heart{
@@ -109,7 +110,7 @@ export const PostDetailFormBlock = styled.div`
     .footer{
         margin-bottom:160.5px;
         .addComment{
-            .btn{
+            .registerBtn{
                 text-align:right;
                 button{
                     border:1px solid #707070;
@@ -137,8 +138,8 @@ export const PostDetailFormBlock = styled.div`
 `;
 
 export const StyledButton = styled(Button)`
-        width:80px;
-        height:30px;
+        width:161.3px;
+        height:55.8px;
         padding:13px 44px 13px 44px;
         border-radius:28px;
         font-size:19px;
@@ -149,7 +150,7 @@ export const StyledButton = styled(Button)`
 `;
 
 export const StyledTextarea = styled.textarea`
-    width:1055px;
+    width:1080px;
     height:106px;
     border:none;
     background-color:#f7f7f7;
