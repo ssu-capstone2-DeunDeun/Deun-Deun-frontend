@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import HealthClub from '../../../../public/img/club/HealthClub.jpeg';
 
 export const PostDetailFormBlock = styled.div`
     width:1080px;
@@ -7,7 +6,7 @@ export const PostDetailFormBlock = styled.div`
 
     .header{
         border-bottom:3px solid #282828;
-        padding-bottom:18.4px;
+        padding-bottom:15.9px;
         .headerContent{
             .post{
                 font-size:16px;
@@ -24,6 +23,7 @@ export const PostDetailFormBlock = styled.div`
             .info{
                 display:flex;
                 justify-content:space-between;
+                align-items:center;
 
                 .postInfo{
                     display:flex;
@@ -45,9 +45,9 @@ export const PostDetailFormBlock = styled.div`
                         color:#a7a7a7;
                     }
                 }
-                .btn{
+                .function{
                     display:flex;
-                    align-items:center;
+                    /* align-items:center; */
                     cursor:pointer;
 
                     .heart{
@@ -89,7 +89,7 @@ export const PostDetailFormBlock = styled.div`
                 display:flex;
                 font-size:16px;
                 font-weight:500; 
-                margin-bottom:1px;
+                margin-bottom:16px;
                 .listInfo{
                     color:#818181;
                     margin-right : 25.8px;
@@ -106,17 +106,17 @@ export const PostDetailFormBlock = styled.div`
     .footer{
         margin-bottom:160.5px;
         .addComment{
-            .btn{
+            .registerBtn{
                 text-align:right;
                 button{
-                border:1px solid #707070;
-                width:120px;
-                height:44px;
-                background-color:#ffffff;
-                font-size:13px;
-                font-weight:bold;
-                color:#383838;
-                cursor:pointer;
+                    border:1px solid #707070;
+                    width:120px;
+                    height:44px;
+                    background-color:#ffffff;
+                    font-size:13px;
+                    font-weight:bold;
+                    color:#383838;
+                    cursor:pointer;
                 }
             }
             margin-bottom:13.2px;
@@ -133,7 +133,7 @@ export const PostDetailFormBlock = styled.div`
 `;
 
 export const StyledTextarea = styled.textarea`
-    width:1055px;
+    width:100%;
     height:106px;
     border:none;
     background-color:#f7f7f7;
@@ -149,12 +149,14 @@ export const StyledTextarea = styled.textarea`
 
 export const CommentListItemBlock = styled.div`
     width: 1080px;
+
     padding-top:19.5px;
     padding-bottom:19.5px;
     border-bottom:1px solid #d9d9d9;
     display:flex;
     align-items:center;
     justify-content:space-between;
+
 
     /* border:1px solid gray; */
     .item{
