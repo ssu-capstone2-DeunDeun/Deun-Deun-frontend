@@ -60,60 +60,18 @@ const ApplicantManagementForm = () => {
 	const contents = {
 		clubName: "IT 동아리 트와이스", unit: 3, recruitStart: "2021.01.01", recruitEnd: "2021.01.08",
 		title: "야! 너도 트와이스 할 수 있어!", applicants: [
-			{ nickname: "불꽃남자김상록", id: "wowoowo", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com" },
+			{ nickname: "불꽃남자상록", id: "wowoowo", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com" },
 			{ nickname: "안동핵주먹", id: "evergreen", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com" },
 			{ nickname: "인생별거없어", id: "underood", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com" },
 			{ nickname: "리액트짱재밌엉", id: "goddyshit", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com" }
 		],
 		recruitNotices: ["[3기] 모집공고 제목 모집공고 제목", "[4기] 모집공고 제목 모집공고 제목"],
 	}
-	const { clubName, applicants, recruitNotices } = contents;
+	const { applicants, recruitNotices } = contents;
 	const [click, setClick] = useState(false);
 	return (
 		<BasicBlock>
-			{/* <MenuBlock>
-				<div className="menu">
-					<div className="menuItem" >
-						<div className="menuTitle">홈</div>
-					</div>
-				</div>
-				<div className="menu">
-					<div className="menuItem" >
-						<div className="menuTitle">카테고리</div>
-					</div>
-				</div>
-				<div className="menu">
-					<div className="menuItem" >
-						<div className="menuTitle">마이페이지</div>
-					</div>
-				</div>
-				<div className="menu">
-					<div className="menuItem" >
-						<div className="menuTitle">나의 동아리</div>
-						<div className="subMenu add">
-							<div>동아리 관리</div>
-							<div>동아리 목록</div>
-						</div>
-					</div>
-				</div>
-			</MenuBlock> */}
-
 			<ContentBlock>
-				{/* <div className="header">
-					<div className="headerTitle">
-						<div>동아리 관리</div>
-						<MdKeyboardArrowRight />
-					</div>
-					<div className="headerInfo">
-						<div>{clubName}</div>
-						<MdKeyboardArrowDown />
-					</div>
-					<div className="headerInfo">
-						<div>지원자 관리</div>
-						<MdKeyboardArrowDown />
-					</div>
-				</div> */}
-
 				<div className="main">
 					<div className="mainInfo">
 						<div className="mainInfoTitle">모집중인 공고</div>
@@ -160,7 +118,7 @@ const ApplicantManagementForm = () => {
 						<div>메세지 보내기</div>
 						<MdClose onClick={() => {
 							popupClear(); setClick(!click);
-							window.location.reload();
+							// window.location.reload();
 							// 해결해야한다.
 						}} />
 					</div>
@@ -183,7 +141,7 @@ const ApplicantManagementForm = () => {
 						<StyledTextarea placeholder="내용을 입력하세요." ></StyledTextarea>
 					</div>
 
-					<div className="btn">
+					<div className="msgSubmitBtn">
 						<Button applyManageBtn>전송하기</Button>
 					</div>
 				</div>

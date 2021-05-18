@@ -3,76 +3,11 @@ import styled from 'styled-components';
 
 
 export const BasicBlock = styled.div`
-    margin-left:80px;
-    margin-right:240px;
-    display:flex;
-    margin-top:55.5px;
+    /* display:flex; */
 `;
 
-
-export const MenuBlock = styled.div`
-    margin-right:166px;
-    .menu{
-        font-size:18px;
-        color:#bebebe;
-        width:274px;
-        .menuItem{
-            .menuTitle{
-                font-weight:500;
-                height:56px;
-                padding-left:26px;
-                display:flex;
-                align-items:center;
-                
-                &:hover{
-                    background-color: #D7FFFF;
-                    color:#282828;
-                    font-weight:bold;
-                }
-            }
-            .subMenu{
-                div{
-                    height:56px;
-                    display:flex;
-                    align-items:center;
-                    padding-left:46px;
-                
-                    &:hover{
-                        font-weight:bold;
-                        color:#282828;
-                    }
-                }
-            }
-        }
-    }
-`;
 
 export const ContentBlock = styled.div`
-    .header{
-        display:flex;
-        align-items:center;
-        font-size:20px;
-        font-weight:bold;
-
-        .headerTitle{
-            margin-right:14px;
-            color:#282828;
-            display:flex;
-            align-items:center;
-            div{
-                margin-right:12.6px;
-            }
-        }
-
-        .headerInfo{
-            display:flex;
-            align-items:center;
-            margin-right:20px;
-            div{
-                margin-right :10px;
-            }
-        }
-    }
     .main{
         margin-top:60px;
         width:1160px;
@@ -92,7 +27,7 @@ export const ContentBlock = styled.div`
                 display:flex;
                 align-items:center;
                 border-bottom:1px solid #b2b2b2;
-                width:180px;
+                width:185px;
                 input{
                     border:none;
                     outline:none;
@@ -191,8 +126,11 @@ export const ApplicantInfoBlock = styled.div`
     color:#282828;
     border-top:1px solid #d5d5d5;
     svg{
-        width:20px;
-        height:20px;
+        width:77.14px;  
+        height:77.14px;
+        /* 나중에 수정해야한다. */
+        /* width:20px; */
+        /* height:20px; */
         opacity:0.2;
         padding-left:15px;
         padding-right:42px;
@@ -240,8 +178,8 @@ export const PopupBlock = styled.div`
         display:none;
     }
     .msgPopupBlock{
-        width:700px;
-        height:600px;
+        width:782px;
+        height:672px;
         position:absolute;
         box-shadow:15px 15px 30px 0 rgba(0,0,0,0.16);
         margin:auto;
@@ -324,7 +262,7 @@ export const PopupBlock = styled.div`
             font-weight:bold;
             margin-top:19px;
         }
-        .btn{
+        .msgSubmitBtn{
             text-align:center;
         }
     }
@@ -390,7 +328,7 @@ export const RoleSetBlock = styled.div`
                 margin-right:6px;
             }
         }
-        .btn{
+        .roleSetBtn{
             text-align:center;
         }
     }

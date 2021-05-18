@@ -2,76 +2,10 @@ import styled from 'styled-components';
 
 
 export const BasicBlock = styled.div`
-    margin-left:80px;
-    margin-right:240px;
-    display:flex;
-    margin-top:55.5px;
-`;
-
-export const MenuBlock = styled.div`
-    margin-right:166px;
-    .menu{
-        font-size:18px;
-        color:#bebebe;
-        width:274px;
-        .menuItem{
-            .menuTitle{
-                font-weight:500;
-                height:56px;
-                padding-left:26px;
-                display:flex;
-                align-items:center;
-                
-                &:hover{
-                    background-color: #D7FFFF;
-                    color:#282828;
-                    font-weight:bold;
-                }
-            }
-            .subMenu{
-                div{
-                    height:56px;
-                    display:flex;
-                    align-items:center;
-                    padding-left:46px;
-                
-                    &:hover{
-                        font-weight:bold;
-                        color:#282828;
-                    }
-                }
-            }
-        }
-    }
+    /* display:flex; */
 `;
 
 export const ContentBlock = styled.div`
-    .header{
-        display:flex;
-        align-items:center;
-        font-size:20px;
-        font-weight:bold;
-
-        .headerTitle{
-            margin-right:14px;
-            color:#282828;
-            display:flex;
-            align-items:center;
-            div{
-                margin-right:12.6px;
-            }
-        }
-
-        .headerInfo{
-            display:flex;
-            align-items:center;
-            margin-right:20px;
-            div{
-                margin-right :10px;
-            }
-        }
-    }
-
     .main{
         margin-top:43px;
         width:1160px;
@@ -134,8 +68,9 @@ export const ContentBlock = styled.div`
                         align-items:center;
                         border-bottom:1px solid #b2b2b2;
                         padding-bottom:2px;
-                        width:155px;
+                        width:185px;
                         input{
+                            font-size:14px;
                             border:none;
                             outline:none;
                             padding-bottom:2px;
@@ -159,8 +94,8 @@ export const ApplicantInfoBlock = styled.div`
     border-top:1px solid #d5d5d5;
     height:70px;
     svg{
-        width:20px;
-        height:20px;
+        width:53px;
+        height:53px;
         color:#707070;
         padding-left:15px;
         padding-right:18px;
@@ -218,8 +153,8 @@ export const PopupBlock = styled.div`
         display:none;
     }
     .popupBlock{
-        width:700px;
-        height:600px;
+        width:782px;
+        height:672px;
         position:absolute;
         box-shadow:15px 15px 30px 0 rgba(0,0,0,0.16);
         margin:auto;
@@ -302,7 +237,7 @@ export const PopupBlock = styled.div`
             font-weight:bold;
             margin-top:19px;
         }
-        .btn{
+        .msgSubmitBtn{
             text-align:center;
         }
     }
