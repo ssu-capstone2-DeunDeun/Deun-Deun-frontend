@@ -1,8 +1,21 @@
 import { withStyles } from '@material-ui/core';
 import React, { useCallback } from 'react';
-import { CloseModalButton, CreateModal, ModalTitle } from './styles';
+import { ModalTitle } from '../LoadApplicationModal/styles';
+import { CloseModalButton, CreateModal } from './styles';
+import styled from 'styled-components';
 
-const ImageModal = ({ show, children, onCloseModal }) => {
+const Image = styled.div`
+	width: 500px;
+	height: 500px;
+	background-color: #f7f7f7;
+	background-image: url(${(props) => props.modalImageURL || ''});
+	background-size: auto;
+	background-repeat: no-repeat;
+
+	margin: 0 auto;
+`;
+
+const ImageModal = ({ show, children, onCloseModal, modalImageURL }) => {
 	const stopPropagation = useCallback((e) => {
 		e.stopPropagation();
 	}, []);
@@ -15,8 +28,9 @@ const ImageModal = ({ show, children, onCloseModal }) => {
 		//
 		<CreateModal>
 			<div onClick={stopPropagation}>
-				{/* <ModalTitle>이미지 크게보기</ModalTitle> */}
+				<ModalTitle>이미지 크게보기</ModalTitle>
 				<CloseModalButton onClick={onCloseModal}>&times;</CloseModalButton>
+				<Image modalImageURL={modalImageURL} />
 				{children}
 			</div>
 		</CreateModal>

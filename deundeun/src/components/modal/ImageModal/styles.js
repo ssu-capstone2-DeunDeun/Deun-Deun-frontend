@@ -12,11 +12,15 @@ export const CreateModal = styled.div`
 		position: fixed;
 		top: 25%;
 		left: 30%;
-		width: 782px;
-		height: 459px;
+		width: 800px;
+		height: 600px;
 		padding-top: 2em;
 		background-color: #fff;
 	}
+
+	z-index: 999;
+
+	display: flex;
 `;
 
 export const CloseModalButton = styled.button`
@@ -24,4 +28,8 @@ export const CloseModalButton = styled.button`
 	border: none;
 	cursor: pointer;
 	font-size: 2.3rem;
+
+	position: absolute;
+	top: 5%;
+	right: 5%;
 `;

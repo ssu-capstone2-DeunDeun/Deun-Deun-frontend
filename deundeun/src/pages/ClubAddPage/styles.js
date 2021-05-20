@@ -46,6 +46,17 @@ export const Menu = styled.span`
 	margin-bottom: 0.7em;
 `;
 
+export const UploadedImageContainer = styled.div`
+	width: 122px;
+	height: 122px;
+
+	margin-right: 0.5em;
+	margin-top: 1em;
+	margin-bottom: 4em;
+
+	position: relative;
+`;
+
 export const InputButtonContainer = styled.div`
 	display: flex;
 	align-items: center;
@@ -132,10 +143,12 @@ export const ImageDeleteButton = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	position: absolute;
+	top: 0%;
+	right: 0%;
 	width: 0.9em;
 	height: 0.9em;
-	margin-left: auto;
 	background-color: #f7f7f7;
 
-	z-index: 100;
+	z-index: 500;
 `;

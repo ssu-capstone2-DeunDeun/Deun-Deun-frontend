@@ -20,7 +20,7 @@ const ClubImageCarousel = ({ setFocusClubImage }) => {
 	let items = [
 		{
 			id: 1,
-			imageURL: '/images/test6.jpeg'
+			imageURL: '/images/sample/club-image/sample-cover.jpeg'
 		},
 		{
 			id: 2,

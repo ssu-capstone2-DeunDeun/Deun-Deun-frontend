@@ -20,7 +20,8 @@ import {
 	InputButtonContainer,
 	Footer,
 	ImageDeleteButton,
-	ClubImageUploadButton
+	ClubImageUploadButton,
+	UploadedImageContainer
 } from './styles';
 import styled from 'styled-components';
 import ImageModal from 'components/modal/ImageModal/index';
@@ -40,17 +41,11 @@ const UploadedImage = styled.div`
 	border: none;
 	cursor: pointer;
 	background-color: #f7f7f7;
-	width: 122px;
-	height: 122px;
-
-	margin-right: 0.5em;
-	margin-top: 1em;
-	margin-bottom: 4em;
+	width: 100%;
+	height: 100%;
 
 	background-image: url(${(props) => props.imageURL || ''});
 	background-size: cover;
-
-	z-index: 50;
 `;
 
 const ClubManagePage = ({ FileInput }) => {
@@ -59,10 +54,11 @@ const ClubManagePage = ({ FileInput }) => {
 	const [imageIndex, setImageIndex] = useState(1);
 	const [imageLoading, setImageLoading] = useState(false);
 	const [showImageModal, setShowImageModal] = useState(false);
-	const [imageFileList, setImageFileList] = useState({});
+	const [imageFileList, setImageFileList] = useState([]);
+	const [modalImageURL, setModalImageURL] = useState('');
 
 	const onChangeFile = (image) => {
-		if (image.url) {
+		if (image.imageURL) {
 			updateImage(image);
 		} else return;
 	};
@@ -71,9 +67,15 @@ const ClubManagePage = ({ FileInput }) => {
 		console.log('club image upload');
 	}, []);
 
-	const onClickImage = useCallback(() => {
-		setShowImageModal(true);
-	}, []);
+	const onClickImage = useCallback(
+		(e) => {
+			setShowImageModal(true);
+			const id = e.currentTarget.id;
+			const imageURL = imageFileList[id].imageURL;
+			setModalImageURL(imageURL);
+		},
+		[imageFileList]
+	);
 
 	const onCloseModal = useCallback(() => {
 		setShowImageModal(false);
@@ -149,23 +151,24 @@ const ClubManagePage = ({ FileInput }) => {
 							</InputButtonContainer>
 							{Object.keys(imageFileList).map((key) => (
 								<>
-									<UploadedImage
-										key={key}
-										id={imageFileList[key].id}
-										imageURL={imageFileList[key].url}
-										onClick={onClickImage}
-									>
-										<ImageDeleteButton key={key} id={imageFileList[key].id} onClick={onClickImageDeleteButton}>
+									{/* 나중에 컴포넌트 하나로 빼는 작업 필요(key prop warning) */}
+									<UploadedImageContainer key={key}>
+										<ImageDeleteButton id={imageFileList[key].id} onClick={onClickImageDeleteButton}>
 											<CloseIcon style={{ width: '.9em', height: '.9em', color: '#8f8f8f' }} />
 										</ImageDeleteButton>
-									</UploadedImage>
+										<UploadedImage
+											onClick={onClickImage}
+											id={imageFileList[key].id}
+											imageURL={imageFileList[key].imageURL}
+										></UploadedImage>
+									</UploadedImageContainer>
 								</>
 							))}
 						</ContainerRow>
 						<SubmitButton>동아리 등록 신청</SubmitButton>
 					</MenuContainer>
 				</Container>
-				<ImageModal show={showImageModal} onCloseModal={onCloseModal} />
+				<ImageModal show={showImageModal} onCloseModal={onCloseModal} modalImageURL={modalImageURL} />
 				<Footer />
 			</ContainerPage>
 		</>

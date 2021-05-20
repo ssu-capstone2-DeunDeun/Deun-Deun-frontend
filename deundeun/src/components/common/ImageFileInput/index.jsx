@@ -12,10 +12,11 @@ const ImageFileInput = ({ imageUploader, imageIndex, setImageIndex, onChangeFile
 			e.preventDefault();
 			setImageLoading(true);
 			const uploaded = await imageUploader.upload(e.target.files[0]);
+			console.log(uploaded);
 			setImageLoading(false);
 			onChangeFile({
 				id: imageIndex,
-				url: uploaded.url
+				imageURL: uploaded.url
 			});
 			setImageIndex(imageIndex + 1);
 		},
