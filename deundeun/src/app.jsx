@@ -16,7 +16,6 @@ const MyClubListPage = loadable(() => import('pages/MyClubListPage'));
 const MyApplicationPage = loadable(() => import('pages/MyApplicationPage'));
 const MyLikeListPage = loadable(() => import('pages/MyLikeListPage'));
 
-
 const LoginPage = loadable(() => import('pages/LoginPage'));
 const RegisterPage1 = loadable(() => import('pages/RegisterPage1'));
 const RegisterPage2 = loadable(() => import('pages/RegisterPage2'));
@@ -27,8 +26,7 @@ const PostDetailPage = loadable(() => import('pages/PostDetailPage'));
 const ApplicantManagePage = loadable(() => import('pages/ApplicantManagePage'));
 const MemberManagePage = loadable(() => import('pages/MemberManagePage'));
 
-
-const App = ({ FileInput }) => {
+const App = ({ FileInput, SingleFileInput }) => {
 	let location = useLocation();
 
 	useEffect(() => {
@@ -75,7 +73,7 @@ const App = ({ FileInput }) => {
 				<Header />
 				<ContainerRow>
 					<SideBar location={location} />
-					<ClubAddPage FileInput={FileInput} />
+					<ClubAddPage FileInput={FileInput} SingleFileInput={SingleFileInput} />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/detail" component={ClubDetailPage} />
@@ -91,7 +89,6 @@ const App = ({ FileInput }) => {
 			{/* 임시적으로 id로 표현함. 나중에는 해당 게시글의 id값으로 접근 */}
 			<Route component={ApplicantManagePage} path="/manager/applicant" exact />
 			<Route component={MemberManagePage} path="/manager/member" exact />
-
 		</Switch>
 	);
 };

@@ -20,7 +20,7 @@ import {
 	InputButtonContainer,
 	Footer,
 	ImageDeleteButton,
-	ClubImageUploadButton,
+	SpinnerContainer,
 	UploadedImageContainer
 } from './styles';
 import styled from 'styled-components';
@@ -31,10 +31,15 @@ const ClubImage = styled.div`
 	height: 100%;
 	background-color: #f0f0f0;
 
-	display: flex;
+	background-image: url(${(props) => props.imageURL || ''});
 
-	/* background-image: url(${(props) => props.imageURL || ''});
-	background-size: cover; */
+	background-size: cover;
+
+	position: relative;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;
 
 const UploadedImage = styled.div`
@@ -48,13 +53,15 @@ const UploadedImage = styled.div`
 	background-size: cover;
 `;
 
-const ClubManagePage = ({ FileInput }) => {
+const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 	const menuOptions = ['IT / 개발', '카테고리 2', '카테고리 3', '카테고리 4', '카테고리 5'];
 	const [menuIndex, setMenuIndex] = useState(-1);
 	const [imageIndex, setImageIndex] = useState(1);
 	const [imageLoading, setImageLoading] = useState(false);
+	const [clubImageLoading, setClubImageLoading] = useState(false);
 	const [showImageModal, setShowImageModal] = useState(false);
 	const [imageFileList, setImageFileList] = useState([]);
+	const [clubImageURL, setClubImageURL] = useState('');
 	const [modalImageURL, setModalImageURL] = useState('');
 
 	const onChangeFile = (image) => {
@@ -63,9 +70,11 @@ const ClubManagePage = ({ FileInput }) => {
 		} else return;
 	};
 
-	const onUploadClubImage = useCallback(() => {
-		console.log('club image upload');
-	}, []);
+	const onChangeClubImage = (image) => {
+		if (image.imageURL) {
+			setClubImageURL(image.imageURL);
+		} else return;
+	};
 
 	const onClickImage = useCallback(
 		(e) => {
@@ -112,8 +121,9 @@ const ClubManagePage = ({ FileInput }) => {
 				</HeaderContainer>
 				<Container>
 					<ClubImageContainer>
-						<ClubImage>
-							<ClubImageUploadButton onClick={onUploadClubImage}>+</ClubImageUploadButton>
+						<ClubImage imageURL={clubImageURL}>
+							{clubImageLoading && <LoadingSpinner size="large" />}
+							<SingleFileInput onChangeFile={onChangeClubImage} setImageLoading={setClubImageLoading} />
 						</ClubImage>
 					</ClubImageContainer>
 					<MenuContainer>

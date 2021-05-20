@@ -2,10 +2,10 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Spinner } from './styles';
 
-const LoadingSpinner = () => {
+const LoadingSpinner = ({ size }) => {
 	return (
 		//
-		<Spinner />
+		<Spinner className={`${size === 'large' ? 'large' : ''}`} />
 	);
 };
 

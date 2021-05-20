@@ -6,14 +6,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
 import ImageUploader from 'service/ImageUploader';
 import ImageFileInput from 'components/common/ImageFileInput';
+import SingleImageFileInput from 'components/common/SingleImageFileInput';
 
 const imageUploader = new ImageUploader();
 const FileInput = (props) => <ImageFileInput {...props} imageUploader={imageUploader} />;
+const SingleFileInput = (props) => <SingleImageFileInput {...props} imageUploader={imageUploader} />;
 
 ReactDOM.render(
 	<BrowserRouter>
-		<App FileInput={FileInput} />
+		<App FileInput={FileInput} SingleFileInput={SingleFileInput} />
 	</BrowserRouter>,
 	document.getElementById('root')
 );
-

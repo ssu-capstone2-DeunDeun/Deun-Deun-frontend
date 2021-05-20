@@ -10,10 +10,10 @@ export const CreateModal = styled.div`
 
 	& > div {
 		position: fixed;
-		top: 25%;
+		top: 15%;
 		left: 30%;
-		width: 800px;
-		height: 600px;
+		width: 900px;
+		height: 700px;
 		padding-top: 2em;
 		background-color: #fff;
 	}

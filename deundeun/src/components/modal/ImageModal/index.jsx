@@ -5,11 +5,12 @@ import { CloseModalButton, CreateModal } from './styles';
 import styled from 'styled-components';
 
 const Image = styled.div`
-	width: 500px;
-	height: 500px;
+	width: 700px;
+	height: 100%;
+
 	background-color: #f7f7f7;
 	background-image: url(${(props) => props.modalImageURL || ''});
-	background-size: auto;
+	background-size: cover;
 	background-repeat: no-repeat;
 
 	margin: 0 auto;

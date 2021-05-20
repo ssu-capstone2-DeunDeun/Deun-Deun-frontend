@@ -12,21 +12,6 @@ export const Container = styled.div`
 	flex-direction: row;
 `;
 
-export const ClubImageUploadButton = styled.button`
-	width: 36.8px;
-	height: 36.8px;
-	background-color: #505050;
-	color: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 1.125rem;
-	font-weight: bold;
-
-	margin-left: auto;
-	margin-top: auto;
-`;
-
 export const ClubImageContainer = styled.div`
 	width: 345px;
 	height: 345px;
@@ -37,6 +22,8 @@ export const MenuContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 `;
+
+export const SpinnerContainer = styled.div``;
 
 export const Menu = styled.span`
 	font-family: 'NotoSansKR';
