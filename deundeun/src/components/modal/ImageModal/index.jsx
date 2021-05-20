@@ -7,6 +7,7 @@ import styled from 'styled-components';
 const Image = styled.div`
 	width: 700px;
 	height: 100%;
+	max-height: 700px;
 
 	background-color: #f7f7f7;
 	background-image: url(${(props) => props.modalImageURL || ''});

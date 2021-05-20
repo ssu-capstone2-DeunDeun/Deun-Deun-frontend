@@ -10,10 +10,10 @@ export const CreateModal = styled.div`
 
 	& > div {
 		position: fixed;
-		top: 15%;
+		top: 0%;
 		left: 30%;
-		width: 900px;
-		height: 700px;
+		width: 1000px;
+		height: 800px;
 		padding-top: 2em;
 		background-color: #fff;
 	}
@@ -30,6 +30,6 @@ export const CloseModalButton = styled.button`
 	font-size: 2.3rem;
 
 	position: absolute;
-	top: 5%;
-	right: 5%;
+	top: 2%;
+	right: 2%;
 `;

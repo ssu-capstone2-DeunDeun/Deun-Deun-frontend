@@ -32,7 +32,6 @@ const ClubImage = styled.div`
 	background-color: #f0f0f0;
 
 	background-image: url(${(props) => props.imageURL || ''});
-
 	background-size: cover;
 
 	position: relative;
@@ -62,6 +61,7 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 	const [showImageModal, setShowImageModal] = useState(false);
 	const [imageFileList, setImageFileList] = useState([]);
 	const [clubImageURL, setClubImageURL] = useState('');
+	const [coverImageURL, setCoverImageURL] = useState('');
 	const [modalImageURL, setModalImageURL] = useState('');
 
 	const onChangeFile = (image) => {
