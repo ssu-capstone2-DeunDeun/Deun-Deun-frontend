@@ -4,8 +4,9 @@ import { Background, CoverImage, CoverImageContainer } from 'pages/ClubModifyPag
 import { TitleKorean } from 'pages/MyClubListPage/styles';
 import React, { useCallback, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import { ContainerPage, ContainerRow } from 'styles';
+import { ContainerRow } from 'styles';
 import {
+	ContainerPage,
 	HeaderContainer,
 	Container,
 	ClubImageContainer,
@@ -21,7 +22,7 @@ import {
 	Footer,
 	ImageDeleteButton,
 	SpinnerContainer,
-	UploadedImageContainer
+	IntroImageContainer
 } from './styles';
 import styled from 'styled-components';
 import ImageModal from 'components/modal/ImageModal/index';
@@ -41,7 +42,7 @@ const ClubImage = styled.div`
 	justify-content: center;
 `;
 
-const UploadedImage = styled.div`
+const IntroImage = styled.div`
 	border: none;
 	cursor: pointer;
 	background-color: #f7f7f7;
@@ -137,20 +138,20 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 							></DropdownMenu>
 						</DropdownContainer>
 						<Menu>동아리 이름</Menu>
-						<ContainerRow style={{ marginBottom: '2em' }}>
+						<ContainerRow style={{ marginBottom: '2em', flex: 'none', maxWidth: '100%' }}>
 							<ClubNameInput placeholder="동아리 이름을 입력해주세요."></ClubNameInput>
 							<DuplicateCheckButton>중복 검사</DuplicateCheckButton>
 						</ContainerRow>
 						<Menu>동아리 소개</Menu>
 						<ClubInfoTextarea placeholder="동아리 소개를 입력해주세요."></ClubInfoTextarea>
 						<Menu>관련 태그</Menu>
-						<ContainerRow style={{ marginBottom: '2em' }}>
+						<ContainerRow style={{ marginBottom: '2em', flex: 'none', maxWidth: '100%', flexWrap: 'wrap' }}>
 							<AddHashtagButton>+ 태그 추가하기</AddHashtagButton>
 						</ContainerRow>
 						<Menu>커버 이미지 업로드</Menu>
 						<CoverImageContainer>{/* <Background /> */}</CoverImageContainer>
 						<Menu>소개 이미지 업로드</Menu>
-						<ContainerRow style={{ marginBottom: '2em' }}>
+						<ContainerRow style={{ maxWidth: '100%', marginBottom: '2em', flexWrap: 'wrap', flex: 'none' }}>
 							<InputButtonContainer>
 								<FileInput
 									onChangeFile={onChangeFile}
@@ -159,19 +160,24 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 									setImageIndex={setImageIndex}
 								/>
 							</InputButtonContainer>
+							{/* {true && (
+								<SpinnerContainer>
+									<LoadingSpinner />
+								</SpinnerContainer>
+							)} */}
 							{Object.keys(imageFileList).map((key) => (
 								<>
 									{/* 나중에 컴포넌트 하나로 빼는 작업 필요(key prop warning) */}
-									<UploadedImageContainer key={key}>
+									<IntroImageContainer key={key}>
 										<ImageDeleteButton id={imageFileList[key].id} onClick={onClickImageDeleteButton}>
 											<CloseIcon style={{ width: '.9em', height: '.9em', color: '#8f8f8f' }} />
 										</ImageDeleteButton>
-										<UploadedImage
+										<IntroImage
 											onClick={onClickImage}
 											id={imageFileList[key].id}
 											imageURL={imageFileList[key].imageURL}
-										></UploadedImage>
-									</UploadedImageContainer>
+										></IntroImage>
+									</IntroImageContainer>
 								</>
 							))}
 						</ContainerRow>

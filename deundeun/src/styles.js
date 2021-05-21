@@ -11,6 +11,6 @@ export const ContainerColumn = styled.div`
 `;
 
 export const ContainerPage = styled.div`
-	width: 73vw;
+	width: 1382px;
 	margin-top: 3em;
 `;

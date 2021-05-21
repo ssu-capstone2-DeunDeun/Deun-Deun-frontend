@@ -1,5 +1,10 @@
 import styled from '@emotion/styled';
 
+export const ContainerPage = styled.div`
+	width: 1382px;
+	margin-top: 3em;
+`;
+
 export const HeaderContainer = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -8,6 +13,7 @@ export const HeaderContainer = styled.div`
 export const Container = styled.div`
 	width: 100%;
 	height: 120vh;
+	max-height: 400vh;
 	display: flex;
 	flex-direction: row;
 `;
@@ -19,11 +25,21 @@ export const ClubImageContainer = styled.div`
 `;
 
 export const MenuContainer = styled.div`
+	width: 780px;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 `;
 
-export const SpinnerContainer = styled.div``;
+export const SpinnerContainer = styled.div`
+	width: 122px;
+	height: 122px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1em;
+`;
 
 export const Menu = styled.span`
 	font-family: 'NotoSansKR';
@@ -33,15 +49,18 @@ export const Menu = styled.span`
 	margin-bottom: 0.7em;
 `;
 
-export const UploadedImageContainer = styled.div`
+export const IntroImageContainer = styled.div`
 	width: 122px;
 	height: 122px;
 
 	margin-right: 0.5em;
 	margin-top: 1em;
-	margin-bottom: 4em;
 
 	position: relative;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;
 
 export const InputButtonContainer = styled.div`
@@ -55,7 +74,7 @@ export const InputButtonContainer = styled.div`
 
 	margin-right: 0.5em;
 	margin-top: 1em;
-	margin-bottom: 4em;
+	margin-bottom: 2em;
 `;
 
 export const DropdownContainer = styled.div`
@@ -67,6 +86,8 @@ export const DropdownContainer = styled.div`
 	justify-content: center;
 	font-size: 0.9rem;
 	margin-bottom: 3em;
+
+	flex: none;
 `;
 
 export const ClubNameInput = styled.input`
@@ -91,12 +112,15 @@ export const DuplicateCheckButton = styled.button`
 export const ClubInfoTextarea = styled.textarea`
 	padding-top: 1em;
 	padding-left: 0.8em;
+	max-width: 100%;
 	height: 17vh;
 	font-family: 'NotoSansKR';
 	border: none;
 	background-color: #f7f7f7;
 	font-size: 0.8rem;
 	margin-bottom: 2em;
+
+	flex: none;
 `;
 
 export const AddHashtagButton = styled.button`
@@ -119,11 +143,14 @@ export const SubmitButton = styled.button`
 	color: #fff;
 	font-weight: bold;
 	border: none;
+
+	flex: none;
 `;
 
 export const Footer = styled.div`
 	width: 1px;
 	height: 5em;
+	flex: none;
 `;
 
 export const ImageDeleteButton = styled.div`
