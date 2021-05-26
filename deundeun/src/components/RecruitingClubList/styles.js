@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-	width: 34.05vw;
-	height: 47vh;
+	width: 741px;
+	height: 413px;
 	background-color: #f7f7f7;
 `;
 
@@ -10,6 +10,20 @@ export const Header = styled.div`
 	margin-top: 1em;
 	display: flex;
 	flex-direction: row;
+`;
+
+export const DropdownContainer = styled.div`
+	margin-left: auto;
+	margin-right: 2em;
+	width: 180px;
+	height: 36px;
+
+	display: flex;
+	align-items: center;
+	font-family: 'NotoSansKR';
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #282828;
 `;
 
 export const ClubList = styled.ol`

@@ -15,8 +15,8 @@ const ClubHome = () => {
 		<>
 			<ContainerPage>
 				<>
-					<TitleEnglish style={{ marginBottom: '3.68em' }}>HOME</TitleEnglish>
-					<GlobalFonts />
+					{/* <TitleEnglish style={{ marginBottom: '3.68em' }}>HOME</TitleEnglish>
+					<GlobalFonts /> */}
 					<RecruitingClubSection onClickSeeAll={onClickSeeAll} />
 					<PopularClubSection onClickSeeAll={onClickSeeAll} />
 					<ClubPostSection onClickSeeAll={onClickSeeAll} />

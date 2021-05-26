@@ -74,7 +74,6 @@ export const InputButtonContainer = styled.div`
 
 	margin-right: 0.5em;
 	margin-top: 1em;
-	margin-bottom: 2em;
 `;
 
 export const DropdownContainer = styled.div`
