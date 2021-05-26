@@ -13,7 +13,7 @@ const ClubHome = () => {
 	return (
 		//
 		<>
-			<ContainerPage>
+			<ContainerPage style={{ width: '1462px' }}>
 				<>
 					{/* <TitleEnglish style={{ marginBottom: '3.68em' }}>HOME</TitleEnglish>
 					<GlobalFonts /> */}

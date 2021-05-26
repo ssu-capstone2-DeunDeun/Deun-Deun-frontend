@@ -1,11 +1,41 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-	width: 50vw;
-	height: 35vh;
+	width: 232px;
+	height: 237px;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	margin-bottom: 1.5em;
+	background-color: #f7f7f7;
+	background-image: url(${(props) => props.imageURL || ''});
+	background-size: cover;
+
+	cursor: pointer;
+`;
+
+export const RecruitingIcon = styled.div`
+	width: 34px;
+	height: 20px;
+	border-radius: 14px;
+	border: solid 1px #ffffff;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	font-family: GmarketSans;
+	font-size: 0.7rem;
+	font-weight: 500;
+	color: #ffffff;
+
+	margin-right: 0.3em;
+`;
+
+export const ClubName = styled.span`
+	font-family: 'NotoSansKR';
+	font-size: 1rem;
+	font-weight: 900;
+	color: #ffffff;
 `;
 
 export const ClubImage = styled.div`
@@ -17,17 +47,6 @@ export const ClubOverview = styled.div`
 	width: 57%;
 	background-color: #f7f7f7;
 	padding-left: 2.125em;
-`;
-
-export const ClubName = styled.div`
-	margin-top: 2em;
-	margin-bottom: 0.5em;
-	display: flex;
-	flex-direction: row;
-
-	@media (max-width: 1440px) {
-		margin-top: 1em;
-	}
 `;
 
 export const Divider = styled.div`
