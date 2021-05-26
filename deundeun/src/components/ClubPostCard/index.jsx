@@ -36,12 +36,12 @@ const ClubPostCard = () => {
 				<ContainerRow style={{ marginLeft: 'auto' }}>
 					<Comment>
 						<ChatBubbleOutlineIcon
-							style={{ width: '12.1px', height: '12.1px', marginRight: '0.2em', cursor: 'pointer' }}
+							style={{ width: '20.2px', height: '20.2px', marginRight: '0.2em', cursor: 'pointer' }}
 						/>
 						123
 					</Comment>
 					<Like>
-						<FavoriteIcon style={{ width: '12.1px', height: '12.1px', marginRight: '0.1em', cursor: 'pointer' }} />
+						<FavoriteIcon style={{ width: '20.2px', height: '20.2px', marginRight: '0.1em', cursor: 'pointer' }} />
 						123
 					</Like>
 				</ContainerRow>
