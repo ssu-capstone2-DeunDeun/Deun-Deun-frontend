@@ -8,7 +8,7 @@ const PostSection = () => {
 		<Container>
 			<PostContainer>
 				<Header>
-					<TitleKorean>동아리 게시글</TitleKorean>
+					<TitleKorean>인기 게시글</TitleKorean>
 					<SeeAll>전체보기</SeeAll>
 				</Header>
 				<CardContainer>
