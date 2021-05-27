@@ -10,20 +10,17 @@ export const Header = styled.div`
 `;
 
 export const CardContainer = styled.div`
-	margin-right: 3em;
 	display: flex;
-	flex-wrap: wrap;
+	align-items: center;
 	justify-content: space-around;
-	align-content: space-around;
 
-	@media (max-width: 1440px) {
+	/* @media (max-width: 1440px) {
 		flex-direction: column;
-	}
+	} */
 `;
 
 export const ContentKorean = styled.span`
 	margin-left: auto;
-	margin-right: 3em;
 	cursor: pointer;
 	color: #717171;
 

@@ -1,5 +1,12 @@
-import { HeaderContainer, TitleKorean } from 'pages/MyClubListPage/styles';
-import { ContentKorean, ClubListCardContainer, ClubPostCardContainer, SeeAll, CategoryKorean } from './styles';
+import { HeaderContainer } from 'pages/MyClubListPage/styles';
+import {
+	ContentKorean,
+	ClubListCardContainer,
+	ClubPostCardContainer,
+	SeeAll,
+	CategoryKorean,
+	TitleKorean
+} from './styles';
 import React from 'react';
 import ClubListCard from 'components/ClubListCard';
 import ClubPostCard from 'components/ClubPostCard';
@@ -11,13 +18,13 @@ const MyLikeListPage = () => {
 	return (
 		//
 		<>
-			<ContainerPage>
+			<ContainerPage style={{ width: '1400px' }}>
 				<HeaderContainer>
 					<CategoryKorean>마이페이지</CategoryKorean>
 					<ChevronRightIcon />
 					<CategoryKorean>관심 목록</CategoryKorean>
 				</HeaderContainer>
-				<ContainerColumn style={{ marginTop: '1.25em', width: '1242px' }}>
+				<ContainerColumn style={{ marginTop: '1.25em', width: '100%' }}>
 					<TitleKorean>관심 동아리 목록</TitleKorean>
 					<ContainerRow style={{ marginTop: '0.25em', width: '100%' }}>
 						<ContentKorean>관심있는 동아리가 6개 있습니다.</ContentKorean>
@@ -29,9 +36,11 @@ const MyLikeListPage = () => {
 					<ClubListCard />
 					<ClubListCard />
 					<ClubListCard />
+					<ClubListCard />
+					<ClubListCard />
 				</ClubListCardContainer>
 
-				<ContainerRow style={{ marginTop: '7em', width: '1242px' }}>
+				<ContainerRow style={{ marginTop: '7em', width: '100%' }}>
 					<TitleKorean>관심 글 목록</TitleKorean>
 					<SeeAll>전체보기</SeeAll>
 				</ContainerRow>

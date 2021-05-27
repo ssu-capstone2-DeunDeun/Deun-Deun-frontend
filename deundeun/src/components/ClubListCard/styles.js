@@ -70,7 +70,7 @@ export const DetailContainer = styled.div`
 
 export const ClubDetail = styled.span`
 	font-family: 'NotoSansKR';
-	font-size: 0.875rem;
+	font-size: 0.9rem;
 	font-weight: 500;
 	color: #282828;
 `;

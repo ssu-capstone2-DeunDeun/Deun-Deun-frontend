@@ -5,6 +5,7 @@ import loadable from '@loadable/component';
 import SideBar from 'components/common/SideBar';
 import Header from 'components/common/Header';
 import { ContainerRow } from 'styles';
+import OAuth2RedirectHandler from 'components/login/oauth2/OAuth2RedirectHandler';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -84,11 +85,10 @@ const App = ({ FileInput, SingleFileInput }) => {
 			<Route component={ApplyPage} path="/apply" exact />
 			<Route component={ApplyPageSuccessPage} path="/apply/success" exact />
 			<Route component={RecruitDetailPage} path="/recruit/detail/id" exact />
-			{/* 임시적으로 id로 표현함. 나중에는 해당 게시글의 id값으로 접근 */}
 			<Route component={PostDetailPage} path="/post/detail/id" exact />
-			{/* 임시적으로 id로 표현함. 나중에는 해당 게시글의 id값으로 접근 */}
 			<Route component={ApplicantManagePage} path="/manager/applicant" exact />
 			<Route component={MemberManagePage} path="/manager/member" exact />
+			<Route component={OAuth2RedirectHandler} path="/oauth2/redirect" exact />
 		</Switch>
 	);
 };

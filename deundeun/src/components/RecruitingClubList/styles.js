@@ -29,7 +29,7 @@ export const DropdownContainer = styled.div`
 export const ClubList = styled.ol`
 	display: flex;
 	flex-direction: column;
-	margin-top: 2em;
+	margin-top: 0.7em;
 	margin-left: 1em;
 	list-style: none;
 

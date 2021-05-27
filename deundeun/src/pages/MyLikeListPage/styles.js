@@ -6,6 +6,13 @@ export const CategoryKorean = styled.span`
 	font-weight: 500;
 `;
 
+export const TitleKorean = styled.span`
+	font-family: NotoSansKR;
+	font-size: 1.5rem;
+	font-weight: 900;
+	color: #282828;
+`;
+
 export const ContentKorean = styled.span`
 	font-family: NotoSansKR;
 	font-size: 1rem;
@@ -15,8 +22,8 @@ export const ContentKorean = styled.span`
 
 export const ClubListCardContainer = styled.div`
 	display: flex;
-	flex-flow: row wrap;
-	width: 1364px;
+	flex-wrap: wrap;
+	width: 100%;
 	margin-top: 1.625em;
 `;
 
@@ -24,7 +31,7 @@ export const ClubPostCardContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
-	width: 1364px;
+	width: 100%;
 	margin-top: 1.625em;
 `;
 
@@ -36,4 +43,5 @@ export const SeeAll = styled.span`
 	color: #717171;
 	text-decoration: underline;
 	margin-left: auto;
+	margin-right: 4em;
 `;

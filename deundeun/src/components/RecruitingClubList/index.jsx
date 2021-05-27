@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-import GlobalFonts from 'fonts/fonts';
 import {
 	Container,
 	Header,

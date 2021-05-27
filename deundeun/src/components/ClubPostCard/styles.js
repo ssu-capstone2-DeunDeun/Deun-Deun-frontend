@@ -34,7 +34,7 @@ export const ContentContainer = styled.div`
 
 export const ContentKorean = styled.span`
 	font-family: 'NotoSansKR';
-	font-size: 1.1rem;
+	font-size: 0.95rem;
 	color: #282828;
 `;
 

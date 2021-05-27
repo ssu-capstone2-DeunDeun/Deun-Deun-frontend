@@ -10,19 +10,20 @@ export const TitleKorean = styled.span`
 	letter-spacing: normal;
 	color: #282828;
 
-	margin-bottom: 0.813em;
+	margin-bottom: 0.25em;
 `;
 
 export const HeaderContainer = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+
+	width: 100%;
 `;
 
 export const ContentContainer = styled.div`
 	display: flex;
 	flex-direction: row;
-	margin-top: 0.75em;
 	color: #484848;
 `;
 
@@ -35,5 +36,5 @@ export const JoinedClubCardContainer = styled.div`
 	display: flex;
 	flex-flow: row wrap;
 	margin-top: 1.625em;
-	width: 1364px;
+	width: 100%;
 `;
