@@ -1,7 +1,9 @@
 import React from 'react';
-import Button from 'components/common/Button/Button';
 import { ApplyInfoBox, ButtonBlock, FormContent, RegisterFormBlock, StyledTextarea } from './styles';
-import CheckList from '../CheckList/CheckList';
+import CheckList from '../CheckList/index';
+import Button from 'components/common/Button/index';
+
+
 
 
 const ApplyForm = () => {

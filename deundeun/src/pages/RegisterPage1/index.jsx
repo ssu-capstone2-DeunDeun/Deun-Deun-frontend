@@ -1,12 +1,12 @@
 import BasicTemplate from 'components/common/BasicTemplate';
 import BasicTemplate2 from 'components/common/BasicTemplate2';
-import RegisterForm1 from 'components/register/RegisterForm1';
+import RegisterContainer1 from 'container/register/RegisterContainer1';
 import React from 'react';
 
 const RegisterPage = () => {
     return (
         <BasicTemplate2>
-            <RegisterForm1 />
+            <RegisterContainer1 />
         </BasicTemplate2>
 
 

@@ -1,9 +1,11 @@
 import { combineReducers } from "../../node_modules/redux/";
-import loginUserInfo from "./loginUserInfo";
+import currentUser from "./currentUser";
+import registerUserInfo from "./registerUserInfo";
+
+
 
 const rootReducer = combineReducers({
-    loginUserInfo,
+    currentUser, registerUserInfo,
 })
-
 
 export default rootReducer;

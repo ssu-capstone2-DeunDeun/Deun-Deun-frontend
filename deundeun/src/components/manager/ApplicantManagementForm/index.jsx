@@ -3,7 +3,8 @@ import { ApplicantInfoBlock, BasicBlock, ContentBlock, MenuBlock, PopupBlock, Re
 import { MdKeyboardArrowDown, MdClose, MdKeyboardArrowRight } from "react-icons/md";
 import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im";
 import { BiSearchAlt2 } from "react-icons/bi";
-import Button from 'components/common/Button/Button';
+import Button from 'components/common/Button/index';
+
 
 
 const popupClear = (event) => {

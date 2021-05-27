@@ -6,6 +6,8 @@ import SideBar from 'components/common/SideBar';
 import Header from 'components/common/Header';
 import { ContainerRow } from 'styles';
 import OAuth2RedirectHandler from 'components/login/oauth2/OAuth2RedirectHandler';
+import RegisterContainer1 from 'container/register/RegisterContainer1';
+import RegisterContainer2 from 'container/register/RegisterContainer2';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -80,8 +82,9 @@ const App = ({ FileInput, SingleFileInput }) => {
 			<Route exact path="/club/detail" component={ClubDetailPage} />
 
 			<Route component={LoginPage} path="/login" exact />
-			<Route component={RegisterPage1} path="/register/1" exact />
-			<Route component={RegisterPage2} path="/register/2" exact />
+			<Route component={RegisterContainer1} path="/register/1" exact />
+			{/* <Route component={RegisterPage2} path="/register/2" exact /> */}
+			<Route component={RegisterContainer2} path="/register/2" exact />
 			<Route component={ApplyPage} path="/apply" exact />
 			<Route component={ApplyPageSuccessPage} path="/apply/success" exact />
 			<Route component={RecruitDetailPage} path="/recruit/detail/id" exact />
