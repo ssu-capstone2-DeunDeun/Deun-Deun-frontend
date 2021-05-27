@@ -23,8 +23,8 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 		return () => setAddNewForm(false);
 	}, []);
 
-	let questionTypes = ['주관식', '선다형'];
-	let answerTypes = ['단일 선택', '복수 선택'];
+	const questionTypes = ['주관식', '선다형'];
+	const answerTypes = ['단일 선택', '복수 선택'];
 
 	return (
 		//

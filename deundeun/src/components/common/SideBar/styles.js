@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-	width: 25vw;
+	width: 354px;
 	height: 100vh;
 	background-color: #fff;
 	display: flex;
 	flex-direction: column;
 	padding-top: 3em;
-	padding-left: 5em;
+
+	margin-right: 3em;
 `;
 
 export const Button = styled.button`
@@ -26,12 +27,12 @@ export const Button = styled.button`
 	}
 
 	font-family: 'NotoSansKR';
-	width: 15vw;
+	width: 354px;
 	height: 4em;
 	background-color: #fff;
 	border: none;
 	text-align: left;
-	padding-left: 3em;
+	padding-left: 5em;
 	font-size: 18px;
 	color: #bababa;
 	font-weight: 900;

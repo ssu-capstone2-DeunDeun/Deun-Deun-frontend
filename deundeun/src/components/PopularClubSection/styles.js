@@ -9,14 +9,24 @@ export const Header = styled.div`
 	margin-bottom: 1.75em;
 `;
 
-export const Content = styled.div`
-	margin-right: 3em;
+export const CardContainer = styled.div`
 	display: flex;
-	flex-wrap: wrap;
+	align-items: center;
 	justify-content: space-around;
-	align-content: space-around;
 
-	@media (max-width: 1440px) {
+	/* @media (max-width: 1440px) {
 		flex-direction: column;
-	}
+	} */
+`;
+
+export const ContentKorean = styled.span`
+	margin-left: auto;
+	cursor: pointer;
+	color: #717171;
+
+	font-family: 'NotoSansKR';
+	font-size: 1rem;
+	font-weight: bold;
+	color: #717171;
+	text-decoration: underline;
 `;

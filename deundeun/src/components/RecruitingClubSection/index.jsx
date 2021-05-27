@@ -11,14 +11,14 @@ const RecruitingClubSection = ({ onClickHomeTab, onClickProfile, onClickSeeAll }
 		//
 		<>
 			<Header>
-				<TitleKorean>모집중인 동아리</TitleKorean>
-				<ContentKorean
+				<TitleKorean style={{ marginBottom: '2.063em' }}>지금 모집중인 동아리</TitleKorean>
+				{/* <ContentKorean
 					id="recruit"
 					onClick={onClickSeeAll}
 					style={{ marginLeft: 'auto', marginRight: '3em', cursor: 'pointer' }}
 				>
 					전체보기
-				</ContentKorean>
+				</ContentKorean> */}
 			</Header>
 			<Content>
 				<RecruitingClubCarousel setFocusClubImage={setFocusClubImage} />

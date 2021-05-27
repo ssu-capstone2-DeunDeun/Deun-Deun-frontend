@@ -12,19 +12,17 @@ import { composeWithDevTools } from '../node_modules/redux-devtools-extension';
 import { Provider } from 'react-redux';
 import SingleImageFileInput from 'components/common/SingleImageFileInput';
 
-
 const imageUploader = new ImageUploader();
 const FileInput = (props) => <ImageFileInput {...props} imageUploader={imageUploader} />;
 const SingleFileInput = (props) => <SingleImageFileInput {...props} imageUploader={imageUploader} />;
 
-const store = createStore(rootReducer, composeWithDevTools())
+const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(
 	<BrowserRouter>
 		<Provider store={store}>
 			<App FileInput={FileInput} />
 		</Provider>
-		<App FileInput={FileInput} SingleFileInput={SingleFileInput} />
 	</BrowserRouter>,
 	document.getElementById('root')
 );

@@ -10,10 +10,9 @@ export const Header = styled.div`
 `;
 
 export const Content = styled.div`
-	margin-right: 7em;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
-	align-content: space-around;
 
 	@media (max-width: 720px) {
 		display: flex;
@@ -23,6 +22,6 @@ export const Content = styled.div`
 `;
 
 export const CardContainer = styled.div`
-	width: 105%;
+	width: 100%;
 	margin-bottom: 10em;
 `;

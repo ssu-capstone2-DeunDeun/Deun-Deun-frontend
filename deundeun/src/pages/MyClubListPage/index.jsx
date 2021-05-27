@@ -10,15 +10,15 @@ const MyClubsPage = () => {
 	return (
 		//
 		<>
-			<ContainerPage>
+			<ContainerPage style={{ width: '1400px' }}>
 				<HeaderContainer>
 					<CategoryKorean>마이페이지</CategoryKorean>
 					<ChevronRightIcon />
 					<CategoryKorean>가입 동아리 목록</CategoryKorean>
 				</HeaderContainer>
-				<ContainerColumn style={{ marginTop: '1.25em', width: '1246px' }}>
+				<ContainerColumn style={{ marginTop: '1.25em', width: '100%', marginRight: '4em' }}>
 					<TitleKorean>나의 동아리 목록</TitleKorean>
-					<ContainerRow style={{ marginTop: '0.25em' }}>
+					<ContainerRow>
 						<ContentKorean>현재 4개의 동아리에 참여하고 있습니다.</ContentKorean>
 						<Content style={{ marginLeft: 'auto' }}>
 							<CheckCircleOutlineIcon style={{ marginRight: '0.3em' }} />

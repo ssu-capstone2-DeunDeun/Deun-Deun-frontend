@@ -1,5 +1,4 @@
-import React, { useCallback } from 'react';
-import GlobalFonts from 'fonts/fonts';
+import React, { useCallback, useState } from 'react';
 import {
 	Container,
 	Header,
@@ -10,11 +9,16 @@ import {
 	ClubName,
 	ClubCategory,
 	Deadline,
-	ContentKorean
+	DropdownContainer
 } from './styles';
 import { useHistory } from 'react-router';
+import DropdownMenu from 'components/common/DropdownMenu/index';
+import { ContainerRow } from 'styles';
 const RecruitingClubList = ({ focusClubImage }) => {
 	const history = useHistory();
+	const [categoryIndex, setCategoryIndex] = useState(0);
+
+	const categories = ['전체 카테고리', 'IT / 개발', '카테고리 2', '카테고리 3', '카테고리 4'];
 
 	const onClickClubName = useCallback(
 		(e) => {
@@ -28,9 +32,12 @@ const RecruitingClubList = ({ focusClubImage }) => {
 		//
 		<Container>
 			<Header>
-				<GlobalFonts />
-				<ContentKorean style={{ marginLeft: 'auto', marginRight: '1em' }}>전체 카테고리</ContentKorean>
-				<ContentKorean style={{ marginRight: '1em' }}>최신순</ContentKorean>
+				<DropdownContainer>
+					<ContainerRow style={{ marginLeft: 'auto', alignItems: 'center' }}>
+						{`${categories[categoryIndex]}`}
+						<DropdownMenu options={categories} selectedIndex={categoryIndex} setSelectedIndex={setCategoryIndex} />
+					</ContainerRow>
+				</DropdownContainer>
 			</Header>
 			<ClubList>
 				<ClubListItem className={`${focusClubImage === 0 ? 'focus' : 'unfocus'}`}>
