@@ -1,41 +1,60 @@
 import Button from 'components/common/Button/Button';
 import React from 'react';
+import { useState } from 'react';
+import { withRouter } from 'react-router-dom';
+import { getCurrentUser, signup } from 'utils/APIUtils';
 import { ButtonBlock, FormContent, RegisterFormBlock, RegisterInfoBox, StyledInput } from './styles';
 
 
+const RegisterForm1 = ({ history }) => {
+	const [nickName, setNickName] = useState("");
 
-const RegisterForm1 = () => {
+	const onChangeNickName = (e) => {
+		const value = e.target.value;
+		setNickName(value);
+	}
+	const handleSubmit = (e) => {
+		const form = { nickname: nickName };
+		const userRequestDto = Object.assign({}, form);
+		signup(userRequestDto);
+	}
+
 	return (
 		<RegisterFormBlock>
 			<RegisterInfoBox>
-				<div class="step">STEP 1.</div>
-				<div class="info">
+				<div className="step">STEP 1.</div>
+				<div className="info">
 					<div>반갑습니다!</div>
 					<div>기본 정보를 입력해주세요.</div>
 				</div>
 			</RegisterInfoBox>
 			<form>
 				<FormContent>
-					<div class="name">이름*</div>
+					<div className="name">이름*</div>
 					<StyledInput placeholder="이름을 입력해주세요."></StyledInput>
 				</FormContent>
 				<FormContent>
-					<div class="name">닉네임*</div>
-					<div class="checking">
-						<StyledInput placeholder="닉네임을 입력해주세요."></StyledInput>
+					<div className="name">닉네임*</div>
+					<div className="checking">
+						<StyledInput value={nickName} onChange={onChangeNickName} placeholder="닉네임을 입력해주세요."></StyledInput>
 						<button onClick={(e) => e.preventDefault()}>중복 검사</button>
 					</div>
 				</FormContent>
 				<FormContent>
-					<div class="name">이메일*</div>
+					<div className="name">이메일*</div>
 					<StyledInput placeholder="이메일을 입력해주세요."></StyledInput>
 				</FormContent>
 				<ButtonBlock>
-					<Button to="/register/2">다음 단계로</Button>
+					<Button to="/register/2" onClick={(e) => {
+						e.preventDefault();
+						handleSubmit();
+						getCurrentUser();
+						history.push('/register/2');
+					}}>다음 단계로</Button>
 				</ButtonBlock>
 			</form>
 		</RegisterFormBlock >
 	);
 };
 
-export default RegisterForm1;
+export default withRouter(RegisterForm1);

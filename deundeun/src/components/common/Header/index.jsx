@@ -25,8 +25,6 @@ const Header = () => {
 					checkLogin === false ?
 						<div className="sign">
 							<Link to="/login">로그인</Link>
-							<div> / </div>
-							<Link to="/register/1">회원가입</Link>
 						</div>
 						:
 						<>
