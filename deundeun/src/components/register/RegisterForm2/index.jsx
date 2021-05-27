@@ -24,7 +24,7 @@ const RegisterForm2 = () => {
 			thisEle.classList.add("active");
 			count += 1;
 			setLists = setLists.concat(thisEle.innerText);
-			console.log(thisEle.classList);
+			// console.log(thisEle.classList);
 			console.log(setLists);
 		}
 

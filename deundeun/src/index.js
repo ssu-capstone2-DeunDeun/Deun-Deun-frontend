@@ -6,13 +6,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
 import ImageUploader from 'service/ImageUploader';
 import ImageFileInput from 'components/common/ImageFileInput';
+import { createStore } from '../node_modules/redux';
+import rootReducer from 'modules/index';
+import { composeWithDevTools } from '../node_modules/redux-devtools-extension';
+import { Provider } from 'react-redux';
 
 const imageUploader = new ImageUploader();
 const FileInput = (props) => <ImageFileInput {...props} imageUploader={imageUploader} />;
 
+const store = createStore(rootReducer, composeWithDevTools())
+
 ReactDOM.render(
 	<BrowserRouter>
-		<App FileInput={FileInput} />
+		<Provider store={store}>
+			<App FileInput={FileInput} />
+		</Provider>
 	</BrowserRouter>,
 	document.getElementById('root')
 );
