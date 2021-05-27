@@ -21,7 +21,7 @@ const store = createStore(rootReducer, composeWithDevTools());
 ReactDOM.render(
 	<BrowserRouter>
 		<Provider store={store}>
-			<App FileInput={FileInput} />
+			<App FileInput={FileInput} SingleFileInput={SingleFileInput} />
 		</Provider>
 	</BrowserRouter>,
 	document.getElementById('root')
