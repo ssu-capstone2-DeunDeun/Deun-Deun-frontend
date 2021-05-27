@@ -10,7 +10,7 @@ export const ClubImage = styled.div`
 `;
 
 export const CoverImageContainer = styled.div`
-	width: 100%;
+	max-width: 100%;
 	height: 138px;
 	margin-bottom: 1.3em;
 	background-color: #f7f7f7;
@@ -18,6 +18,8 @@ export const CoverImageContainer = styled.div`
 	color: white;
 	font-family: 'NotoSansKR';
 	font-size: 1.1rem;
+
+	flex: none;
 `;
 
 export const CoverImage = styled.div`

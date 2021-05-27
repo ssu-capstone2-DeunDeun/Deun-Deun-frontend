@@ -17,4 +17,9 @@ export const Spinner = styled.div`
 	border: 3px solid #f7f7f7;
 	border-top: 3px solid #9ddfd3;
 	animation: ${spin} 0.9s linear infinite;
+
+	&.large {
+		width: 4em;
+		height: 4em;
+	}
 `;

@@ -17,7 +17,6 @@ const MyClubListPage = loadable(() => import('pages/MyClubListPage'));
 const MyApplicationPage = loadable(() => import('pages/MyApplicationPage'));
 const MyLikeListPage = loadable(() => import('pages/MyLikeListPage'));
 
-
 const LoginPage = loadable(() => import('pages/LoginPage'));
 const RegisterPage1 = loadable(() => import('pages/RegisterPage1'));
 const RegisterPage2 = loadable(() => import('pages/RegisterPage2'));
@@ -28,8 +27,7 @@ const PostDetailPage = loadable(() => import('pages/PostDetailPage'));
 const ApplicantManagePage = loadable(() => import('pages/ApplicantManagePage'));
 const MemberManagePage = loadable(() => import('pages/MemberManagePage'));
 
-
-const App = ({ FileInput }) => {
+const App = ({ FileInput, SingleFileInput }) => {
 	let location = useLocation();
 
 	useEffect(() => {
@@ -76,7 +74,7 @@ const App = ({ FileInput }) => {
 				<Header />
 				<ContainerRow>
 					<SideBar location={location} />
-					<ClubAddPage FileInput={FileInput} />
+					<ClubAddPage FileInput={FileInput} SingleFileInput={SingleFileInput} />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/detail" component={ClubDetailPage} />

@@ -44,29 +44,29 @@ const RecruitingClubList = ({ focusClubImage }) => {
 				<Divider />
 				<ClubListItem className={`${focusClubImage === 1 ? 'focus' : 'unfocus'}`}>
 					<RecruitingOrder>2</RecruitingOrder>
-					<ClubName>IT동아리 트와이스</ClubName>
-					<ClubCategory>IT / 개발</ClubCategory>
-					<Deadline>D-4</Deadline>
+					<ClubName>MARATHON - 러닝 동아리</ClubName>
+					<ClubCategory>체육</ClubCategory>
+					<Deadline>D-2</Deadline>
 				</ClubListItem>
 				<Divider />
 				<ClubListItem className={`${focusClubImage === 2 ? 'focus' : 'unfocus'}`}>
 					<RecruitingOrder>3</RecruitingOrder>
-					<ClubName>IT동아리 트와이스</ClubName>
-					<ClubCategory>IT / 개발</ClubCategory>
-					<Deadline>D-4</Deadline>
+					<ClubName>INSTAGRAM: 사진 동아리</ClubName>
+					<ClubCategory>문화 / 예술</ClubCategory>
+					<Deadline className="impending">D-1</Deadline>
 				</ClubListItem>
 				<Divider />
 				<ClubListItem className={`${focusClubImage === 3 ? 'focus' : 'unfocus'}`}>
 					<RecruitingOrder>4</RecruitingOrder>
-					<ClubName>IT동아리 트와이스</ClubName>
-					<ClubCategory>IT / 개발</ClubCategory>
-					<Deadline>D-4</Deadline>
+					<ClubName>주식투자 동아리 @ELONMUSK</ClubName>
+					<ClubCategory>학술 / 교양</ClubCategory>
+					<Deadline>D-5</Deadline>
 				</ClubListItem>
 				<Divider />
 				<ClubListItem className={`${focusClubImage === 4 ? 'focus' : 'unfocus'}`}>
 					<RecruitingOrder>5</RecruitingOrder>
-					<ClubName>IT동아리 트와이스</ClubName>
-					<ClubCategory>IT / 개발</ClubCategory>
+					<ClubName>경제학술 동아리 Bithumb</ClubName>
+					<ClubCategory>학술 / 교양</ClubCategory>
 					<Deadline>D-4</Deadline>
 				</ClubListItem>
 			</ClubList>

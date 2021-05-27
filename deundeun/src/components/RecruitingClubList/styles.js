@@ -43,41 +43,42 @@ export const ClubListItem = styled.li`
 
 export const ContentKorean = styled.span`
 	font-family: 'NotoSansKR';
-
-	font-size: 1.25rem;
-
-	@media (max-width: 1440px) {
-		font-size: 1.1rem;
-	}
+	font-size: 1.1rem;
+	font-weight: bold;
+	color: #717171;
 `;
 
-export const RecruitingOrder = styled.span`
+export const RecruitingOrder = styled.div`
 	font-family: 'GmarketSansBold';
 	font-size: 1.25rem;
 	margin-right: 2em;
-	/* &.first {
+	&.first {
 		font-size: 1.34rem;
-	} */
-
-	@media (max-width: 1440px) {
-		font-size: 1.1rem;
 	}
 `;
 
-export const ClubName = styled.span`
+export const ClubName = styled.div`
+	width: 300px;
 	font-family: 'NotoSansKR';
 	margin-right: 1em;
 	cursor: pointer;
 `;
 
-export const ClubCategory = styled.span`
+export const ClubCategory = styled.div`
+	margin-right: 1em;
 	font-family: 'NotoSansKR';
 `;
 
-export const Deadline = styled.span`
+export const Deadline = styled.div`
 	font-family: 'NotoSansKR';
 	margin-left: auto;
 	margin-right: 3em;
+
+	&.impending {
+		color: red;
+		font-weight: 900;
+		font-size: 1.3rem;
+	}
 `;
 
 export const Divider = styled.div`

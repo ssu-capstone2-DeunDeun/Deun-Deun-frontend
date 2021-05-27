@@ -36,11 +36,11 @@ export const Button = styled.button`
 	color: #bababa;
 	font-weight: 900;
 	&:hover {
-		background-color: rgba(31, 208, 181, 0.6);
+		background-color: rgba(31, 208, 181, 0.3);
 	}
 	&.clicked {
 		font-family: 'NotoSansKR';
-		background-color: rgba(31, 208, 181, 0.6);
+		background-color: rgba(31, 208, 181, 0.3);
 		color: #282828;
 	}
 	&.category {
