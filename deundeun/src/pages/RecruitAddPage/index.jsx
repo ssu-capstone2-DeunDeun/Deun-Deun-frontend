@@ -8,12 +8,12 @@ import {
 	RecruitDeadline,
 	Tilde,
 	RecruitInfoTextarea,
-	ImageButton
+	ImageButton,
+	ContentKorean
 } from './styles';
 import React, { useCallback, useEffect, useState } from 'react';
 import { ContainerColumn, ContainerRow } from 'styles';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import { ContentKorean } from 'components/ClubPostCardSmall/styles';
 import { Header, SubmitButton } from 'pages/ApplicationAddPage/styles';
 import LoadApplicationModal from 'components/modal/LoadApplicationModal';
 import { Footer } from 'components/PostSection/styles';

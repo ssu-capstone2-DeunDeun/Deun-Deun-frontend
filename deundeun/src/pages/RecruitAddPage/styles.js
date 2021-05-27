@@ -7,6 +7,12 @@ export const TitleKorean = styled.span`
 	color: #282828;
 `;
 
+export const ContentKorean = styled.span`
+	font-family: 'NotoSansKR';
+	font-size: 1rem;
+	color: #282828;
+`;
+
 export const ApplicationLoadCard = styled.div`
 	display: flex;
 	justify-content: center;

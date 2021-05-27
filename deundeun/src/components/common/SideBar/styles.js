@@ -54,6 +54,11 @@ export const Button = styled.button`
 		font-weight: 900;
 		color: #282828;
 	}
+
+	&.category,
+	&.clicked-category {
+		padding-left: 6em;
+	}
 `;
 
 export const TitleEnglish = styled.h1`
