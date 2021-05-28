@@ -5,11 +5,13 @@ import { AddQuestionButton, ApplicationTitleInput, InnerContainer, SubmitButton,
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import QuestionCard from 'components/common/QuestionCard/index';
 import { useHistory } from 'react-router';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 const ApplicationAddPage = ({ setAddNewForm }) => {
 	const history = useHistory();
 	const [title, setTitle] = useState('');
-	// const [titleError, setTitleError] = useState(false);
 	const [questionIndex, setQuestionIndex] = useState(2);
+	const [deleteError, setDeleteError] = useState(false);
 	const [submitError, setSubmitError] = useState(false);
 	const [questionList, setQuestionList] = useState([
 		{
@@ -31,11 +33,18 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 
 	const onDeleteQuestion = useCallback(
 		(e) => {
-			if (questionList.length === 1) return;
+			if (questionList.length === 1) {
+				setDeleteError(true);
+				return;
+			}
 			setQuestionList(questionList.filter((question) => question.index !== parseInt(e.target.id)));
 		},
 		[questionList]
 	);
+
+	const onCloseSnackbar = useCallback(() => {
+		setDeleteError(false);
+	}, []);
 
 	useEffect(() => {
 		return () => setAddNewForm(false);
@@ -55,13 +64,10 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 						onChange={setTitle}
 						placeholder="제목을 입력해주세요."
 					></ApplicationTitleInput>
-					{!title && <Error>* 제목은 필수 입력 항목입니다.</Error>}
+					{/* {!title && <Error>* 제목은 필수 입력 항목입니다.</Error>} */}
 				</ContainerColumn>
 				<ContainerColumn>
 					<TitleKorean style={{ marginBottom: '1em' }}>질문</TitleKorean>
-					{/* {Object.keys(questionList).map((key) => (
-						<QuestionCard key={key} index={questionList[key].index} onDeleteQuestion={onDeleteQuestion} />
-					))} */}
 					{questionList.map((question) => (
 						<QuestionCard key={question.index} index={question.index} onDeleteQuestion={onDeleteQuestion} />
 					))}
@@ -74,6 +80,11 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 					<SubmitButton type="submit">지원서 등록하기</SubmitButton>
 				</ContainerColumn>
 			</form>
+			<Snackbar open={deleteError} autoHideDuration={1000} onClose={onCloseSnackbar}>
+				<Alert onClose={onCloseSnackbar} severity="error">
+					하나 이상의 질문이 필요합니다.
+				</Alert>
+			</Snackbar>
 		</ContainerPage>
 	);
 };

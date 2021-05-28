@@ -48,7 +48,7 @@ const QuestionCard = ({ index, onDeleteQuestion }) => {
 					</>
 				)}
 			</ContainerRow>
-			{questionTypeIndex === 1 && <AnswerCard index={index} />}
+			{questionTypeIndex === 1 && <AnswerCard />}
 		</div>
 	);
 };
