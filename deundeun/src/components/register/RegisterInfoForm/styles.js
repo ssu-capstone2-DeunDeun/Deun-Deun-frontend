@@ -1,4 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+
+
 
 export const RegisterFormBlock = styled.div`
         width:848.3px;
@@ -34,7 +36,9 @@ export const RegisterInfoBox = styled.div`
 `;
 
 export const FormContent = styled.div`
+    padding-bottom:35px;
     .name{
+        padding-bottom:16px;
         font-family: NotoSansKR;
         font-size: 14px;
         font-weight: bold;
@@ -51,7 +55,6 @@ export const FormContent = styled.div`
 
         button{
             position:absolute;
-            top:15.5%;
             right:0;
             border:none;
             width:263px;
@@ -70,7 +73,6 @@ export const FormContent = styled.div`
 export const StyledInput = styled.input`
     width:848.3px;
     height :60px;
-    margin:16px 0 35px;
     font-size:14px;
     border:none;
     background-color:#f7f7f7;
@@ -88,4 +90,12 @@ export const ButtonBlock = styled.div`
         text-decoration:none;
         color:#ffffff;
     }
+`;
+
+export const ErrorMessage = styled.div`
+    margin-top:11.9px;
+    font-size:12px;
+    font-weight:500;
+    color:#ef1212;
+    
 `;

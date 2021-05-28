@@ -19,11 +19,11 @@ const SingleFileInput = (props) => <SingleImageFileInput {...props} imageUploade
 const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(
-	<BrowserRouter>
-		<Provider store={store}>
+	<Provider store={store}>
+		<BrowserRouter>
 			<App FileInput={FileInput} SingleFileInput={SingleFileInput} />
-		</Provider>
-	</BrowserRouter>,
+		</BrowserRouter>
+	</Provider >,
 	document.getElementById('root')
 );
 
