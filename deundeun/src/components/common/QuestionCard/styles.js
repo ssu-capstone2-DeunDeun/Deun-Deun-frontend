@@ -11,11 +11,12 @@ export const QuestionNumber = styled.div`
 	font-size: 1rem;
 	background-color: #f7f7f7;
 	margin-right: 6px;
+	flex: none;
 `;
 
 export const DropdownContainer = styled.div`
 	width: 117px;
-	height: 60px;
+	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -32,11 +33,11 @@ export const QuestionInput = styled.input`
 	font-size: 1rem;
 	border: none;
 
-	width: 900px;
-	height: 60px;
+	width: 910px;
+	height: 100%;
 
 	&.small {
-		width: 816px;
+		width: 766px;
 	}
 
 	&::placeholder {
@@ -45,8 +46,8 @@ export const QuestionInput = styled.input`
 `;
 
 export const QuestionDeleteButton = styled.div`
-	width: 60px;
-	height: 60px;
+	width: 50px;
+	height: 100%;
 	background-color: #f7f7f7;
 
 	margin-left: auto;

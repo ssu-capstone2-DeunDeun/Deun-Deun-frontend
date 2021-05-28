@@ -14,8 +14,8 @@ const QuestionCard = ({ index, onDeleteQuestion }) => {
 	return (
 		//
 		<div style={{ marginBottom: '2em' }}>
-			<ContainerRow style={{ marginBottom: '0.6em' }}>
-				<QuestionNumber>Q{index}</QuestionNumber>
+			<ContainerRow style={{ marginBottom: '0.6em', height: '60px' }}>
+				<QuestionNumber>Q</QuestionNumber>
 				<DropdownContainer>
 					{`${questionTypes[questionTypeIndex]}`}
 					<DropdownMenu

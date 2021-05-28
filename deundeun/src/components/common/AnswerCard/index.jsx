@@ -25,7 +25,7 @@ const AnswerCard = ({ index }) => {
 		//
 		<>
 			<ContainerRow style={{ marginBottom: '0.6em' }}>
-				<QuestionNumber>A{index}</QuestionNumber>
+				<QuestionNumber>A</QuestionNumber>
 				<AnswerContainer>
 					{Object.keys(choiceList).map((key) => (
 						<div key={key}>
