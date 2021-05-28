@@ -1,13 +1,14 @@
-import Button from 'components/common/Button/index';
 import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { ButtonBlock, FormContent, RegisterFormBlock, RegisterInfoBox, StyledInput } from './styles';
+import Button from 'components/common/Button/index';
 import { withRouter } from 'react-router-dom';
 import { getCurrentUser, signup } from 'utils/APIUtils';
-import { ButtonBlock, FormContent, RegisterFormBlock, RegisterInfoBox, StyledInput } from './styles';
 
 
-const RegisterForm1 = ({ history, onChange, nickname }) => {
+
+const RegisterInfoForm = ({ history, onChange, nickname }) => {
 
 	// const handleSubmit = (e) => {
 	// 	const form = { nickname: nickName };
@@ -53,4 +54,4 @@ const RegisterForm1 = ({ history, onChange, nickname }) => {
 	);
 };
 
-export default withRouter(RegisterForm1);
+export default withRouter(RegisterInfoForm);

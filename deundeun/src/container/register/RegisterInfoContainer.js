@@ -1,11 +1,11 @@
-import RegisterForm1 from 'components/register/RegisterForm1/index';
+import RegisterInfoForm from 'components/register/RegisterInfoForm/index';
 import { changeField, initialField } from 'modules/registerUserInfo';
 import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
-const RegisterContainer1 = () => {
+const RegisterInfoContainer = () => {
     const dispatch = useDispatch();
     const nickname = useSelector(({ registerUserInfo }) => registerUserInfo.nickname)
 
@@ -20,8 +20,8 @@ const RegisterContainer1 = () => {
         dispatch(initialField("nickname")), [dispatch]);
 
     return (
-        <RegisterForm1 onChange={onChange} nickname={nickname} />
+        <RegisterInfoForm onChange={onChange} nickname={nickname} />
     );
 };
 
-export default RegisterContainer1;
+export default RegisterInfoContainer;

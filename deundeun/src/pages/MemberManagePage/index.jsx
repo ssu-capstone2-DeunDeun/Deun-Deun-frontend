@@ -1,12 +1,12 @@
-import BasicTemplate2 from 'components/common/BasicTemplate2';
+import BasicTemplateHeader from 'components/common/BasicTemplateHeader/index';
 import MemberManagementForm from 'components/manager/MemberManagementForm';
 import React from 'react';
 
 const MemberManagePage = () => {
 	return (
-		// <BasicTemplate2>
+		// <BasicTemplateHeader>
 		// 	<MemberManagementForm />
-		// </BasicTemplate2>
+		// </BasicTemplateHeader>
 		<MemberManagementForm />
 	);
 };

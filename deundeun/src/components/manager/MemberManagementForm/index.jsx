@@ -6,6 +6,8 @@ import { BsThreeDots } from "react-icons/bs";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { ApplicantInfoBlock, BasicBlock, ContentBlock, PopupBlock, RoleSetBlock, StyledTextarea } from './styles';
 import Button from 'components/common/Button/index';
+import DropdownMenu from 'components/common/DropdownMenu/index';
+import DropdownMenuDot from 'components/common/DropdownMenuDot/index';
 
 
 const msgPopupClear = (event) => {
@@ -31,6 +33,11 @@ const rolePopupMake = (event) => {
 const MemberInfo = ({ member }) => {
 	const { nickname, id, phoneNumber, email, unit, role, authorized } = member;
 	const [click, setClick] = useState(false);
+
+	const [menuIndex, setMenuIndex] = useState(0);
+	const menu = ['멤버 정보 수정', '강제 퇴장'];
+
+
 	if (!sendMsgLists.includes(member) && click === true) sendMsgLists.push(member);
 	if (sendMsgLists.includes(member) && click === false) sendMsgLists.pop(member);
 	return (
@@ -48,8 +55,14 @@ const MemberInfo = ({ member }) => {
 			<div className="unit">{unit}기</div>
 			<div className="role">{role}</div>
 			<div className="authorized">{authorized}</div>
-			<div className="other"><BsThreeDots /></div>
-		</ApplicantInfoBlock>
+			<div className="other">
+				<DropdownMenuDot
+					options={menu}
+					selectedIndex={menuIndex}
+					setSelectedIndex={setMenuIndex}
+				/>
+			</div>
+		</ApplicantInfoBlock >
 	);
 }
 
@@ -64,8 +77,17 @@ const MemberManagementForm = () => {
 			{ nickname: "리액트짱재밌엉", id: "goddammot", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com", unit: "3", role: "프론트", authorized: "멤버" }
 		]
 	}
-	const { clubName, members } = contents;
+	const [unitIndex, setUnitIndex] = useState(0);
+	const unit = ['1기', '2기', '3기'];
+
+	const [roleIndex, setRoleIndex] = useState(0);
+	const role = ['서버', '디자이너', '개발자'];
+
+	const [authIndex, setAuthIndex] = useState(0);
+	const auth = ['운영진', '멤버'];
+
 	const [click, setClick] = useState(false);
+	const { clubName, members } = contents;
 	return (
 		<BasicBlock>
 			<ContentBlock>
@@ -97,16 +119,28 @@ const MemberManagementForm = () => {
 
 							<div className="func">
 								<div className="allUnit">
-									<div >모든 기수</div>
-									<MdKeyboardArrowDown />
+									{`${unit[unitIndex]}`}
+									<DropdownMenu
+										options={unit}
+										selectedIndex={unitIndex}
+										setSelectedIndex={setUnitIndex}
+									/>
 								</div>
 								<div className="allRole">
-									<div>모든 역할</div>
-									<MdKeyboardArrowDown />
+									{`${role[roleIndex]}`}
+									<DropdownMenu
+										options={role}
+										selectedIndex={roleIndex}
+										setSelectedIndex={setRoleIndex}
+									/>
 								</div>
 								<div className="allAuthorized">
-									<div>모든 권한</div>
-									<MdKeyboardArrowDown />
+									{`${auth[authIndex]}`}
+									<DropdownMenu
+										options={auth}
+										selectedIndex={authIndex}
+										setSelectedIndex={setAuthIndex}
+									/>
 								</div>
 							</div>
 						</div>

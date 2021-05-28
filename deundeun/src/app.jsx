@@ -6,8 +6,8 @@ import SideBar from 'components/common/SideBar';
 import Header from 'components/common/Header';
 import { ContainerRow } from 'styles';
 import OAuth2RedirectHandler from 'components/login/oauth2/OAuth2RedirectHandler';
-import RegisterContainer1 from 'container/register/RegisterContainer1';
-import RegisterContainer2 from 'container/register/RegisterContainer2';
+import RegisterInfoContainer from 'container/register/RegisterInfoContainer';
+import RegisterHashtagContainer from 'container/register/RegisterHashtagContainer';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -20,14 +20,15 @@ const MyApplicationPage = loadable(() => import('pages/MyApplicationPage'));
 const MyLikeListPage = loadable(() => import('pages/MyLikeListPage'));
 
 const LoginPage = loadable(() => import('pages/LoginPage'));
-const RegisterPage1 = loadable(() => import('pages/RegisterPage1'));
-const RegisterPage2 = loadable(() => import('pages/RegisterPage2'));
 const ApplyPage = loadable(() => import('pages/ApplyPage'));
 const ApplyPageSuccessPage = loadable(() => import('pages/ApplyPageSuccessPage'));
 const RecruitDetailPage = loadable(() => import('pages/RecruitDetailPage'));
 const PostDetailPage = loadable(() => import('pages/PostDetailPage'));
 const ApplicantManagePage = loadable(() => import('pages/ApplicantManagePage'));
 const MemberManagePage = loadable(() => import('pages/MemberManagePage'));
+
+
+
 
 const App = ({ FileInput, SingleFileInput }) => {
 	let location = useLocation();
@@ -82,9 +83,9 @@ const App = ({ FileInput, SingleFileInput }) => {
 			<Route exact path="/club/detail" component={ClubDetailPage} />
 
 			<Route component={LoginPage} path="/login" exact />
-			<Route component={RegisterContainer1} path="/register/1" exact />
+			<Route component={RegisterInfoContainer} path="/register/1" exact />
 			{/* <Route component={RegisterPage2} path="/register/2" exact /> */}
-			<Route component={RegisterContainer2} path="/register/2" exact />
+			<Route component={RegisterHashtagContainer} path="/register/2" exact />
 			<Route component={ApplyPage} path="/apply" exact />
 			<Route component={ApplyPageSuccessPage} path="/apply/success" exact />
 			<Route component={RecruitDetailPage} path="/recruit/detail/id" exact />

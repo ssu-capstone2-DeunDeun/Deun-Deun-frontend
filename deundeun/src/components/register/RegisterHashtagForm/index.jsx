@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { ButtonBlock, RegisterFormBlock, RegisterInfoBox, TagsBox } from './styles';
 
 //
-const RegisterForm2 = ({ onChange, hashtags }) => {
+const RegisterHashtagForm = ({ onChange, hashtags }) => {
 	const tag1 = ["개발", "디자인", "경제 / 경영", "스포츠", "어학", "친목", "봉사", "취업"];
 	let setLists = [];
 	let count = 0;
@@ -88,4 +88,4 @@ const RegisterForm2 = ({ onChange, hashtags }) => {
 	);
 };
 
-export default RegisterForm2;
+export default RegisterHashtagForm;

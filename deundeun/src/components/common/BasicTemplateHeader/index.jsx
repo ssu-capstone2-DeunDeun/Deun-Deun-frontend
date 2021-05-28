@@ -1,7 +1,8 @@
+
 import { Link } from 'react-router-dom';
 import { BasicTemplateBlock, BasicLogoBlock } from './styles';
 
-const BasicTemplate2 = ({ children }) => {
+const BasicTemplateHeader = ({ children }) => {
 	return (
 		<BasicTemplateBlock>
 			<BasicLogoBlock>
@@ -14,4 +15,4 @@ const BasicTemplate2 = ({ children }) => {
 	);
 };
 
-export default BasicTemplate2;
+export default BasicTemplateHeader;
