@@ -3,7 +3,7 @@ import { ContainerRow } from 'styles';
 import { QuestionNumber } from '../QuestionCard/styles';
 import { AnswerContainer, ChoiceInput, ChoiceAddButton, ChoiceDeleteButton, Add } from './styles';
 
-const AnswerCard = ({ index }) => {
+const AnswerCard = ({ key }) => {
 	const [choiceIndex, setChoiceIndex] = useState(2);
 	const [choiceList, setChoiceList] = useState([
 		{
@@ -11,15 +11,21 @@ const AnswerCard = ({ index }) => {
 		}
 	]);
 
-	const onAddChoice = () => {
+	const onAddChoice = useCallback(() => {
+		const newChoice = {
+			index: choiceIndex
+		};
+		setChoiceList(choiceList.concat(newChoice));
 		setChoiceIndex(choiceIndex + 1);
-		setChoiceList([...choiceList, { index: choiceIndex }]);
-	};
+	}, [choiceList, choiceIndex]);
 
-	const onDeleteChoice = (e) => {
-		if (e.target.id < 2) return;
-		setChoiceList(choiceList.filter((choice) => choice.index !== Number(e.target.id)));
-	};
+	const onDeleteChoice = useCallback(
+		(e) => {
+			if (choiceList.length === 1) return;
+			setChoiceList(choiceList.filter((choice) => choice.index !== parseInt(e.target.id)));
+		},
+		[choiceList]
+	);
 
 	return (
 		//
@@ -27,11 +33,21 @@ const AnswerCard = ({ index }) => {
 			<ContainerRow style={{ marginBottom: '0.6em' }}>
 				<QuestionNumber>A</QuestionNumber>
 				<AnswerContainer>
-					{Object.keys(choiceList).map((key) => (
+					{/* {Object.keys(choiceList).map((key) => (
 						<div key={key}>
 							<ContainerRow style={{ marginBottom: '0.6em' }}>
 								<ChoiceInput placeholder="선택지를 입력해주세요."></ChoiceInput>
 								<ChoiceDeleteButton id={choiceList[key].index} onClick={onDeleteChoice}>
+									&times;
+								</ChoiceDeleteButton>
+							</ContainerRow>
+						</div>
+					))} */}
+					{choiceList.map((choice) => (
+						<div key={choice.index}>
+							<ContainerRow style={{ marginBottom: '0.6em' }}>
+								<ChoiceInput placeholder="선택지를 입력해주세요."></ChoiceInput>
+								<ChoiceDeleteButton id={choice.index} onClick={onDeleteChoice}>
 									&times;
 								</ChoiceDeleteButton>
 							</ContainerRow>

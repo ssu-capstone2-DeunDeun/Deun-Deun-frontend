@@ -9,8 +9,8 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 	const history = useHistory();
 	const [title, setTitle] = useState('');
 	// const [titleError, setTitleError] = useState(false);
-	const [submitError, setSubmitError] = useState(false);
 	const [questionIndex, setQuestionIndex] = useState(2);
+	const [submitError, setSubmitError] = useState(false);
 	const [questionList, setQuestionList] = useState([
 		{
 			index: 1
@@ -18,23 +18,24 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 	]);
 
 	const onSubmit = useCallback(() => {
-		console.log('application submit');
 		history.push('/apply/success');
 	}, [history]);
 
-	const onClickAddQuestion = () => {
+	const onClickAddQuestion = useCallback(() => {
+		const newQuestion = {
+			index: questionIndex
+		};
+		setQuestionList(questionList.concat(newQuestion));
 		setQuestionIndex(questionIndex + 1);
-		updateQuestion();
-	};
+	}, [questionList, questionIndex]);
 
-	const onDeleteQuestion = (e) => {
-		if (questionList.length === 1) return;
-		setQuestionList(questionList.filter((question) => question.index !== Number(e.target.id)));
-	};
-
-	const updateQuestion = () => {
-		setQuestionList([...questionList, { index: questionIndex }]);
-	};
+	const onDeleteQuestion = useCallback(
+		(e) => {
+			if (questionList.length === 1) return;
+			setQuestionList(questionList.filter((question) => question.index !== parseInt(e.target.id)));
+		},
+		[questionList]
+	);
 
 	useEffect(() => {
 		return () => setAddNewForm(false);
@@ -58,8 +59,11 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 				</ContainerColumn>
 				<ContainerColumn>
 					<TitleKorean style={{ marginBottom: '1em' }}>질문</TitleKorean>
-					{Object.keys(questionList).map((key) => (
+					{/* {Object.keys(questionList).map((key) => (
 						<QuestionCard key={key} index={questionList[key].index} onDeleteQuestion={onDeleteQuestion} />
+					))} */}
+					{questionList.map((question) => (
+						<QuestionCard key={question.index} index={question.index} onDeleteQuestion={onDeleteQuestion} />
 					))}
 					<AddQuestionButton>
 						<InnerContainer onClick={onClickAddQuestion}>
