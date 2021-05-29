@@ -10,7 +10,7 @@ const MyClubsPage = () => {
 	return (
 		//
 		<>
-			<ContainerPage style={{ width: '1400px' }}>
+			<ContainerPage style={{ width: '1300px' }}>
 				<HeaderContainer>
 					<CategoryKorean>마이페이지</CategoryKorean>
 					<ChevronRightIcon />
@@ -19,10 +19,12 @@ const MyClubsPage = () => {
 				<ContainerColumn style={{ marginTop: '1.25em', width: '100%', marginRight: '4em' }}>
 					<TitleKorean>나의 동아리 목록</TitleKorean>
 					<ContainerRow>
-						<ContentKorean>현재 4개의 동아리에 참여하고 있습니다.</ContentKorean>
+						<ContentKorean style={{ fontSize: '1.1rem' }}>현재 4개의 동아리에 참여하고 있습니다.</ContentKorean>
 						<Content style={{ marginLeft: 'auto' }}>
 							<CheckCircleOutlineIcon style={{ marginRight: '0.3em' }} />
-							<ContentKorean>현재 참여중인 동아리만 보기</ContentKorean>
+							<ContentKorean style={{ marginRight: '3.3em', fontSize: '1.1rem' }}>
+								현재 참여중인 동아리만 보기
+							</ContentKorean>
 						</Content>
 					</ContainerRow>
 				</ContainerColumn>
@@ -31,8 +33,8 @@ const MyClubsPage = () => {
 					<JoinedClubCard />
 					<JoinedClubCard />
 					<JoinedClubCard />
-					{/* <JoinedClubCard />
-					<JoinedClubCard /> */}
+					<JoinedClubCard className="inactive" />
+					<JoinedClubCard className="inactive" />
 				</JoinedClubCardContainer>
 			</ContainerPage>
 		</>

@@ -1,8 +1,7 @@
-import { ClubImage, ClubName } from 'components/ClubListCard/styles';
 import React from 'react';
 import { ContainerRow } from 'styles';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import { Container, ClubInfo, JoinedDate, ClubDetail } from './styles';
+import { Container, ClubImage, ClubName, ClubInfo, JoinedDate, ClubDetail } from './styles';
 const JoinedClubCard = () => {
 	return (
 		//
