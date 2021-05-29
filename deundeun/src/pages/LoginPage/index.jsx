@@ -1,4 +1,4 @@
-import BasicTemplateHeader from 'components/common/BasicTemplateHeader/index';
+import BasicTemplateHeader from 'pages/RegisterHashtagPage/pages/RegisterInfoPage/components/common/BasicTemplateHeader/index';
 import LoginForm from 'components/login';
 import React from 'react';
 
