@@ -8,7 +8,7 @@ export const QuestionNumber = styled.div`
 	justify-content: center;
 	font-family: 'NotoSansKR';
 	font-weight: 900;
-	font-size: 1rem;
+	font-size: 1.32rem;
 	background-color: #f7f7f7;
 	margin-right: 6px;
 	flex: none;
