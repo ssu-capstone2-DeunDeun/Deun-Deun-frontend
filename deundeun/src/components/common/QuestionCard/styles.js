@@ -32,12 +32,11 @@ export const QuestionInput = styled.input`
 	background-color: #f7f7f7;
 	font-size: 1rem;
 	border: none;
-
-	width: 910px;
+	width: 1044px;
 	height: 100%;
 
 	&.small {
-		width: 766px;
+		width: 900px;
 	}
 
 	&::placeholder {

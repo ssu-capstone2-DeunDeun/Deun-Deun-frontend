@@ -41,7 +41,7 @@ export const ApplicationLoadCard = styled.div`
 
 export const InnerContainer = styled.div`
 	width: 15%;
-	height: 45%;
+	height: 50%;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -61,33 +61,35 @@ export const RecruitingOrderButton = styled.div`
 `;
 
 export const RecruitTitleInput = styled.input`
-	width: 63.99vw;
+	width: 1215px;
 	height: 66px;
 	background-color: #f7f7f7;
 	border: none;
 	padding-left: 1.25em;
 `;
 
-export const RecruitInfo = styled.div`
-	width: 8vw;
-	height: 7vh;
+export const RecruitInfo = styled.input`
+	width: 123px;
+	height: 66px;
 	background-color: #f7f7f7;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #9b9b9b;
+	color: #282828;
 	margin-bottom: 0.6em;
 	margin-right: 0.5em;
 	font-family: 'NotoSansKR';
 	font-size: 1rem;
+	border: none;
+	text-align: center;
 `;
 
 export const RecruitDeadline = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 10vw;
-	height: 7vh;
+	width: 192px;
+	height: 66px;
 	background-color: #f7f7f7;
 	color: #9b9b9b;
 `;
@@ -104,8 +106,8 @@ export const Tilde = styled.div`
 `;
 
 export const RecruitInfoTextarea = styled.textarea`
-	width: 68vw;
-	min-height: 40vh;
+	width: 100%;
+	min-height: 422px;
 	border: none;
 	background-color: #f7f7f7;
 	color: #9b9b9b;

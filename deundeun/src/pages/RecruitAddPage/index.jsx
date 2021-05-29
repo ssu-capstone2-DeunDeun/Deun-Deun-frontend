@@ -23,6 +23,7 @@ import { registerLocale } from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
 import { ContentKorean } from 'components/ClubPostCardSmall/styles';
 import ErrorMessage from 'components/common/ErrorMessage/index';
+import { Generation, GenerationInput, Placeholder } from 'pages/ClubAddPage/styles';
 registerLocale('ko', ko);
 
 const RecruitAddPage = ({ setAddNewForm }) => {
@@ -32,6 +33,7 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 	const [endDate, setEndDate] = useState(new Date());
 	const [dateError, setDateError] = useState(false);
 	const [showLoadApplicationModal, setShowLoadApplicationModal] = useState(false);
+	const [generation, setGeneration] = useState('');
 
 	const defaultDate = new Date();
 
@@ -49,6 +51,14 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 			'.' +
 			date.getDate().toString().padStart(2, '0')
 		);
+	};
+
+	const onChangeGeneration = (e) => {
+		if (Number(e.target.value) > 0 && Number(e.target.value <= 999)) {
+			setGeneration(e.target.value);
+		} else {
+			setGeneration('');
+		}
 	};
 
 	const onClickLoadApplication = useCallback((e) => {
@@ -77,24 +87,28 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 
 	return (
 		//
-		<ContainerColumn style={{ marginTop: '2em', width: '68vw' }}>
+		<ContainerColumn style={{ marginTop: '2em', width: '1300px' }}>
 			<Header>새 모집 공고 추가하기</Header>
-			<TitleKorean>모집 공고 제목</TitleKorean>
+			<TitleKorean>지원서 양식</TitleKorean>
 			<ApplicationLoadCard onClick={onClickLoadApplication}>
 				<InnerContainer className="inner">
 					<AddCircleOutlineIcon style={{ marginRight: '0.4em' }} />
-					<ContentKorean style={{ fontSize: '1.18rem' }}>지원서 불러오기</ContentKorean>
+					<ContentKorean style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>지원서 불러오기</ContentKorean>
 				</InnerContainer>
 			</ApplicationLoadCard>
 			<TitleKorean style={{ marginBottom: '1em' }}>모집 기수 / 제목</TitleKorean>
 			<ContainerRow style={{ marginBottom: '2em' }}>
-				<RecruitingOrderButton>0기</RecruitingOrderButton>
+				<Generation style={{ height: '66px' }}>
+					<GenerationInput min="1" onChange={onChangeGeneration} value={generation} />
+					<Placeholder>기</Placeholder>
+				</Generation>
+
 				<RecruitTitleInput placeholder="제목을 입력해 주세요."></RecruitTitleInput>
 			</ContainerRow>
 			<TitleKorean style={{ marginBottom: '1em' }}>모집 일정</TitleKorean>
 			<ContainerColumn style={{ marginBottom: '2em' }}>
 				<ContainerRow>
-					<RecruitInfo>서류접수</RecruitInfo>
+					<RecruitInfo type="text" placeholder="서류 접수"></RecruitInfo>
 					<DatePicker
 						locale="ko"
 						selected={startDate}
@@ -121,19 +135,19 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 					/>
 				</ContainerRow>
 				<ContainerRow>
-					<RecruitInfo>1차 발표</RecruitInfo>
+					<RecruitInfo placeholder="1차 발표"></RecruitInfo>
 					<RecruitDeadline>2021.01.01</RecruitDeadline>
 					<Tilde>~</Tilde>
 					<RecruitDeadline>2021.01.01</RecruitDeadline>
 				</ContainerRow>
 				<ContainerRow>
-					<RecruitInfo>면접 진행</RecruitInfo>
+					<RecruitInfo placeholder="면접 진행"></RecruitInfo>
 					<RecruitDeadline>2021.01.01</RecruitDeadline>
 					<Tilde>~</Tilde>
 					<RecruitDeadline>2021.01.01</RecruitDeadline>
 				</ContainerRow>
 				<ContainerRow>
-					<RecruitInfo>최종 발표</RecruitInfo>
+					<RecruitInfo placeholder="최종 발표"></RecruitInfo>
 					<RecruitDeadline>2021.01.01</RecruitDeadline>
 					<Tilde>~</Tilde>
 					<RecruitDeadline>2021.01.01</RecruitDeadline>

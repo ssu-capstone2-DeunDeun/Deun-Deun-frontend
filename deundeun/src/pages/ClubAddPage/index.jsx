@@ -177,7 +177,7 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 						</ClubImage>
 					</ClubImageContainer>
 					<MenuContainer>
-						<MenuTitle>동아리 기수 및 카테고리</MenuTitle>
+						<MenuTitle>동아리 기수 / 카테고리</MenuTitle>
 						<ContainerRow>
 							<Generation>
 								<GenerationInput min="1" onChange={onChangeGeneration} value={generation} />

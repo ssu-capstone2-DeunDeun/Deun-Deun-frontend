@@ -12,7 +12,7 @@ export const ChoiceInput = styled.input`
 	background-color: #f7f7f7;
 	font-size: 1rem;
 	border: none;
-	width: 1033px;
+	width: 1167px;
 	height: 60px;
 
 	&::placeholder {
@@ -25,7 +25,7 @@ export const ChoiceAddButton = styled.div`
 	background-color: #f7f7f7;
 	font-size: 1rem;
 	border: none;
-	width: 1083px;
+	width: 1217px;
 	height: 60px;
 
 	display: flex;

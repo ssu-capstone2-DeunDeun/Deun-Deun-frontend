@@ -53,7 +53,7 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 
 	return (
 		//
-		<ContainerPage style={{ width: '1166px', minHeight: '130vh' }}>
+		<ContainerPage style={{ width: '1300px', minHeight: '130vh' }}>
 			<form onSubmit={onSubmit}>
 				<ContainerColumn style={{ marginBottom: '3em' }}>
 					<Header>새 지원서 추가하기</Header>
