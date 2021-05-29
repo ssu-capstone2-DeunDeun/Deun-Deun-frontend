@@ -81,7 +81,7 @@ const App = ({ FileInput, SingleFileInput }) => {
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/detail" component={ClubDetailPage} />
-
+			{/* <Route exact path="/club/" */}
 			<Route component={LoginPage} path="/login" exact />
 			<Route component={RegisterInfoContainer} path="/register/1" exact />
 			{/* <Route component={RegisterPage2} path="/register/2" exact /> */}

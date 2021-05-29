@@ -4,17 +4,19 @@ import { useSelector } from 'react-redux';
 import { ButtonBlock, ErrorMessage, FormContent, RegisterFormBlock, RegisterInfoBox, StyledInput } from './styles';
 import Button from 'components/common/Button/index';
 import { withRouter } from 'react-router-dom';
-import { getCurrentUser, signup } from 'utils/APIUtils';
+import { signup } from 'lib/api/auth';
+// import { getCurrentUser, signup } from 'utils/APIUtils';
 
 
 
 const RegisterInfoForm = ({ history, onChange, nickname, error }) => {
 
-	// const handleSubmit = (e) => {
-	// 	const form = { nickname: nickName };
-	// 	const userRequestDto = Object.assign({}, form);
-	// 	signup(userRequestDto);
-	// }
+	const handleSubmit = (e) => {
+		const form = { nickname: nickname };
+		const userRequestDto = Object.assign({}, form);
+		// signup(userRequestDto);
+		signup(userRequestDto);
+	}
 	// 이 부분도 전부 container로 넣는다
 
 	return (
@@ -47,8 +49,8 @@ const RegisterInfoForm = ({ history, onChange, nickname, error }) => {
 				</FormContent>
 				<ButtonBlock>
 					<Button to="/register/2" onClick={(e) => {
-						// e.preventDefault();
-						// handleSubmit();
+						e.preventDefault();
+						handleSubmit();
 						// getCurrentUser();
 						// history.push('/register/2');
 					}}>다음 단계로</Button>

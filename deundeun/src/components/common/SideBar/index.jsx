@@ -263,7 +263,7 @@ const SideBar = ({ location }) => {
 			)}
 			<Link style={{ width: '9.4vh' }} to="/club/manage/modify">
 				<Button className={`${clickMyClubTab ? 'clicked' : 'not-clicked'}`} onClick={onClickMyClubTab}>
-					나의 동아리
+					동아리 관리
 				</Button>
 			</Link>
 			{clickMyClubTab && (

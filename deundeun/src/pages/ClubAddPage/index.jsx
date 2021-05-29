@@ -65,15 +65,15 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 	const [coverImageURL, setCoverImageURL] = useState('');
 	const [modalImageURL, setModalImageURL] = useState('');
 
-	const onChangeFile = (image) => {
-		if (image.imageURL) {
-			updateImage(image);
-		} else return;
-	};
-
 	const onChangeClubImage = (image) => {
 		if (image.imageURL) {
 			setClubImageURL(image.imageURL);
+		} else return;
+	};
+
+	const onChangeFile = (image) => {
+		if (image.imageURL) {
+			updateImage(image);
 		} else return;
 	};
 

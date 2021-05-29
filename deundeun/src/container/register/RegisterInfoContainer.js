@@ -14,8 +14,6 @@ const RegisterInfoContainer = () => {
 
     const onChange = (e) => {
         const { value } = e.target;
-        console.log(e);
-        console.log(value);
         dispatch(changeField({ type: "nickname", value: value }));
     }
 
