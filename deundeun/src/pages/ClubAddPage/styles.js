@@ -85,8 +85,8 @@ export const InputButtonContainer = styled.div`
 `;
 
 export const DropdownContainer = styled.div`
-	width: 15.9vw;
-	height: 6vh;
+	width: 306px;
+	height: 60px;
 	background-color: #f7f7f7;
 	display: flex;
 	align-items: center;
@@ -172,4 +172,36 @@ export const ImageDeleteButton = styled.div`
 	background-color: #f7f7f7;
 
 	z-index: 500;
+`;
+
+export const Generation = styled.div`
+	width: 85px;
+	height: 60px;
+
+	border: none;
+	background-color: #f7f7f7;
+	margin-right: 1em;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	position: relative;
+	padding-left: 1em;
+`;
+
+export const GenerationInput = styled.input`
+	width: 35px;
+	height: 40px;
+
+	background-color: #f7f7f7;
+	border: none;
+	position: relative;
+	text-align: center;
+`;
+
+export const Placeholder = styled.span`
+	font-size: 1rem;
+	color: #9a9a9a;
+	position: absolute;
+	left: 60%;
 `;

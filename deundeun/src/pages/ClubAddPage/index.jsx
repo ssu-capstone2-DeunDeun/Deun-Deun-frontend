@@ -22,7 +22,10 @@ import {
 	Footer,
 	ImageDeleteButton,
 	IntroImageContainer,
-	HashtagContainer
+	HashtagContainer,
+	Generation,
+	GenerationInput,
+	Placeholder
 } from './styles';
 import styled from 'styled-components';
 import ImageModal from 'components/modal/ImageModal/index';
@@ -63,15 +66,27 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 	const [imageLoading, setImageLoading] = useState(false);
 	const [clubImageLoading, setClubImageLoading] = useState(false);
 	const [showImageModal, setShowImageModal] = useState(false);
+
+	const [generation, setGeneration] = useState('');
 	const [imageFileList, setImageFileList] = useState([]);
 	const [hashtagList, setHashtagList] = useState([]);
+
 	const [clubImageURL, setClubImageURL] = useState('');
 	const [coverImageURL, setCoverImageURL] = useState('');
 	const [modalImageURL, setModalImageURL] = useState('');
+
 	const [anchorEl, setAnchorEl] = useState(null);
 
 	const ITEM_HEIGHT = 48;
 	const hashtagOptions = ['개발', '디자인', '경제 / 경영', '스포츠', '어학', '친목', '봉사', '취업'];
+
+	const onChangeGeneration = (e) => {
+		if (Number(e.target.value) > 0 && Number(e.target.value <= 999)) {
+			setGeneration(e.target.value);
+		} else {
+			setGeneration('');
+		}
+	};
 
 	const onChangeClubImage = (image) => {
 		if (image.imageURL) {
@@ -163,14 +178,21 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 					</ClubImageContainer>
 					<MenuContainer>
 						<MenuTitle>동아리 기수 및 카테고리</MenuTitle>
-						<DropdownContainer>
-							{menuIndex === -1 ? '카테고리를 선택해주세요.' : `${menuOptions[menuIndex]}`}
-							<DropdownMenu
-								options={menuOptions}
-								selectedIndex={menuIndex}
-								setSelectedIndex={setMenuIndex}
-							></DropdownMenu>
-						</DropdownContainer>
+						<ContainerRow>
+							<Generation>
+								<GenerationInput min="1" onChange={onChangeGeneration} value={generation} />
+								<Placeholder>기</Placeholder>
+							</Generation>
+							<DropdownContainer>
+								{menuIndex === -1 ? '카테고리를 선택해주세요.' : `${menuOptions[menuIndex]}`}
+								<DropdownMenu
+									options={menuOptions}
+									selectedIndex={menuIndex}
+									setSelectedIndex={setMenuIndex}
+								></DropdownMenu>
+							</DropdownContainer>
+						</ContainerRow>
+
 						<MenuTitle>동아리 이름</MenuTitle>
 						<ContainerRow style={{ marginBottom: '2em', flex: 'none', maxWidth: '100%' }}>
 							<ClubNameInput placeholder="동아리 이름을 입력해주세요."></ClubNameInput>
