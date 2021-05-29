@@ -15,7 +15,7 @@ const AddRecruitAnnounceCard = ({ setAddNewForm }) => {
 		<>
 			<Container onClick={onClickAddNewForm}>
 				<InnerContainer className="inner">
-					<AddCircleOutlineIcon style={{ marginRight: '1vw' }} />
+					<AddCircleOutlineIcon style={{ marginRight: '12px' }} />
 					<ContentKorean>모집 공고 추가하기</ContentKorean>
 				</InnerContainer>
 			</Container>

@@ -13,6 +13,13 @@ export const ContentKorean = styled.span`
 	color: #282828;
 `;
 
+export const DateInputButton = styled.button`
+	width: 192px;
+	height: 66px;
+	background-color: #f7f7f7;
+	border: none;
+`;
+
 export const ApplicationLoadCard = styled.div`
 	display: flex;
 	justify-content: center;
@@ -47,15 +54,15 @@ export const RecruitingOrderButton = styled.div`
 	justify-content: center;
 	align-items: center;
 	color: #9b9b9b;
-	width: 4.1vw;
-	height: 6vh;
+	width: 130px;
+	height: 66px;
 	background-color: #f7f7f7;
 	margin-right: 0.6vw;
 `;
 
 export const RecruitTitleInput = styled.input`
 	width: 63.99vw;
-	height: 6vh;
+	height: 66px;
 	background-color: #f7f7f7;
 	border: none;
 	padding-left: 1.25em;
