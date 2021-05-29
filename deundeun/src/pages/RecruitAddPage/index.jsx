@@ -68,7 +68,8 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 	}, []);
 
 	useEffect(() => {
-		if (endDate >= startDate) {
+		if (endDate < startDate) return;
+		else {
 			setStartDateString(dateToString(startDate));
 			setEndDateString(dateToString(endDate));
 		}

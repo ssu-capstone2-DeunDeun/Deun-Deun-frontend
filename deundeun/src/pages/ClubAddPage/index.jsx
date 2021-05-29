@@ -2,7 +2,7 @@ import DropdownMenu from 'components/common/DropdownMenu';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import { Background, CoverImage, CoverImageContainer } from 'pages/ClubModifyPage/styles';
 import { TitleKorean } from 'pages/MyClubListPage/styles';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { ContainerRow } from 'styles';
 import {
@@ -11,7 +11,7 @@ import {
 	Container,
 	ClubImageContainer,
 	MenuContainer,
-	Menu,
+	MenuTitle,
 	DropdownContainer,
 	ClubNameInput,
 	DuplicateCheckButton,
@@ -21,11 +21,14 @@ import {
 	InputButtonContainer,
 	Footer,
 	ImageDeleteButton,
-	SpinnerContainer,
-	IntroImageContainer
+	IntroImageContainer,
+	HashtagContainer
 } from './styles';
 import styled from 'styled-components';
 import ImageModal from 'components/modal/ImageModal/index';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ClubHashtag from 'components/common/ClubHashtag/index';
 
 const ClubImage = styled.div`
 	width: 100%;
@@ -61,9 +64,14 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 	const [clubImageLoading, setClubImageLoading] = useState(false);
 	const [showImageModal, setShowImageModal] = useState(false);
 	const [imageFileList, setImageFileList] = useState([]);
+	const [hashtagList, setHashtagList] = useState([]);
 	const [clubImageURL, setClubImageURL] = useState('');
 	const [coverImageURL, setCoverImageURL] = useState('');
 	const [modalImageURL, setModalImageURL] = useState('');
+	const [anchorEl, setAnchorEl] = useState(null);
+
+	const ITEM_HEIGHT = 48;
+	const hashtagOptions = ['개발', '디자인', '경제 / 경영', '스포츠', '어학', '친목', '봉사', '취업'];
 
 	const onChangeClubImage = (image) => {
 		if (image.imageURL) {
@@ -89,6 +97,32 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 
 	const onCloseModal = useCallback(() => {
 		setShowImageModal(false);
+	}, []);
+
+	const onClickAddHashtag = useCallback((e) => {
+		setAnchorEl(e.currentTarget);
+	}, []);
+
+	const onSelectHashtag = (event, index) => {
+		const newHashtag = {
+			name: hashtagOptions[index]
+		};
+		const found = hashtagList.find((hashtag) => hashtag.name === hashtagOptions[index]);
+		if (!found) {
+			setHashtagList(hashtagList.concat(newHashtag));
+		}
+		setAnchorEl(null);
+	};
+
+	const onDeleteHashtag = useCallback(
+		(e) => {
+			setHashtagList(hashtagList.filter((hashtag) => hashtag.name !== e.target.id));
+		},
+		[hashtagList]
+	);
+
+	const onCloseMenu = useCallback(() => {
+		setAnchorEl(null);
 	}, []);
 
 	const onClickImageDeleteButton = useCallback((e) => {
@@ -128,7 +162,7 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 						</ClubImage>
 					</ClubImageContainer>
 					<MenuContainer>
-						<Menu>동아리 카테고리</Menu>
+						<MenuTitle>동아리 기수 및 카테고리</MenuTitle>
 						<DropdownContainer>
 							{menuIndex === -1 ? '카테고리를 선택해주세요.' : `${menuOptions[menuIndex]}`}
 							<DropdownMenu
@@ -137,20 +171,51 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 								setSelectedIndex={setMenuIndex}
 							></DropdownMenu>
 						</DropdownContainer>
-						<Menu>동아리 이름</Menu>
+						<MenuTitle>동아리 이름</MenuTitle>
 						<ContainerRow style={{ marginBottom: '2em', flex: 'none', maxWidth: '100%' }}>
 							<ClubNameInput placeholder="동아리 이름을 입력해주세요."></ClubNameInput>
 							<DuplicateCheckButton>중복 검사</DuplicateCheckButton>
 						</ContainerRow>
-						<Menu>동아리 소개</Menu>
+						<MenuTitle>동아리 소개</MenuTitle>
 						<ClubInfoTextarea placeholder="동아리 소개를 입력해주세요."></ClubInfoTextarea>
-						<Menu>관련 태그</Menu>
-						<ContainerRow style={{ marginBottom: '2em', flex: 'none', maxWidth: '100%', flexWrap: 'wrap' }}>
-							<AddHashtagButton>+ 태그 추가하기</AddHashtagButton>
+						<MenuTitle>관련 태그</MenuTitle>
+						<ContainerRow style={{ marginBottom: '2em' }}>
+							<ContainerRow style={{ width: '100%', flex: 'none' }}>
+								<AddHashtagButton onClick={onClickAddHashtag}>+ 태그 추가하기</AddHashtagButton>
+								<Menu
+									id="hashtag-menu"
+									anchorEl={anchorEl}
+									keepMounted
+									open={Boolean(anchorEl)}
+									onClose={onCloseMenu}
+									PaperProps={{
+										style: {
+											maxHeight: ITEM_HEIGHT * 4.5,
+											width: '18ch'
+										}
+									}}
+								>
+									{hashtagOptions.map((option, index) => (
+										<MenuItem key={option} onClick={(event) => onSelectHashtag(event, index)}>
+											{option}
+										</MenuItem>
+									))}
+								</Menu>
+								<HashtagContainer>
+									{hashtagList.map((hashtag) => (
+										<ClubHashtag
+											key={hashtag.name}
+											id={hashtag.name}
+											value={hashtag.name}
+											onDeleteHashtag={onDeleteHashtag}
+										/>
+									))}
+								</HashtagContainer>
+							</ContainerRow>
 						</ContainerRow>
-						<Menu>커버 이미지 업로드</Menu>
+						<MenuTitle>커버 이미지 업로드</MenuTitle>
 						<CoverImageContainer>{/* <Background /> */}</CoverImageContainer>
-						<Menu>소개 이미지 업로드</Menu>
+						<MenuTitle>소개 이미지 업로드</MenuTitle>
 						<ContainerRow style={{ maxWidth: '100%', marginBottom: '2em', flexWrap: 'wrap', flex: 'none' }}>
 							<InputButtonContainer>
 								<FileInput
@@ -160,11 +225,6 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 									setImageIndex={setImageIndex}
 								/>
 							</InputButtonContainer>
-							{/* {true && (
-								<SpinnerContainer>
-									<LoadingSpinner />
-								</SpinnerContainer>
-							)} */}
 							{Object.keys(imageFileList).map((key) => (
 								<>
 									{/* 나중에 컴포넌트 하나로 빼는 작업 필요(key prop warning) */}

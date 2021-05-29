@@ -41,7 +41,15 @@ export const SpinnerContainer = styled.div`
 	margin-top: 1em;
 `;
 
-export const Menu = styled.span`
+export const HashtagContainer = styled.div`
+	width: 600px;
+	display: flex;
+	justify-content: flex-start;
+	flex-flow: row wrap;
+	/* flex: none; */
+`;
+
+export const MenuTitle = styled.span`
 	font-family: 'NotoSansKR';
 	font-size: 1rem;
 	font-weight: bold;
@@ -125,9 +133,9 @@ export const ClubInfoTextarea = styled.textarea`
 export const AddHashtagButton = styled.button`
 	border: none;
 	background-color: #f7f7f7;
-	width: 8.1vw;
-	height: 6vh;
-	font-size: 0.8rem;
+	width: 154px;
+	height: 46px;
+	font-size: 15px;
 	color: #9a9a9a;
 	margin-right: 0.5em;
 `;
