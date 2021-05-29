@@ -7,6 +7,7 @@ import QuestionCard from 'components/common/QuestionCard/index';
 import { useHistory } from 'react-router';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
+import { Footer } from 'pages/ClubAddPage/styles';
 const ApplicationAddPage = ({ setAddNewForm }) => {
 	const history = useHistory();
 	const [title, setTitle] = useState('');
@@ -85,6 +86,7 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 					하나 이상의 질문이 필요합니다.
 				</Alert>
 			</Snackbar>
+			<Footer />
 		</ContainerPage>
 	);
 };
