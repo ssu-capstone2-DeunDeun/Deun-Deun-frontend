@@ -1,5 +1,7 @@
 import RegisterHashtagForm from 'components/register/RegisterHashtagForm/index';
-import { changeField, initialField } from 'modules/registerUserInfo';
+import { addHashtags, getHashtags } from 'lib/api/auth';
+import { initHashtagsForm } from 'modules/initHashtags';
+import { changeField, hashtagSubmit } from 'modules/registerUserInfo';
 import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -7,18 +9,25 @@ import { useDispatch } from 'react-redux';
 
 const RegisterHashtagContainer = () => {
     const dispatch = useDispatch();
-    const hashtags = useSelector(({ registerUserInfo }) => registerUserInfo.hashtags);
+    const { hashtags, inithashtags } = useSelector(({ registerUserInfo, initHashtags }) => ({
+        hashtags: registerUserInfo.hashtags,
+        inithashtags: initHashtags.inithashtags
+    }));
 
-    const onChange = (value) => {
+    const onChangeHashtags = (value) => {
         dispatch(changeField({ type: "hashtags", value: value }));
     }
+
+    useEffect(() => {
+        dispatch(initHashtagsForm())
+    }, [dispatch]);
 
     // useEffect(() =>
     //     dispatch(initialField("hashtags"))
     //     , [dispatch]);
 
     return (
-        <RegisterHashtagForm onChange={onChange} hashtags={hashtags} />
+        <RegisterHashtagForm onChangeHashtags={onChangeHashtags} hashtags={hashtags} inithashtags={inithashtags} />
     );
 };
 

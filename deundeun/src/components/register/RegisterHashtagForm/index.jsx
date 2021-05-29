@@ -1,13 +1,33 @@
 import Button from 'components/common/Button/index';
 import React from 'react';
-import { useEffect } from 'react';
 import { ButtonBlock, RegisterFormBlock, RegisterInfoBox, TagsBox } from './styles';
+import { withRouter } from 'react-router-dom';
+import { hashtagSubmit } from 'modules/registerUserInfo';
+import { useDispatch } from 'react-redux';
 
-//
-const RegisterHashtagForm = ({ onChange, hashtags }) => {
-	const tag1 = ["개발", "디자인", "경제 / 경영", "스포츠", "어학", "친목", "봉사", "취업"];
+const RegisterHashtagForm = ({ history, onChangeHashtags, inithashtags }) => {
+	const dispatch = useDispatch();
+	let tag1 = [];
 	let setLists = [];
 	let count = 0;
+	if (inithashtags) {
+		for (let i = 0; i < Object.keys(inithashtags).length; i++) {
+			tag1.push(inithashtags[i]["name"]);
+		}
+	}
+
+	const handleSubmit = (e) => {
+		const hashtagInfoIds = [];
+		for (let i = 0; i < setLists.length; i++) {
+			for (let j = 0; j < Object.keys(inithashtags).length; j++) {
+				if (setLists[i] === inithashtags[j]["name"]) {
+					hashtagInfoIds.push(inithashtags[j]["id"]);
+				}
+			}
+		}
+		onChangeHashtags(hashtagInfoIds);
+		dispatch(hashtagSubmit(hashtagInfoIds));
+	}
 
 	const onInsert = (e) => {
 		const thisEle = e.target;
@@ -25,15 +45,10 @@ const RegisterHashtagForm = ({ onChange, hashtags }) => {
 			thisEle.classList.add("active");
 			count += 1;
 			setLists = setLists.concat(thisEle.innerText);
-			// console.log(thisEle.classList);
 			console.log(setLists);
 		}
 	}
-	useEffect(() => {
-		return () => {
-			onChange({ type: "hashtags", value: setLists })
-		}
-	})
+
 	return (
 		<RegisterFormBlock>
 			<RegisterInfoBox>
@@ -82,10 +97,17 @@ const RegisterHashtagForm = ({ onChange, hashtags }) => {
 
 			<ButtonBlock>
 				<Button registerBtn1 to="/">건너뛰기</Button>
-				<Button registerBtn2 to="/">다음 단계로</Button>
+				<Button registerBtn2 to="/"
+					onClick={(e) => {
+						e.preventDefault();
+						handleSubmit();
+						history.push('/home');
+					}}
+				>다음 단계로</Button>
 			</ButtonBlock>
 		</RegisterFormBlock >
 	);
 };
 
-export default RegisterHashtagForm;
+
+export default withRouter(RegisterHashtagForm);

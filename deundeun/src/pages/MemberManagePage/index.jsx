@@ -1,4 +1,3 @@
-import BasicTemplateHeader from 'pages/RegisterHashtagPage/pages/RegisterInfoPage/components/common/BasicTemplateHeader/index';
 import MemberManagementForm from 'components/manager/MemberManagementForm';
 import React from 'react';
 

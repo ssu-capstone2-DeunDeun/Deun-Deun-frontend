@@ -20,7 +20,6 @@ export default function createRequestSaga(type, request) {
             yield put({
                 type: FAILURE,
                 payload: e,
-                error: true,
             })
         }
         yield put(finishLoading(type));

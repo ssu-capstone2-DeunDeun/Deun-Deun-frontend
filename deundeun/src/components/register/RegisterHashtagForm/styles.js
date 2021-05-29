@@ -1,4 +1,6 @@
-import styled from 'components/register/RegisterHashtagForm/styled-components';
+import styled from "styled-components";
+
+
 
 // import development from '../../../../public/img/tag/development.jpg';
 // import design from '../../../../public/img/tag/design.jpg';

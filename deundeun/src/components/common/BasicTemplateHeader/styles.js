@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 
-
 export const BasicTemplateBlock = styled.div`
     width:1920px;
     height:2078px;
