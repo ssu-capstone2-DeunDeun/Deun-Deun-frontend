@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-	width: 604px;
-	height: 160px;
+	width: 654px;
+	height: 176px;
 
 	display: flex;
 	flex-direction: row;
@@ -17,19 +17,20 @@ export const Container = styled.div`
 `;
 
 export const ClubImage = styled.div`
-	width: 160px;
+	width: 176px;
 	border: solid 1px #a7a7a7;
 `;
 
 export const ClubName = styled.span`
 	font-family: NotoSansKR;
-	font-size: 1.125rem;
+	font-size: 1.3rem;
 	font-weight: bold;
 	color: #282828;
+	cursor: pointer;
 `;
 
 export const ClubInfo = styled.div`
-	width: 444px;
+	width: 481px;
 	display: flex;
 	flex-direction: column;
 	background-color: #f2f2f2;
@@ -41,7 +42,7 @@ export const ClubInfo = styled.div`
 
 export const ClubDetail = styled.span`
 	font-family: 'NotoSansKR';
-	font-size: 0.875rem;
+	font-size: 0.9rem;
 	font-weight: 500;
 	color: #282828;
 
@@ -50,7 +51,7 @@ export const ClubDetail = styled.span`
 
 export const JoinedDate = styled.span`
 	font-family: NotoSansKR;
-	font-size: 12px;
+	font-size: 0.93rem;
 	color: #9a9a9a;
 
 	margin-top: 1.563em;

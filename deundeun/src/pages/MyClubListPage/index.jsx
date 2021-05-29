@@ -1,5 +1,4 @@
 import { Content, JoinedClubCardContainer, HeaderContainer, TitleKorean } from './styles';
-import ClubInfoCard from 'components/ClubInfoCard';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import React from 'react';
 import { ContainerColumn, ContainerPage, ContainerRow } from 'styles';
@@ -10,7 +9,7 @@ const MyClubsPage = () => {
 	return (
 		//
 		<>
-			<ContainerPage style={{ width: '1300px' }}>
+			<ContainerPage style={{ width: '1400px' }}>
 				<HeaderContainer>
 					<CategoryKorean>마이페이지</CategoryKorean>
 					<ChevronRightIcon />

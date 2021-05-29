@@ -27,7 +27,7 @@ const MyLikeListPage = () => {
 				<ContainerColumn style={{ marginTop: '1.25em', width: '100%' }}>
 					<TitleKorean>관심 동아리 목록</TitleKorean>
 					<ContainerRow style={{ marginTop: '0.25em', width: '100%' }}>
-						<ContentKorean>관심있는 동아리가 6개 있습니다.</ContentKorean>
+						<ContentKorean style={{ fontSize: '1.1rem' }}>관심있는 동아리가 6개 있습니다.</ContentKorean>
 						<SeeAll>전체보기</SeeAll>
 					</ContainerRow>
 				</ContainerColumn>
