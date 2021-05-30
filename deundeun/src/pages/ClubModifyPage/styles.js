@@ -19,6 +19,10 @@ export const CoverImageContainer = styled.div`
 	font-family: 'NotoSansKR';
 	font-size: 1.1rem;
 
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
 	flex: none;
 `;
 

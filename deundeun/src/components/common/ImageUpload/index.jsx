@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from 'react';
-import { Container, Input, Add, InputButton } from '../ImageFileInput/styles';
+import { Container, Input, Add, InputButton } from './styles';
 
-const ImageUpload = ({ onChangeFile, multiple }) => {
+const ImageUpload = ({ type, onChangeFile, multiple }) => {
 	const inputRef = useRef();
 	const onClickInput = useCallback(() => {
 		inputRef.current.click();
@@ -9,7 +9,7 @@ const ImageUpload = ({ onChangeFile, multiple }) => {
 
 	return (
 		//
-		<Container>
+		<Container className={`${type === 'background' ? 'background' : ''}`}>
 			{multiple ? (
 				<Input ref={inputRef} type="file" accept="image/*" name="multipartFiles" onChange={onChangeFile} multiple />
 			) : (

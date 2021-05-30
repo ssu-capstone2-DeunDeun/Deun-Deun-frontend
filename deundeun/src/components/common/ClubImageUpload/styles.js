@@ -11,6 +11,11 @@ export const Container = styled.div`
 	justify-content: center;
 
 	border-radius: 20px;
+
+	&.background {
+		width: 50px;
+		height: 50px;
+	}
 `;
 
 export const Input = styled.input`

@@ -81,7 +81,6 @@ const App = () => {
 				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
-					{/* <ClubAddPage FileInput={FileInput} SingleFileInput={SingleFileInput} /> */}
 					<ClubAddInfoContainer />
 				</ContainerRow>
 			</Route>

@@ -3,7 +3,6 @@ import LoadingSpinner from 'components/common/LoadingSpinner';
 import { Background, CoverImage, CoverImageContainer } from 'pages/ClubModifyPage/styles';
 import { TitleKorean } from 'pages/MyClubListPage/styles';
 import React, { useCallback, useState } from 'react';
-import CloseIcon from '@material-ui/icons/Close';
 import { ContainerRow } from 'styles';
 import {
 	ContainerPage,
@@ -179,8 +178,7 @@ const ClubManagePage = ({
 				<Container>
 					<ClubImageContainer>
 						<ClubImage imageURL={clubImageURL}>
-							{clubImageLoading && <LoadingSpinner size="large" />}
-							{/* <SingleFileInput onChangeFile={onAddClubImage} setImageLoading={setClubImageLoading} /> */}
+							{/* {clubImageLoading && <LoadingSpinner size="large" />} */}
 							<ImageUpload onChangeFile={onChangeRepresentImage} multiple={false} />
 						</ClubImage>
 					</ClubImageContainer>
@@ -254,7 +252,7 @@ const ClubManagePage = ({
 						</ContainerRow>
 						<MenuTitle>커버 이미지 업로드</MenuTitle>
 						<CoverImageContainer>
-							<ImageUpload onChangeFile={onChangeBackgroundImage} multiple={false} />
+							<ImageUpload type="background" onChangeFile={onChangeBackgroundImage} multiple={false} />
 						</CoverImageContainer>
 						<MenuTitle>소개 이미지 업로드</MenuTitle>
 						<ContainerRow style={{ maxWidth: '100%', marginBottom: '2em', flexWrap: 'wrap', flex: 'none' }}>

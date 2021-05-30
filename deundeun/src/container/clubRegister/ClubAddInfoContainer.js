@@ -5,7 +5,7 @@ import { useCallback, useState } from 'react';
 import axios from '../../../node_modules/axios/index';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 
-const ClubAddInfoContainer = ({ FileInput, SingleFileInput }) => {
+const ClubAddInfoContainer = () => {
 	const dispatch = useDispatch();
 	const { generation, clubName, isDuplicate } = useSelector(({ clubAddInfo }) => ({
 		generation: clubAddInfo.generation,
@@ -129,6 +129,10 @@ const ClubAddInfoContainer = ({ FileInput, SingleFileInput }) => {
 		[dispatch]
 	);
 
+	// const onChangeTag = useCallback((e) => {
+
+	// }, [])
+
 	const handleDuplicate = () => {
 		if (clubName) {
 			dispatch(duplicated(clubName));
@@ -145,8 +149,6 @@ const ClubAddInfoContainer = ({ FileInput, SingleFileInput }) => {
 			onChangeGeneration={onChangeGeneration}
 			onChangeInput={onChangeInput}
 			onChangeItem={onChangeCategory}
-			FileInput={FileInput}
-			SingleFileInput={SingleFileInput}
 			handleDuplicate={handleDuplicate}
 			isDuplicate={isDuplicate}
 		/>
