@@ -74,11 +74,11 @@ export const QuestionInput = styled.input`
 `;
 
 export const AddQuestionButton = styled.div`
-	margin-top: 1em;
+	/* margin-top: 1em; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 200px;
+	height: 80px;
 `;
 
 export const InnerContainer = styled.div`
@@ -87,7 +87,7 @@ export const InnerContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	width: 13%;
-	height: 20%;
+	height: 50%;
 	&:hover {
 		background-color: #a1a1a1;
 		color: #fff;

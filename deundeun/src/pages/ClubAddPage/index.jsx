@@ -2,7 +2,7 @@ import DropdownMenu from 'components/common/DropdownMenu';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import { Background, CoverImage, CoverImageContainer } from 'pages/ClubModifyPage/styles';
 import { TitleKorean } from 'pages/MyClubListPage/styles';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import { ContainerRow } from 'styles';
 import {
@@ -32,6 +32,7 @@ import ImageModal from 'components/modal/ImageModal/index';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ClubHashtag from 'components/common/ClubHashtag/index';
+import { Form } from 'components/QuestionForm/styles';
 
 const ClubImage = styled.div`
 	width: 100%;
@@ -59,7 +60,7 @@ const IntroImage = styled.div`
 	background-size: cover;
 `;
 
-const ClubManagePage = ({ FileInput, SingleFileInput }) => {
+const ClubManagePage = ({ FileInput, SingleFileInput, onChangeInput }) => {
 	const menuOptions = ['IT / 개발', '카테고리 2', '카테고리 3', '카테고리 4', '카테고리 5'];
 	const [menuIndex, setMenuIndex] = useState(-1);
 	const [imageIndex, setImageIndex] = useState(1);
@@ -76,8 +77,8 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 	const [modalImageURL, setModalImageURL] = useState('');
 
 	const [anchorEl, setAnchorEl] = useState(null);
-
 	const ITEM_HEIGHT = 48;
+
 	const hashtagOptions = ['개발', '디자인', '경제 / 경영', '스포츠', '어학', '친목', '봉사', '취업'];
 
 	const onChangeGeneration = (e) => {
@@ -99,6 +100,10 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 			updateImage(image);
 		} else return;
 	};
+
+	const onSubmit = useCallback(() => {
+		console.log('submit');
+	}, []);
 
 	const onClickImage = useCallback(
 		(e) => {
@@ -195,7 +200,11 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 
 						<MenuTitle>동아리 이름</MenuTitle>
 						<ContainerRow style={{ marginBottom: '2em', flex: 'none', maxWidth: '100%' }}>
-							<ClubNameInput placeholder="동아리 이름을 입력해주세요."></ClubNameInput>
+							<ClubNameInput
+								placeholder="동아리 이름을 입력해주세요."
+								name="clubName"
+								onChange={onChangeInput}
+							></ClubNameInput>
 							<DuplicateCheckButton>중복 검사</DuplicateCheckButton>
 						</ContainerRow>
 						<MenuTitle>동아리 소개</MenuTitle>
@@ -263,7 +272,7 @@ const ClubManagePage = ({ FileInput, SingleFileInput }) => {
 								</>
 							))}
 						</ContainerRow>
-						<SubmitButton>동아리 등록 신청</SubmitButton>
+						<SubmitButton onClick={onSubmit}>동아리 등록 신청</SubmitButton>
 					</MenuContainer>
 				</Container>
 				<ImageModal show={showImageModal} onCloseModal={onCloseModal} modalImageURL={modalImageURL} />

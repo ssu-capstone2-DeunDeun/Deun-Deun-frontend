@@ -116,9 +116,7 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 						customInput={<CustomDateInput />}
 						value={startDateString}
 					/>
-					{/* <RecruitDeadline>2021.01.01</RecruitDeadline> */}
 					<Tilde>~</Tilde>
-					{/* <RecruitDeadline>2021.01.01</RecruitDeadline> */}
 					<DatePicker
 						locale="ko"
 						selected={endDate}

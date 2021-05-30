@@ -27,7 +27,7 @@ export const RecruitingInfo = styled.div`
 	border: solid 1px #707070;
 	font-family: 'NotoSansKR';
 	color: #606060;
-	font-size: 0.75rem;
+	font-size: 0.9rem;
 	margin-right: 1vw;
 	&.pending {
 		width: 5vw;
@@ -41,13 +41,13 @@ export const RecruitingInfo = styled.div`
 
 export const RecruitDeadline = styled.span`
 	font-family: 'NotoSansKR';
-	font-size: 0.94rem;
+	font-size: 0.9rem;
 	color: #606060;
 `;
 
 export const RecruitTitle = styled.span`
 	font-family: 'NotoSansKR';
-	font-size: 1.25rem;
+	font-size: 1.35rem;
 	color: #202020;
 	font-weight: bold;
 `;

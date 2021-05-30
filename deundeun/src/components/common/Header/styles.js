@@ -25,15 +25,15 @@ export const IconContainer = styled.div`
 	flex-direction: row;
 	align-items: center;
 
-	.sign{
-		display:flex;
-		margin-right:60px;
-		a{
-			text-decoration:none;
-			color:black;
+	.sign {
+		display: flex;
+		margin-right: 60px;
+		a {
+			text-decoration: none;
+			color: black;
 		}
-		div{
-			margin:0 15px;
+		div {
+			margin: 0 15px;
 		}
 	}
 `;
@@ -46,4 +46,30 @@ export const ProfileIcon = styled.div`
 	border-radius: 35px;
 	margin-left: 0.8em;
 	cursor: pointer;
+`;
+
+export const SearchBoxContainer = styled.div`
+	width: 800px;
+	height: 40px;
+	border-radius: 36px;
+	border: solid 1.5px #a7a7a7;
+
+	padding-left: 1em;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	position: relative;
+
+	margin-left: 27em;
+`;
+
+export const SearchBox = styled.input`
+	width: 750px;
+	height: 30px;
+	border: none;
+
+	&:focus {
+		outline: none;
+	}
 `;

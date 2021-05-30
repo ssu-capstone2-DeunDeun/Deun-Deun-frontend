@@ -11,14 +11,26 @@ import {
 	ClubInfoTextarea,
 	AddHashtagButton,
 	SubmitButton,
-	Footer
+	Footer,
+	Generation,
+	GenerationInput,
+	Placeholder
 } from 'pages/ClubAddPage/styles';
 import { ImageButton } from 'pages/RecruitAddPage/styles';
 import { ImageContainer, ClubImage, CoverImage, Background, CoverImageContainer } from './styles';
 
 const ClubModifyPage = () => {
+	const [generation, setGeneration] = useState('');
 	const menuOptions = ['IT / 개발', '카테고리 2', '카테고리 3', '카테고리 4', '카테고리 5'];
 	const [menuIndex, setMenuIndex] = useState(0);
+
+	const onChangeGeneration = (e) => {
+		if (Number(e.target.value) > 0 && Number(e.target.value <= 999)) {
+			setGeneration(e.target.value);
+		} else {
+			setGeneration('');
+		}
+	};
 
 	return (
 		//
@@ -27,15 +39,22 @@ const ClubModifyPage = () => {
 				<Container>
 					<ClubImage></ClubImage>
 					<MenuContainer>
-						<MenuTitle>동아리 카테고리</MenuTitle>
-						<DropdownContainer>
-							{`${menuOptions[menuIndex]}`}
-							<DropdownMenu
-								options={menuOptions}
-								selectedIndex={menuIndex}
-								setSelectedIndex={setMenuIndex}
-							></DropdownMenu>
-						</DropdownContainer>
+						<MenuTitle>동아리 기수 / 카테고리</MenuTitle>
+						<ContainerRow>
+							<Generation>
+								<GenerationInput min="1" onChange={onChangeGeneration} value={generation} />
+								<Placeholder>기</Placeholder>
+							</Generation>
+							<DropdownContainer>
+								{`${menuOptions[menuIndex]}`}
+								<DropdownMenu
+									options={menuOptions}
+									selectedIndex={menuIndex}
+									setSelectedIndex={setMenuIndex}
+								></DropdownMenu>
+							</DropdownContainer>
+						</ContainerRow>
+
 						<MenuTitle>동아리 이름</MenuTitle>
 						<ContainerRow style={{ marginBottom: '2em' }}>
 							<ClubNameInput placeholder="동아리 이름을 입력해주세요."></ClubNameInput>

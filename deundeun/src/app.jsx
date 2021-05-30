@@ -8,6 +8,7 @@ import { ContainerRow } from 'styles';
 import OAuth2RedirectHandler from 'components/login/oauth2/OAuth2RedirectHandler';
 import RegisterInfoContainer from 'container/register/RegisterInfoContainer';
 import RegisterHashtagContainer from 'container/register/RegisterHashtagContainer';
+import ClubAddInfoContainer from 'container/clubRegister/ClubAddInfoContainer';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -26,9 +27,6 @@ const RecruitDetailPage = loadable(() => import('pages/RecruitDetailPage'));
 const PostDetailPage = loadable(() => import('pages/PostDetailPage'));
 const ApplicantManagePage = loadable(() => import('pages/ApplicantManagePage'));
 const MemberManagePage = loadable(() => import('pages/MemberManagePage'));
-
-
-
 
 const App = ({ FileInput, SingleFileInput }) => {
 	let location = useLocation();
@@ -77,7 +75,8 @@ const App = ({ FileInput, SingleFileInput }) => {
 				<Header />
 				<ContainerRow>
 					<SideBar location={location} />
-					<ClubAddPage FileInput={FileInput} SingleFileInput={SingleFileInput} />
+					{/* <ClubAddPage FileInput={FileInput} SingleFileInput={SingleFileInput} /> */}
+					<ClubAddInfoContainer FileInput={FileInput} SingleFileInput={SingleFileInput} />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/detail" component={ClubDetailPage} />
