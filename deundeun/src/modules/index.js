@@ -1,14 +1,13 @@
 import { combineReducers } from '../../node_modules/redux/';
-import currentUser from './currentUser';
+import currentUserInfo, { getUserInfoSaga } from './currentUserInfo';
 import loading from './loading';
 import registerUserInfo, { registerUserSaga } from './registerUserInfo';
-
 import { all } from 'redux-saga/effects';
 import initHashtags, { initHashtagsSaga } from './initHashtags';
 import clubAddInfo from './clubAddInfo';
 
 const rootReducer = combineReducers({
-	currentUser,
+	currentUserInfo,
 	registerUserInfo,
 	loading,
 	initHashtags,
@@ -16,6 +15,7 @@ const rootReducer = combineReducers({
 });
 
 export function* rootSaga() {
-	yield all([initHashtagsSaga(), registerUserSaga()]);
+	yield all([initHashtagsSaga(), registerUserSaga(), getUserInfoSaga()]);
 }
+
 export default rootReducer;

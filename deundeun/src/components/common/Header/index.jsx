@@ -1,19 +1,16 @@
 import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
-import { Container, Logo, IconContainer, ProfileIcon, SearchBox, SearchBoxContainer } from './styles';
-import { useState } from 'react';
-const Header = () => {
-	const onSearch = useCallback(() => {
+import { Container, Logo, IconContainer, ProfileIcon } from './styles';
+
+const Header = ({ checkLogin, userInfo, onLogout }) => {
+	const onClickSearch = useCallback((e) => {
 		console.log('search');
 	}, []);
 
 	const onClickProfile = useCallback((e) => {
 		console.log('my profile');
 	}, []);
-
-	const [checkLogin, setCheckLogin] = useState(false);
-	//로그인 성공시 -> setCheckLogin(true) 로직 구성해야 한다.
 
 	return (
 		<Container>
@@ -32,6 +29,9 @@ const Header = () => {
 					</div>
 				) : (
 					<>
+						{/* <SearchIcon style={{ cursor: 'pointer' }} onClick={onClickSearch} /> */}
+						{userInfo && `${userInfo.nickname}`}
+						<button onClick={onLogout}>로그아웃</button>
 						<ProfileIcon onClick={onClickProfile} />
 					</>
 				)}

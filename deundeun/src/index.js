@@ -14,6 +14,8 @@ import SingleImageFileInput from 'components/common/SingleImageFileInput';
 import createSagaMiddleware from 'redux-saga';
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { ACCESS_TOKEN } from 'constants/index';
+import { getUserInfo } from 'modules/currentUserInfo';
 
 
 
@@ -25,7 +27,21 @@ const SingleFileInput = (props) => <SingleImageFileInput {...props} imageUploade
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 
+function loadUser() {
+	try {
+		const user = localStorage.getItem(ACCESS_TOKEN);
+		console.log("user", user);
+		if (!user) return;
+
+		store.dispatch(getUserInfo());
+	}
+	catch (e) {
+		console.log("localstorage is not working!");
+	}
+}
+
 sagaMiddleware.run(rootSaga);
+loadUser();
 
 ReactDOM.render(
 	<Provider store={store}>

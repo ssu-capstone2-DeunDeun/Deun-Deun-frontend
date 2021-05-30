@@ -1,5 +1,5 @@
 export const API_BASE_URL = 'http://ec2-3-36-65-95.ap-northeast-2.compute.amazonaws.com:8080';
-export const ACCESS_TOKEN = 'accessToken';
+export const ACCESS_TOKEN = '';
 
 export const OAUTH2_REDIRECT_URI = 'http://localhost:3000/oauth2/redirect'
 

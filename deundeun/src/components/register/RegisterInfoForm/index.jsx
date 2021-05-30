@@ -11,21 +11,21 @@ import { NAME_CHAR } from '../../../../node_modules/xmlchars/xml/1.0/ed5';
 
 
 
-const RegisterInfoForm = ({ error, handleSubmit, history, onChange, nickname, duplicate, name, isDuplicated }) => {
+const RegisterInfoForm = ({ all, error, handleSubmit, history, onChange, nickname, duplicate, name, isDuplicated }) => {
 
 	const checkNickname = (e) => {
 		e.preventDefault();
 		isDuplicated();
 	}
-	const [all, setAll] = useState(false);
+	// const [all, setAll] = useState(false);
 
 
 	useEffect(() => {
 		if ([nickname, name].includes('')) {
-			setAll(true);
+			// setAll(true);
 		}
 		else {
-			setAll(false);
+			all = false;
 		}
 	}, [nickname, name])
 
@@ -65,7 +65,6 @@ const RegisterInfoForm = ({ error, handleSubmit, history, onChange, nickname, du
 					<Button to="/register/2" onClick={(e) => {
 						e.preventDefault();
 						handleSubmit();
-						history.push('/register/2');
 					}}>다음 단계로</Button>
 				</ButtonBlock>
 			</form>

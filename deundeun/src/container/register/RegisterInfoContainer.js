@@ -1,12 +1,14 @@
 import RegisterInfoForm from 'components/register/RegisterInfoForm/index';
+import { getUserInfo } from 'modules/currentUserInfo';
 import { changeField, duplicated, initialField, signup } from 'modules/registerUserInfo';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-const RegisterInfoContainer = () => {
+const RegisterInfoContainer = ({ history }) => {
     const dispatch = useDispatch();
     const { nickname, name, duplicate, signupCheck } = useSelector(({ registerUserInfo }) => ({
         nickname: registerUserInfo.nickname,
@@ -16,10 +18,10 @@ const RegisterInfoContainer = () => {
     })
     )
     const [error, setError] = useState(null);
-
+    const [all, setAll] = useState(false);
 
     const onChange = (e) => {
-        const { value, name } = e.target;
+        const { name, value } = e.target;
         dispatch(changeField({ type: name, value: value }));
     }
 
@@ -34,8 +36,16 @@ const RegisterInfoContainer = () => {
 
     const handleSubmit = (e) => {
         const form = { nickname, name };
+
+        if ([nickname, name].includes("")) {
+            console.log("모든 값을 입력해주세요.")
+            setAll(true);
+            return;
+        }
+
         const userRequestDto = Object.assign(form);
         dispatch(signup(userRequestDto));
+        history.push('/register/2');
     }
 
     useEffect(() => {
@@ -53,12 +63,12 @@ const RegisterInfoContainer = () => {
             }
         }
 
-    }, [duplicate, signupCheck])
+    }, [duplicate, signupCheck]);
 
     return (
-        <RegisterInfoForm error={error} handleSubmit={handleSubmit} duplicate={duplicate} isDuplicated={isDuplicated} onChange={onChange} name={name} nickname={nickname} />
+        <RegisterInfoForm all={all} error={error} handleSubmit={handleSubmit} duplicate={duplicate} isDuplicated={isDuplicated} onChange={onChange} name={name} nickname={nickname} />
     );
 };
 
 
-export default RegisterInfoContainer;
+export default withRouter(RegisterInfoContainer);

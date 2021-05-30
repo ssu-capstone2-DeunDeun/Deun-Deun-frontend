@@ -9,6 +9,7 @@ import OAuth2RedirectHandler from 'components/login/oauth2/OAuth2RedirectHandler
 import RegisterInfoContainer from 'container/register/RegisterInfoContainer';
 import RegisterHashtagContainer from 'container/register/RegisterHashtagContainer';
 import ClubAddInfoContainer from 'container/clubRegister/ClubAddInfoContainer';
+import HeaderContainer from 'container/common/HeaderContainer';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -44,35 +45,40 @@ const App = ({ FileInput, SingleFileInput }) => {
 			{/* <Route path="/login" component={LogIn} />
 			<Route path="/signup" component={SignUp} /> */}
 			<Route exact path="/home">
-				<Header />
+				{/* <Header /> */}
+				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
 					<ClubHomePage />
 				</ContainerRow>
 			</Route>
 			<Route path="/club/category/:id">
-				<Header />
+				{/* <Header /> */}
+				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
 					<ClubCategory />
 				</ContainerRow>
 			</Route>
 			<Route path="/mypage/:name">
-				<Header />
+				{/* <Header /> */}
+				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
 					<MyPage />
 				</ContainerRow>
 			</Route>
 			<Route path="/club/manage/">
-				<Header />
+				{/* <Header /> */}
+				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
 					<ClubManagePage />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/add">
-				<Header />
+				{/* <Header /> */}
+				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
 					{/* <ClubAddPage FileInput={FileInput} SingleFileInput={SingleFileInput} /> */}
