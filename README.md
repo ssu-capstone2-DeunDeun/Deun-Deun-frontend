@@ -17,6 +17,7 @@ You will also see any lint errors in the console.
 - 공식 사이트
   - React : [https://reactjs.org/docs/getting-started.html](https://reactjs.org/docs/getting-started.html)
   - Redux : [https://ko.redux.js.org/introduction/getting-started/](https://ko.redux.js.org/introduction/getting-started/)
+  - Redux-Saga : [https://redux-saga.js.org/](https://redux-saga.js.org/)
   - Font Awesome : [https://fontawesome.com/](https://fontawesome.com/)
   - Material UI Icons : [https://material-ui.com/components/material-icons/](https://material-ui.com/components/material-icons/)
   - NPM : [https://www.npmjs.com/package/package](https://www.npmjs.com/package/package)
