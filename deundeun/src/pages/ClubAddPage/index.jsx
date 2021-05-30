@@ -1,4 +1,4 @@
-import DropdownMenu from 'components/common/DropdownMenu';
+import DropdownMenuSelect from 'components/common/DropdownMenuSelect';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import { Background } from 'pages/ClubModifyPage/styles';
 import { TitleKorean } from 'pages/MyClubListPage/styles';
@@ -20,7 +20,6 @@ import {
 	InputButtonContainer,
 	Footer,
 	ImageDeleteButton,
-	IntroImageContainer,
 	HashtagContainer,
 	Generation,
 	GenerationInput,
@@ -31,7 +30,6 @@ import ImageModal from 'components/modal/ImageModal/index';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ClubHashtag from 'components/common/ClubHashtag/index';
-import { Form } from 'components/QuestionForm/styles';
 import ImageUpload from 'components/common/ImageUpload/index';
 import ClubImageUpload from 'components/common/ClubImageUpload/index';
 import { Error } from 'pages/ApplicationAddPage/styles';
@@ -99,16 +97,11 @@ const ClubManagePage = ({
 	clubImages
 }) => {
 	const [menuIndex, setMenuIndex] = useState(-1);
-	const [imageIndex, setImageIndex] = useState(1);
-	const [imageLoading, setImageLoading] = useState(false);
-	const [clubImageLoading, setClubImageLoading] = useState(false);
 	const [showImageModal, setShowImageModal] = useState(false);
 
 	const [imageFileList, setImageFileList] = useState([]);
 	const [hashtagList, setHashtagList] = useState([]);
 
-	const [clubImageURL, setClubImageURL] = useState('');
-	const [coverImageURL, setCoverImageURL] = useState('');
 	const [modalImageURL, setModalImageURL] = useState('');
 
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -116,19 +109,6 @@ const ClubManagePage = ({
 
 	const menuOptions = ['IT / 개발', '카테고리 2', '카테고리 3', '카테고리 4', '카테고리 5'];
 	const hashtagOptions = ['개발', '디자인', '경제 / 경영', '스포츠', '어학', '친목', '봉사', '취업'];
-
-	const onAddClubImage = (image) => {
-		if (image.imageURL) {
-			setClubImageURL(image.imageURL);
-			onChangeClubImage(image.imageURL);
-		} else return;
-	};
-
-	const onChangeFile = (image) => {
-		if (image.imageURL) {
-			updateImage(image);
-		} else return;
-	};
 
 	const onSubmit = useCallback(() => {
 		console.log('submit');
@@ -177,24 +157,8 @@ const ClubManagePage = ({
 	const onClickImageDeleteButton = useCallback((e) => {
 		e.preventDefault();
 		const image = e.currentTarget;
-		deleteImage(image);
+		// deleteImage(image);
 	}, []);
-
-	const updateImage = (image) => {
-		setImageFileList((images) => {
-			const updated = { ...images };
-			updated[image.id] = image;
-			return updated;
-		});
-	};
-
-	const deleteImage = (image) => {
-		setImageFileList((images) => {
-			const updated = { ...images };
-			delete updated[image.id];
-			return updated;
-		});
-	};
 
 	return (
 		//
@@ -219,12 +183,12 @@ const ClubManagePage = ({
 							</Generation>
 							<DropdownContainer>
 								{menuIndex === -1 ? '카테고리를 선택해 주세요.' : `${menuOptions[menuIndex]}`}
-								<DropdownMenu
+								<DropdownMenuSelect
 									options={menuOptions}
 									selectedIndex={menuIndex}
 									setSelectedIndex={setMenuIndex}
 									onChangeItem={onChangeItem}
-								></DropdownMenu>
+								></DropdownMenuSelect>
 							</DropdownContainer>
 						</ContainerRow>
 						{categoryError && (
@@ -301,6 +265,7 @@ const ClubManagePage = ({
 							<InputButtonContainer>
 								<ImageUpload onChangeFile={onChangeClubImage} multiple={true} />
 							</InputButtonContainer>
+							{/* 이미지 리스트 출력 */}
 							{/* {Object.keys(imageFileList).map((key) => (
 								<>
 									<IntroImageContainer key={key}>

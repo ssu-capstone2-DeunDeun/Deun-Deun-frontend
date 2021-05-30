@@ -20,6 +20,7 @@ const ClubAddInfoContainer = () => {
 
 	const [categoryError, setCategoryError] = useState(true);
 	const [clubNameError, setClubNameError] = useState(true);
+	const [duplicateError, setDuplicateError] = useState(false);
 
 	const onChangeGeneration = useCallback(
 		(e) => {
@@ -50,6 +51,7 @@ const ClubAddInfoContainer = () => {
 					setClubNameError(false);
 				} else {
 					setClubNameError(true);
+					setDuplicateError(false);
 				}
 			}
 		},
@@ -147,13 +149,17 @@ const ClubAddInfoContainer = () => {
 		[dispatch]
 	);
 
-	// const onChangeTag = useCallback((e) => {
+	// const onChangeHashtag = useCallback((e) => {
 
 	// }, [])
 
 	const handleDuplicate = () => {
 		if (clubName) {
 			dispatch(duplicated(clubName));
+
+			if (isDuplicate === true) {
+				setDuplicateError(true);
+			}
 		}
 	};
 
@@ -162,7 +168,7 @@ const ClubAddInfoContainer = () => {
 			clubName={clubName}
 			clubNameError={clubNameError}
 			categoryError={categoryError}
-			duplicateError={isDuplicate}
+			duplicateError={duplicateError}
 			generation={generation}
 			onChangeBackgroundImage={onChangeBackgroundImage}
 			onChangeRepresentImage={onChangeRepresentImage}

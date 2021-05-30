@@ -14,7 +14,7 @@ const AddApplicationFormCard = ({ setAddNewForm }) => {
 		//
 		<>
 			<Container onClick={onClickAddNewForm}>
-				<InnerContainer className="inner">
+				<InnerContainer className="inner" onClick={onClickAddNewForm}>
 					<AddCircleOutlineIcon style={{ marginRight: '12px' }} />
 					<ContentKorean style={{ paddingTop: '0.1em' }}>새 지원서 추가하기</ContentKorean>
 				</InnerContainer>
