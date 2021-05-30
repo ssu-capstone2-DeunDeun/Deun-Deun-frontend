@@ -6318,7 +6318,7 @@
   "resolved" "https://registry.npmjs.org/ignore/-/ignore-5.1.8.tgz"
   "version" "5.1.8"
 
-"immer@^8.0.1":
+"immer@^8.0.1", "immer@^8.0.4":
   "integrity" "sha512-jMfL18P+/6P6epANRvRk6q8t+3gGhqsJ9EuJ25AXE+9bNTYtssvzeYbEd0mXRYWCmmXSIbnlpz6vd6iJlmGGGQ=="
   "resolved" "https://registry.npmjs.org/immer/-/immer-8.0.4.tgz"
   "version" "8.0.4"

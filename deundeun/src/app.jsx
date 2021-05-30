@@ -10,6 +10,7 @@ import RegisterInfoContainer from 'container/register/RegisterInfoContainer';
 import RegisterHashtagContainer from 'container/register/RegisterHashtagContainer';
 import ClubAddInfoContainer from 'container/clubRegister/ClubAddInfoContainer';
 import HeaderContainer from 'container/common/HeaderContainer';
+import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileModifyPageContainer';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -107,7 +108,7 @@ const MyPage = () => {
 	return (
 		//
 		<>
-			{name === 'modify' && <MyProfileModifyPage />}
+			{name === 'modify' && <MyProfileModifyPageContainer />}
 			{name === 'clubs' && <MyClubListPage />}
 			{name === 'application' && <MyApplicationPage />}
 			{name === 'likes' && <MyLikeListPage />}
