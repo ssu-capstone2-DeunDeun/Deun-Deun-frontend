@@ -1,4 +1,3 @@
-import BasicTemplateHeader from 'components/common/BasicTemplateHeader/index';
 import ApplicantManagementForm from 'components/manager/ApplicantManagementForm'
 import React from 'react';
 

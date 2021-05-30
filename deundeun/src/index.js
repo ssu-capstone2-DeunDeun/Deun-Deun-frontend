@@ -6,17 +6,26 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
 import ImageUploader from 'service/ImageUploader';
 import ImageFileInput from 'components/common/ImageFileInput';
-import { createStore } from '../node_modules/redux';
-import rootReducer from 'modules/index';
+import { createStore } from 'redux';
+import rootReducer, { rootSaga } from 'modules/index';
 import { composeWithDevTools } from '../node_modules/redux-devtools-extension';
 import { Provider } from 'react-redux';
 import SingleImageFileInput from 'components/common/SingleImageFileInput';
+import createSagaMiddleware from 'redux-saga';
+import { applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
+
 
 const imageUploader = new ImageUploader();
 const FileInput = (props) => <ImageFileInput {...props} imageUploader={imageUploader} />;
 const SingleFileInput = (props) => <SingleImageFileInput {...props} imageUploader={imageUploader} />;
 
-const store = createStore(rootReducer, composeWithDevTools());
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
+
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
 	<Provider store={store}>

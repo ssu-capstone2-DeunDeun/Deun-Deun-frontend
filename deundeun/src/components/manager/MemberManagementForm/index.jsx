@@ -5,9 +5,10 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { ApplicantInfoBlock, BasicBlock, ContentBlock, PopupBlock, RoleSetBlock, StyledTextarea } from './styles';
-import Button from 'components/common/Button/index';
+
 import DropdownMenu from 'components/common/DropdownMenu/index';
 import DropdownMenuDot from 'components/common/DropdownMenuDot/index';
+import Button from 'components/common/Button/index';
 
 
 const msgPopupClear = (event) => {

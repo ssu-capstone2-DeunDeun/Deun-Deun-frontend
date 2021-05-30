@@ -1,23 +1,34 @@
 import React from 'react';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { ButtonBlock, ErrorMessage, FormContent, RegisterFormBlock, RegisterInfoBox, StyledInput } from './styles';
 import Button from 'components/common/Button/index';
 import { withRouter } from 'react-router-dom';
 import { signup } from 'lib/api/auth';
-// import { getCurrentUser, signup } from 'utils/APIUtils';
+import { useDispatch } from 'react-redux';
+import { duplicated } from 'modules/registerUserInfo';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { NAME_CHAR } from '../../../../node_modules/xmlchars/xml/1.0/ed5';
 
 
 
-const RegisterInfoForm = ({ history, onChange, nickname, error }) => {
+const RegisterInfoForm = ({ error, handleSubmit, history, onChange, nickname, duplicate, name, isDuplicated }) => {
 
-	const handleSubmit = (e) => {
-		const form = { nickname: nickname };
-		const userRequestDto = Object.assign({}, form);
-		// signup(userRequestDto);
-		signup(userRequestDto);
+	const checkNickname = (e) => {
+		e.preventDefault();
+		isDuplicated();
 	}
-	// 이 부분도 전부 container로 넣는다
+	const [all, setAll] = useState(false);
+
+
+	useEffect(() => {
+		if ([nickname, name].includes('')) {
+			setAll(true);
+		}
+		else {
+			setAll(false);
+		}
+	}, [nickname, name])
+
 
 	return (
 		<RegisterFormBlock>
@@ -31,28 +42,30 @@ const RegisterInfoForm = ({ history, onChange, nickname, error }) => {
 			<form>
 				<FormContent>
 					<div className="name">이름</div>
-					<StyledInput placeholder="이름을 입력해주세요."></StyledInput>
+					<StyledInput onChange={onChange} value={name} name="name" placeholder="이름을 입력해주세요."></StyledInput>
 				</FormContent>
 				<FormContent>
 					<div className="name">닉네임*</div>
 					<div className="checking">
-						<StyledInput value={nickname} name="nickname" onChange={onChange} placeholder="닉네임을 입력해주세요."></StyledInput>
-						<button onClick={(e) => e.preventDefault()}>중복 검사</button>
+						<StyledInput value={nickname} name="nickname" id="nickname" onChange={onChange} placeholder="닉네임을 입력해주세요."></StyledInput>
+						<button onClick={checkNickname
+						}>중복 검사</button>
 					</div>
 					{
-						error && <ErrorMessage>{error}</ErrorMessage>
+						duplicate === false && <ErrorMessage>{error}</ErrorMessage>
 					}
-				</FormContent>
-				<FormContent>
-					<div className="name">이메일</div>
-					<StyledInput placeholder="이메일을 입력해주세요."></StyledInput>
+					{
+						duplicate === true && <ErrorMessage>{error}</ErrorMessage>
+					}
+					{
+						all && <ErrorMessage>이름과 닉네임을 모두 입력해주세요!</ErrorMessage>
+					}
 				</FormContent>
 				<ButtonBlock>
 					<Button to="/register/2" onClick={(e) => {
 						e.preventDefault();
 						handleSubmit();
-						// getCurrentUser();
-						// history.push('/register/2');
+						history.push('/register/2');
 					}}>다음 단계로</Button>
 				</ButtonBlock>
 			</form>
