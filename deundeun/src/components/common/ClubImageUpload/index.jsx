@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { Container, Input, Add, InputButton } from './styles';
+import { Container, Input, ClubImageUploadButton } from './styles';
 
 const ClubImageUpload = ({ onChangeFile }) => {
 	const inputRef = useRef();
@@ -11,9 +11,7 @@ const ClubImageUpload = ({ onChangeFile }) => {
 		//
 		<Container>
 			<Input ref={inputRef} type="file" accept="image/*" name="multipartFiles" onChange={onChangeFile} />
-			<InputButton onClick={onClickInput}>
-				<Add>+</Add>
-			</InputButton>
+			<ClubImageUploadButton onClick={onClickInput}>+</ClubImageUploadButton>
 		</Container>
 	);
 };

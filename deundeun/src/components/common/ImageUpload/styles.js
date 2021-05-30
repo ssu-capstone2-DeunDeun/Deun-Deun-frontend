@@ -24,7 +24,7 @@ export const Input = styled.input`
 
 export const InputButton = styled.button`
 	border: none;
-	background-color: #f7f7f7;
+	background-color: transparent;
 
 	&:hover {
 		opacity: 0.5;

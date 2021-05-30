@@ -7,20 +7,30 @@ import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 
 const ClubAddInfoContainer = () => {
 	const dispatch = useDispatch();
-	const { generation, clubName, isDuplicate } = useSelector(({ clubAddInfo }) => ({
-		generation: clubAddInfo.generation,
-		clubName: clubAddInfo.clubName,
-		isDuplicate: clubAddInfo.isDuplicate
-	}));
+	const { generation, clubName, isDuplicate, backgroundImageUrl, representImageUrl, clubImages } = useSelector(
+		({ clubAddInfo }) => ({
+			generation: clubAddInfo.generation,
+			clubName: clubAddInfo.clubName,
+			isDuplicate: clubAddInfo.isDuplicate,
+			backgroundImageUrl: clubAddInfo.backgroundImageUrl,
+			representImageUrl: clubAddInfo.representImageUrl,
+			clubImages: clubAddInfo.clubImages
+		})
+	);
+
+	const [categoryError, setCategoryError] = useState(true);
+	const [clubNameError, setClubNameError] = useState(true);
 
 	const onChangeGeneration = useCallback(
 		(e) => {
 			if (Number(e.target.value) > 0 && Number(e.target.value <= 999)) {
 				const { value, name } = e.target;
 				dispatch(changeInput({ type: name, value: value }));
+				setCategoryError(false);
 			} else {
 				const { name } = e.target;
 				dispatch(changeInput({ type: name, value: '' }));
+				setCategoryError(true);
 			}
 		},
 		[dispatch]
@@ -30,6 +40,18 @@ const ClubAddInfoContainer = () => {
 		(e) => {
 			const { value, name } = e.target;
 			dispatch(changeInput({ type: name, value: value }));
+			// if (name === 'clubName' && value !== '') {
+			// 	setClubNameError(false);
+			// } else if (value === '') {
+			// 	setClubNameError(true);
+			// }
+			if (name === 'clubName') {
+				if (value !== '') {
+					setClubNameError(false);
+				} else {
+					setClubNameError(true);
+				}
+			}
 		},
 		[dispatch]
 	);
@@ -114,17 +136,13 @@ const ClubAddInfoContainer = () => {
 				});
 		}
 	};
-	// (imageURL) => {
-	// 	const value = imageURL;
-	// 	dispatch(changeInput({ type: 'representImageUrl', value: value }));
-	// },
-	// [dispatch]
 
 	const onChangeCategory = useCallback(
 		(e) => {
 			// console.log(e.currentTarget.innerText);
 			const value = e.currentTarget.innerText;
 			dispatch(changeInput({ type: 'categoryType', value: value }));
+			setCategoryError(false);
 		},
 		[dispatch]
 	);
@@ -142,6 +160,9 @@ const ClubAddInfoContainer = () => {
 	return (
 		<ClubAddPage
 			clubName={clubName}
+			clubNameError={clubNameError}
+			categoryError={categoryError}
+			duplicateError={isDuplicate}
 			generation={generation}
 			onChangeBackgroundImage={onChangeBackgroundImage}
 			onChangeRepresentImage={onChangeRepresentImage}
@@ -150,7 +171,9 @@ const ClubAddInfoContainer = () => {
 			onChangeInput={onChangeInput}
 			onChangeItem={onChangeCategory}
 			handleDuplicate={handleDuplicate}
-			isDuplicate={isDuplicate}
+			backgroundImageUrl={backgroundImageUrl}
+			representImageUrl={representImageUrl}
+			clubImages={clubImages}
 		/>
 	);
 };

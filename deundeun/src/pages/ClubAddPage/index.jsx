@@ -1,6 +1,6 @@
 import DropdownMenu from 'components/common/DropdownMenu';
 import LoadingSpinner from 'components/common/LoadingSpinner';
-import { Background, CoverImage, CoverImageContainer } from 'pages/ClubModifyPage/styles';
+import { Background } from 'pages/ClubModifyPage/styles';
 import { TitleKorean } from 'pages/MyClubListPage/styles';
 import React, { useCallback, useState } from 'react';
 import { ContainerRow } from 'styles';
@@ -33,6 +33,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ClubHashtag from 'components/common/ClubHashtag/index';
 import { Form } from 'components/QuestionForm/styles';
 import ImageUpload from 'components/common/ImageUpload/index';
+import ClubImageUpload from 'components/common/ClubImageUpload/index';
+import { Error } from 'pages/ApplicationAddPage/styles';
 
 const ClubImage = styled.div`
 	width: 100%;
@@ -49,6 +51,26 @@ const ClubImage = styled.div`
 	justify-content: center;
 `;
 
+const CoverImage = styled.div`
+	max-width: 100%;
+	height: 138px;
+	margin-bottom: 1.3em;
+	background-color: #f7f7f7;
+
+	color: white;
+	font-family: 'NotoSansKR';
+	font-size: 1.1rem;
+
+	background-image: url(${(props) => props.imageURL || ''});
+	background-size: cover;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	flex: none;
+`;
+
 const IntroImage = styled.div`
 	border: none;
 	cursor: pointer;
@@ -63,12 +85,18 @@ const IntroImage = styled.div`
 const ClubManagePage = ({
 	onChangeInput,
 	generation,
+	clubNameError,
+	categoryError,
+	duplicateError,
 	onChangeGeneration,
 	onChangeItem,
 	onChangeBackgroundImage,
 	onChangeRepresentImage,
 	onChangeClubImage,
-	handleDuplicate
+	handleDuplicate,
+	backgroundImageUrl,
+	representImageUrl,
+	clubImages
 }) => {
 	const [menuIndex, setMenuIndex] = useState(-1);
 	const [imageIndex, setImageIndex] = useState(1);
@@ -177,9 +205,9 @@ const ClubManagePage = ({
 				</HeaderContainer>
 				<Container>
 					<ClubImageContainer>
-						<ClubImage imageURL={clubImageURL}>
+						<ClubImage imageURL={representImageUrl}>
 							{/* {clubImageLoading && <LoadingSpinner size="large" />} */}
-							<ImageUpload onChangeFile={onChangeRepresentImage} multiple={false} />
+							<ClubImageUpload onChangeFile={onChangeRepresentImage} />
 						</ClubImage>
 					</ClubImageContainer>
 					<MenuContainer>
@@ -190,7 +218,7 @@ const ClubManagePage = ({
 								<Placeholder>기</Placeholder>
 							</Generation>
 							<DropdownContainer>
-								{menuIndex === -1 ? '카테고리를 선택해주세요.' : `${menuOptions[menuIndex]}`}
+								{menuIndex === -1 ? '카테고리를 선택해 주세요.' : `${menuOptions[menuIndex]}`}
 								<DropdownMenu
 									options={menuOptions}
 									selectedIndex={menuIndex}
@@ -199,7 +227,11 @@ const ClubManagePage = ({
 								></DropdownMenu>
 							</DropdownContainer>
 						</ContainerRow>
-
+						{categoryError && (
+							<Error style={{ marginTop: '-3em', marginLeft: '1em', marginBottom: '1.58em' }}>
+								* 동아리 기수 / 카테고리는 필수 입력사항 입니다.
+							</Error>
+						)}
 						<MenuTitle>동아리 이름</MenuTitle>
 						<ContainerRow style={{ marginBottom: '2em', flex: 'none', maxWidth: '100%' }}>
 							<ClubNameInput
@@ -209,6 +241,16 @@ const ClubManagePage = ({
 							></ClubNameInput>
 							<DuplicateCheckButton onClick={handleDuplicate}>중복 검사</DuplicateCheckButton>
 						</ContainerRow>
+						{clubNameError && (
+							<Error style={{ marginTop: '-2.4em', marginLeft: '1em', marginBottom: '.96em' }}>
+								* 동아리 이름은 필수 입력사항입니다.
+							</Error>
+						)}
+						{duplicateError && (
+							<Error style={{ marginTop: '-2.4em', marginLeft: '1.1em', marginBottom: '.96em' }}>
+								이미 등록된 동아리명입니다.
+							</Error>
+						)}
 						<MenuTitle>동아리 소개</MenuTitle>
 						<ClubInfoTextarea
 							name="introduction"
@@ -251,9 +293,9 @@ const ClubManagePage = ({
 							</ContainerRow>
 						</ContainerRow>
 						<MenuTitle>커버 이미지 업로드</MenuTitle>
-						<CoverImageContainer>
+						<CoverImage imageURL={backgroundImageUrl}>
 							<ImageUpload type="background" onChangeFile={onChangeBackgroundImage} multiple={false} />
-						</CoverImageContainer>
+						</CoverImage>
 						<MenuTitle>소개 이미지 업로드</MenuTitle>
 						<ContainerRow style={{ maxWidth: '100%', marginBottom: '2em', flexWrap: 'wrap', flex: 'none' }}>
 							<InputButtonContainer>
