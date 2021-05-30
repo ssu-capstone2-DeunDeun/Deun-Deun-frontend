@@ -1,7 +1,7 @@
 import Button from 'components/common/Button/index';
 import React from 'react';
 import { ButtonBlock, RegisterFormBlock, RegisterInfoBox, TagsBox } from './styles';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { hashtagSubmit } from 'modules/registerUserInfo';
 import { useDispatch } from 'react-redux';
 
@@ -99,11 +99,10 @@ const RegisterHashtagForm = ({ history, onChangeHashtags, inithashtags }) => {
 				<Button registerBtn1 to="/">건너뛰기</Button>
 				<Button registerBtn2 to="/"
 					onClick={(e) => {
-						e.preventDefault();
 						handleSubmit();
-						history.push('/home');
 					}}
 				>다음 단계로</Button>
+
 			</ButtonBlock>
 		</RegisterFormBlock >
 	);

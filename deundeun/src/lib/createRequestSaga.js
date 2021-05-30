@@ -1,4 +1,3 @@
-import emojiRegex from 'emoji-regex';
 import { finishLoading, startLoading } from 'modules/loading';
 import { call, put } from 'redux-saga/effects';
 

@@ -3,8 +3,6 @@ import { createAction, handleActions } from "redux-actions";
 import * as authAPI from '../lib/api/auth';
 import { takeLatest } from 'redux-saga/effects';
 
-
-
 const INIT_HASHTAGS_FORM = 'initHashtags/INIT_HASHTAGS';
 const INIT_HASHTAGS_FORM_SUCCESS = 'initHashtags/INIT_HASHTAGS_SUCCESS';
 const INIT_HASHTAGS_FORM_FAILURE = 'initHashtags/INIT_HASHTAGS_FAILURE';

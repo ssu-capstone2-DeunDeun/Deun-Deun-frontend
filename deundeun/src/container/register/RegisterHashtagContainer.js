@@ -1,5 +1,6 @@
 import RegisterHashtagForm from 'components/register/RegisterHashtagForm/index';
 import { addHashtags, getHashtags } from 'lib/api/auth';
+import { getUserInfo } from 'modules/currentUserInfo';
 import { initHashtagsForm } from 'modules/initHashtags';
 import { changeField, hashtagSubmit } from 'modules/registerUserInfo';
 import React from 'react';
