@@ -29,7 +29,7 @@ const PostDetailPage = loadable(() => import('pages/PostDetailPage'));
 const ApplicantManagePage = loadable(() => import('pages/ApplicantManagePage'));
 const MemberManagePage = loadable(() => import('pages/MemberManagePage'));
 
-const App = ({ FileInput, SingleFileInput }) => {
+const App = () => {
 	let location = useLocation();
 
 	useEffect(() => {
@@ -82,7 +82,7 @@ const App = ({ FileInput, SingleFileInput }) => {
 				<ContainerRow>
 					<SideBar location={location} />
 					{/* <ClubAddPage FileInput={FileInput} SingleFileInput={SingleFileInput} /> */}
-					<ClubAddInfoContainer FileInput={FileInput} SingleFileInput={SingleFileInput} />
+					<ClubAddInfoContainer />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/detail" component={ClubDetailPage} />

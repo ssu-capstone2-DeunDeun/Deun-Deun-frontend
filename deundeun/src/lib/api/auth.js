@@ -49,4 +49,4 @@ export const isDuplicatedNickname = (isDuplicatedNickname) =>
 		}
 	});
 
-export const isDuplicatedClubName = (clubName) => client.get(API_BASE_URL + `/clubs/check=${clubName}`);
+export const isDuplicatedClubName = (clubName) => client.get(API_BASE_URL + `/clubs/check?clubName=${clubName}`);

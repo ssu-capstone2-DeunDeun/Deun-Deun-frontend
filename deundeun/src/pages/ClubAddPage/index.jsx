@@ -33,6 +33,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ClubHashtag from 'components/common/ClubHashtag/index';
 import { Form } from 'components/QuestionForm/styles';
+import ImageUpload from 'components/common/ImageUpload/index';
 
 const ClubImage = styled.div`
 	width: 100%;
@@ -60,15 +61,22 @@ const IntroImage = styled.div`
 	background-size: cover;
 `;
 
-const ClubManagePage = ({ FileInput, SingleFileInput, onChangeInput }) => {
-	const menuOptions = ['IT / 개발', '카테고리 2', '카테고리 3', '카테고리 4', '카테고리 5'];
+const ClubManagePage = ({
+	onChangeInput,
+	generation,
+	onChangeGeneration,
+	onChangeItem,
+	onChangeBackgroundImage,
+	onChangeRepresentImage,
+	onChangeClubImage,
+	handleDuplicate
+}) => {
 	const [menuIndex, setMenuIndex] = useState(-1);
 	const [imageIndex, setImageIndex] = useState(1);
 	const [imageLoading, setImageLoading] = useState(false);
 	const [clubImageLoading, setClubImageLoading] = useState(false);
 	const [showImageModal, setShowImageModal] = useState(false);
 
-	const [generation, setGeneration] = useState('');
 	const [imageFileList, setImageFileList] = useState([]);
 	const [hashtagList, setHashtagList] = useState([]);
 
@@ -79,19 +87,13 @@ const ClubManagePage = ({ FileInput, SingleFileInput, onChangeInput }) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const ITEM_HEIGHT = 48;
 
+	const menuOptions = ['IT / 개발', '카테고리 2', '카테고리 3', '카테고리 4', '카테고리 5'];
 	const hashtagOptions = ['개발', '디자인', '경제 / 경영', '스포츠', '어학', '친목', '봉사', '취업'];
 
-	const onChangeGeneration = (e) => {
-		if (Number(e.target.value) > 0 && Number(e.target.value <= 999)) {
-			setGeneration(e.target.value);
-		} else {
-			setGeneration('');
-		}
-	};
-
-	const onChangeClubImage = (image) => {
+	const onAddClubImage = (image) => {
 		if (image.imageURL) {
 			setClubImageURL(image.imageURL);
+			onChangeClubImage(image.imageURL);
 		} else return;
 	};
 
@@ -178,14 +180,15 @@ const ClubManagePage = ({ FileInput, SingleFileInput, onChangeInput }) => {
 					<ClubImageContainer>
 						<ClubImage imageURL={clubImageURL}>
 							{clubImageLoading && <LoadingSpinner size="large" />}
-							<SingleFileInput onChangeFile={onChangeClubImage} setImageLoading={setClubImageLoading} />
+							{/* <SingleFileInput onChangeFile={onAddClubImage} setImageLoading={setClubImageLoading} /> */}
+							<ImageUpload onChangeFile={onChangeRepresentImage} multiple={false} />
 						</ClubImage>
 					</ClubImageContainer>
 					<MenuContainer>
 						<MenuTitle>동아리 기수 / 카테고리</MenuTitle>
 						<ContainerRow>
 							<Generation>
-								<GenerationInput min="1" onChange={onChangeGeneration} value={generation} />
+								<GenerationInput name="generation" min="1" onChange={onChangeGeneration} value={generation} />
 								<Placeholder>기</Placeholder>
 							</Generation>
 							<DropdownContainer>
@@ -194,6 +197,7 @@ const ClubManagePage = ({ FileInput, SingleFileInput, onChangeInput }) => {
 									options={menuOptions}
 									selectedIndex={menuIndex}
 									setSelectedIndex={setMenuIndex}
+									onChangeItem={onChangeItem}
 								></DropdownMenu>
 							</DropdownContainer>
 						</ContainerRow>
@@ -205,10 +209,14 @@ const ClubManagePage = ({ FileInput, SingleFileInput, onChangeInput }) => {
 								name="clubName"
 								onChange={onChangeInput}
 							></ClubNameInput>
-							<DuplicateCheckButton>중복 검사</DuplicateCheckButton>
+							<DuplicateCheckButton onClick={handleDuplicate}>중복 검사</DuplicateCheckButton>
 						</ContainerRow>
 						<MenuTitle>동아리 소개</MenuTitle>
-						<ClubInfoTextarea placeholder="동아리 소개를 입력해주세요."></ClubInfoTextarea>
+						<ClubInfoTextarea
+							name="introduction"
+							onChange={onChangeInput}
+							placeholder="동아리 소개를 입력해주세요."
+						></ClubInfoTextarea>
 						<MenuTitle>관련 태그</MenuTitle>
 						<ContainerRow style={{ marginBottom: '2em' }}>
 							<ContainerRow style={{ width: '100%', flex: 'none' }}>
@@ -245,20 +253,16 @@ const ClubManagePage = ({ FileInput, SingleFileInput, onChangeInput }) => {
 							</ContainerRow>
 						</ContainerRow>
 						<MenuTitle>커버 이미지 업로드</MenuTitle>
-						<CoverImageContainer>{/* <Background /> */}</CoverImageContainer>
+						<CoverImageContainer>
+							<ImageUpload onChangeFile={onChangeBackgroundImage} multiple={false} />
+						</CoverImageContainer>
 						<MenuTitle>소개 이미지 업로드</MenuTitle>
 						<ContainerRow style={{ maxWidth: '100%', marginBottom: '2em', flexWrap: 'wrap', flex: 'none' }}>
 							<InputButtonContainer>
-								<FileInput
-									onChangeFile={onChangeFile}
-									setImageLoading={setImageLoading}
-									imageIndex={imageIndex}
-									setImageIndex={setImageIndex}
-								/>
+								<ImageUpload onChangeFile={onChangeClubImage} multiple={true} />
 							</InputButtonContainer>
-							{Object.keys(imageFileList).map((key) => (
+							{/* {Object.keys(imageFileList).map((key) => (
 								<>
-									{/* 나중에 컴포넌트 하나로 빼는 작업 필요(key prop warning) */}
 									<IntroImageContainer key={key}>
 										<ImageDeleteButton id={imageFileList[key].id} onClick={onClickImageDeleteButton}>
 											<CloseIcon style={{ width: '.9em', height: '.9em', color: '#8f8f8f' }} />
@@ -270,7 +274,7 @@ const ClubManagePage = ({ FileInput, SingleFileInput, onChangeInput }) => {
 										></IntroImage>
 									</IntroImageContainer>
 								</>
-							))}
+							))} */}
 						</ContainerRow>
 						<SubmitButton onClick={onSubmit}>동아리 등록 신청</SubmitButton>
 					</MenuContainer>

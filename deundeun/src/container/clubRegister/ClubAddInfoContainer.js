@@ -1,20 +1,156 @@
-import { changeInput } from 'modules/clubAddInfo';
+import { changeInput, duplicated } from 'modules/clubAddInfo';
 import { useDispatch, useSelector } from 'react-redux';
 import ClubAddPage from 'pages/ClubAddPage/index';
+import { useCallback, useState } from 'react';
+import axios from '../../../node_modules/axios/index';
+import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
+
 const ClubAddInfoContainer = ({ FileInput, SingleFileInput }) => {
 	const dispatch = useDispatch();
-	// const { generation, clubName, isDuplicate } = useSelector(({ clubAddInfo }) => ({
-	// 	generation: clubAddInfo.generation,
-	// 	clubName: clubAddInfo.clubName,
-	// 	isDuplicate: clubAddInfo.isDuplicate
-	// }));
+	const { generation, clubName, isDuplicate } = useSelector(({ clubAddInfo }) => ({
+		generation: clubAddInfo.generation,
+		clubName: clubAddInfo.clubName,
+		isDuplicate: clubAddInfo.isDuplicate
+	}));
 
-	const onChangeInput = (e) => {
-		const { value, name } = e.target;
-		dispatch(changeInput({ type: name, value: value }));
+	const onChangeGeneration = useCallback(
+		(e) => {
+			if (Number(e.target.value) > 0 && Number(e.target.value <= 999)) {
+				const { value, name } = e.target;
+				dispatch(changeInput({ type: name, value: value }));
+			} else {
+				const { name } = e.target;
+				dispatch(changeInput({ type: name, value: '' }));
+			}
+		},
+		[dispatch]
+	);
+
+	const onChangeInput = useCallback(
+		(e) => {
+			const { value, name } = e.target;
+			dispatch(changeInput({ type: name, value: value }));
+		},
+		[dispatch]
+	);
+
+	const onChangeBackgroundImage = (e) => {
+		e.preventDefault();
+		if (e.target.files !== null) {
+			const formData = new FormData();
+			formData.append('multipartFiles', e.target.files[0]);
+			axios({
+				method: 'post',
+				url: `${API_BASE_URL}/image`,
+				data: formData,
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
+				}
+			})
+				.then((response) => {
+					console.log(response.data[0]);
+					dispatch(changeInput({ type: 'backgroundImageUrl', value: response.data[0] }));
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
 	};
 
-	return <ClubAddPage onChangeInput={onChangeInput} FileInput={FileInput} SingleFileInput={SingleFileInput} />;
+	const onChangeRepresentImage = (e) => {
+		e.preventDefault();
+		if (e.target.files !== null) {
+			const formData = new FormData();
+
+			formData.append('multipartFiles', e.target.files[0]);
+			axios({
+				method: 'post',
+				url: `${API_BASE_URL}/image`,
+				data: formData,
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
+				}
+			})
+				.then((response) => {
+					console.log(response.data[0]);
+					dispatch(changeInput({ type: 'representImageUrl', value: response.data[0] }));
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
+	};
+
+	const onChangeClubImage = (e) => {
+		e.preventDefault();
+		if (e.target.files !== null) {
+			const formData = new FormData();
+			if (e.target.files.length === 1) {
+				formData.append('multipartFiles', e.target.files[0]);
+			} else {
+				let file;
+				for (let i = 0; i < e.target.files.length; i++) {
+					file = e.target.files[i];
+					formData.append('multipartFiles', file);
+				}
+			}
+			axios({
+				method: 'post',
+				url: `${API_BASE_URL}/image`,
+				data: formData,
+				headers: {
+					'Content-Type': 'multipart/form-data',
+					Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
+				}
+			})
+				.then((response) => {
+					console.log(response.data);
+					dispatch(changeInput({ type: 'clubImages', value: response.data }));
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		}
+	};
+	// (imageURL) => {
+	// 	const value = imageURL;
+	// 	dispatch(changeInput({ type: 'representImageUrl', value: value }));
+	// },
+	// [dispatch]
+
+	const onChangeCategory = useCallback(
+		(e) => {
+			// console.log(e.currentTarget.innerText);
+			const value = e.currentTarget.innerText;
+			dispatch(changeInput({ type: 'categoryType', value: value }));
+		},
+		[dispatch]
+	);
+
+	const handleDuplicate = () => {
+		if (clubName) {
+			dispatch(duplicated(clubName));
+		}
+	};
+
+	return (
+		<ClubAddPage
+			clubName={clubName}
+			generation={generation}
+			onChangeBackgroundImage={onChangeBackgroundImage}
+			onChangeRepresentImage={onChangeRepresentImage}
+			onChangeClubImage={onChangeClubImage}
+			onChangeGeneration={onChangeGeneration}
+			onChangeInput={onChangeInput}
+			onChangeItem={onChangeCategory}
+			FileInput={FileInput}
+			SingleFileInput={SingleFileInput}
+			handleDuplicate={handleDuplicate}
+			isDuplicate={isDuplicate}
+		/>
+	);
 };
 
 export default ClubAddInfoContainer;

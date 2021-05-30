@@ -17,26 +17,18 @@ import thunk from 'redux-thunk';
 import { ACCESS_TOKEN } from 'constants/index';
 import { getUserInfo } from 'modules/currentUserInfo';
 
-
-
-const imageUploader = new ImageUploader();
-const FileInput = (props) => <ImageFileInput {...props} imageUploader={imageUploader} />;
-const SingleFileInput = (props) => <SingleImageFileInput {...props} imageUploader={imageUploader} />;
-
-
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 
 function loadUser() {
 	try {
 		const user = localStorage.getItem(ACCESS_TOKEN);
-		console.log("user", user);
+		console.log('user', user);
 		if (!user) return;
 
 		store.dispatch(getUserInfo());
-	}
-	catch (e) {
-		console.log("localstorage is not working!");
+	} catch (e) {
+		console.log('localstorage is not working!');
 	}
 }
 
@@ -46,10 +38,8 @@ loadUser();
 ReactDOM.render(
 	<Provider store={store}>
 		<BrowserRouter>
-			<App FileInput={FileInput} SingleFileInput={SingleFileInput} />
+			<App />
 		</BrowserRouter>
-	</Provider >,
+	</Provider>,
 	document.getElementById('root')
 );
-
-

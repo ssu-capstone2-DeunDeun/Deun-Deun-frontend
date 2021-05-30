@@ -1,7 +1,7 @@
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import React, { useState } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-const DropdownMenu = ({ options, selectedIndex, setSelectedIndex }) => {
+const DropdownMenu = ({ options, selectedIndex, setSelectedIndex, onChangeItem }) => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const open = Boolean(anchorEl);
 
@@ -14,6 +14,7 @@ const DropdownMenu = ({ options, selectedIndex, setSelectedIndex }) => {
 			setAnchorEl(null);
 		} else {
 			setSelectedIndex(index);
+			onChangeItem(event);
 		}
 		setAnchorEl(null);
 	};
