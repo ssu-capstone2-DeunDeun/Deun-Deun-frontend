@@ -2,7 +2,7 @@ import DropdownMenuSelect from 'components/common/DropdownMenuSelect';
 import LoadingSpinner from 'components/common/LoadingSpinner';
 import { Background } from 'pages/ClubModifyPage/styles';
 import { TitleKorean } from 'pages/MyClubListPage/styles';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ContainerRow } from 'styles';
 import {
 	ContainerPage,
@@ -91,10 +91,12 @@ const ClubManagePage = ({
 	onChangeBackgroundImage,
 	onChangeRepresentImage,
 	onChangeClubImage,
+	onChangeHashtag,
 	handleDuplicate,
 	backgroundImageUrl,
 	representImageUrl,
-	clubImages
+	clubImages,
+	onSubmit
 }) => {
 	const [menuIndex, setMenuIndex] = useState(-1);
 	const [showImageModal, setShowImageModal] = useState(false);
@@ -108,11 +110,7 @@ const ClubManagePage = ({
 	const ITEM_HEIGHT = 48;
 
 	const menuOptions = ['IT / 개발', '카테고리 2', '카테고리 3', '카테고리 4', '카테고리 5'];
-	const hashtagOptions = ['개발', '디자인', '경제 / 경영', '스포츠', '어학', '친목', '봉사', '취업'];
-
-	const onSubmit = useCallback(() => {
-		console.log('submit');
-	}, []);
+	const hashtagOptions = ['개발', '문화', '예술', '경제', '스포츠', '친목', '디자인', '봉사'];
 
 	const onClickImage = useCallback(
 		(e) => {
@@ -134,6 +132,7 @@ const ClubManagePage = ({
 
 	const onSelectHashtag = (event, index) => {
 		const newHashtag = {
+			id: index + 1,
 			name: hashtagOptions[index]
 		};
 		const found = hashtagList.find((hashtag) => hashtag.name === hashtagOptions[index]);
@@ -145,7 +144,7 @@ const ClubManagePage = ({
 
 	const onDeleteHashtag = useCallback(
 		(e) => {
-			setHashtagList(hashtagList.filter((hashtag) => hashtag.name !== e.target.id));
+			setHashtagList(hashtagList.filter((hashtag) => hashtag.id !== Number(e.target.id)));
 		},
 		[hashtagList]
 	);
@@ -159,6 +158,10 @@ const ClubManagePage = ({
 		const image = e.currentTarget;
 		// deleteImage(image);
 	}, []);
+
+	useEffect(() => {
+		onChangeHashtag(hashtagList);
+	}, [onChangeHashtag, hashtagList]);
 
 	return (
 		//
@@ -247,8 +250,8 @@ const ClubManagePage = ({
 								<HashtagContainer>
 									{hashtagList.map((hashtag) => (
 										<ClubHashtag
-											key={hashtag.name}
-											id={hashtag.name}
+											key={hashtag.id}
+											id={hashtag.id}
 											value={hashtag.name}
 											onDeleteHashtag={onDeleteHashtag}
 										/>

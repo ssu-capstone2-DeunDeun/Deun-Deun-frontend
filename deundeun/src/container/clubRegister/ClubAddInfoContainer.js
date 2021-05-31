@@ -14,7 +14,8 @@ const ClubAddInfoContainer = () => {
 			isDuplicate: clubAddInfo.isDuplicate,
 			backgroundImageUrl: clubAddInfo.backgroundImageUrl,
 			representImageUrl: clubAddInfo.representImageUrl,
-			clubImages: clubAddInfo.clubImages
+			clubImages: clubAddInfo.clubImages,
+			hashtagInfoIds: clubAddInfo.hashtagInfoIds
 		})
 	);
 
@@ -149,9 +150,14 @@ const ClubAddInfoContainer = () => {
 		[dispatch]
 	);
 
-	// const onChangeHashtag = useCallback((e) => {
-
-	// }, [])
+	const onChangeHashtag = useCallback(
+		(hashtagList) => {
+			let value = [];
+			hashtagList.map((hashtag) => value.push(hashtag.id));
+			dispatch(changeInput({ type: 'hashtagInfoIds', value: value }));
+		},
+		[dispatch]
+	);
 
 	const handleDuplicate = () => {
 		if (clubName) {
@@ -162,6 +168,10 @@ const ClubAddInfoContainer = () => {
 			}
 		}
 	};
+
+	const onSubmit = useCallback(() => {
+		console.log('submit');
+	}, []);
 
 	return (
 		<ClubAddPage
@@ -176,10 +186,12 @@ const ClubAddInfoContainer = () => {
 			onChangeGeneration={onChangeGeneration}
 			onChangeInput={onChangeInput}
 			onChangeItem={onChangeCategory}
+			onChangeHashtag={onChangeHashtag}
 			handleDuplicate={handleDuplicate}
 			backgroundImageUrl={backgroundImageUrl}
 			representImageUrl={representImageUrl}
 			clubImages={clubImages}
+			onSubmit={onSubmit}
 		/>
 	);
 };
