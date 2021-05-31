@@ -61,7 +61,6 @@ const ClubImageCarousel = ({ setFocusClubImage }) => {
 	}, []);
 
 	return (
-		//
 		<Container>
 			<Carousel
 				onChange={onChangeCarousel}

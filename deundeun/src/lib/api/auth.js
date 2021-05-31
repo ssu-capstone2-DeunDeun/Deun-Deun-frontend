@@ -57,3 +57,4 @@ export const updateNickname = (nickname) =>
 			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
 		}
 	});
+

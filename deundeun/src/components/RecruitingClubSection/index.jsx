@@ -3,9 +3,11 @@ import RecruitingClubCarousel from 'components/RecruitingClubCarousel';
 import { ContentKorean, TitleKorean } from './styles';
 import React, { useState } from 'react';
 import { Content, Header } from './styles';
+import { useSelector } from 'react-redux';
 
 const RecruitingClubSection = ({ onClickHomeTab, onClickProfile, onClickSeeAll }) => {
 	const [focusClubImage, setFocusClubImage] = useState(0);
+
 
 	return (
 		//
@@ -22,7 +24,7 @@ const RecruitingClubSection = ({ onClickHomeTab, onClickProfile, onClickSeeAll }
 			</Header>
 			<Content>
 				<RecruitingClubCarousel setFocusClubImage={setFocusClubImage} />
-				<RecruitingClubList focusClubImage={focusClubImage} />
+				<RecruitingClubList ocusClubImage={focusClubImage} />
 			</Content>
 		</>
 	);

@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button, Container } from './styles';
 const SideBar = ({ location }) => {
+
 	const [clickHomeTab, setClickHomeTab] = useState(true);
 	const [clickCategoryTab, setClickCategoryTab] = useState(false);
 	const [clickMyPageTab, setClickMyPageTab] = useState(false);
@@ -23,7 +24,7 @@ const SideBar = ({ location }) => {
 		setCategoryTab();
 	}, []);
 
-	const onClickCategoryOne = useCallback((e) => {}, []);
+	const onClickCategoryOne = useCallback((e) => { }, []);
 
 	const onClickMyPageTab = useCallback((e) => {
 		setMypageTab();

@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-
-
 // import development from '../../../../public/img/tag/development.jpg';
 // import design from '../../../../public/img/tag/design.jpg';
 // import economy from '../../../../public/img/tag/economy.jpg';

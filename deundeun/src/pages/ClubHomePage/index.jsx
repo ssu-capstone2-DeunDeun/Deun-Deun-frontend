@@ -11,7 +11,6 @@ const ClubHome = () => {
 	}, []);
 
 	return (
-		//
 		<>
 			<ContainerPage style={{ width: '1460px' }}>
 				<>

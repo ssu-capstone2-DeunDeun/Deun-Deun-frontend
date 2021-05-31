@@ -11,6 +11,7 @@ import RegisterHashtagContainer from 'container/register/RegisterHashtagContaine
 import ClubAddInfoContainer from 'container/clubRegister/ClubAddInfoContainer';
 import HeaderContainer from 'container/common/HeaderContainer';
 import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileModifyPageContainer';
+import LoginForm from 'components/login/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -43,8 +44,6 @@ const App = ({ FileInput, SingleFileInput }) => {
 			<Route exact path="/">
 				<Redirect to="/home" />
 			</Route>
-			{/* <Route path="/login" component={LogIn} />
-			<Route path="/signup" component={SignUp} /> */}
 			<Route exact path="/home">
 				{/* <Header /> */}
 				<HeaderContainer />
