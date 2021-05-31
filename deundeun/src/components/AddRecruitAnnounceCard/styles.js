@@ -9,8 +9,8 @@ export const Container = styled.div`
 	width: 1300px;
 	height: 124px;
 	color: #b5b5b5;
-	margin-top: 5.56vh;
-	margin-bottom: 2.23vh;
+	margin-top: 32px;
+	margin-bottom: 16px;
 
 	&:hover {
 		& > .inner {

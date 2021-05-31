@@ -87,7 +87,7 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 
 	return (
 		//
-		<ContainerColumn style={{ marginTop: '2em', width: '1300px' }}>
+		<ContainerColumn style={{ marginTop: '3em', width: '1300px' }}>
 			<Header>새 모집 공고 추가하기</Header>
 			<TitleKorean>지원서 양식</TitleKorean>
 			<ApplicationLoadCard onClick={onClickLoadApplication}>

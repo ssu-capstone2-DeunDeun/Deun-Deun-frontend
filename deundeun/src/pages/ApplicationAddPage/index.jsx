@@ -4,7 +4,7 @@ import { ContainerColumn, ContainerPage } from 'styles';
 import { AddQuestionButton, ApplicationTitleInput, InnerContainer, SubmitButton, Header, Error } from './styles';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import QuestionCard from 'components/common/QuestionCard/index';
-import { useHistory } from 'react-router';
+import { Prompt, useHistory } from 'react-router';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import { Footer } from 'pages/ClubAddPage/styles';
@@ -53,41 +53,44 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 
 	return (
 		//
-		<ContainerPage style={{ width: '1300px', minHeight: '130vh' }}>
-			<form onSubmit={onSubmit}>
-				<ContainerColumn style={{ marginBottom: '3em' }}>
-					<Header>새 지원서 추가하기</Header>
-					<TitleKorean>제목</TitleKorean>
-					<ApplicationTitleInput
-						type="text"
-						id="title"
-						name="title"
-						onChange={setTitle}
-						placeholder="제목을 입력해주세요."
-					></ApplicationTitleInput>
-					{/* {!title && <Error>* 제목은 필수 입력 항목입니다.</Error>} */}
-				</ContainerColumn>
-				<ContainerColumn>
-					<TitleKorean style={{ marginBottom: '1em' }}>질문</TitleKorean>
-					{questionList.map((question) => (
-						<QuestionCard key={question.index} index={question.index} onDeleteQuestion={onDeleteQuestion} />
-					))}
-					<AddQuestionButton>
-						<InnerContainer onClick={onClickAddQuestion}>
-							<AddCircleOutlineIcon style={{ marginRight: '0.5em' }} />
-							질문 추가하기
-						</InnerContainer>
-					</AddQuestionButton>
-					<SubmitButton type="submit">지원서 등록하기</SubmitButton>
-				</ContainerColumn>
-			</form>
-			<Snackbar open={deleteError} autoHideDuration={1000} onClose={onCloseSnackbar}>
-				<Alert onClose={onCloseSnackbar} severity="error">
-					하나 이상의 질문이 필요합니다.
-				</Alert>
-			</Snackbar>
-			<Footer />
-		</ContainerPage>
+		<>
+			<ContainerPage style={{ width: '1300px', minHeight: '130vh' }}>
+				<form onSubmit={onSubmit}>
+					<ContainerColumn style={{ marginBottom: '3em' }}>
+						<Header>새 지원서 추가하기</Header>
+						<TitleKorean>제목</TitleKorean>
+						<ApplicationTitleInput
+							type="text"
+							id="title"
+							name="title"
+							onChange={setTitle}
+							placeholder="제목을 입력해주세요."
+						></ApplicationTitleInput>
+						{/* {!title && <Error>* 제목은 필수 입력 항목입니다.</Error>} */}
+					</ContainerColumn>
+					<ContainerColumn>
+						<TitleKorean style={{ marginBottom: '1em' }}>질문</TitleKorean>
+						{questionList.map((question) => (
+							<QuestionCard key={question.index} index={question.index} onDeleteQuestion={onDeleteQuestion} />
+						))}
+						<AddQuestionButton>
+							<InnerContainer onClick={onClickAddQuestion}>
+								<AddCircleOutlineIcon style={{ marginRight: '0.5em' }} />
+								질문 추가하기
+							</InnerContainer>
+						</AddQuestionButton>
+						<SubmitButton type="submit">지원서 등록하기</SubmitButton>
+					</ContainerColumn>
+				</form>
+				<Snackbar open={deleteError} autoHideDuration={1000} onClose={onCloseSnackbar}>
+					<Alert onClose={onCloseSnackbar} severity="error">
+						하나 이상의 질문이 필요합니다.
+					</Alert>
+				</Snackbar>
+				<Footer />
+			</ContainerPage>
+			{/* <Prompt when={true} message="작성된 정보가 모두 삭제됩니다. 정말 나가시겠어요?" /> */}
+		</>
 	);
 };
 

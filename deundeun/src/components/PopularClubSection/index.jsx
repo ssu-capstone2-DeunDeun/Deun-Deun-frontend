@@ -14,10 +14,10 @@ const PopularClubSection = ({ onClickSeeAll }) => {
 				</ContentKorean>
 			</Header>
 			<CardContainer>
-				<PopularClubCard order={1} imageURL={'/images/test1.jpeg'} isRecruiting={true} clubName={'트와이스'} />
-				<PopularClubCard order={2} imageURL={'/images/test2.jpeg'} isRecruiting={true} clubName={'트와이스'} />
-				<PopularClubCard order={3} imageURL={'/images/test3.jpeg'} clubName={'트와이스'} />
-				<PopularClubCard order={4} imageURL={'/images/test4.jpeg'} clubName={'트와이스'} />
+				<PopularClubCard order={1} imageURL={'/images/test6.jpeg'} isRecruiting={true} clubName={'트와이스'} />
+				<PopularClubCard order={2} imageURL={'/images/test7.jpeg'} isRecruiting={true} clubName={'트와이스'} />
+				<PopularClubCard order={3} imageURL={'/images/test8.jpeg'} clubName={'트와이스'} />
+				<PopularClubCard order={4} imageURL={'/images/test9.jpeg'} clubName={'트와이스'} />
 				<PopularClubCard order={5} imageURL={'/images/test5.jpeg'} clubName={'트와이스'} />
 			</CardContainer>
 		</>

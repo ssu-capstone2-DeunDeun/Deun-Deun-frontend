@@ -207,7 +207,7 @@ const ClubManagePage = ({
 						</ContainerRow>
 						{clubNameError && (
 							<Error style={{ marginTop: '-2.4em', marginLeft: '1em', marginBottom: '.96em' }}>
-								* 동아리 이름은 필수 입력사항입니다.
+								* 동아리 이름은 필수 입력사항 입니다.
 							</Error>
 						)}
 						{duplicateError && (
