@@ -16,15 +16,16 @@ export const Header = styled.div`
 export const ApplicationTitleInput = styled.input`
 	border: none;
 	background-color: #f7f7f7;
-	height: 6vh;
+	width: 764px;
+	height: 60px;
 	padding-left: 1em;
 	margin-top: 1em;
-	margin-bottom: 3em;
+	margin-bottom: 0.4em;
 `;
 
 export const QuestionNumber = styled.div`
-	width: 4.02vw;
-	height: 5.8vh;
+	width: 77px;
+	height: 66px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -37,8 +38,8 @@ export const QuestionNumber = styled.div`
 `;
 
 export const DropdownContainer = styled.div`
-	width: 10vw;
-	height: 5.8vh;
+	width: 117px;
+	height: 60px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -50,8 +51,8 @@ export const DropdownContainer = styled.div`
 `;
 
 export const AnswerNumber = styled.div`
-	width: 4.02vw;
-	height: 5.47vh;
+	width: 77px;
+	height: 60px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -67,32 +68,17 @@ export const QuestionInput = styled.input`
 	background-color: #f7f7f7;
 	font-size: 1rem;
 	border: none;
-	height: 5.47vh;
-	width: 40vw;
+	width: 900px;
+	height: 60px;
 	margin-bottom: 0.6em;
-	width: calc(68vw - 4.02vw);
-	&.select-title {
-		width: calc(68vw - 4.02vw - 10vw);
-	}
-`;
-
-export const AddSelectionButton = styled.div`
-	cursor: pointer;
-	display: flex;
-	height: 5.47vh;
-	padding-left: 1em;
-	align-items: center;
-	background-color: #f7f7f7;
-	color: #606060;
 `;
 
 export const AddQuestionButton = styled.div`
-	margin-top: 1em;
+	/* margin-top: 1em; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	/* margin-bottom: 10em; */
-	height: 20vh;
+	height: 80px;
 `;
 
 export const InnerContainer = styled.div`
@@ -101,7 +87,7 @@ export const InnerContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	width: 13%;
-	height: 20%;
+	height: 50%;
 	&:hover {
 		background-color: #a1a1a1;
 		color: #fff;
@@ -110,7 +96,7 @@ export const InnerContainer = styled.div`
 `;
 
 export const SubmitButton = styled.button`
-	width: 250px;
+	width: 300px;
 	height: 66px;
 	background-color: #1f1f1f;
 
@@ -120,4 +106,11 @@ export const SubmitButton = styled.button`
 	color: #fff;
 
 	margin: 0 auto;
+`;
+
+export const Error = styled.div`
+	color: #e01e5a;
+	/* margin-left: 1em; */
+	font-weight: bold;
+	font-size: 0.8rem;
 `;

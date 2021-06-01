@@ -1,4 +1,4 @@
-import Button from 'components/common/Button/Button';
+import Button from 'components/common/Button/index';
 import React, { useEffect } from 'react';
 import { ApplySuccessBlock } from './styles';
 

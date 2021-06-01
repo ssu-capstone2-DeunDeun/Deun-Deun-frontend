@@ -17,7 +17,7 @@ import {
 } from './styles';
 import { CategoryKorean } from 'pages/MyLikeListPage/styles';
 
-const MyPage = () => {
+const MyPage = ({ onChange, userInfo, onChangeNickname, onSubmitNickname }) => {
 	return (
 		//
 		<>
@@ -29,24 +29,29 @@ const MyPage = () => {
 				</Header>
 				<Container>
 					<ProfileImage />
-					<UserName>신상현</UserName>
-
+					{
+						userInfo && <UserName>{userInfo.name}</UserName>
+					}
 					<EmailContainer>
-						<SocialImage src="/images/icons/kakao.png"></SocialImage>
-						<UserEmail>qwerty123@kakao.com</UserEmail>
+						{/* <SocialImage src="/images/icons/kakao.png"></SocialImage> */}
+						{
+							userInfo && <UserEmail>{userInfo.email}</UserEmail>
+						}
 					</EmailContainer>
 
 					<InputContainer>
 						<TitleKorean style={{ marginLeft: '7.8em' }}>닉네임 *</TitleKorean>
 						<InputBoxContainer>
-							<InputBox placeholder="닉네임"></InputBox>
-							<SubmitButton type="submit">닉네임 변경</SubmitButton>
+							<InputBox onChange={onChangeNickname} placeholder={userInfo.nickname}></InputBox>
+							<SubmitButton onClick={onSubmitNickname} type="submit">닉네임 변경</SubmitButton>
 						</InputBoxContainer>
-						<TitleKorean style={{ marginLeft: '7.8em' }}>휴대폰 번호 *</TitleKorean>
+
+						{/* <TitleKorean style={{ marginLeft: '7.8em' }}>휴대폰 번호 *</TitleKorean>
 						<InputBoxContainer>
 							<InputBox placeholder="010-1234-5678"></InputBox>
 							<SubmitButton type="submit">전화번호 변경</SubmitButton>
-						</InputBoxContainer>
+						</InputBoxContainer> */}
+
 					</InputContainer>
 				</Container>
 			</ContainerPage>

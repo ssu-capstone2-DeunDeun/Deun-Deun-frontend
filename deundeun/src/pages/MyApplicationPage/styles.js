@@ -5,5 +5,12 @@ export const CardContainer = styled.div`
 	flex-direction: column;
 	width: 1364px;
 	height: 100vh;
-	margin-top: 4em;
+	margin-top: 1.625em;
+`;
+
+export const ContentKorean = styled.span`
+	font-family: NotoSansKR;
+	font-size: 18px;
+	font-weight: 500;
+	color: #484848;
 `;

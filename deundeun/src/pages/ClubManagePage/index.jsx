@@ -42,7 +42,7 @@ const ClubManagePage = () => {
 					</div>
 				</HeaderContainer>
 				<MenuContainer>
-					{menuIndex === 0 && (
+					{/* {menuIndex === 0 && (
 						<>
 							<Redirect to="/club/manage/modify" />
 							<ClubModifyPage />
@@ -83,7 +83,7 @@ const ClubManagePage = () => {
 							<Redirect to="/club/manage/member" />
 							<MemberManagePage />
 						</>
-					)}
+					)} */}
 				</MenuContainer>
 			</ContainerPage>
 		</>

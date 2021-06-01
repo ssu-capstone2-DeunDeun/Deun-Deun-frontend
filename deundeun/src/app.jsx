@@ -1,33 +1,41 @@
 // import MyPage from 'pages/MyPage';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch, useLocation, useParams } from 'react-router-dom';
 import loadable from '@loadable/component';
 import SideBar from 'components/common/SideBar';
 import Header from 'components/common/Header';
 import { ContainerRow } from 'styles';
 import OAuth2RedirectHandler from 'components/login/oauth2/OAuth2RedirectHandler';
+import RegisterInfoContainer from 'container/register/RegisterInfoContainer';
+import RegisterHashtagContainer from 'container/register/RegisterHashtagContainer';
+import ClubAddInfoContainer from 'container/clubRegister/ClubAddInfoContainer';
+import HeaderContainer from 'container/common/HeaderContainer';
+import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileModifyPageContainer';
+import LoginForm from 'components/login/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
 const ClubDetailPage = loadable(() => import('pages/ClubDetailPage'));
-const ClubManagePage = loadable(() => import('pages/ClubManagePage'));
-const ClubAddPage = loadable(() => import('pages/ClubAddPage'));
 const MyProfileModifyPage = loadable(() => import('pages/MyProfileModifyPage'));
 const MyClubListPage = loadable(() => import('pages/MyClubListPage'));
 const MyApplicationPage = loadable(() => import('pages/MyApplicationPage'));
 const MyLikeListPage = loadable(() => import('pages/MyLikeListPage'));
 
 const LoginPage = loadable(() => import('pages/LoginPage'));
-const RegisterPage1 = loadable(() => import('pages/RegisterPage1'));
-const RegisterPage2 = loadable(() => import('pages/RegisterPage2'));
 const ApplyPage = loadable(() => import('pages/ApplyPage'));
 const ApplyPageSuccessPage = loadable(() => import('pages/ApplyPageSuccessPage'));
 const RecruitDetailPage = loadable(() => import('pages/RecruitDetailPage'));
 const PostDetailPage = loadable(() => import('pages/PostDetailPage'));
+
+const ClubModifyPage = loadable(() => import('pages/ClubModifyPage'));
+const ApplicationAddPage = loadable(() => import('pages/ApplicationAddPage'));
+const ApplicationManagePage = loadable(() => import('pages/ApplicationManagePage'));
+const RecruitAddPage = loadable(() => import('pages/RecruitAddPage'));
+const RecruitManagePage = loadable(() => import('pages/RecruitManagePage'));
 const ApplicantManagePage = loadable(() => import('pages/ApplicantManagePage'));
 const MemberManagePage = loadable(() => import('pages/MemberManagePage'));
 
-const App = ({ FileInput, SingleFileInput }) => {
+const App = () => {
 	let location = useLocation();
 
 	useEffect(() => {
@@ -40,48 +48,52 @@ const App = ({ FileInput, SingleFileInput }) => {
 			<Route exact path="/">
 				<Redirect to="/home" />
 			</Route>
-			{/* <Route path="/login" component={LogIn} />
-			<Route path="/signup" component={SignUp} /> */}
 			<Route exact path="/home">
-				<Header />
+				{/* <Header /> */}
+				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
 					<ClubHomePage />
 				</ContainerRow>
 			</Route>
 			<Route path="/club/category/:id">
-				<Header />
+				{/* <Header /> */}
+				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
 					<ClubCategory />
 				</ContainerRow>
 			</Route>
 			<Route path="/mypage/:name">
-				<Header />
+				{/* <Header /> */}
+				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
 					<MyPage />
 				</ContainerRow>
 			</Route>
-			<Route path="/club/manage/">
-				<Header />
+			<Route path="/club/manage/:name">
+				{/* <Header /> */}
+				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
 					<ClubManagePage />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/add">
-				<Header />
+				{/* <Header /> */}
+				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
-					<ClubAddPage FileInput={FileInput} SingleFileInput={SingleFileInput} />
+					<ClubAddInfoContainer />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/detail" component={ClubDetailPage} />
-
+			{/* <Route exact path="/club/" */}
 			<Route component={LoginPage} path="/login" exact />
-			<Route component={RegisterPage1} path="/register/1" exact />
-			<Route component={RegisterPage2} path="/register/2" exact />
+			<Route component={RegisterInfoContainer} path="/register/1" exact />
+			{/* <Route component={RegisterPage2} path="/register/2" exact /> */}
+			<Route component={RegisterHashtagContainer} path="/register/2" exact />
 			<Route component={ApplyPage} path="/apply" exact />
 			<Route component={ApplyPageSuccessPage} path="/apply/success" exact />
 			<Route component={RecruitDetailPage} path="/recruit/detail/id" exact />
@@ -98,11 +110,55 @@ const MyPage = () => {
 	return (
 		//
 		<>
-			{name === 'modify' && <MyProfileModifyPage />}
+			{name === 'modify' && <MyProfileModifyPageContainer />}
 			{name === 'clubs' && <MyClubListPage />}
 			{name === 'application' && <MyApplicationPage />}
 			{name === 'likes' && <MyLikeListPage />}
-			{/* {name === 'notify' && <MyNotificationPage />} */}
+		</>
+	);
+};
+
+const ClubManagePage = () => {
+	const { name } = useParams();
+	const [addNewApplication, setAddNewApplication] = useState(false);
+	const [addNewRecruit, setAddNewRecruit] = useState(false);
+	useEffect(() => {
+		return () => {
+			setAddNewApplication(false);
+			setAddNewRecruit(false);
+		};
+	}, []);
+
+	return (
+		//
+		<>
+			{name === 'modify' && <ClubModifyPage />}
+			{name === 'application' &&
+				(addNewApplication ? (
+					<>
+						<Redirect to="/club/manage/application/new" />
+						<ApplicationAddPage setAddNewForm={setAddNewApplication} />
+					</>
+				) : (
+					<>
+						<Redirect to="/club/manage/application" />
+						<ApplicationManagePage setAddNewForm={setAddNewApplication} />
+					</>
+				))}
+			{name === 'recruit' &&
+				(addNewRecruit ? (
+					<>
+						<Redirect to="/club/manage/recruit/new" />
+						<RecruitAddPage setAddNewForm={setAddNewRecruit} />
+					</>
+				) : (
+					<>
+						<Redirect to="/club/manage/recruit" />
+						<RecruitManagePage setAddNewForm={setAddNewRecruit} />
+					</>
+				))}
+			{name === 'applicant' && <ApplicantManagePage />}
+			{name === 'member' && <MemberManagePage />}
 		</>
 	);
 };

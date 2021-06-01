@@ -6,11 +6,11 @@ export const Container = styled.div`
 	align-items: center;
 	cursor: pointer;
 	background-color: #f7f7f7;
-	width: 68vw;
-	height: 13.15vh;
+	width: 1300px;
+	height: 124px;
 	color: #b5b5b5;
-	margin-top: 5.56vh;
-	margin-bottom: 2.23vh;
+	margin-top: 32px;
+	margin-bottom: 16px;
 
 	&:hover {
 		& > .inner {

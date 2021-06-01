@@ -3,7 +3,9 @@ import { ApplicantInfoBlock, BasicBlock, ContentBlock, MenuBlock, PopupBlock, Re
 import { MdKeyboardArrowDown, MdClose, MdKeyboardArrowRight } from "react-icons/md";
 import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im";
 import { BiSearchAlt2 } from "react-icons/bi";
-import Button from 'components/common/Button/Button';
+import DropdownMenu from 'components/common/DropdownMenu/index';
+import Button from 'components/common/Button/index';
+
 
 
 const popupClear = (event) => {
@@ -69,6 +71,10 @@ const ApplicantManagementForm = () => {
 	}
 	const { applicants, recruitNotices } = contents;
 	const [click, setClick] = useState(false);
+
+	const [viewIndex, setViewIndex] = useState(0);
+	const view = ['최신순', '오래된 순'];
+
 	return (
 		<BasicBlock>
 			<ContentBlock>
@@ -95,8 +101,13 @@ const ApplicantManagementForm = () => {
 							</div>
 							<div className="func">
 								<div className="viewAll">
-									<div >최신순</div>
-									<MdKeyboardArrowDown />
+									{`${view[viewIndex]}`}
+
+									<DropdownMenu
+										options={view}
+										selectedIndex={viewIndex}
+										setSelectedIndex={setViewIndex}
+									/>
 								</div>
 								<div className="username">
 									<input type="text" placeholder="이름/닉네임" />

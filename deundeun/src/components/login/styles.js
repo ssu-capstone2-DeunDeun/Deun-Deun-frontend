@@ -1,40 +1,111 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+
 
 export const LoginContainer = styled.div`
-    width:848.3px;
-    margin:0 auto;
-    margin-top: 79.5px;
-    text-align:center;
-    .login-content {
-        background: #ffffff;
-        box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-        border-radius: 2px;
-        width: 500px;
-        display: inline - block;
-        position: relative;
-        padding: 35px;
+    .control{
+        position:fixed;
+        top:0;
+        right:0;
+        left:0;
+        bottom:0; 
+        background:rgba(0,0,0,0.3);
+        
 
-        .login-title {
-            font-size: 30px;
-            font-weight: 500;
-            margin-bottom: 30px;
-            color: rgba(0, 0, 0, 0.65);
-        }   
-        .social-btn {
-            margin-bottom: 15px;
-            font-weight: 400;
-            font-size: 20px;
+        display:flex;
+        justify-content: center;
+        align-items:center
+    }
+    .delete{
+        display:none;
+    }
+`;
+
+
+export const LoginModal = styled.div`
+    width:496px;
+    height:484px;
+    background:white;
+
+    .logo{
+        margin-top:50px;
+        display:flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;;
+        img{
+            width:265.3px;
+            height:106.3px;
+        }
+        .text{
+            font-size:16px;
+            color:#282828;
+            font-weight:bold;
+        }
+        .sub{
+            margin-top:26.7px;
             display:flex;
-            align-items:center;
-            
-            div{
-                margin-left:70px;
-                text-decoration:underline;
+            align-items: center;
+            justify-content: center;
+            color:#a7a7a7;
+            .bar{
+                width:127.6px;
+                height:0px;
+                border:1px solid #a7a7a7;
+
+            }
+            .subtext{
+                margin:0 15.4px;
             }
         }
-        .social-btn img {
-            height: 50px;
-        }
     }
-    
+
 `;
+
+export const ImageContainer = styled.div`
+    text-align:right;
+    svg{
+        width:20px;
+        height:20px;
+        margin-top:32.2px;
+        margin-right:32.2px;
+        color:#8f8f8f;
+        cursor:pointer;
+    }
+`;
+
+export const SocialContainer = styled.a`
+    border:1px solid #4284F4;
+    width:356px;
+    height:54px;
+    margin-top:30px;
+    cursor:pointer;
+    
+    a{
+        display:flex;
+        align-items:center;
+        text-decoration:none;
+        .googleBtn{
+            width :60px;
+            .googleImg{
+                text-align:center;
+                img{
+                    width:44px;
+                    height:44px;
+                }
+            }
+        }
+        .googleText{
+            flex:1;
+            height:52px;
+            font-size:16px;
+            background-color:#4284F4;
+            font-weight:bold;
+            display:flex;
+            align-items:center;
+            justify-content: center;
+            color:white;
+        }
+
+    }
+`;
+

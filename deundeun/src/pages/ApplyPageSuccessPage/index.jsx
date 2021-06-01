@@ -1,12 +1,15 @@
 import ApplySuccess from 'components/apply/ApplySuccess';
-import BasicTemplate2 from 'components/common/BasicTemplate2';
+import BasicTemplateHeader from 'components/common/BasicTemplateHeader/index';
 import React from 'react';
 
+
+
 const ApplyPage = ({ children }) => {
+
     return (
-        <BasicTemplate2>
+        <BasicTemplateHeader>
             <ApplySuccess />
-        </BasicTemplate2>
+        </BasicTemplateHeader>
     );
 };
 

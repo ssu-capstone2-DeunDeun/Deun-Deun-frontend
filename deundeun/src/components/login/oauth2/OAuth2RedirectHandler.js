@@ -15,7 +15,7 @@ class OAuth2RedirectHandler extends Component {
     render() {
         const error = this.getUrlParameter('error');
         const info = this.getUrlParameter('info');
-        const hashtag = this.getUrlParameter('hashTag');
+        const hashtag = this.getUrlParameter('hashtag');
         const jwtAccessToken = this.getUrlParameter('jwtAccessToken');
 
         console.log("info=", info);
@@ -23,12 +23,9 @@ class OAuth2RedirectHandler extends Component {
         console.log("hashtag=", hashtag);
         console.log("jwtAccessToken=", jwtAccessToken);
 
+
         if (jwtAccessToken) {
             localStorage.setItem(ACCESS_TOKEN, jwtAccessToken);
-            // return <Redirect to={{
-            //     pathname: "/profile",
-            //     state: { from: this.props.location }
-            // }} />;
         }
 
         if (info === 'false') {  //정보 입력이 안된 경우

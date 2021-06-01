@@ -1,6 +1,8 @@
-import Button from 'components/common/Button/Button';
+
 // import HealthClub from '../../../../public/img/club/HealthClub.jpeg';
+import Button from 'components/common/Button/index';
 import styled from 'styled-components';
+
 
 export const PostDetailFormBlock = styled.div`
     width:1080px;
