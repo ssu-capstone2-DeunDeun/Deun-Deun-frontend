@@ -23,7 +23,8 @@ import {
 	HashtagContainer,
 	Generation,
 	GenerationInput,
-	Placeholder
+	Placeholder,
+	IntroImageContainer
 } from './styles';
 import styled from 'styled-components';
 import ImageModal from 'components/modal/ImageModal/index';
@@ -34,6 +35,7 @@ import ImageUpload from 'components/common/ImageUpload/index';
 import ClubImageUpload from 'components/common/ClubImageUpload/index';
 import { Error } from 'pages/ApplicationAddPage/styles';
 import { useSelector } from 'react-redux';
+import CloseIcon from '@material-ui/icons/Close';
 
 const ClubImage = styled.div`
 	width: 100%;
@@ -84,9 +86,10 @@ const IntroImage = styled.div`
 const ClubManagePage = ({
 	onChangeInput,
 	generation,
+	clubName,
 	clubNameError,
 	categoryError,
-	duplicateError,
+	isDuplicate,
 	onChangeGeneration,
 	onChangeItem,
 	onChangeBackgroundImage,
@@ -97,6 +100,7 @@ const ClubManagePage = ({
 	backgroundImageUrl,
 	representImageUrl,
 	clubImages,
+	onDeleteImage,
 	onSubmit
 }) => {
 	const [menuIndex, setMenuIndex] = useState(-1);
@@ -112,18 +116,14 @@ const ClubManagePage = ({
 
 	const { menuOptions } = useSelector(({ initCategory }) => ({
 		menuOptions: initCategory.category
-	}))
+	}));
 	const hashtagOptions = ['개발', '문화', '예술', '경제', '스포츠', '친목', '디자인', '봉사'];
 
-	const onClickImage = useCallback(
-		(e) => {
-			setShowImageModal(true);
-			const id = e.currentTarget.id;
-			const imageURL = imageFileList[id].imageURL;
-			setModalImageURL(imageURL);
-		},
-		[imageFileList]
-	);
+	const onClickImage = useCallback((e) => {
+		e.preventDefault();
+		setShowImageModal(true);
+		setModalImageURL(e.target.id);
+	}, []);
 
 	const onCloseModal = useCallback(() => {
 		setShowImageModal(false);
@@ -154,12 +154,6 @@ const ClubManagePage = ({
 
 	const onCloseMenu = useCallback(() => {
 		setAnchorEl(null);
-	}, []);
-
-	const onClickImageDeleteButton = useCallback((e) => {
-		e.preventDefault();
-		const image = e.currentTarget;
-		// deleteImage(image);
 	}, []);
 
 	useEffect(() => {
@@ -216,9 +210,14 @@ const ClubManagePage = ({
 								* 동아리 이름은 필수 입력사항 입니다.
 							</Error>
 						)}
-						{duplicateError && (
+						{isDuplicate === true && clubName && (
 							<Error style={{ marginTop: '-2.4em', marginLeft: '1.1em', marginBottom: '.96em' }}>
 								이미 등록된 동아리명입니다.
+							</Error>
+						)}
+						{isDuplicate === false && clubName && (
+							<Error style={{ marginTop: '-2.4em', marginLeft: '1em', marginBottom: '.96em', color: '#2940d3' }}>
+								사용 가능한 동아리명입니다!
 							</Error>
 						)}
 						<MenuTitle>동아리 소개</MenuTitle>
@@ -271,21 +270,17 @@ const ClubManagePage = ({
 							<InputButtonContainer>
 								<ImageUpload onChangeFile={onChangeClubImage} multiple={true} />
 							</InputButtonContainer>
-							{/* 이미지 리스트 출력 */}
-							{/* {Object.keys(imageFileList).map((key) => (
-								<>
-									<IntroImageContainer key={key}>
-										<ImageDeleteButton id={imageFileList[key].id} onClick={onClickImageDeleteButton}>
-											<CloseIcon style={{ width: '.9em', height: '.9em', color: '#8f8f8f' }} />
+
+							{clubImages.map((image) => (
+								<div key={image}>
+									<IntroImageContainer>
+										<ImageDeleteButton id={image} onClick={onDeleteImage}>
+											&times;
 										</ImageDeleteButton>
-										<IntroImage
-											onClick={onClickImage}
-											id={imageFileList[key].id}
-											imageURL={imageFileList[key].imageURL}
-										></IntroImage>
+										<IntroImage onClick={onClickImage} id={image} imageURL={image}></IntroImage>
 									</IntroImageContainer>
-								</>
-							))} */}
+								</div>
+							))}
 						</ContainerRow>
 						<SubmitButton onClick={onSubmit}>동아리 등록 신청</SubmitButton>
 					</MenuContainer>

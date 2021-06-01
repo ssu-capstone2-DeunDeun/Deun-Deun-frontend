@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DropdownMenu from 'components/common/DropdownMenu';
 import { ContainerPage, ContainerRow } from 'styles';
+
 import {
 	Container,
 	MenuContainer,
@@ -17,7 +18,29 @@ import {
 	Placeholder
 } from 'pages/ClubAddPage/styles';
 import { ImageButton } from 'pages/RecruitAddPage/styles';
-import { ImageContainer, ClubImage, CoverImage, Background, CoverImageContainer } from './styles';
+import { ImageContainer, ClubImage, Background, CoverImageContainer } from './styles';
+import axios from '../../../node_modules/axios/index';
+import styled from 'styled-components';
+
+const CoverImage = styled.div`
+	max-width: 100%;
+	height: 138px;
+	margin-bottom: 1.3em;
+	background-color: #f7f7f7;
+
+	color: white;
+	font-family: 'NotoSansKR';
+	font-size: 1.1rem;
+
+	background-image: url(${(props) => props.imageURL || ''});
+	background-size: cover;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	flex: none;
+`;
 
 const ClubModifyPage = () => {
 	const [generation, setGeneration] = useState('');
@@ -70,7 +93,7 @@ const ClubModifyPage = () => {
 						</ContainerRow>
 						<MenuTitle>커버 이미지 업로드</MenuTitle>
 						<CoverImageContainer>
-							<Background>1920 * 348 사이즈의 커버 이미지를 등록해 주세요.</Background>
+							{/* <Background>1920 * 348 사이즈의 커버 이미지를 등록해 주세요.</Background> */}
 							<CoverImage></CoverImage>
 						</CoverImageContainer>
 						<MenuTitle>소개 이미지 업로드</MenuTitle>

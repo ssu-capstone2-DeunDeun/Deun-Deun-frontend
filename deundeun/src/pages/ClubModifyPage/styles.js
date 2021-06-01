@@ -26,13 +26,6 @@ export const CoverImageContainer = styled.div`
 	flex: none;
 `;
 
-export const CoverImage = styled.div`
-	width: 100%;
-	height: 138px;
-	background-image: url('/images/sample/club-image/sample-cover.jpeg');
-	background-position-y: 70%;
-`;
-
 export const Background = styled.div`
 	background-color: rgba(0, 0, 0, 0.5);
 	width: 783px;

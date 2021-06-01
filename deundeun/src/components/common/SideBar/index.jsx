@@ -30,7 +30,7 @@ const SideBar = ({ location }) => {
 		setCategoryTab();
 	}, []);
 
-	const onClickCategoryOne = useCallback((e) => { }, []);
+	const onClickCategoryOne = useCallback((e) => {}, []);
 
 	const onClickMyPageTab = useCallback((e) => {
 		setMypageTab();
