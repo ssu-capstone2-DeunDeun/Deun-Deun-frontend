@@ -24,6 +24,8 @@ import ko from 'date-fns/locale/ko';
 import { ContentKorean } from 'components/ClubPostCardSmall/styles';
 import ErrorMessage from 'components/common/ErrorMessage/index';
 import { Generation, GenerationInput, Placeholder } from 'pages/ClubAddPage/styles';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 registerLocale('ko', ko);
 
 const RecruitAddPage = ({ setAddNewForm }) => {
@@ -34,6 +36,14 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 	const [dateError, setDateError] = useState(false);
 	const [showLoadApplicationModal, setShowLoadApplicationModal] = useState(false);
 	const [generation, setGeneration] = useState('');
+	console.log(startDateString, endDateString, startDate, endDate, dateError, generation);
+
+	// const dispatch = useDispatch();
+	// const { clubAddRecruitInfo } = useSelector(({ clubAddRecruitInfo }) => ({
+	// 	clubAddRecruitInfo,
+	// }))
+	// console.log("clubaddrecruitinfo", clubAddRecruitInfo);
+
 
 	const defaultDate = new Date();
 
@@ -133,10 +143,34 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 					/>
 				</ContainerRow>
 				<ContainerRow>
-					<RecruitInfo placeholder="1차 발표"></RecruitInfo>
+					{/* <RecruitInfo placeholder="1차 발표"></RecruitInfo>
 					<RecruitDeadline>2021.01.01</RecruitDeadline>
 					<Tilde>~</Tilde>
-					<RecruitDeadline>2021.01.01</RecruitDeadline>
+					<RecruitDeadline>2021.01.01</RecruitDeadline> */}
+
+					<RecruitInfo type="text" placeholder="1차 발표"></RecruitInfo>
+					<DatePicker
+						locale="ko"
+						selected={startDate}
+						onChange={(date) => setStartDate(date)}
+						customInput={<CustomDateInput />}
+						value={startDateString}
+					/>
+					<Tilde>~</Tilde>
+					<DatePicker
+						locale="ko"
+						selected={endDate}
+						onChange={(date) => {
+							if (date >= startDate) {
+								setEndDate(date);
+							} else {
+								setDateError(true);
+								setEndDate(startDate);
+							}
+						}}
+						customInput={<CustomDateInput />}
+						value={endDateString}
+					/>
 				</ContainerRow>
 				<ContainerRow>
 					<RecruitInfo placeholder="면접 진행"></RecruitInfo>
