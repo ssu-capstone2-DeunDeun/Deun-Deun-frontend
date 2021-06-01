@@ -1,7 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { Button, Container } from './styles';
 const SideBar = ({ location }) => {
+	const { category } = useSelector(({ initCategory }) => ({ category: initCategory.category }));
+	console.log("category :", category);
 	const [clickHomeTab, setClickHomeTab] = useState(true);
 	const [clickCategoryTab, setClickCategoryTab] = useState(false);
 	const [clickMyPageTab, setClickMyPageTab] = useState(false);
@@ -28,7 +31,7 @@ const SideBar = ({ location }) => {
 		setCategoryTab();
 	}, []);
 
-	const onClickCategoryOne = useCallback((e) => {}, []);
+	const onClickCategoryOne = useCallback((e) => { }, []);
 
 	const onClickMyPageTab = useCallback((e) => {
 		setMypageTab();
@@ -291,23 +294,29 @@ const SideBar = ({ location }) => {
 				<>
 					<Link to="/club/category/1">
 						<Button className={`${clickCategoryOne ? 'clicked-category' : 'category'}`} onClick={onClickCategoryOne}>
-							IT / 개발
+							{category[0]}
 						</Button>
 					</Link>
 					<Link to="/club/category/2">
-						<Button className="category">카테고리 2</Button>
+						<Button className="category">{category[1]}</Button>
 					</Link>
 					<Link to="/club/category/3">
-						<Button className="category">카테고리 3</Button>
+						<Button className="category">{category[2]}</Button>
 					</Link>
 					<Link to="/club/category/4">
-						<Button className="category">카테고리 4</Button>
+						<Button className="category">{category[3]}</Button>
 					</Link>
 					<Link to="/club/category/5">
-						<Button className="category">카테고리 5</Button>
+						<Button className="category">{category[4]}</Button>
 					</Link>
 					<Link to="/club/category/6">
-						<Button className="category">카테고리 6</Button>
+						<Button className="category">{category[5]}</Button>
+					</Link>
+					<Link to="/club/category/7">
+						<Button className="category">{category[6]}</Button>
+					</Link>
+					<Link to="/club/category/8">
+						<Button className="category">{category[7]}</Button>
 					</Link>
 				</>
 			)}

@@ -74,6 +74,7 @@ const registerUserInfo = handleActions(
             ...state,
             hashtagsCheckError,
         }),
+
     },
     initialState,
 );

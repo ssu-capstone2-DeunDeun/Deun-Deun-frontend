@@ -49,4 +49,14 @@ export const isDuplicatedNickname = (isDuplicatedNickname) =>
 		}
 	});
 
+
+export const updateNickname = (nickname) =>
+	client.patch(API_BASE_URL + `/user/nickname?nickname=${nickname}`, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+		}
+	});
+
+
 export const isDuplicatedClubName = (clubName) => client.get(API_BASE_URL + `/clubs/check?clubName=${clubName}`);
+

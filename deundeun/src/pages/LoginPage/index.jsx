@@ -6,9 +6,7 @@ import React from 'react';
 
 const LoginPage = () => {
     return (
-        <BasicTemplateHeader>
-            <LoginForm />
-        </BasicTemplateHeader>
+        < LoginForm />
 
     );
 };
