@@ -45,10 +45,11 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 			questionContent: "",
 			questionType: "",
 		}
-		if (questionTypeIdx === 0) {
+
+		if (questionTypeIdx === 0) {  //주관식
 
 		}
-		else {
+		else {  //선다형
 
 		}
 	}, [questionTypeIdx]);

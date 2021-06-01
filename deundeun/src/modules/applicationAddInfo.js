@@ -24,10 +24,11 @@ const applicationAddInfo = handleActions(
 		}),
 		[ADD_QUESTION]: (state, action) => ({
 
+
 		}),
 		[DELETE_QUESTION]: (state, { payload: index, type }) => ({
 			...state,
-
+			// [type]: [type].filter(type => )
 		})
 	},
 	initialState

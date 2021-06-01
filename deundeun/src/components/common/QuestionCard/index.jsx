@@ -12,28 +12,28 @@ const QuestionCard = ({ index, onDeleteQuestion, setQuestionTypeIdx }) => {
 	const questionTypes = ['주관식', '선다형'];
 	const answerTypes = ['단일 선택', '복수 선택'];
 
-	// useEffect(() => {
-	// 	const question = {
-	// 		multipleChoiceRequestDtos: [],
-	// 		questionContent: "",
-	// 		questionType: "",
-	// 	}
-	// 	const title = document.getElementById("questionTitle");
+	useEffect(() => {
+		const question = {
+			multipleChoiceRequestDtos: [],
+			questionContent: "",
+			questionType: "",
+		}
+		const title = document.getElementById("questionTitle");
 
-	// 	if (questionTypeIndex === 0) {   //주관식
-	// 		question.questionContent = title.value;
-	// 	}
-	// 	else {  //객관식
-	// 		question.questionContent = title.value;
-	// 		if (answerTypeIndex === 0) {
-	// 			question.questionType = "SUBJECTIVE"
-	// 		}
-	// 		else {
-	// 			question.questionType = "MULTIPLE"
-	// 		}
-	// 	}
-	// 	console.log("question", question);
-	// }, [questionTypeIndex, setQuestionTypeIdx, answerTypeIndex]);
+		if (questionTypeIndex === 0) {   //주관식
+			question.questionContent = title.value;
+		}
+		else {  //객관식
+			question.questionContent = title.value;
+			if (answerTypeIndex === 0) {
+				question.questionType = "SUBJECTIVE"  //단답형
+			}
+			else {
+				question.questionType = "MULTIPLE"  //복수형
+			}
+		}
+		console.log("question", question);
+	}, [questionTypeIndex, setQuestionTypeIdx, answerTypeIndex]);
 
 	return (
 		//
@@ -68,7 +68,7 @@ const QuestionCard = ({ index, onDeleteQuestion, setQuestionTypeIdx }) => {
 							<QuestionInput className="small" placeholder="질문을 입력해주세요." />
 							<QuestionDeleteButton id={index} onClick={onDeleteQuestion}>
 								&times;
-						</QuestionDeleteButton>
+							</QuestionDeleteButton>
 						</>
 					)}
 			</ContainerRow>
