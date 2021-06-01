@@ -69,7 +69,7 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 	}, [questionList]);
 
 	return (
-		// test commit
+		//
 		<>
 			<ContainerPage style={{ width: '1300px', minHeight: '130vh' }}>
 				<form onSubmit={onSubmit}>

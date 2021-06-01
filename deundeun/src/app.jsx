@@ -9,6 +9,7 @@ import OAuth2RedirectHandler from 'components/login/oauth2/OAuth2RedirectHandler
 import RegisterInfoContainer from 'container/register/RegisterInfoContainer';
 import RegisterHashtagContainer from 'container/register/RegisterHashtagContainer';
 import ClubAddInfoContainer from 'container/clubRegister/ClubAddInfoContainer';
+import ClubModifyPageContainer from 'container/clubRegister/ClubModifyPageContainer';
 import HeaderContainer from 'container/common/HeaderContainer';
 import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileModifyPageContainer';
 import LoginForm from 'components/login/index';
@@ -27,7 +28,7 @@ const ApplyPageSuccessPage = loadable(() => import('pages/ApplyPageSuccessPage')
 const RecruitDetailPage = loadable(() => import('pages/RecruitDetailPage'));
 const PostDetailPage = loadable(() => import('pages/PostDetailPage'));
 
-const ClubModifyPage = loadable(() => import('pages/ClubModifyPage'));
+// const ClubModifyPage = loadable(() => import('pages/ClubModifyPage'));
 const ApplicationAddPage = loadable(() => import('pages/ApplicationAddPage'));
 const ApplicationManagePage = loadable(() => import('pages/ApplicationManagePage'));
 const RecruitAddPage = loadable(() => import('pages/RecruitAddPage'));
@@ -132,7 +133,7 @@ const ClubManagePage = () => {
 	return (
 		//
 		<>
-			{name === 'modify' && <ClubModifyPage />}
+			{name === 'modify' && <ClubModifyPageContainer />}
 			{name === 'application' &&
 				(addNewApplication ? (
 					<>

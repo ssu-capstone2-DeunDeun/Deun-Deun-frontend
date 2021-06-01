@@ -1,38 +1,51 @@
-import { changeInput, duplicated } from 'modules/clubAddInfo';
+import { changeInput, duplicated, clubAdd } from 'modules/clubAddInfo';
 import { useDispatch, useSelector } from 'react-redux';
 import ClubAddPage from 'pages/ClubAddPage/index';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import axios from '../../../node_modules/axios/index';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
+import { useHistory } from 'react-router';
 
 const ClubAddInfoContainer = () => {
+	const history = useHistory();
 	const dispatch = useDispatch();
-	const { generation, clubName, isDuplicate, backgroundImageUrl, representImageUrl, clubImages } = useSelector(
-		({ clubAddInfo }) => ({
-			generation: clubAddInfo.generation,
-			clubName: clubAddInfo.clubName,
-			isDuplicate: clubAddInfo.isDuplicate,
-			backgroundImageUrl: clubAddInfo.backgroundImageUrl,
-			representImageUrl: clubAddInfo.representImageUrl,
-			clubImages: clubAddInfo.clubImages,
-			hashtagInfoIds: clubAddInfo.hashtagInfoIds
-		})
-	);
+	const {
+		generation,
+		categoryType,
+		clubName,
+		isDuplicate,
+		introduction,
+		hashtagInfoIds,
+		backgroundImageUrl,
+		representImageUrl,
+		clubImages
+	} = useSelector(({ clubAddInfo }) => ({
+		generation: clubAddInfo.generation,
+		categoryType: clubAddInfo.categoryType,
+		clubName: clubAddInfo.clubName,
+		isDuplicate: clubAddInfo.isDuplicate,
+		introduction: clubAddInfo.introduction,
+		hashtagInfoIds: clubAddInfo.hashtagInfoIds,
+		backgroundImageUrl: clubAddInfo.backgroundImageUrl,
+		representImageUrl: clubAddInfo.representImageUrl,
+		clubImages: clubAddInfo.clubImages
+	}));
 
+	const [imageFileList, setImageFileList] = useState([]);
+	const [generationError, setGenerationError] = useState(false);
 	const [categoryError, setCategoryError] = useState(true);
 	const [clubNameError, setClubNameError] = useState(true);
-	const [duplicateError, setDuplicateError] = useState(false);
 
 	const onChangeGeneration = useCallback(
 		(e) => {
 			if (Number(e.target.value) > 0 && Number(e.target.value <= 999)) {
 				const { value, name } = e.target;
 				dispatch(changeInput({ type: name, value: value }));
-				setCategoryError(false);
+				setGenerationError(false);
 			} else {
 				const { name } = e.target;
 				dispatch(changeInput({ type: name, value: '' }));
-				setCategoryError(true);
+				setGenerationError(true);
 			}
 		},
 		[dispatch]
@@ -42,18 +55,13 @@ const ClubAddInfoContainer = () => {
 		(e) => {
 			const { value, name } = e.target;
 			dispatch(changeInput({ type: name, value: value }));
-			// if (name === 'clubName' && value !== '') {
-			// 	setClubNameError(false);
-			// } else if (value === '') {
-			// 	setClubNameError(true);
-			// }
 			if (name === 'clubName') {
 				if (value !== '') {
 					setClubNameError(false);
 				} else {
 					setClubNameError(true);
-					setDuplicateError(false);
 				}
+				dispatch(changeInput({ type: 'isDuplicate', value: null }));
 			}
 		},
 		[dispatch]
@@ -131,8 +139,7 @@ const ClubAddInfoContainer = () => {
 				}
 			})
 				.then((response) => {
-					console.log(response.data);
-					dispatch(changeInput({ type: 'clubImages', value: response.data }));
+					setImageFileList(imageFileList.concat(response.data));
 				})
 				.catch((error) => {
 					console.log(error);
@@ -142,7 +149,7 @@ const ClubAddInfoContainer = () => {
 
 	const onChangeCategory = useCallback(
 		(e) => {
-			// console.log(e.currentTarget.innerText);
+			e.preventDefault();
 			const value = e.currentTarget.innerText;
 			dispatch(changeInput({ type: 'categoryType', value: value }));
 			setCategoryError(false);
@@ -159,26 +166,50 @@ const ClubAddInfoContainer = () => {
 		[dispatch]
 	);
 
-	const handleDuplicate = () => {
+	const handleDuplicate = (e) => {
+		e.preventDefault();
 		if (clubName) {
 			dispatch(duplicated(clubName));
-
-			if (isDuplicate === true) {
-				setDuplicateError(true);
-			}
 		}
 	};
 
-	const onSubmit = useCallback(() => {
-		console.log('submit');
-	}, []);
+	const onDeleteImage = useCallback(
+		(e) => {
+			setImageFileList(imageFileList.filter((image) => image !== e.target.id));
+		},
+		[imageFileList]
+	);
+
+	const onSubmit = () => {
+		if (categoryError || clubNameError || generationError || isDuplicate) {
+			console.log('submit error');
+			return;
+		} else {
+			const clubRequestDto = {
+				backgroundImageUrl: backgroundImageUrl,
+				categoryType: categoryType,
+				clubImages: clubImages,
+				generation: generation,
+				hashtagInfoIds: hashtagInfoIds,
+				introduction: introduction,
+				name: clubName,
+				representImageUrl: representImageUrl
+			};
+			dispatch(clubAdd(clubRequestDto));
+			// history.push();
+		}
+	};
+
+	useEffect(() => {
+		dispatch(changeInput({ type: 'clubImages', value: imageFileList }));
+	}, [dispatch, imageFileList]);
 
 	return (
 		<ClubAddPage
 			clubName={clubName}
 			clubNameError={clubNameError}
 			categoryError={categoryError}
-			duplicateError={duplicateError}
+			isDuplicate={isDuplicate}
 			generation={generation}
 			onChangeBackgroundImage={onChangeBackgroundImage}
 			onChangeRepresentImage={onChangeRepresentImage}
@@ -191,6 +222,7 @@ const ClubAddInfoContainer = () => {
 			backgroundImageUrl={backgroundImageUrl}
 			representImageUrl={representImageUrl}
 			clubImages={clubImages}
+			onDeleteImage={onDeleteImage}
 			onSubmit={onSubmit}
 		/>
 	);
