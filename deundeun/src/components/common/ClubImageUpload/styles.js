@@ -1,16 +1,18 @@
 import styled from '@emotion/styled';
-
 export const Container = styled.div`
 	border: none;
-
-	width: 50%;
-	height: 50%;
+	width: 36.8px;
+	height: 36.8px;
 
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
 	border-radius: 20px;
+
+	position: absolute;
+	bottom: 0%;
+	right: 0%;
 `;
 
 export const Input = styled.input`
@@ -26,9 +28,14 @@ export const InputButton = styled.button`
 	}
 `;
 
-export const Add = styled.span`
-	font-family: 'NotoSansKR';
-	font-size: 3rem;
+export const ClubImageUploadButton = styled.button`
+	width: 100%;
+	height: 100%;
+	background-color: #505050;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.125rem;
 	font-weight: bold;
-	color: #c3c3c3;
 `;

@@ -10,15 +10,20 @@ const SideBar = ({ location }) => {
 	const [clickClubs, setClickClubs] = useState(false);
 	const [clickApplication, setClickApplication] = useState(false);
 	const [clickLikes, setClickLikes] = useState(false);
-	const [clickNotify, setClickNotify] = useState(false);
 	const [clickCategoryOne, setClickCategoryOne] = useState(false);
 	const [clickClubManageTab, setClickClubManageTab] = useState(false);
 	const [clickClubAddTab, setClickClubAddTab] = useState(false);
 	const [clickMyClubTab, setClickMyClubTab] = useState(false);
+	const [clickManageApplicationTab, setClickManageApplicationtab] = useState(false);
+	const [clickRecruitTab, setClickRecruitTab] = useState(false);
+	const [clickApplicantTab, setClickApplicantTab] = useState(false);
+	const [clickMemberTab, setClickMemberTab] = useState(false);
+
+	const [addNewForm, setAddNewForm] = useState(false);
 
 	const onClickHomeTab = useCallback((e) => {
 		setHomeTab();
-	});
+	}, []);
 
 	const onClickCategoryTab = useCallback((e) => {
 		setCategoryTab();
@@ -46,13 +51,9 @@ const SideBar = ({ location }) => {
 		setLikesTab();
 	}, []);
 
-	const onClickNotify = useCallback((e) => {
-		setNotifyTab();
-	}, []);
-
 	const onClickMyClubTab = useCallback((e) => {
 		setMyClubTab();
-	});
+	}, []);
 
 	const onClickClubManageTab = useCallback((e) => {
 		setClubManageTab();
@@ -62,11 +63,28 @@ const SideBar = ({ location }) => {
 		setClubAddTab();
 	}, []);
 
+	const onClickManageApplicationTab = useCallback(() => {
+		setManageApplicationTab();
+	}, []);
+
+	const onClickRecruitTab = useCallback(() => {
+		setRecruitTab();
+	}, []);
+
+	const onClickApplicantTab = useCallback(() => {
+		setApplicantTab();
+	}, []);
+
+	const onClickMemberTab = useCallback(() => {
+		setMemberTab();
+	}, []);
+
 	const setHomeTab = () => {
 		setClickHomeTab(true);
 		setClickCategoryTab(false);
 		setClickMyPageTab(false);
 		setClickMyClubTab(false);
+		setClickClubAddTab(false);
 	};
 
 	const setCategoryTab = () => {
@@ -74,6 +92,7 @@ const SideBar = ({ location }) => {
 		setClickHomeTab(false);
 		setClickMyPageTab(false);
 		setClickMyClubTab(false);
+		setClickClubAddTab(false);
 
 		setClickCategoryOne(true);
 	};
@@ -83,28 +102,29 @@ const SideBar = ({ location }) => {
 		setClickHomeTab(false);
 		setClickMyPageTab(true);
 		setClickMyClubTab(false);
+		setClickClubAddTab(false);
 
 		setClickModify(true);
 		setClickClubs(false);
 		setClickApplication(false);
 		setClickLikes(false);
-		setClickNotify(false);
 	};
 
 	const setModifyTab = () => {
 		setClickModify(true);
+
 		setClickClubs(false);
 		setClickApplication(false);
 		setClickLikes(false);
-		setClickNotify(false);
 	};
 
 	const setClubsTab = () => {
 		setClickModify(false);
+
 		setClickClubs(true);
+
 		setClickApplication(false);
 		setClickLikes(false);
-		setClickNotify(false);
 	};
 
 	const setApplicationTab = () => {
@@ -112,43 +132,83 @@ const SideBar = ({ location }) => {
 		setClickClubs(false);
 		setClickApplication(true);
 		setClickLikes(false);
-		setClickNotify(false);
 	};
 
 	const setLikesTab = () => {
 		setClickModify(false);
 		setClickClubs(false);
 		setClickApplication(false);
+
 		setClickLikes(true);
-		setClickNotify(false);
 	};
 
-	const setNotifyTab = () => {
-		setClickModify(false);
-		setClickClubs(false);
-		setClickApplication(false);
-		setClickLikes(false);
-		setClickNotify(true);
+	const setClubAddTab = () => {
+		setClickHomeTab(false);
+		setClickCategoryTab(false);
+		setClickMyPageTab(false);
+		setClickMyClubTab(false);
+		setClickClubManageTab(false);
+
+		setClickClubAddTab(true);
 	};
 
 	const setMyClubTab = () => {
 		setClickHomeTab(false);
 		setClickCategoryTab(false);
 		setClickMyPageTab(false);
-		setClickMyClubTab(true);
 
+		setClickMyClubTab(true);
 		setClickClubManageTab(true);
+
 		setClickClubAddTab(false);
 	};
 
 	const setClubManageTab = () => {
 		setClickClubManageTab(true);
 		setClickClubAddTab(false);
+		setClickManageApplicationtab(false);
+		setClickRecruitTab(false);
+		setClickApplicantTab(false);
+		setClickMemberTab(false);
 	};
 
-	const setClubAddTab = () => {
+	const setManageApplicationTab = () => {
 		setClickClubManageTab(false);
-		setClickClubAddTab(true);
+
+		setClickManageApplicationtab(true);
+
+		setClickRecruitTab(false);
+		setClickApplicantTab(false);
+		setClickMemberTab(false);
+	};
+
+	const setRecruitTab = () => {
+		setClickClubManageTab(false);
+		setClickManageApplicationtab(false);
+
+		setClickRecruitTab(true);
+
+		setClickApplicantTab(false);
+		setClickMemberTab(false);
+	};
+
+	const setApplicantTab = () => {
+		setClickClubManageTab(false);
+		setClickManageApplicationtab(false);
+		setClickRecruitTab(false);
+
+		setClickApplicantTab(true);
+
+		setClickMemberTab(false);
+	};
+
+	const setMemberTab = () => {
+		setClickClubManageTab(false);
+		setClickManageApplicationtab(false);
+		setClickRecruitTab(false);
+		setClickApplicantTab(false);
+
+		setClickMemberTab(true);
 	};
 
 	useEffect(() => {
@@ -175,21 +235,45 @@ const SideBar = ({ location }) => {
 				setMypageTab();
 				setLikesTab();
 				break;
-			case '/mypage/notify':
-				setMypageTab();
-				setNotifyTab();
+			case '/club/add':
+				setClubAddTab();
 				break;
 			case '/club/manage/modify':
 				setMyClubTab();
+				setClubManageTab();
 				break;
-			case '/club/add':
+			case '/club/manage/application':
 				setMyClubTab();
-				setClubAddTab();
+				setManageApplicationTab();
+				break;
+			case '/club/manage/application/new':
+				setMyClubTab();
+				setManageApplicationTab();
+				break;
+			case '/club/manage/recruit':
+				setMyClubTab();
+				setRecruitTab();
+				break;
+			case '/club/manage/recruit/new':
+				setMyClubTab();
+				setRecruitTab();
+				break;
+			case '/club/manage/applicant':
+				setMyClubTab();
+				setApplicantTab();
+				break;
+			case '/club/manage/member':
+				setMyClubTab();
+				setMemberTab();
 				break;
 			default:
 				break;
 		}
 	}, [location]);
+
+	useEffect(() => {
+		return () => setAddNewForm(false);
+	}, []);
 
 	return (
 		//
@@ -255,13 +339,13 @@ const SideBar = ({ location }) => {
 							관심 목록
 						</Button>
 					</Link>
-					{/* <Link to="/mypage/notify">
-						<Button className={`${clickNotify ? 'clicked-category' : 'category'}`} onClick={onClickNotify}>
-							나의 알림 신청
-						</Button>
-					</Link> */}
 				</>
 			)}
+			<Link style={{ width: '9.4vh' }} to="/club/add">
+				<Button className={`${clickClubAddTab ? 'clicked' : 'not-clicked'}`} onClick={onClickClubAddTab}>
+					동아리 등록
+				</Button>
+			</Link>
 			<Link style={{ width: '9.4vh' }} to="/club/manage/modify">
 				<Button className={`${clickMyClubTab ? 'clicked' : 'not-clicked'}`} onClick={onClickMyClubTab}>
 					동아리 관리
@@ -274,12 +358,30 @@ const SideBar = ({ location }) => {
 							className={`${clickClubManageTab ? 'clicked-category' : 'category'}`}
 							onClick={onClickClubManageTab}
 						>
-							동아리 관리
+							정보 수정
 						</Button>
 					</Link>
-					<Link style={{ width: '15vw' }} to="/club/add">
-						<Button className={`${clickClubAddTab ? 'clicked-category' : 'category'}`} onClick={onClickClubAddTab}>
-							동아리 등록
+					<Link style={{ width: '15vw' }} to="/club/manage/application">
+						<Button
+							className={`${clickManageApplicationTab ? 'clicked-category' : 'category'}`}
+							onClick={onClickManageApplicationTab}
+						>
+							지원서 양식
+						</Button>
+					</Link>
+					<Link style={{ width: '15vw' }} to="/club/manage/recruit">
+						<Button className={`${clickRecruitTab ? 'clicked-category' : 'category'}`} onClick={onClickRecruitTab}>
+							모집 공고
+						</Button>
+					</Link>
+					<Link style={{ width: '15vw' }} to="/club/manage/applicant">
+						<Button className={`${clickApplicantTab ? 'clicked-category' : 'category'}`} onClick={onClickApplicantTab}>
+							지원자 관리
+						</Button>
+					</Link>
+					<Link style={{ width: '15vw' }} to="/club/manage/member">
+						<Button className={`${clickMemberTab ? 'clicked-category' : 'category'}`} onClick={onClickMemberTab}>
+							멤버 관리
 						</Button>
 					</Link>
 				</>

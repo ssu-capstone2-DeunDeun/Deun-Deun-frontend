@@ -112,5 +112,5 @@ export const Error = styled.div`
 	color: #e01e5a;
 	/* margin-left: 1em; */
 	font-weight: bold;
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 `;

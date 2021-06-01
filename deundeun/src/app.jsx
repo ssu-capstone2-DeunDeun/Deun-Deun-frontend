@@ -1,5 +1,5 @@
 // import MyPage from 'pages/MyPage';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch, useLocation, useParams } from 'react-router-dom';
 import loadable from '@loadable/component';
 import SideBar from 'components/common/SideBar';
@@ -16,8 +16,6 @@ import LoginForm from 'components/login/index';
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
 const ClubDetailPage = loadable(() => import('pages/ClubDetailPage'));
-const ClubManagePage = loadable(() => import('pages/ClubManagePage'));
-const ClubAddPage = loadable(() => import('pages/ClubAddPage'));
 const MyProfileModifyPage = loadable(() => import('pages/MyProfileModifyPage'));
 const MyClubListPage = loadable(() => import('pages/MyClubListPage'));
 const MyApplicationPage = loadable(() => import('pages/MyApplicationPage'));
@@ -28,10 +26,16 @@ const ApplyPage = loadable(() => import('pages/ApplyPage'));
 const ApplyPageSuccessPage = loadable(() => import('pages/ApplyPageSuccessPage'));
 const RecruitDetailPage = loadable(() => import('pages/RecruitDetailPage'));
 const PostDetailPage = loadable(() => import('pages/PostDetailPage'));
+
+const ClubModifyPage = loadable(() => import('pages/ClubModifyPage'));
+const ApplicationAddPage = loadable(() => import('pages/ApplicationAddPage'));
+const ApplicationManagePage = loadable(() => import('pages/ApplicationManagePage'));
+const RecruitAddPage = loadable(() => import('pages/RecruitAddPage'));
+const RecruitManagePage = loadable(() => import('pages/RecruitManagePage'));
 const ApplicantManagePage = loadable(() => import('pages/ApplicantManagePage'));
 const MemberManagePage = loadable(() => import('pages/MemberManagePage'));
 
-const App = ({ FileInput, SingleFileInput }) => {
+const App = () => {
 	let location = useLocation();
 
 	useEffect(() => {
@@ -68,7 +72,7 @@ const App = ({ FileInput, SingleFileInput }) => {
 					<MyPage />
 				</ContainerRow>
 			</Route>
-			<Route path="/club/manage/">
+			<Route path="/club/manage/:name">
 				{/* <Header /> */}
 				<HeaderContainer />
 				<ContainerRow>
@@ -81,8 +85,7 @@ const App = ({ FileInput, SingleFileInput }) => {
 				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
-					{/* <ClubAddPage FileInput={FileInput} SingleFileInput={SingleFileInput} /> */}
-					<ClubAddInfoContainer FileInput={FileInput} SingleFileInput={SingleFileInput} />
+					<ClubAddInfoContainer />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/detail" component={ClubDetailPage} />
@@ -111,7 +114,51 @@ const MyPage = () => {
 			{name === 'clubs' && <MyClubListPage />}
 			{name === 'application' && <MyApplicationPage />}
 			{name === 'likes' && <MyLikeListPage />}
-			{/* {name === 'notify' && <MyNotificationPage />} */}
+		</>
+	);
+};
+
+const ClubManagePage = () => {
+	const { name } = useParams();
+	const [addNewApplication, setAddNewApplication] = useState(false);
+	const [addNewRecruit, setAddNewRecruit] = useState(false);
+	useEffect(() => {
+		return () => {
+			setAddNewApplication(false);
+			setAddNewRecruit(false);
+		};
+	}, []);
+
+	return (
+		//
+		<>
+			{name === 'modify' && <ClubModifyPage />}
+			{name === 'application' &&
+				(addNewApplication ? (
+					<>
+						<Redirect to="/club/manage/application/new" />
+						<ApplicationAddPage setAddNewForm={setAddNewApplication} />
+					</>
+				) : (
+					<>
+						<Redirect to="/club/manage/application" />
+						<ApplicationManagePage setAddNewForm={setAddNewApplication} />
+					</>
+				))}
+			{name === 'recruit' &&
+				(addNewRecruit ? (
+					<>
+						<Redirect to="/club/manage/recruit/new" />
+						<RecruitAddPage setAddNewForm={setAddNewRecruit} />
+					</>
+				) : (
+					<>
+						<Redirect to="/club/manage/recruit" />
+						<RecruitManagePage setAddNewForm={setAddNewRecruit} />
+					</>
+				))}
+			{name === 'applicant' && <ApplicantManagePage />}
+			{name === 'member' && <MemberManagePage />}
 		</>
 	);
 };
