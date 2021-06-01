@@ -42,7 +42,7 @@ const MyPage = ({ onChange, userInfo, onChangeNickname, onSubmitNickname }) => {
 					<InputContainer>
 						<TitleKorean style={{ marginLeft: '7.8em' }}>닉네임 *</TitleKorean>
 						<InputBoxContainer>
-							<InputBox onChange={onChangeNickname} placeholder="닉네임"></InputBox>
+							<InputBox onChange={onChangeNickname} placeholder={userInfo.nickname}></InputBox>
 							<SubmitButton onClick={onSubmitNickname} type="submit">닉네임 변경</SubmitButton>
 						</InputBoxContainer>
 
