@@ -8,13 +8,18 @@ import { Prompt, useHistory } from 'react-router';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import { Footer } from 'pages/ClubAddPage/styles';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { changeInput } from 'modules/applicationAddInfo';
 const ApplicationAddPage = ({ setAddNewForm }) => {
 	const history = useHistory();
-	const [title, setTitle] = useState('');
 	const [questionIndex, setQuestionIndex] = useState(2);
 	const [deleteError, setDeleteError] = useState(false);
 	const [submitError, setSubmitError] = useState(false);
-	const [titleError, setTitleError] = useState(true);
+
+
+	const [questionTypeIdx, setQuestionTypeIdx] = useState(0);
+
 	const [questionList, setQuestionList] = useState([
 		{
 			index: 1,
@@ -22,15 +27,31 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 		}
 	]);
 
+	//내가 짠 코드
+	const dispatch = useDispatch();
+	const { title, recruitQuestion } = useSelector(({ applicationAddInfo }) => ({
+		title: applicationAddInfo.title,
+		recruitQuestion: applicationAddInfo.recruitQuestionRequestDtos,
+	}))
+
 	const onChangeTitle = useCallback((e) => {
-		console.log(e.target.value);
-		if (e.target.value === '') {
-			setTitleError(true);
-		} else {
-			setTitle(e.target.value);
-			setTitleError(false);
+		dispatch(changeInput({ type: "title", value: e.target.value }))
+	}, [dispatch]);
+	//내가 짠 코드 종료
+
+	useEffect(() => {
+		const question = {
+			multipleChoiceRequestDtos: [],
+			questionContent: "",
+			questionType: "",
 		}
-	}, []);
+		if (questionTypeIdx === 0) {
+
+		}
+		else {
+
+		}
+	}, [questionTypeIdx]);
 
 	const onSubmit = useCallback(() => {
 		history.push('/apply/success');
@@ -44,6 +65,7 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 		setQuestionList(questionList.concat(newQuestion));
 		setQuestionIndex(questionIndex + 1);
 	}, [questionList, questionIndex]);
+
 
 	const onDeleteQuestion = useCallback(
 		(e) => {
@@ -82,13 +104,15 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 							name="title"
 							onChange={onChangeTitle}
 							placeholder="제목을 입력해주세요."
+							value={title}
 						></ApplicationTitleInput>
-						{titleError && <Error style={{ marginLeft: '0.3em' }}>* 제목은 필수 입력 항목입니다.</Error>}
+						{title === "" && <Error style={{ marginLeft: '0.3em' }}>* 제목은 필수 입력 항목입니다.</Error>}
 					</ContainerColumn>
+
 					<ContainerColumn>
 						<TitleKorean style={{ marginBottom: '1em' }}>질문</TitleKorean>
 						{questionList.map((question) => (
-							<QuestionCard key={question.index} index={question.index} onDeleteQuestion={onDeleteQuestion} />
+							<QuestionCard key={question.index} index={question.index} setQuestionTypeIdx={setQuestionTypeIdx} onDeleteQuestion={onDeleteQuestion} />
 						))}
 						<AddQuestionButton>
 							<InnerContainer onClick={onClickAddQuestion}>

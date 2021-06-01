@@ -8,6 +8,7 @@ import initHomePage, { initHomePageSaga } from './initHomePage';
 import clubAddInfo, { clubAddSaga } from './clubAddInfo';
 import initCategory from './initCategory';
 import clubAddRecruitInfo from './clubAddRecruitInfo';
+import applicationAddInfo from './applicationAddInfo';
 
 
 const rootReducer = combineReducers({
@@ -18,7 +19,9 @@ const rootReducer = combineReducers({
 	clubAddInfo,
 	initCategory,
 	clubAddRecruitInfo,
+	applicationAddInfo,
 });
+
 export function* rootSaga() {
 	yield all
 		([initHashtagsSaga(),
