@@ -38,10 +38,10 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 	const [generation, setGeneration] = useState('');
 	console.log(startDateString, endDateString, startDate, endDate, dateError, generation);
 
-	// const dispatch = useDispatch();
-	// const { clubAddRecruitInfo } = useSelector(({ clubAddRecruitInfo }) => ({
-	// 	clubAddRecruitInfo,
-	// }))
+	const dispatch = useDispatch();
+	const { clubAddRecruitInfo } = useSelector(({ clubAddRecruitInfo }) => ({
+		clubAddRecruitInfo,
+	}))
 	// console.log("clubaddrecruitinfo", clubAddRecruitInfo);
 
 
@@ -103,7 +103,7 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 			<ApplicationLoadCard onClick={onClickLoadApplication}>
 				<InnerContainer className="inner">
 					<AddCircleOutlineIcon style={{ marginRight: '0.4em' }} />
-					<ContentKorean style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>지원서 불러오기</ContentKorean>
+					<ContentKorean style={{ fontSize: '1.1rem', paddinxgTop: '0.13em' }}>지원서 불러오기</ContentKorean>
 				</InnerContainer>
 			</ApplicationLoadCard>
 			<TitleKorean style={{ marginBottom: '1em' }}>모집 기수 / 제목</TitleKorean>
@@ -148,7 +148,7 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 					<Tilde>~</Tilde>
 					<RecruitDeadline>2021.01.01</RecruitDeadline> */}
 
-					<RecruitInfo type="text" placeholder="1차 발표"></RecruitInfo>
+					<RecruitInfo type="text" placeholder="서류 접수"></RecruitInfo>
 					<DatePicker
 						locale="ko"
 						selected={startDate}
