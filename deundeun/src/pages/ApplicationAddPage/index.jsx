@@ -14,11 +14,23 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 	const [questionIndex, setQuestionIndex] = useState(2);
 	const [deleteError, setDeleteError] = useState(false);
 	const [submitError, setSubmitError] = useState(false);
+	const [titleError, setTitleError] = useState(true);
 	const [questionList, setQuestionList] = useState([
 		{
-			index: 1
+			index: 1,
+			title: ''
 		}
 	]);
+
+	const onChangeTitle = useCallback((e) => {
+		console.log(e.target.value);
+		if (e.target.value === '') {
+			setTitleError(true);
+		} else {
+			setTitle(e.target.value);
+			setTitleError(false);
+		}
+	}, []);
 
 	const onSubmit = useCallback(() => {
 		history.push('/apply/success');
@@ -26,7 +38,8 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 
 	const onClickAddQuestion = useCallback(() => {
 		const newQuestion = {
-			index: questionIndex
+			index: questionIndex,
+			title: ''
 		};
 		setQuestionList(questionList.concat(newQuestion));
 		setQuestionIndex(questionIndex + 1);
@@ -51,6 +64,10 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 		return () => setAddNewForm(false);
 	}, []);
 
+	useEffect(() => {
+		console.log(questionList);
+	}, [questionList]);
+
 	return (
 		//
 		<>
@@ -63,10 +80,10 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 							type="text"
 							id="title"
 							name="title"
-							onChange={setTitle}
+							onChange={onChangeTitle}
 							placeholder="제목을 입력해주세요."
 						></ApplicationTitleInput>
-						{/* {!title && <Error>* 제목은 필수 입력 항목입니다.</Error>} */}
+						{titleError && <Error style={{ marginLeft: '0.3em' }}>* 제목은 필수 입력 항목입니다.</Error>}
 					</ContainerColumn>
 					<ContainerColumn>
 						<TitleKorean style={{ marginBottom: '1em' }}>질문</TitleKorean>

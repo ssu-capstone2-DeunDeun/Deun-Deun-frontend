@@ -14,7 +14,7 @@ import {
 import React, { forwardRef, useCallback, useEffect, useState } from 'react';
 import { ContainerColumn, ContainerRow } from 'styles';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import { Header, SubmitButton } from 'pages/ApplicationAddPage/styles';
+import { Error, Header, SubmitButton } from 'pages/ApplicationAddPage/styles';
 import LoadApplicationModal from 'components/modal/LoadApplicationModal';
 import { Footer } from 'components/PostSection/styles';
 import DatePicker from 'react-datepicker';
@@ -32,6 +32,10 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(new Date());
 	const [dateError, setDateError] = useState(false);
+	const [generationError, setGenerationError] = useState(true);
+	const [titleError, setTitleError] = useState(true);
+	const [formError, setFormError] = useState(true);
+	const [title, setTitle] = useState('');
 	const [showLoadApplicationModal, setShowLoadApplicationModal] = useState(false);
 	const [generation, setGeneration] = useState('');
 
@@ -53,16 +57,29 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 		);
 	};
 
-	const onChangeGeneration = (e) => {
+	const onChangeGeneration = useCallback((e) => {
 		if (Number(e.target.value) > 0 && Number(e.target.value <= 999)) {
 			setGeneration(e.target.value);
+			setGenerationError(false);
 		} else {
 			setGeneration('');
+			setGenerationError(true);
 		}
-	};
+	}, []);
+
+	const onChangeTitle = useCallback((e) => {
+		console.log(e.target.value);
+		if (e.target.value === '') {
+			setTitleError(true);
+		} else {
+			setTitle(e.target.value);
+			setTitleError(false);
+		}
+	}, []);
 
 	const onClickLoadApplication = useCallback((e) => {
 		setShowLoadApplicationModal(true);
+		setFormError(false);
 	}, []);
 
 	const onCloseModal = useCallback((e) => {
@@ -96,19 +113,23 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 					<ContentKorean style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>지원서 불러오기</ContentKorean>
 				</InnerContainer>
 			</ApplicationLoadCard>
-			<TitleKorean style={{ marginBottom: '1em' }}>모집 기수 / 제목</TitleKorean>
-			<ContainerRow style={{ marginBottom: '2em' }}>
+			{formError && <Error style={{ marginLeft: '0.5em' }}>* 지원서 양식이 필요합니다.</Error>}
+			<TitleKorean style={{ marginBottom: '1em', marginTop: '1.3em' }}>모집 기수 / 제목</TitleKorean>
+			<ContainerRow>
 				<Generation style={{ height: '66px' }}>
 					<GenerationInput min="1" onChange={onChangeGeneration} value={generation} />
 					<Placeholder>기</Placeholder>
 				</Generation>
 
-				<RecruitTitleInput placeholder="제목을 입력해 주세요."></RecruitTitleInput>
+				<RecruitTitleInput onChange={onChangeTitle} placeholder="제목을 입력해 주세요."></RecruitTitleInput>
 			</ContainerRow>
-			<TitleKorean style={{ marginBottom: '1em' }}>모집 일정</TitleKorean>
+			{(titleError || generationError) && (
+				<Error style={{ marginTop: '0.6em', marginLeft: '0.5em' }}>* 모집 기수 / 제목은 필수 입력사항 입니다.</Error>
+			)}
+			<TitleKorean style={{ marginBottom: '1em', marginTop: '2em' }}>모집 일정</TitleKorean>
 			<ContainerColumn style={{ marginBottom: '2em' }}>
 				<ContainerRow>
-					<RecruitInfo type="text" placeholder="서류 접수"></RecruitInfo>
+					<RecruitInfo>서류 접수</RecruitInfo>
 					<DatePicker
 						locale="ko"
 						selected={startDate}
@@ -133,19 +154,19 @@ const RecruitAddPage = ({ setAddNewForm }) => {
 					/>
 				</ContainerRow>
 				<ContainerRow>
-					<RecruitInfo placeholder="1차 발표"></RecruitInfo>
+					<RecruitInfo>1차 발표</RecruitInfo>
 					<RecruitDeadline>2021.01.01</RecruitDeadline>
 					<Tilde>~</Tilde>
 					<RecruitDeadline>2021.01.01</RecruitDeadline>
 				</ContainerRow>
 				<ContainerRow>
-					<RecruitInfo placeholder="면접 진행"></RecruitInfo>
+					<RecruitInfo>면접 진행</RecruitInfo>
 					<RecruitDeadline>2021.01.01</RecruitDeadline>
 					<Tilde>~</Tilde>
 					<RecruitDeadline>2021.01.01</RecruitDeadline>
 				</ContainerRow>
 				<ContainerRow>
-					<RecruitInfo placeholder="최종 발표"></RecruitInfo>
+					<RecruitInfo>최종 발표</RecruitInfo>
 					<RecruitDeadline>2021.01.01</RecruitDeadline>
 					<Tilde>~</Tilde>
 					<RecruitDeadline>2021.01.01</RecruitDeadline>
