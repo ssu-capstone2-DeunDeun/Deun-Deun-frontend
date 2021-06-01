@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button, Container } from './styles';
 const SideBar = ({ location }) => {
 	const { category } = useSelector(({ initCategory }) => ({ category: initCategory.category }));
-	console.log("category :", category);
 	const [clickHomeTab, setClickHomeTab] = useState(true);
 	const [clickCategoryTab, setClickCategoryTab] = useState(false);
 	const [clickMyPageTab, setClickMyPageTab] = useState(false);

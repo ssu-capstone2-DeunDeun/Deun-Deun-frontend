@@ -8,17 +8,51 @@ import { Prompt, useHistory } from 'react-router';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import { Footer } from 'pages/ClubAddPage/styles';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { changeInput } from 'modules/applicationAddInfo';
 const ApplicationAddPage = ({ setAddNewForm }) => {
 	const history = useHistory();
-	const [title, setTitle] = useState('');
 	const [questionIndex, setQuestionIndex] = useState(2);
 	const [deleteError, setDeleteError] = useState(false);
 	const [submitError, setSubmitError] = useState(false);
+
+
+	const [questionTypeIdx, setQuestionTypeIdx] = useState(0);
+
 	const [questionList, setQuestionList] = useState([
 		{
-			index: 1
+			index: 1,
+			title: ''
 		}
 	]);
+
+	//내가 짠 코드
+	const dispatch = useDispatch();
+	const { title, recruitQuestion } = useSelector(({ applicationAddInfo }) => ({
+		title: applicationAddInfo.title,
+		recruitQuestion: applicationAddInfo.recruitQuestionRequestDtos,
+	}))
+
+	const onChangeTitle = useCallback((e) => {
+		dispatch(changeInput({ type: "title", value: e.target.value }))
+	}, [dispatch]);
+	//내가 짠 코드 종료
+
+	useEffect(() => {
+		const question = {
+			multipleChoiceRequestDtos: [],
+			questionContent: "",
+			questionType: "",
+		}
+
+		if (questionTypeIdx === 0) {  //주관식
+
+		}
+		else {  //선다형
+
+		}
+	}, [questionTypeIdx]);
 
 	const onSubmit = useCallback(() => {
 		history.push('/apply/success');
@@ -26,11 +60,13 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 
 	const onClickAddQuestion = useCallback(() => {
 		const newQuestion = {
-			index: questionIndex
+			index: questionIndex,
+			title: ''
 		};
 		setQuestionList(questionList.concat(newQuestion));
 		setQuestionIndex(questionIndex + 1);
 	}, [questionList, questionIndex]);
+
 
 	const onDeleteQuestion = useCallback(
 		(e) => {
@@ -51,6 +87,10 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 		return () => setAddNewForm(false);
 	}, []);
 
+	useEffect(() => {
+		console.log(questionList);
+	}, [questionList]);
+
 	return (
 		//
 		<>
@@ -63,15 +103,17 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 							type="text"
 							id="title"
 							name="title"
-							onChange={setTitle}
+							onChange={onChangeTitle}
 							placeholder="제목을 입력해주세요."
+							value={title}
 						></ApplicationTitleInput>
-						{/* {!title && <Error>* 제목은 필수 입력 항목입니다.</Error>} */}
+						{title === "" && <Error style={{ marginLeft: '0.3em' }}>* 제목은 필수 입력 항목입니다.</Error>}
 					</ContainerColumn>
+
 					<ContainerColumn>
 						<TitleKorean style={{ marginBottom: '1em' }}>질문</TitleKorean>
 						{questionList.map((question) => (
-							<QuestionCard key={question.index} index={question.index} onDeleteQuestion={onDeleteQuestion} />
+							<QuestionCard key={question.index} index={question.index} setQuestionTypeIdx={setQuestionTypeIdx} onDeleteQuestion={onDeleteQuestion} />
 						))}
 						<AddQuestionButton>
 							<InnerContainer onClick={onClickAddQuestion}>

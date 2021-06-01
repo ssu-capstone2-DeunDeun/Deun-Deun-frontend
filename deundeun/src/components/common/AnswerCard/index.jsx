@@ -4,18 +4,23 @@ import { QuestionNumber } from '../QuestionCard/styles';
 import { AnswerContainer, ChoiceInput, ChoiceAddButton, ChoiceDeleteButton, Add } from './styles';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
+import { useEffect } from 'react';
 const AnswerCard = () => {
 	const [choiceIndex, setChoiceIndex] = useState(2);
 	const [deleteError, setDeleteError] = useState(false);
 	const [choiceList, setChoiceList] = useState([
 		{
-			index: 1
+			choiceNumber: 1,
+			choiceContent: "",
 		}
 	]);
 
 	const onAddChoice = useCallback(() => {
+		const value = document.getElementById("choiceValue");
+
 		const newChoice = {
-			index: choiceIndex
+			choiceNumber: choiceIndex,
+			choiceContnetL: value,
 		};
 		setChoiceList(choiceList.concat(newChoice));
 		setChoiceIndex(choiceIndex + 1);
@@ -36,6 +41,10 @@ const AnswerCard = () => {
 		setDeleteError(false);
 	}, []);
 
+
+	useEffect(() => {
+
+	}, []);
 	return (
 		//
 		<>
@@ -45,7 +54,7 @@ const AnswerCard = () => {
 					{choiceList.map((choice) => (
 						<div key={choice.index}>
 							<ContainerRow style={{ marginBottom: '0.6em' }}>
-								<ChoiceInput placeholder="선택지를 입력해주세요."></ChoiceInput>
+								<ChoiceInput id="choiceValue" placeholder="선택지를 입력해주세요."></ChoiceInput>
 								<ChoiceDeleteButton id={choice.index} onClick={onDeleteChoice}>
 									&times;
 								</ChoiceDeleteButton>

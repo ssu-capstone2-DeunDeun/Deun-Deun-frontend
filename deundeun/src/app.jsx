@@ -12,6 +12,7 @@ import ClubAddInfoContainer from 'container/clubRegister/ClubAddInfoContainer';
 import HeaderContainer from 'container/common/HeaderContainer';
 import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileModifyPageContainer';
 import LoginForm from 'components/login/index';
+import ClubPostPage from 'pages/ClubPostPage/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -101,6 +102,7 @@ const App = () => {
 			<Route component={ApplicantManagePage} path="/manager/applicant" exact />
 			<Route component={MemberManagePage} path="/manager/member" exact />
 			<Route component={OAuth2RedirectHandler} path="/oauth2/redirect" exact />
+			<Route component={ClubPostPage} path="/club/post" exact />
 		</Switch>
 	);
 };
@@ -140,11 +142,11 @@ const ClubManagePage = () => {
 						<ApplicationAddPage setAddNewForm={setAddNewApplication} />
 					</>
 				) : (
-					<>
-						<Redirect to="/club/manage/application" />
-						<ApplicationManagePage setAddNewForm={setAddNewApplication} />
-					</>
-				))}
+						<>
+							<Redirect to="/club/manage/application" />
+							<ApplicationManagePage setAddNewForm={setAddNewApplication} />
+						</>
+					))}
 			{name === 'recruit' &&
 				(addNewRecruit ? (
 					<>
@@ -152,11 +154,11 @@ const ClubManagePage = () => {
 						<RecruitAddPage setAddNewForm={setAddNewRecruit} />
 					</>
 				) : (
-					<>
-						<Redirect to="/club/manage/recruit" />
-						<RecruitManagePage setAddNewForm={setAddNewRecruit} />
-					</>
-				))}
+						<>
+							<Redirect to="/club/manage/recruit" />
+							<RecruitManagePage setAddNewForm={setAddNewRecruit} />
+						</>
+					))}
 			{name === 'applicant' && <ApplicantManagePage />}
 			{name === 'member' && <MemberManagePage />}
 		</>
