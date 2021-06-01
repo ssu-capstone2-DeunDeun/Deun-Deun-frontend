@@ -33,6 +33,7 @@ import ClubHashtag from 'components/common/ClubHashtag/index';
 import ImageUpload from 'components/common/ImageUpload/index';
 import ClubImageUpload from 'components/common/ClubImageUpload/index';
 import { Error } from 'pages/ApplicationAddPage/styles';
+import { useSelector } from 'react-redux';
 
 const ClubImage = styled.div`
 	width: 100%;
@@ -109,7 +110,9 @@ const ClubManagePage = ({
 	const [anchorEl, setAnchorEl] = useState(null);
 	const ITEM_HEIGHT = 48;
 
-	const menuOptions = ['IT / 개발', '카테고리 2', '카테고리 3', '카테고리 4', '카테고리 5'];
+	const { menuOptions } = useSelector(({ initCategory }) => ({
+		menuOptions: initCategory.category
+	}))
 	const hashtagOptions = ['개발', '문화', '예술', '경제', '스포츠', '친목', '디자인', '봉사'];
 
 	const onClickImage = useCallback(
