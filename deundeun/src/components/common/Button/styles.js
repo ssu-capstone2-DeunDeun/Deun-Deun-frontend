@@ -61,6 +61,42 @@ export const buttonStyle = css`
             height:51px;
         `
     }
+
+    ${props =>
+        props.applyManageBtn &&
+        css`
+            background-color:#1f1f1f;
+            font-size:14px;
+            padding:15px 73px 16px;
+            width:198px;
+            height:51px;
+        `
+    }
+
+    ${props =>
+        props.postBtn1 &&
+        css`
+            background-color:#1f1f1f;
+            font-size:18px;
+            font-weight:bold;
+            padding:17.9px 98px 21.1px 99px;
+            width:300px;
+            height:66px;
+        `
+    }   
+
+    ${props =>
+        props.postBtn2 &&
+        css`
+            background-color:#a2a2a2;
+            font-size:18px;
+            font-weight:bold;
+            padding:17.9px 98px 21.1px 99px;
+            width:300px;
+            height:66px;
+            margin-left : 12px;
+        `
+    }   
 `;
 
 export const StyledLink = styled(Link)`
