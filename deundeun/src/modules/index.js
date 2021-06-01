@@ -6,6 +6,8 @@ import { all } from 'redux-saga/effects';
 import initHashtags, { initHashtagsSaga } from './initHashtags';
 import initHomePage, { initHomePageSaga } from './initHomePage';
 import clubAddInfo, { clubAddSaga } from './clubAddInfo';
+import initCategory from './initCategory';
+
 
 const rootReducer = combineReducers({
 	currentUserInfo,
@@ -13,7 +15,7 @@ const rootReducer = combineReducers({
 	loading,
 	initHashtags,
 	clubAddInfo,
-	initHomePage,
+	initCategory,
 });
 
 export function* rootSaga() {
