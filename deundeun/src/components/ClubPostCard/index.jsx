@@ -15,11 +15,15 @@ import {
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { ContainerRow } from 'styles';
+import { withRouter } from 'react-router-dom';
 
-const ClubPostCard = ({ title, content, createdAt, clubName, likeCount }) => {
+const ClubPostCard = ({ title, content, createdAt, clubName, likeCount, postId, history }) => {
+	const onMove = () => {
+		history.push(`/club/post/${postId}`)
+	}
 	return (
 		//
-		<Container>
+		<Container onClick={onMove}>
 			{/* <PostImage /> */}
 			<PostOverview>
 				<TitleKorean>{title}</TitleKorean>
@@ -37,7 +41,7 @@ const ClubPostCard = ({ title, content, createdAt, clubName, likeCount }) => {
 						<ChatBubbleOutlineIcon
 							style={{ width: '20.2px', height: '20.2px', marginRight: '0.2em', cursor: 'pointer' }}
 						/>
-						123
+							1
 					</Comment>
 					<Like>
 						<FavoriteIcon style={{ width: '20.2px', height: '20.2px', marginRight: '0.1em', cursor: 'pointer' }} />
@@ -49,4 +53,4 @@ const ClubPostCard = ({ title, content, createdAt, clubName, likeCount }) => {
 	);
 };
 
-export default ClubPostCard;
+export default withRouter(ClubPostCard);

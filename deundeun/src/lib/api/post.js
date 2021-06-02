@@ -37,3 +37,16 @@ export const getClubPosts = (clubId) =>
         }
     })
 
+export const getPost = (postId) =>
+    screen.get(API_BASE_URL + `/posts/${postId}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
+export const updatePost = (post) =>
+    screen.patch(API_BASE_URL + `/posts/${post.postId}`, post.postRequestDto, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });

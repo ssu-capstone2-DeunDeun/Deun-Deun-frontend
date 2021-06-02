@@ -9,13 +9,14 @@ import { ClubWritePostBlock } from './styles';
 
 const ClubWritePost = ({ history }) => {
     const dispatch = useDispatch();
-    const { title, content, thumbnailUrl, post, postError, addClub } = useSelector(({ write, clubAddInfo }) => ({
+    const { title, content, thumbnailUrl, post, postError, addClub, clubInfo } = useSelector(({ write, clubAddInfo, currentUserInfo }) => ({
         title: write.title,
         content: write.content,
         thumbnailUrl: write.thumbnailUrl,
         post: write.post,
         postError: write.postError,
         addClub: clubAddInfo.addClub,
+        clubInfo: currentUserInfo.clubInfo,
     }))
 
 
@@ -32,9 +33,9 @@ const ClubWritePost = ({ history }) => {
 
     const onPublish = (e) => {
         const postRequestDto = { title, content, thumbnailUrl };
-        // const clubId = addClub.clubId;
-        dispatch(writePost({ postRequestDto, clubId: 24 }));
-
+        const clubId = clubInfo[0].clubResponseDto.clubId;
+        dispatch(writePost({ postRequestDto, clubId, }));
+        history.push('/club/manage/post');
         e.preventDefault();
     }
 

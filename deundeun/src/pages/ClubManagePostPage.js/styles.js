@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const ClubManagePostPageContainer = styled.div`
-    margin-top:40px;
-    margin-left: 60px;
+    margin-top:50px;
 
     .title{
         font-size:22px;

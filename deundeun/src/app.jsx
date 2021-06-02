@@ -15,6 +15,9 @@ import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileMod
 import LoginForm from 'components/login/index';
 import ClubPostPage from 'pages/ClubPostPage/index';
 import ClubManagePostPage from 'pages/ClubManagePostPage.js/index';
+import ClubPostItemPage from 'pages/ClubPostItemPage/index';
+
+
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -105,6 +108,8 @@ const App = () => {
 			<Route component={MemberManagePage} path="/manager/member" exact />
 			<Route component={OAuth2RedirectHandler} path="/oauth2/redirect" exact />
 			<Route component={ClubPostPage} path="/club/post" exact />
+			<Route component={ClubPostItemPage} path="/club/post/:postId" exact />
+
 		</Switch>
 	);
 };
