@@ -27,15 +27,56 @@ export const IconContainer = styled.div`
 
 	.sign {
 		display: flex;
-		margin-right: 60px;
-		a {
+        margin-right: 60px;
+		div{
 			text-decoration: none;
-			color: black;
+            color: black;
+            font-size:20px;
 		}
 		div {
 			margin: 0 15px;
 		}
-	}
+    }
+    .signout{
+        margin-right:60px;
+        font-size:20px;
+        display:flex;
+
+        .userInfo{
+            display:flex;
+            /* justify-content:center;
+            align-items:center; */
+            .userInfoNickname{
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                margin-right:10px;
+                color:rgba(31, 208, 181);
+                font-weight:bold;
+                
+            }
+            .userInfoText{
+                display:flex;
+                justify-content:center;
+                align-items:center;
+            }
+            
+        }
+
+    }
+    .signBtn{
+        font-size:20px;
+        background-color:rgba(31, 208, 181, 0.3);
+        border-radius:4px;
+        font-weight:700;
+        width:100px;
+        height:40px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin-left:30px;
+        cursor:pointer;
+    }
 `;
 
 export const ProfileIcon = styled.div`
