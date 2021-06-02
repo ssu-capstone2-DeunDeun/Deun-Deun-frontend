@@ -30,3 +30,10 @@ export const post = (post) =>
     })
 
 
+export const getClubPosts = (clubId) =>
+    screen.get(API_BASE_URL + `/clubs/${clubId}/posts`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    })
+

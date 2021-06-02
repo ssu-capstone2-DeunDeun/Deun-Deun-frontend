@@ -10,6 +10,7 @@ import initCategory from './initCategory';
 import clubAddRecruitInfo from './clubAddRecruitInfo';
 import applicationAddInfo from './applicationAddInfo';
 import write, { writeSaga } from './write';
+import currentClubPostList, { currentClubPostListSaga } from './currentClubPostList';
 
 
 const rootReducer = combineReducers({
@@ -22,8 +23,8 @@ const rootReducer = combineReducers({
 	clubAddRecruitInfo,
 	applicationAddInfo,
 	write,
+	currentClubPostList
 });
-
 
 
 export function* rootSaga() {
@@ -34,6 +35,7 @@ export function* rootSaga() {
 		initHomePageSaga(),
 		clubAddSaga(),
 		writeSaga(),
+		currentClubPostListSaga(),
 		]);
 }
 
