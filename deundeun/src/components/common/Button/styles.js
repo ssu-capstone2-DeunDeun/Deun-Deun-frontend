@@ -97,6 +97,30 @@ export const buttonStyle = css`
             margin-left : 12px;
         `
     }   
+    ${props =>
+        props.removeBtn1 &&
+        css`
+            background-color:#3bc9db;
+            font-size:17px;
+            font-weight:bold;
+            padding :0;
+            width:140px;
+            height:40px;
+        `
+    }   
+
+    ${props =>
+        props.removeBtn2 &&
+        css`
+            background-color:#a2a2a2;
+            font-size:17px;
+            font-weight:bold;
+            padding:0;
+            width:140px;
+            height:40px;
+            margin-left : 12px;
+        `
+    }   
 `;
 
 export const StyledLink = styled(Link)`

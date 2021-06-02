@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { ClubWritePostBlock } from './styles';
+import { ClubWritePostBlock, DeleteModal, ModalBox } from './styles';
 import Button from 'components/common/Button/index';
 import { changeField, initialField, initPost, updatePost } from 'modules/write';
 import { useSelector } from 'react-redux';
@@ -57,6 +57,16 @@ const ClubPostItemPage = ({ match, history }) => {
         history.goBack();
     }
 
+    const onOpen = () => {
+        const modal = document.getElementById("modalId");
+        modal.className = "make";
+    }
+    const onClose = () => {
+        const modal = document.getElementById("modalId");
+        modal.className = "delete";
+    }
+
+
     return (
         <>
             <HeaderContainer />
@@ -64,7 +74,7 @@ const ClubPostItemPage = ({ match, history }) => {
                 <form>
                     <div className="main">
                         <input className="title" name="title" value={title} type="text" onChange={onChangeField} placeholder="제목을 입력하세요" />
-                        <RiDeleteBinLine />
+                        <RiDeleteBinLine onClick={onOpen} />
                     </div>
 
                     <textarea className="body" name="content" value={content} onChange={onChangeField} placeholder="내용을 입력해주세요." />
@@ -74,6 +84,20 @@ const ClubPostItemPage = ({ match, history }) => {
                     </div>
                 </form>
             </ClubWritePostBlock>
+
+            <DeleteModal>
+                <div id="modalId" className="delete">
+                    <ModalBox>
+                        <div className="deleteBtn">게시글을 삭제하시겠습니까?</div>
+                        <div className="removeBtn">
+                            <Button removeBtn1>예</Button>
+                            <Button removeBtn2 onClick={onClose}>아니오</Button>
+                        </div>
+                    </ModalBox>
+                </div>
+
+            </DeleteModal>
+
         </>
     );
 };
