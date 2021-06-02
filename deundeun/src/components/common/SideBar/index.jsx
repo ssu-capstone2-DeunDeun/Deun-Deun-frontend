@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button, Container } from './styles';
 const SideBar = ({ location }) => {
 	const { category } = useSelector(({ initCategory }) => ({ category: initCategory.category }));
+	// 영어를 한국어로 바꾸는 것이 좋다고 판단하여, 해당 상태는 수정합니다.
 	const [clickHomeTab, setClickHomeTab] = useState(true);
 	const [clickCategoryTab, setClickCategoryTab] = useState(false);
 	const [clickMyPageTab, setClickMyPageTab] = useState(false);
@@ -292,29 +293,29 @@ const SideBar = ({ location }) => {
 				<>
 					<Link to="/club/category/1">
 						<Button className={`${clickCategoryOne ? 'clicked-category' : 'category'}`} onClick={onClickCategoryOne}>
-							{category[0]}
+							{category[0]}(개발)
 						</Button>
 					</Link>
 					<Link to="/club/category/2">
-						<Button className="category">{category[1]}</Button>
+						<Button className="category">{category[1]}(헬스)</Button>
 					</Link>
 					<Link to="/club/category/3">
-						<Button className="category">{category[2]}</Button>
+						<Button className="category">{category[2]}(창업)</Button>
 					</Link>
 					<Link to="/club/category/4">
-						<Button className="category">{category[3]}</Button>
+						<Button className="category">{category[3]}(친목)</Button>
 					</Link>
 					<Link to="/club/category/5">
-						<Button className="category">{category[4]}</Button>
+						<Button className="category">{category[4]}(봉사)</Button>
 					</Link>
 					<Link to="/club/category/6">
-						<Button className="category">{category[5]}</Button>
+						<Button className="category">{category[5]}(문화)</Button>
 					</Link>
 					<Link to="/club/category/7">
-						<Button className="category">{category[6]}</Button>
+						<Button className="category">{category[6]}(어학)</Button>
 					</Link>
 					<Link to="/club/category/8">
-						<Button className="category">{category[7]}</Button>
+						<Button className="category">{category[7]}(기타)</Button>
 					</Link>
 				</>
 			)}
