@@ -67,11 +67,14 @@ const currentUserInfo = handleActions(
         [UPDATE_NICKNAME_SUCCESS]: (state, { payload: modifyNickname }) => (
             produce(state, draft => {
                 state["userInfo"]["nickname"] = modifyNickname;
+                state["modifyNicknameSuccess"] = modifyNickname;
+                state["modifyNicknameError"] = true;
             })
         ),
         [UPDATE_NICKNAME_FAILURE]: (state, { payload: modifyNicknameError }) => ({
             ...state,
-            modifyNicknameError,
+            // modifyNicknameError,
+            modifyNicknameError: false,
         }),
         [CHANGE_NICKNAME_FIELD]: (state, { payload: { type, value } }) => ({
             ...state,
