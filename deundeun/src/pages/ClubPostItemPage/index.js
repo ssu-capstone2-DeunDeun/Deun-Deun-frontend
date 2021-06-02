@@ -2,10 +2,12 @@ import React from 'react';
 import { useEffect } from 'react';
 import { ClubWritePostBlock } from './styles';
 import Button from 'components/common/Button/index';
-import { changeField, initPost, updatePost } from 'modules/write';
+import { changeField, initialField, initPost, updatePost } from 'modules/write';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import HeaderContainer from 'container/common/HeaderContainer';
+import { RiDeleteBinLine } from "react-icons/ri";
 
 const ClubPostItemPage = ({ match, history }) => {
     const { postId } = match.params;
@@ -37,6 +39,12 @@ const ClubPostItemPage = ({ match, history }) => {
         dispatch(changeField({ key: name, value }));
     }
 
+    useEffect(() => {
+        return () => {
+            dispatch(initialField());
+        }
+    }, [dispatch]);
+
     const onUpdate = (e) => {
         const postRequestDto = { title, content, thumbnailUrl };
         dispatch(updatePost({ postRequestDto, postId }));
@@ -50,16 +58,23 @@ const ClubPostItemPage = ({ match, history }) => {
     }
 
     return (
-        <ClubWritePostBlock>
-            <form>
-                <input className="title" name="title" value={title} type="text" onChange={onChangeField} placeholder="제목을 입력하세요" />
-                <textarea className="body" name="content" value={content} onChange={onChangeField} placeholder="내용을 입력해주세요." />
-                <div className="btn">
-                    <Button postBtn1 onClick={onUpdate}>수정하기</Button>
-                    <Button postBtn2 onClick={onCancel}>취소하기</Button>
-                </div>
-            </form>
-        </ClubWritePostBlock>
+        <>
+            <HeaderContainer />
+            <ClubWritePostBlock>
+                <form>
+                    <div className="main">
+                        <input className="title" name="title" value={title} type="text" onChange={onChangeField} placeholder="제목을 입력하세요" />
+                        <RiDeleteBinLine />
+                    </div>
+
+                    <textarea className="body" name="content" value={content} onChange={onChangeField} placeholder="내용을 입력해주세요." />
+                    <div className="btn">
+                        <Button postBtn1 onClick={onUpdate}>수정하기</Button>
+                        <Button postBtn2 onClick={onCancel}>취소하기</Button>
+                    </div>
+                </form>
+            </ClubWritePostBlock>
+        </>
     );
 };
 
