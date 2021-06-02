@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getUserInfo, initialUserInfo } from 'modules/currentUserInfo';
+import { getClubInfo, getUserInfo, initialUserInfo } from 'modules/currentUserInfo';
 import { ACCESS_TOKEN } from 'constants/index';
 import { getHome } from 'modules/initHomePage';
 
@@ -21,6 +21,7 @@ const HeaderContainer = () => {
 
     useEffect(() => {
         dispatch(getUserInfo());
+        dispatch(getClubInfo());
     }, [dispatch]);
 
 

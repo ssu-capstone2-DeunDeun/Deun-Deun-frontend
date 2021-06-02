@@ -14,6 +14,7 @@ import HeaderContainer from 'container/common/HeaderContainer';
 import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileModifyPageContainer';
 import LoginForm from 'components/login/index';
 import ClubPostPage from 'pages/ClubPostPage/index';
+import ClubManagePostPage from 'pages/ClubManagePostPage.js/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -162,6 +163,7 @@ const ClubManagePage = () => {
 					))}
 			{name === 'applicant' && <ApplicantManagePage />}
 			{name === 'member' && <MemberManagePage />}
+			{name === "post" && <ClubManagePostPage />}
 		</>
 	);
 };

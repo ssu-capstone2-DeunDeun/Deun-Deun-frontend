@@ -22,6 +22,13 @@ export const getUserInfo = () =>
 		}
 	});
 
+export const getClubs = () =>
+	client.get(API_BASE_URL + '/user/clubs', {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+		}
+	});
+
 export const getHashtags = () =>
 	client.get(API_BASE_URL + '/hashtags', {
 		headers: {

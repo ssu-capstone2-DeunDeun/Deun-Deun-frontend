@@ -30,7 +30,7 @@ const SideBar = ({ location }) => {
 		setCategoryTab();
 	}, []);
 
-	const onClickCategoryOne = useCallback((e) => {}, []);
+	const onClickCategoryOne = useCallback((e) => { }, []);
 
 	const onClickMyPageTab = useCallback((e) => {
 		setMypageTab();
@@ -208,7 +208,6 @@ const SideBar = ({ location }) => {
 		setClickManageApplicationtab(false);
 		setClickRecruitTab(false);
 		setClickApplicantTab(false);
-
 		setClickMemberTab(true);
 	};
 
@@ -366,6 +365,14 @@ const SideBar = ({ location }) => {
 							onClick={onClickClubManageTab}
 						>
 							정보 수정
+						</Button>
+					</Link>
+					<Link style={{ width: '15vw' }} to="/club/manage/post">
+						<Button
+							className={`${clickClubManageTab ? 'clicked-category' : 'category'}`}
+							onClick={onClickClubManageTab}
+						>
+							게시글 관리
 						</Button>
 					</Link>
 					<Link style={{ width: '15vw' }} to="/club/manage/application">

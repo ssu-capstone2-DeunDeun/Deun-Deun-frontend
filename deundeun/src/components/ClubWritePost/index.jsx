@@ -9,13 +9,15 @@ import { ClubWritePostBlock } from './styles';
 
 const ClubWritePost = ({ history }) => {
     const dispatch = useDispatch();
-    const { title, body, thumbnailUrl, post, postError } = useSelector(({ write }) => ({
+    const { title, content, thumbnailUrl, post, postError, addClub } = useSelector(({ write, clubAddInfo }) => ({
         title: write.title,
-        body: write.content,
+        content: write.content,
         thumbnailUrl: write.thumbnailUrl,
         post: write.post,
         postError: write.postError,
+        addClub: clubAddInfo.addClub,
     }))
+
 
     useEffect(() => {
         return () => {
@@ -29,10 +31,13 @@ const ClubWritePost = ({ history }) => {
     }
 
     const onPublish = (e) => {
-        // 임의의 값
-        dispatch(writePost(20, { title, body }));
+        const postRequestDto = { title, content, thumbnailUrl };
+        // const clubId = addClub.clubId;
+        dispatch(writePost({ postRequestDto, clubId: 24 }));
+
         e.preventDefault();
     }
+
     const onCancel = (e) => {
         e.preventDefault();
         history.goBack();
@@ -41,7 +46,7 @@ const ClubWritePost = ({ history }) => {
         <ClubWritePostBlock>
             <form>
                 <input className="title" value={title} name="title" type="text" onChange={onChangeField} placeholder="제목을 입력하세요" />
-                <textarea className="body" value={body} name="content" onChange={onChangeField} placeholder="내용을 입력해주세요." />
+                <textarea className="body" value={content} name="content" onChange={onChangeField} placeholder="내용을 입력해주세요." />
                 <div className="btn">
                     <Button postBtn1 onClick={onPublish}>등록하기</Button>
                     <Button postBtn2 onClick={onCancel}>취소하기</Button>

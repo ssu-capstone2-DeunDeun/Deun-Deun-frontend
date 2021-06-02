@@ -22,10 +22,11 @@ export const getAllClubs = (categoryType) =>
 
 
 // clubId는 정수입니다.
-export const post = (clubId, postRequestDto) =>
-    screen.post(API_BASE_URL + `/clubs/${clubId}/posts`, postRequestDto, {
+export const post = (post) =>
+    screen.post(API_BASE_URL + `/clubs/${post.clubId}/posts`, post.postRequestDto, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
         }
     })
+
 
