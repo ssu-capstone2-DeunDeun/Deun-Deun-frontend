@@ -76,7 +76,7 @@ export const buttonStyle = css`
     ${props =>
         props.postBtn1 &&
         css`
-            background-color:#1f1f1f;
+            background-color:#3bc9db;
             font-size:18px;
             font-weight:bold;
             padding:17.9px 98px 21.1px 99px;

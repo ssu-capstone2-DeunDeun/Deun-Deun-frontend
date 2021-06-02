@@ -171,11 +171,12 @@ export const ImageDeleteButton = styled.div`
 	position: absolute;
 	top: 0%;
 	right: 0%;
-	width: 0.9em;
-	height: 0.9em;
+	width: 1em;
+	height: 1em;
 	background-color: #f7f7f7;
-
-	z-index: 500;
+	font-size: 1.25rem;
+	cursor: default;
+	z-index: 100;
 `;
 
 export const Generation = styled.div`

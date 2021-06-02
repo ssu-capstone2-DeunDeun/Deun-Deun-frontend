@@ -9,10 +9,15 @@ import OAuth2RedirectHandler from 'components/login/oauth2/OAuth2RedirectHandler
 import RegisterInfoContainer from 'container/register/RegisterInfoContainer';
 import RegisterHashtagContainer from 'container/register/RegisterHashtagContainer';
 import ClubAddInfoContainer from 'container/clubRegister/ClubAddInfoContainer';
+import ClubModifyPageContainer from 'container/clubRegister/ClubModifyPageContainer';
 import HeaderContainer from 'container/common/HeaderContainer';
 import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileModifyPageContainer';
 import LoginForm from 'components/login/index';
 import ClubPostPage from 'pages/ClubPostPage/index';
+import ClubManagePostPage from 'pages/ClubManagePostPage.js/index';
+import ClubPostItemPage from 'pages/ClubPostItemPage/index';
+
+
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -28,7 +33,7 @@ const ApplyPageSuccessPage = loadable(() => import('pages/ApplyPageSuccessPage')
 const RecruitDetailPage = loadable(() => import('pages/RecruitDetailPage'));
 const PostDetailPage = loadable(() => import('pages/PostDetailPage'));
 
-const ClubModifyPage = loadable(() => import('pages/ClubModifyPage'));
+// const ClubModifyPage = loadable(() => import('pages/ClubModifyPage'));
 const ApplicationAddPage = loadable(() => import('pages/ApplicationAddPage'));
 const ApplicationManagePage = loadable(() => import('pages/ApplicationManagePage'));
 const RecruitAddPage = loadable(() => import('pages/RecruitAddPage'));
@@ -103,6 +108,8 @@ const App = () => {
 			<Route component={MemberManagePage} path="/manager/member" exact />
 			<Route component={OAuth2RedirectHandler} path="/oauth2/redirect" exact />
 			<Route component={ClubPostPage} path="/club/post" exact />
+			<Route component={ClubPostItemPage} path="/club/post/:postId" exact />
+
 		</Switch>
 	);
 };
@@ -134,7 +141,7 @@ const ClubManagePage = () => {
 	return (
 		//
 		<>
-			{name === 'modify' && <ClubModifyPage />}
+			{name === 'modify' && <ClubModifyPageContainer />}
 			{name === 'application' &&
 				(addNewApplication ? (
 					<>
@@ -161,6 +168,7 @@ const ClubManagePage = () => {
 					))}
 			{name === 'applicant' && <ApplicantManagePage />}
 			{name === 'member' && <MemberManagePage />}
+			{name === "post" && <ClubManagePostPage />}
 		</>
 	);
 };

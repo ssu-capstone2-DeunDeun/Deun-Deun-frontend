@@ -6,14 +6,19 @@ import { createRequestActionType } from 'lib/createRequestActionTypes';
 
 const CHANGE_INPUT = 'clubAddInfo/CHANGE_INPUT';
 const [DUPLICATED, DUPLICATED_SUCCESS, DUPLICATED_FAILURE] = createRequestActionType('clubAddInfo/DUPLICATED');
+const [ADDCLUB, ADDCLUB_SUCCESS, ADDCLUB_FAILURE] = createRequestActionType('clubAddInfo/ADDCLUB');
+
 
 export const changeInput = createAction(CHANGE_INPUT);
 export const duplicated = createAction(DUPLICATED);
+export const clubAdd = createAction(ADDCLUB);
 
+const isAddClub = createRequestSaga(ADDCLUB, authAPI.addClub);
 const isDuplicatedClubName = createRequestSaga(DUPLICATED, authAPI.isDuplicatedClubName);
 
 export function* clubAddSaga() {
 	yield takeLatest(DUPLICATED, isDuplicatedClubName);
+	yield takeLatest(ADDCLUB, isAddClub);
 }
 
 const initialState = {
@@ -25,7 +30,10 @@ const initialState = {
 	hashtagInfoIds: [],
 	backgroundImageUrl: '',
 	representImageUrl: '',
-	clubImages: []
+	clubImages: [],
+	addClub: null,
+	addClubError: null,
+
 };
 
 const clubAddInfo = handleActions(
@@ -41,7 +49,16 @@ const clubAddInfo = handleActions(
 		[DUPLICATED_FAILURE]: (state, { payload: isDuplicate }) => ({
 			...state,
 			isDuplicate
-		})
+		}),
+		[ADDCLUB_SUCCESS]: (state, { payload: addClub }) => ({
+			...state,
+			addClub,
+		}),
+		[ADDCLUB_FAILURE]: (state, { payload: addClubError }) => ({
+			...state,
+			addClubError,
+		}),
+
 	},
 	initialState
 );

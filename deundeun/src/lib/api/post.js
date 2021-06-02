@@ -20,3 +20,41 @@ export const getAllClubs = (categoryType) =>
     })
 
 
+
+// clubId는 정수입니다.
+export const post = (post) =>
+    screen.post(API_BASE_URL + `/clubs/${post.clubId}/posts`, post.postRequestDto, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    })
+
+
+export const getClubPosts = (clubId) =>
+    screen.get(API_BASE_URL + `/clubs/${clubId}/posts`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    })
+
+export const getPost = (postId) =>
+    screen.get(API_BASE_URL + `/posts/${postId}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
+export const updatePost = (post) =>
+    screen.patch(API_BASE_URL + `/posts/${post.postId}`, post.postRequestDto, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
+
+export const deletePost = (postId) =>
+    screen.delete(API_BASE_URL + `/posts/${post.postId}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });

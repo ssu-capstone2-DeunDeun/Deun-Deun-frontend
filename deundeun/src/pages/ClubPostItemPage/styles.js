@@ -7,15 +7,23 @@ export const ClubWritePostBlock = styled.div`
         flex-direction:column;
         justify-content: center;
         align-items:center;
-        .title{
-            font-size:36px;
-            font-weight:bold;
-            border:none;
-            outline :none;
-            color:#9a9a9a;
-            width:1080px;
-            height:80px;
-            border-bottom: 1px solid #9a9a9a;
+        .main{
+            .title{
+                font-size:36px;
+                font-weight:bold;
+                border:none;
+                outline :none;
+                color:#9a9a9a;
+                width:1080px;
+                height:80px;
+                border-bottom: 1px solid #9a9a9a;
+            }   
+            svg{
+                width:40px;
+                height:40px;
+                margin-left:10px;
+                margin-top:5px;
+            }
         }
         .body{
             width:1080px;

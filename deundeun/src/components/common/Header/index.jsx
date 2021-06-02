@@ -16,7 +16,6 @@ const Header = ({ checkLogin, userInfo, onLogout }) => {
 	}, []);
 
 
-
 	const popupClear = () => {
 		const t = document.getElementById("popup");
 		t.className = "delete";

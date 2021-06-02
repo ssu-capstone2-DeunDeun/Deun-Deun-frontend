@@ -4,11 +4,12 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getUserInfo, initialUserInfo } from 'modules/currentUserInfo';
+import { getClubInfo, getUserInfo, initialUserInfo } from 'modules/currentUserInfo';
 import { ACCESS_TOKEN } from 'constants/index';
 import { getHome } from 'modules/initHomePage';
+import { withRouter } from 'react-router-dom';
 
-const HeaderContainer = () => {
+const HeaderContainer = ({ history }) => {
     const dispatch = useDispatch();
     const userInfo = useSelector(({ currentUserInfo }) => (currentUserInfo.userInfo));
     const [checkLogin, setCheckLogin] = useState(false);
@@ -21,6 +22,7 @@ const HeaderContainer = () => {
 
     useEffect(() => {
         dispatch(getUserInfo());
+        dispatch(getClubInfo());
     }, [dispatch]);
 
 
@@ -38,10 +40,12 @@ const HeaderContainer = () => {
         localStorage.removeItem(ACCESS_TOKEN);
         dispatch(initialUserInfo("userInfo"));
         setCheckLogin(false);
+        history.push('/home');
+
     }
     return (
         <Header onLogout={onLogout} userInfo={userInfo} checkLogin={checkLogin} />
     )
 };
 
-export default HeaderContainer;
+export default withRouter(HeaderContainer);
