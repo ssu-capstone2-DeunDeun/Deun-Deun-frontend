@@ -14,7 +14,7 @@ export const ClubWritePostBlock = styled.div`
                 border:none;
                 outline :none;
                 color:#9a9a9a;
-                width:1080px;
+                width:1040px;
                 height:80px;
                 border-bottom: 1px solid #9a9a9a;
             }   

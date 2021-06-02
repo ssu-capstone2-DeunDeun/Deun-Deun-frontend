@@ -50,7 +50,7 @@ const Header = ({ checkLogin, userInfo, onLogout }) => {
 									<div className="userInfoText">환영합니다</div>
 								</div>
 							}
-							<div className="signBtn" onClick={onLogout}>로그아웃</div>
+							<div className="signBtn signBtnLogout" onClick={onLogout}>로그아웃</div>
 							{/* <ProfileIcon onClick={onClickProfile} /> */}
 						</div>
 					)}

@@ -38,7 +38,7 @@ export const IconContainer = styled.div`
 		}
     }
     .signout{
-        margin-right:60px;
+        /* margin-right:60px; */
         font-size:20px;
         display:flex;
 
@@ -50,7 +50,6 @@ export const IconContainer = styled.div`
                 display:flex;
                 justify-content:center;
                 align-items:center;
-                margin-right:10px;
                 color:rgba(31, 208, 181);
                 font-weight:bold;
                 
@@ -59,6 +58,7 @@ export const IconContainer = styled.div`
                 display:flex;
                 justify-content:center;
                 align-items:center;
+                margin-left:10px;
             }
             
         }
@@ -75,7 +75,11 @@ export const IconContainer = styled.div`
         justify-content:center;
         align-items:center;
         margin-left:30px;
+        margin-right:60px;
         cursor:pointer;
+    }
+    .signBtnLogout{
+        margin-right:75px;
     }
 `;
 

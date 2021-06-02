@@ -82,7 +82,6 @@ const ClubPostItemPage = ({ match, history }) => {
                         <input className="title" name="title" value={title} type="text" onChange={onChangeField} placeholder="제목을 입력하세요" />
                         <RiDeleteBinLine onClick={onOpen} />
                     </div>
-
                     <textarea className="body" name="content" value={content} onChange={onChangeField} placeholder="내용을 입력해주세요." />
                     <div className="btn">
                         <Button postBtn1 onClick={onUpdate}>수정하기</Button>
