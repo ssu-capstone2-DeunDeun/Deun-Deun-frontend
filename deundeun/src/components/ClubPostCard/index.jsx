@@ -18,14 +18,10 @@ import { ContainerRow } from 'styles';
 import { withRouter } from 'react-router-dom';
 
 const ClubPostCard = ({ title, content, createdAt, clubName, likeCount, postId, history }) => {
-	const onMove = () => {
-		history.push(`/club/post/${postId}`)
-	}
 	return (
-		//
-		<Container onClick={onMove}>
+		<Container>
 			{/* <PostImage /> */}
-			<PostOverview>
+			< PostOverview >
 				<TitleKorean>{title}</TitleKorean>
 				<ContentContainer>
 					<ContentKorean>
@@ -33,7 +29,7 @@ const ClubPostCard = ({ title, content, createdAt, clubName, likeCount, postId, 
 					</ContentKorean>
 				</ContentContainer>
 				<PostDate>{createdAt}</PostDate>
-			</PostOverview>
+			</PostOverview >
 			<DetailContainer>
 				<ClubName>{clubName}</ClubName>
 				<ContainerRow style={{ marginLeft: 'auto' }}>
@@ -49,7 +45,7 @@ const ClubPostCard = ({ title, content, createdAt, clubName, likeCount, postId, 
 					</Like>
 				</ContainerRow>
 			</DetailContainer>
-		</Container>
+		</Container >
 	);
 };
 

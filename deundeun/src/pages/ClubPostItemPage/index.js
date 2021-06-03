@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import HeaderContainer from 'container/common/HeaderContainer';
 import { RiDeleteBinLine } from "react-icons/ri";
+import Loader from 'components/common/Loading/Loader';
 
 const ClubPostItemPage = ({ match, history }) => {
     const { postId } = match.params;
@@ -20,6 +21,7 @@ const ClubPostItemPage = ({ match, history }) => {
         clubInfo: currentUserInfo.clubInfo,
     }));
     console.log(initpost);
+
 
 
     useEffect(() => {
@@ -72,6 +74,14 @@ const ClubPostItemPage = ({ match, history }) => {
         modal.className = "delete";
     }
 
+    if (!title) {
+        return (
+            <>
+                <Loader />
+            </>
+        )
+    }
+
 
     return (
         <>
@@ -102,7 +112,6 @@ const ClubPostItemPage = ({ match, history }) => {
                 </div>
 
             </DeleteModal>
-
         </>
     );
 };
