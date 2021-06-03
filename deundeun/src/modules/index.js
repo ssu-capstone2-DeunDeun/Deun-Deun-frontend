@@ -23,7 +23,8 @@ const rootReducer = combineReducers({
 	clubAddRecruitInfo,
 	applicationAddInfo,
 	write,
-	currentClubPostList
+	currentClubPostList,
+	initHomePage,
 });
 
 

@@ -5,6 +5,7 @@ import { Container, Logo, IconContainer, ProfileIcon } from './styles';
 import { ImageContainer, LoginContainer, LoginModal, SocialContainer } from './styles';
 import { GOOGLE_AUTH_URL } from 'constants/index';
 import { MdClose } from "react-icons/md";
+import { Divider } from 'components/ApplicationFormCard/styles';
 
 const Header = ({ checkLogin, userInfo, onLogout }) => {
 	const onClickSearch = useCallback((e) => {
@@ -38,15 +39,20 @@ const Header = ({ checkLogin, userInfo, onLogout }) => {
 			<IconContainer>
 				{checkLogin === false ? (
 					<div className="sign">
-						<Link onClick={() => popupMake()}>로그인</Link>
+						<div className="signBtn" onClick={() => popupMake()}>로그인</div>
 					</div>
 				) : (
-						<>
+						<div className="signout">
 							{/* <SearchIcon style={{ cursor: 'pointer' }} onClick={onClickSearch} /> */}
-							{userInfo && `${userInfo.nickname}`}
-							<button onClick={onLogout}>로그아웃</button>
-							<ProfileIcon onClick={onClickProfile} />
-						</>
+							{userInfo &&
+								<div className="userInfo">
+									<div className="userInfoNickname">{userInfo.nickname}님</div>
+									<div className="userInfoText">환영합니다</div>
+								</div>
+							}
+							<div className="signBtn signBtnLogout" onClick={onLogout}>로그아웃</div>
+							{/* <ProfileIcon onClick={onClickProfile} /> */}
+						</div>
 					)}
 			</IconContainer>
 
@@ -79,7 +85,7 @@ const Header = ({ checkLogin, userInfo, onLogout }) => {
 									</div>
 									<div className="googleText">
 										GOOGLE 계정으로 로그인 하기
-							</div>
+									</div>
 								</a>
 							</SocialContainer>
 						</div>

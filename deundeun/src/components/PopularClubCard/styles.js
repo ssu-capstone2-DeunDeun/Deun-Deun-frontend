@@ -35,7 +35,8 @@ export const ClubName = styled.span`
 	font-family: 'NotoSansKR';
 	font-size: 1rem;
 	font-weight: 900;
-	color: #ffffff;
+	/* color: #ffffff; */
+	color:black;
 `;
 
 export const ClubImage = styled.div`

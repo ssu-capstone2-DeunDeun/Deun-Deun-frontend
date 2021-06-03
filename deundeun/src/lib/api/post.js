@@ -53,7 +53,7 @@ export const updatePost = (post) =>
 
 
 export const deletePost = (postId) =>
-    screen.delete(API_BASE_URL + `/posts/${post.postId}`, {
+    screen.delete(API_BASE_URL + `/posts/${postId}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
         }

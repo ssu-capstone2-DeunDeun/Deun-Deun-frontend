@@ -76,9 +76,9 @@ export const buttonStyle = css`
     ${props =>
         props.postBtn1 &&
         css`
-            background-color:#3bc9db;
+            background-color:#63e6be;
             font-size:18px;
-            font-weight:bold;
+            font-weight:700;
             padding:17.9px 98px 21.1px 99px;
             width:300px;
             height:66px;
@@ -90,10 +90,34 @@ export const buttonStyle = css`
         css`
             background-color:#a2a2a2;
             font-size:18px;
-            font-weight:bold;
+            font-weight:700;
             padding:17.9px 98px 21.1px 99px;
             width:300px;
             height:66px;
+            margin-left : 12px;
+        `
+    }   
+    ${props =>
+        props.removeBtn1 &&
+        css`
+            background-color:#63e6be;
+            font-size:17px;
+            font-weight:700;
+            padding :0;
+            width:140px;
+            height:40px;
+        `
+    }   
+
+    ${props =>
+        props.removeBtn2 &&
+        css`
+            background-color:#a2a2a2;
+            font-size:17px;
+            font-weight:700;
+            padding:0;
+            width:140px;
+            height:40px;
             margin-left : 12px;
         `
     }   

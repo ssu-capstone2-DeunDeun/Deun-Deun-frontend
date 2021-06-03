@@ -7,7 +7,6 @@ import { TitleEnglish, ContentContainer, CardContainer } from './styles';
 import { ContainerPage } from 'styles';
 const CategoryITPage = () => {
 	return (
-		//
 		<>
 			<ContainerPage>
 				<ContentContainer>

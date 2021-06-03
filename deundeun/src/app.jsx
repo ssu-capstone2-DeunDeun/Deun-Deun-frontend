@@ -12,7 +12,6 @@ import ClubAddInfoContainer from 'container/clubRegister/ClubAddInfoContainer';
 import ClubModifyPageContainer from 'container/clubRegister/ClubModifyPageContainer';
 import HeaderContainer from 'container/common/HeaderContainer';
 import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileModifyPageContainer';
-import LoginForm from 'components/login/index';
 import ClubPostPage from 'pages/ClubPostPage/index';
 import ClubManagePostPage from 'pages/ClubManagePostPage.js/index';
 import ClubPostItemPage from 'pages/ClubPostItemPage/index';
@@ -21,6 +20,7 @@ import ClubPostItemPage from 'pages/ClubPostItemPage/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
+const CategoryPage = loadable(() => import('pages/CategoryPage'));
 const ClubDetailPage = loadable(() => import('pages/ClubDetailPage'));
 const MyProfileModifyPage = loadable(() => import('pages/MyProfileModifyPage'));
 const MyClubListPage = loadable(() => import('pages/MyClubListPage'));
@@ -62,12 +62,12 @@ const App = () => {
 					<ClubHomePage />
 				</ContainerRow>
 			</Route>
-			<Route path="/club/category/:id">
+			<Route path="/club/category/:categoryType">
 				{/* <Header /> */}
 				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
-					<ClubCategory />
+					<CategoryPage />
 				</ContainerRow>
 			</Route>
 			<Route path="/mypage/:name">
@@ -173,12 +173,5 @@ const ClubManagePage = () => {
 	);
 };
 
-const ClubCategory = () => {
-	const { id } = useParams();
-	return (
-		//
-		<>{id === '1' && <CategoryITPage />}</>
-	);
-};
 
 export default App;

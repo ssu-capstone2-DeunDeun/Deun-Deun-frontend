@@ -14,7 +14,7 @@ export const ClubWritePostBlock = styled.div`
                 border:none;
                 outline :none;
                 color:#9a9a9a;
-                width:1080px;
+                width:1040px;
                 height:80px;
                 border-bottom: 1px solid #9a9a9a;
             }   
@@ -23,6 +23,9 @@ export const ClubWritePostBlock = styled.div`
                 height:40px;
                 margin-left:10px;
                 margin-top:5px;
+                &:hover{
+                    color :#3bc9db;
+                }
             }
         }
         .body{
@@ -38,5 +41,45 @@ export const ClubWritePostBlock = styled.div`
         .btn{
             display:flex;
         }
+    }
+`;
+
+export const DeleteModal = styled.div`
+    .make{
+        position:fixed;
+        top:0;
+        right:0;
+        left:0;
+        bottom:0; 
+        background:rgba(0,0,0,0.3);
+        
+
+        display:flex;
+        justify-content: center;
+		z-index:100;
+    }
+    .delete{
+        display:none;
+    }
+`;
+
+export const ModalBox = styled.div`
+    width:496px;
+    height:240px;
+    background:white;
+    margin-top: 15%;
+    display:flex;
+    flex-direction: column;
+    align-items:center; 
+
+    .deleteBtn{
+        font-size:24px;
+        font-weight:900;
+        margin-top:40px;
+        
+    }
+    .removeBtn{
+        display:flex;
+        margin-top:60px;
     }
 `;
