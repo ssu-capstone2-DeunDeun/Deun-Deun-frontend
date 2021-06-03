@@ -291,63 +291,66 @@ const SideBar = ({ location }) => {
 			</Link>
 			{clickCategoryTab && (
 				<>
-					<Link to="/club/category/1">
+					<Link to={`/club/category/${category[0]}`}>
 						<Button className={`${clickCategoryOne ? 'clicked-category' : 'category'}`} onClick={onClickCategoryOne}>
 							{category[0]}(개발)
 						</Button>
 					</Link>
-					<Link to="/club/category/2">
+					<Link to={`/club/category/${category[1]}`}>
 						<Button className="category">{category[1]}(헬스)</Button>
 					</Link>
-					<Link to="/club/category/3">
+					<Link to={`/club/category/${category[2]}`}>
 						<Button className="category">{category[2]}(창업)</Button>
 					</Link>
-					<Link to="/club/category/4">
+					<Link to={`/club/category/${category[3]}`}>
 						<Button className="category">{category[3]}(친목)</Button>
 					</Link>
-					<Link to="/club/category/5">
+					<Link to={`/club/category/${category[4]}`}>
 						<Button className="category">{category[4]}(봉사)</Button>
 					</Link>
-					<Link to="/club/category/6">
+					<Link to={`/club/category/${category[5]}`}>
 						<Button className="category">{category[5]}(문화)</Button>
 					</Link>
-					<Link to="/club/category/7">
+					<Link to={`/club/category/${category[6]}`}>
 						<Button className="category">{category[6]}(어학)</Button>
 					</Link>
-					<Link to="/club/category/8">
+					<Link to={`/club/category/${category[7]}`}>
 						<Button className="category">{category[7]}(기타)</Button>
 					</Link>
 				</>
-			)}
+			)
+			}
 			<Link style={{ width: '9.4vh' }} to="/mypage/modify">
 				<Button className={`${clickMyPageTab ? 'clicked' : 'not-clicked'}`} onClick={onClickMyPageTab}>
 					마이페이지
 				</Button>
 			</Link>
-			{clickMyPageTab && (
-				<>
-					<Link to="/mypage/modify">
-						<Button className={`${clickModify ? 'clicked-category' : 'category'}`} onClick={onClickModify}>
-							내 정보 수정
+			{
+				clickMyPageTab && (
+					<>
+						<Link to="/mypage/modify">
+							<Button className={`${clickModify ? 'clicked-category' : 'category'}`} onClick={onClickModify}>
+								내 정보 수정
 						</Button>
-					</Link>
-					<Link to="/mypage/clubs">
-						<Button className={`${clickClubs ? 'clicked-category' : 'category'}`} onClick={onClickClubs}>
-							가입 동아리 목록
+						</Link>
+						<Link to="/mypage/clubs">
+							<Button className={`${clickClubs ? 'clicked-category' : 'category'}`} onClick={onClickClubs}>
+								가입 동아리 목록
 						</Button>
-					</Link>
-					<Link to="/mypage/application">
-						<Button className={`${clickApplication ? 'clicked-category' : 'category'}`} onClick={onClickApplication}>
-							지원 목록
+						</Link>
+						<Link to="/mypage/application">
+							<Button className={`${clickApplication ? 'clicked-category' : 'category'}`} onClick={onClickApplication}>
+								지원 목록
 						</Button>
-					</Link>
-					<Link to="/mypage/likes">
-						<Button className={`${clickLikes ? 'clicked-category' : 'category'}`} onClick={onClickLikes}>
-							관심 목록
+						</Link>
+						<Link to="/mypage/likes">
+							<Button className={`${clickLikes ? 'clicked-category' : 'category'}`} onClick={onClickLikes}>
+								관심 목록
 						</Button>
-					</Link>
-				</>
-			)}
+						</Link>
+					</>
+				)
+			}
 			<Link style={{ width: '9.4vh' }} to="/club/add">
 				<Button className={`${clickClubAddTab ? 'clicked' : 'not-clicked'}`} onClick={onClickClubAddTab}>
 					동아리 등록
@@ -358,50 +361,52 @@ const SideBar = ({ location }) => {
 					동아리 관리
 				</Button>
 			</Link>
-			{clickMyClubTab && (
-				<>
-					<Link style={{ width: '15vw' }} to="/club/manage/modify">
-						<Button
-							className={`${clickClubManageTab ? 'clicked-category' : 'category'}`}
-							onClick={onClickClubManageTab}
-						>
-							정보 수정
+			{
+				clickMyClubTab && (
+					<>
+						<Link style={{ width: '15vw' }} to="/club/manage/modify">
+							<Button
+								className={`${clickClubManageTab ? 'clicked-category' : 'category'}`}
+								onClick={onClickClubManageTab}
+							>
+								정보 수정
 						</Button>
-					</Link>
-					<Link style={{ width: '15vw' }} to="/club/manage/post">
-						<Button
-							className={`${clickClubManageTab ? 'clicked-category' : 'category'}`}
-							onClick={onClickClubManageTab}
-						>
-							게시글 관리
+						</Link>
+						<Link style={{ width: '15vw' }} to="/club/manage/post">
+							<Button
+								className={`${clickClubManageTab ? 'clicked-category' : 'category'}`}
+								onClick={onClickClubManageTab}
+							>
+								게시글 관리
 						</Button>
-					</Link>
-					<Link style={{ width: '15vw' }} to="/club/manage/application">
-						<Button
-							className={`${clickManageApplicationTab ? 'clicked-category' : 'category'}`}
-							onClick={onClickManageApplicationTab}
-						>
-							지원서 양식
+						</Link>
+						<Link style={{ width: '15vw' }} to="/club/manage/application">
+							<Button
+								className={`${clickManageApplicationTab ? 'clicked-category' : 'category'}`}
+								onClick={onClickManageApplicationTab}
+							>
+								지원서 양식
 						</Button>
-					</Link>
-					<Link style={{ width: '15vw' }} to="/club/manage/recruit">
-						<Button className={`${clickRecruitTab ? 'clicked-category' : 'category'}`} onClick={onClickRecruitTab}>
-							모집 공고
+						</Link>
+						<Link style={{ width: '15vw' }} to="/club/manage/recruit">
+							<Button className={`${clickRecruitTab ? 'clicked-category' : 'category'}`} onClick={onClickRecruitTab}>
+								모집 공고
 						</Button>
-					</Link>
-					<Link style={{ width: '15vw' }} to="/club/manage/applicant">
-						<Button className={`${clickApplicantTab ? 'clicked-category' : 'category'}`} onClick={onClickApplicantTab}>
-							지원자 관리
+						</Link>
+						<Link style={{ width: '15vw' }} to="/club/manage/applicant">
+							<Button className={`${clickApplicantTab ? 'clicked-category' : 'category'}`} onClick={onClickApplicantTab}>
+								지원자 관리
 						</Button>
-					</Link>
-					<Link style={{ width: '15vw' }} to="/club/manage/member">
-						<Button className={`${clickMemberTab ? 'clicked-category' : 'category'}`} onClick={onClickMemberTab}>
-							멤버 관리
+						</Link>
+						<Link style={{ width: '15vw' }} to="/club/manage/member">
+							<Button className={`${clickMemberTab ? 'clicked-category' : 'category'}`} onClick={onClickMemberTab}>
+								멤버 관리
 						</Button>
-					</Link>
-				</>
-			)}
-		</Container>
+						</Link>
+					</>
+				)
+			}
+		</Container >
 	);
 };
 

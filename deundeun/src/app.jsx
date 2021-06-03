@@ -61,7 +61,7 @@ const App = () => {
 					<ClubHomePage />
 				</ContainerRow>
 			</Route>
-			<Route path="/club/category/:id">
+			<Route path="/club/category/:categoryType">
 				{/* <Header /> */}
 				<HeaderContainer />
 				<ContainerRow>

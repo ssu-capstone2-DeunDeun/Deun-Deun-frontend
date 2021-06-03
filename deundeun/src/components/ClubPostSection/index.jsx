@@ -17,7 +17,7 @@ const ClubPostSection = ({ onClickSeeAll, popularPostDtos }) => {
 			<CardContainer>
 				<Content>
 					{
-						popularPostDtos.map(post =>
+						popularPostDtos && popularPostDtos.map(post =>
 							<ClubPostCard
 								title={post.title}
 								content={post.content}
