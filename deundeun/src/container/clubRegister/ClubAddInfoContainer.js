@@ -35,6 +35,7 @@ const ClubAddInfoContainer = () => {
 	const [generationError, setGenerationError] = useState(false);
 	const [categoryError, setCategoryError] = useState(true);
 	const [clubNameError, setClubNameError] = useState(true);
+	const [submitError, setSubmitError] = useState(false);
 
 	const onChangeGeneration = useCallback(
 		(e) => {
@@ -95,7 +96,6 @@ const ClubAddInfoContainer = () => {
 		e.preventDefault();
 		if (e.target.files !== null) {
 			const formData = new FormData();
-
 			formData.append('multipartFiles', e.target.files[0]);
 			axios({
 				method: 'post',
@@ -182,7 +182,8 @@ const ClubAddInfoContainer = () => {
 
 	const onSubmit = () => {
 		if (categoryError || clubNameError || generationError || isDuplicate) {
-			console.log('submit error');
+			setSubmitError(true);
+			window.scrollTo(0, 0);
 			return;
 		} else {
 			const clubRequestDto = {
@@ -196,9 +197,13 @@ const ClubAddInfoContainer = () => {
 				representImageUrl: representImageUrl
 			};
 			dispatch(clubAdd(clubRequestDto));
-			// history.push();
+			history.push('/club/add/success');
 		}
 	};
+
+	const onCloseSnackbar = useCallback(() => {
+		setSubmitError(false);
+	}, []);
 
 	useEffect(() => {
 		dispatch(changeInput({ type: 'clubImages', value: imageFileList }));
@@ -211,6 +216,7 @@ const ClubAddInfoContainer = () => {
 			categoryError={categoryError}
 			isDuplicate={isDuplicate}
 			generation={generation}
+			generationError={generationError}
 			onChangeBackgroundImage={onChangeBackgroundImage}
 			onChangeRepresentImage={onChangeRepresentImage}
 			onChangeClubImage={onChangeClubImage}
@@ -224,6 +230,9 @@ const ClubAddInfoContainer = () => {
 			clubImages={clubImages}
 			onDeleteImage={onDeleteImage}
 			onSubmit={onSubmit}
+			submitError={submitError}
+			setSubmitError={setSubmitError}
+			onCloseSnackbar={onCloseSnackbar}
 		/>
 	);
 };

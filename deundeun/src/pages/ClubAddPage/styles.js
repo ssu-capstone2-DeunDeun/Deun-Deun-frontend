@@ -104,15 +104,15 @@ export const DropdownContainer = styled.div`
 export const ClubNameInput = styled.input`
 	border: none;
 	background-color: #f7f7f7;
-	width: 32vw;
-	height: 6vh;
+	width: 590px;
+	height: 60px;
 	padding-left: 1em;
-	font-size: 0.8rem;
+	font-size: 1rem;
 `;
 
 export const DuplicateCheckButton = styled.button`
 	border: none;
-	width: 8.75vw;
+	width: 174px;
 	background-color: #e6e6e6;
 	font-size: 0.9rem;
 	font-family: 'NotoSansKR';

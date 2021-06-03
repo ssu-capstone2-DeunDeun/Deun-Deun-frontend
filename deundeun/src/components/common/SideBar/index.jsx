@@ -19,6 +19,7 @@ const SideBar = ({ location }) => {
 	const [clickRecruitTab, setClickRecruitTab] = useState(false);
 	const [clickApplicantTab, setClickApplicantTab] = useState(false);
 	const [clickMemberTab, setClickMemberTab] = useState(false);
+	const [clickClubPostTab, setClickClubPostTab] = useState(false);
 
 	const [addNewForm, setAddNewForm] = useState(false);
 
@@ -30,7 +31,7 @@ const SideBar = ({ location }) => {
 		setCategoryTab();
 	}, []);
 
-	const onClickCategoryOne = useCallback((e) => { }, []);
+	const onClickCategoryOne = useCallback((e) => {}, []);
 
 	const onClickMyPageTab = useCallback((e) => {
 		setMypageTab();
@@ -78,6 +79,10 @@ const SideBar = ({ location }) => {
 
 	const onClickMemberTab = useCallback(() => {
 		setMemberTab();
+	}, []);
+
+	const onClickClubPostTab = useCallback(() => {
+		setClubPostTab();
 	}, []);
 
 	const setHomeTab = () => {
@@ -167,6 +172,16 @@ const SideBar = ({ location }) => {
 	const setClubManageTab = () => {
 		setClickClubManageTab(true);
 		setClickClubAddTab(false);
+		setClickClubPostTab(false);
+		setClickManageApplicationtab(false);
+		setClickRecruitTab(false);
+		setClickApplicantTab(false);
+		setClickMemberTab(false);
+	};
+
+	const setClubPostTab = () => {
+		setClickClubManageTab(false);
+		setClickClubPostTab(true);
 		setClickManageApplicationtab(false);
 		setClickRecruitTab(false);
 		setClickApplicantTab(false);
@@ -175,7 +190,7 @@ const SideBar = ({ location }) => {
 
 	const setManageApplicationTab = () => {
 		setClickClubManageTab(false);
-
+		setClickClubPostTab(false);
 		setClickManageApplicationtab(true);
 
 		setClickRecruitTab(false);
@@ -185,6 +200,7 @@ const SideBar = ({ location }) => {
 
 	const setRecruitTab = () => {
 		setClickClubManageTab(false);
+		setClickClubPostTab(false);
 		setClickManageApplicationtab(false);
 
 		setClickRecruitTab(true);
@@ -195,6 +211,7 @@ const SideBar = ({ location }) => {
 
 	const setApplicantTab = () => {
 		setClickClubManageTab(false);
+		setClickClubPostTab(false);
 		setClickManageApplicationtab(false);
 		setClickRecruitTab(false);
 
@@ -205,14 +222,15 @@ const SideBar = ({ location }) => {
 
 	const setMemberTab = () => {
 		setClickClubManageTab(false);
+		setClickClubPostTab(false);
 		setClickManageApplicationtab(false);
 		setClickRecruitTab(false);
 		setClickApplicantTab(false);
+
 		setClickMemberTab(true);
 	};
 
 	useEffect(() => {
-		// console.log(location.pathname);
 		switch (location.pathname) {
 			case '/home':
 				setHomeTab();
@@ -241,6 +259,10 @@ const SideBar = ({ location }) => {
 			case '/club/manage/modify':
 				setMyClubTab();
 				setClubManageTab();
+				break;
+			case '/club/manage/post':
+				setMyClubTab();
+				setClubPostTab();
 				break;
 			case '/club/manage/application':
 				setMyClubTab();
@@ -368,10 +390,7 @@ const SideBar = ({ location }) => {
 						</Button>
 					</Link>
 					<Link style={{ width: '15vw' }} to="/club/manage/post">
-						<Button
-							className={`${clickClubManageTab ? 'clicked-category' : 'category'}`}
-							onClick={onClickClubManageTab}
-						>
+						<Button className={`${clickClubPostTab ? 'clicked-category' : 'category'}`} onClick={onClickClubPostTab}>
 							게시글 관리
 						</Button>
 					</Link>

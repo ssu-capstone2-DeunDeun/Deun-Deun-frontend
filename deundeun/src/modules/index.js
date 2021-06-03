@@ -6,12 +6,12 @@ import { all } from 'redux-saga/effects';
 import initHashtags, { initHashtagsSaga } from './initHashtags';
 import initHomePage, { initHomePageSaga } from './initHomePage';
 import clubAddInfo, { clubAddSaga } from './clubAddInfo';
+import clubModifyInfo from './clubModifyInfo';
 import initCategory from './initCategory';
 import clubAddRecruitInfo from './clubAddRecruitInfo';
 import applicationAddInfo from './applicationAddInfo';
 import write, { writeSaga } from './write';
 import currentClubPostList, { currentClubPostListSaga } from './currentClubPostList';
-
 
 const rootReducer = combineReducers({
 	currentUserInfo,
@@ -20,23 +20,23 @@ const rootReducer = combineReducers({
 	initHashtags,
 	clubAddInfo,
 	initCategory,
+	clubModifyInfo,
 	clubAddRecruitInfo,
 	applicationAddInfo,
 	write,
 	currentClubPostList
 });
 
-
 export function* rootSaga() {
-	yield all
-		([initHashtagsSaga(),
+	yield all([
+		initHashtagsSaga(),
 		registerUserSaga(),
 		getUserInfoSaga(),
 		initHomePageSaga(),
 		clubAddSaga(),
 		writeSaga(),
-		currentClubPostListSaga(),
-		]);
+		currentClubPostListSaga()
+	]);
 }
 
 export default rootReducer;
