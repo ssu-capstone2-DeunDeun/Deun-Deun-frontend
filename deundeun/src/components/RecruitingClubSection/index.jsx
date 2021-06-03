@@ -27,8 +27,8 @@ const RecruitingClubSection = ({ recruitingClubDtos, onClickHomeTab, onClickProf
 				</ContentKorean> */}
 			</Header>
 			<Content>
-				<RecruitingClubCarousel setFocusClubImage={setFocusClubImage} />
-				<RecruitingClubList ocusClubImage={focusClubImage} />
+				<RecruitingClubCarousel recruitingClubDtos={recruitingClubDtos} setFocusClubImage={setFocusClubImage} />
+				<RecruitingClubList recruitingClubDtos={recruitingClubDtos} focusClubImage={focusClubImage} />
 			</Content>
 		</>
 	);

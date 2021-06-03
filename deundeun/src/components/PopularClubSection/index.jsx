@@ -4,7 +4,6 @@ import React from 'react';
 import { Header, CardContainer, ContentKorean } from './styles';
 
 const PopularClubSection = ({ popularClubDtos, onClickSeeAll }) => {
-	console.log("popular", popularClubDtos);
 	return (
 		//
 		<>

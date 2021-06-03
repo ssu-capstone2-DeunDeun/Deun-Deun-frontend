@@ -14,7 +14,7 @@ import {
 import { useHistory } from 'react-router';
 import DropdownMenu from 'components/common/DropdownMenu/index';
 import { ContainerRow } from 'styles';
-const RecruitingClubList = ({ focusClubImage }) => {
+const RecruitingClubList = ({ focusClubImage, recruitingClubDtos }) => {
 	const history = useHistory();
 	const [categoryIndex, setCategoryIndex] = useState(0);
 
@@ -49,7 +49,22 @@ const RecruitingClubList = ({ focusClubImage }) => {
 				</DropdownContainer>
 			</Header>
 			<ClubList>
-				<ClubListItem className={`${focusClubImage === 0 ? 'focus' : 'unfocus'}`}>
+				{
+					recruitingClubDtos && recruitingClubDtos.map((club, index) =>
+						<>
+							<ClubListItem className={`${focusClubImage === index ? 'focus' : 'unfocus'}`}>
+								<RecruitingOrder className="first">{index + 1}</RecruitingOrder>
+								<ClubName id="first" onClick={onClickClubName}>
+									IT 동아리 트와이스입니다.
+								</ClubName>
+								<ClubCategory>{club.categoryType}</ClubCategory>
+								<Deadline>D - {club.dday}</Deadline>
+							</ClubListItem>
+							<Divider />
+						</>
+					)
+				}
+				{/* <ClubListItem className={`${focusClubImage === 0 ? 'focus' : 'unfocus'}`}>
 					<RecruitingOrder className="first">1</RecruitingOrder>
 					<ClubName id="first" onClick={onClickClubName}>
 						IT동아리 트와이스
@@ -84,10 +99,20 @@ const RecruitingClubList = ({ focusClubImage }) => {
 					<ClubName>경제학술 동아리 Bithumb</ClubName>
 					<ClubCategory>학술 / 교양</ClubCategory>
 					<Deadline>D-4</Deadline>
-				</ClubListItem>
+				</ClubListItem> */}
 			</ClubList>
 		</Container>
 	);
 };
 
 export default RecruitingClubList;
+
+
+// categoryType: "IT"
+// clubRecruitId: 1
+// content: "든든공고입니다."
+// dday: -1
+// generation: 2
+// recruitingNow: true
+// representImageUrl: null
+// title: "string"

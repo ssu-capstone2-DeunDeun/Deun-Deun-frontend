@@ -16,7 +16,7 @@ const Item = (props) => {
 	);
 };
 
-const ClubImageCarousel = ({ setFocusClubImage }) => {
+const ClubImageCarousel = ({ setFocusClubImage, recruitingClubDtos }) => {
 	let items = [
 		{
 			id: 1,
