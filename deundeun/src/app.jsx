@@ -20,6 +20,7 @@ import ClubPostItemPage from 'pages/ClubPostItemPage/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
+const CategoryPage = loadable(() => import('pages/CategoryPage'));
 const ClubDetailPage = loadable(() => import('pages/ClubDetailPage'));
 const MyProfileModifyPage = loadable(() => import('pages/MyProfileModifyPage'));
 const MyClubListPage = loadable(() => import('pages/MyClubListPage'));
@@ -66,7 +67,7 @@ const App = () => {
 				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
-					<ClubCategory />
+					<CategoryPage />
 				</ContainerRow>
 			</Route>
 			<Route path="/mypage/:name">
@@ -172,12 +173,5 @@ const ClubManagePage = () => {
 	);
 };
 
-const ClubCategory = () => {
-	const { id } = useParams();
-	return (
-		//
-		<>{id === '1' && <CategoryITPage />}</>
-	);
-};
 
 export default App;

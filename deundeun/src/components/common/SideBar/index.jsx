@@ -284,7 +284,7 @@ const SideBar = ({ location }) => {
 					홈
 				</Button>
 			</Link>
-			<Link style={{ width: '9.4vh' }} to="/club/category/1">
+			<Link style={{ width: '9.4vh' }} to={`/club/category/${category[0]}`}>
 				<Button className={`${clickCategoryTab ? 'clicked' : 'not-clicked'}`} onClick={onClickCategoryTab}>
 					카테고리
 				</Button>

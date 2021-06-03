@@ -43,8 +43,8 @@ export const ClubName = styled.span`
 `;
 
 export const RecruitingIcon = styled.div`
-	width: 34px;
-	height: 20px;
+	width: 55px;
+	height: 27px;
 	border-radius: 14px;
 	border: solid 1px #04cbac;
 
