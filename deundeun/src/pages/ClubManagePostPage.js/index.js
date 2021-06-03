@@ -1,4 +1,5 @@
 import ClubPostCard from 'components/ClubPostCard/index';
+import ClubPostCardMove from 'components/ClubPostCardMove/index';
 import { getClubsPosts } from 'modules/currentClubPostList';
 import React from 'react';
 import { useEffect } from 'react';
@@ -37,7 +38,7 @@ const ClubManagePostPage = ({ history }) => {
                 {
                     posts &&
                     posts.content.map(post => (
-                        <ClubPostCard
+                        <ClubPostCardMove
                             key={post.createdAt}
                             title={post.title}
                             content={post.content}

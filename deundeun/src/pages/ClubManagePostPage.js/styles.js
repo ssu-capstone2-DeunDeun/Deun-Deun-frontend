@@ -25,10 +25,13 @@ export const ClubManagePostPageContainer = styled.div`
         .writeBtn{
             width:150px;
             height:45px;
-            background-color:#3bc9db;
+            /* background-color:rgba(31, 208, 181, 0.3); */
+            /* background-color:#66d9e8; */
+            background-color:#63e6be;
+
             border-radius:4px;
             &:hover{
-                background-color:#66d9e8;
+                background-color:#96f2d7;
             }
             cursor:pointer;
             a{
@@ -40,7 +43,7 @@ export const ClubManagePostPageContainer = styled.div`
                 font-size:20px;
                 height:50px;
                 color:white;
-                font-weight:900;
+                font-weight:700;
                 font-size:18px;
             }
         }

@@ -24,7 +24,6 @@ const PopularOrderBox = styled.div`
 
 const PopularClubCard = ({ order, imageURL, isRecruiting, clubName }) => {
 	return (
-		//
 		<Container imageURL={imageURL}>
 			<PopularOrderBox className={`${order <= 3 ? 'green' : 'gray'}`}>{order}</PopularOrderBox>
 			<ContainerRow style={{ marginTop: 'auto', marginBottom: '0.9em', marginLeft: '1em' }}>

@@ -4,7 +4,7 @@ import { TitleKorean } from 'components/RecruitingClubSection/styles';
 import ClubPostCard from 'components/ClubPostCard';
 import { ContentKorean } from 'components/PopularClubSection/styles';
 
-const ClubPostSection = ({ onClickSeeAll }) => {
+const ClubPostSection = ({ onClickSeeAll, popularPostDtos }) => {
 	return (
 		//
 		<>
@@ -16,10 +16,22 @@ const ClubPostSection = ({ onClickSeeAll }) => {
 			</Header>
 			<CardContainer>
 				<Content>
+					{
+						popularPostDtos && popularPostDtos.map(post =>
+							<ClubPostCard
+								title={post.title}
+								content={post.content}
+								createdAt={post.createdAt}
+								clubName={post.clubName}
+								likeCount={post.likeCount}
+								postId={post.postId}
+							/>
+						)
+					}
+					{/* <ClubPostCard />
 					<ClubPostCard />
 					<ClubPostCard />
-					<ClubPostCard />
-					<ClubPostCard />
+					<ClubPostCard /> */}
 				</Content>
 			</CardContainer>
 		</>

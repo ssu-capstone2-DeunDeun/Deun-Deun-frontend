@@ -11,6 +11,7 @@ const INITIAL_FIELD = 'write/INITIAL_FIELD';
 const [WRITE_POST, WRITE_POST_SUCCESS, WRITE_POST_FAILURE] = createRequestActionType('write/WRITE_POST');
 const [INIT_POST, INIT_POST_SUCCESS, INIT_POST_FAILURE] = createRequestActionType('write/INIT_POST');
 const [UPDATE_POST, UPDATE_POST_SUCCESS, UPDATE_POST_FAILURE] = createRequestActionType('write/UPDATE_POST');
+const [DELETE_POST, DELETE_POST_SUCCESS, DELETE_POST_FAILURE] = "write/DELETE_POST";
 
 
 export const changeField = createAction(CHANGE_FIELD);
@@ -18,16 +19,19 @@ export const initialField = createAction(INITIAL_FIELD);
 export const writePost = createAction(WRITE_POST);
 export const initPost = createAction(INIT_POST);
 export const updatePost = createAction(UPDATE_POST);
+export const deletePost = createAction(DELETE_POST);
+
 
 const writePostSaga = createRequestSaga(WRITE_POST, postAPI.post);
 const initPostSaga = createRequestSaga(INIT_POST, postAPI.getPost);
 const updatePostSaga = createRequestSaga(UPDATE_POST, postAPI.updatePost);
-
+const deletePostSaga = createRequestSaga(DELETE_POST, postAPI.deletePost);
 
 export function* writeSaga() {
     yield takeLatest(WRITE_POST, writePostSaga);
     yield takeLatest(INIT_POST, initPostSaga);
     yield takeLatest(UPDATE_POST, updatePostSaga);
+    yield takeLatest(DELETE_POST, deletePostSaga);
 }
 
 
@@ -39,6 +43,8 @@ const initialState = {
     postError: null,
     initpost: null,
     initpostError: null,
+    deletepost: null,
+    deletepostError: null,
 }
 
 const write = handleActions(
@@ -65,6 +71,15 @@ const write = handleActions(
         [INIT_POST_FAILURE]: (state, { payload: initpostError }) => ({
             ...state,
             initpostError,
+        }),
+        [DELETE_POST_SUCCESS]: (state, { payload: deletepost }) => ({
+            ...state,
+            deletepost,
+
+        }),
+        [DELETE_POST_FAILURE]: (state, { payload: deletepostError }) => ({
+            ...state,
+            deletepostError,
         }),
 
     },
