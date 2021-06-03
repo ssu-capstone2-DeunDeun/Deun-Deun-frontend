@@ -5,10 +5,26 @@ import RecruitingClubSection from 'components/RecruitingClubSection';
 import PopularClubSection from 'components/PopularClubSection';
 import ClubPostSection from 'components/ClubPostSection';
 import { ContainerColumn, ContainerPage } from 'styles';
+import { useSelector } from 'react-redux';
 const ClubHome = () => {
 	const onClickSeeAll = useCallback((e) => {
 		console.log('see all');
 	}, []);
+
+	const { getHome } = useSelector(({ initHomePage }) => ({
+		getHome: initHomePage.getHome,
+	}))
+
+
+	let popularClubDtos = null;
+	let popularPostDtos = null;
+	let recruitingClubDtos = null;
+
+	if (getHome) {
+		recruitingClubDtos = getHome.recruitingClubDtos;
+		popularClubDtos = getHome.popularClubDtos;
+		popularPostDtos = getHome.popularPostDtos;
+	}
 
 	return (
 		<>
@@ -16,9 +32,9 @@ const ClubHome = () => {
 				<>
 					{/* <TitleEnglish style={{ marginBottom: '3.68em' }}>HOME</TitleEnglish>
 					<GlobalFonts /> */}
-					<RecruitingClubSection onClickSeeAll={onClickSeeAll} />
-					<PopularClubSection onClickSeeAll={onClickSeeAll} />
-					<ClubPostSection onClickSeeAll={onClickSeeAll} />
+					<RecruitingClubSection recruitingClubDtos={recruitingClubDtos} onClickSeeAll={onClickSeeAll} />
+					<PopularClubSection popularClubDtos={popularClubDtos} onClickSeeAll={onClickSeeAll} />
+					<ClubPostSection popularPostDtos={popularPostDtos} onClickSeeAll={onClickSeeAll} />
 				</>
 			</ContainerPage>
 		</>
@@ -26,3 +42,4 @@ const ClubHome = () => {
 };
 
 export default ClubHome;
+

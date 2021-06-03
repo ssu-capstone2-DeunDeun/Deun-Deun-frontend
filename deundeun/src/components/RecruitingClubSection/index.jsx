@@ -5,8 +5,12 @@ import React, { useState } from 'react';
 import { Content, Header } from './styles';
 import { useSelector } from 'react-redux';
 
-const RecruitingClubSection = ({ onClickHomeTab, onClickProfile, onClickSeeAll }) => {
+const RecruitingClubSection = ({ recruitingClubDtos, onClickHomeTab, onClickProfile, onClickSeeAll }) => {
 	const [focusClubImage, setFocusClubImage] = useState(0);
+
+	if (recruitingClubDtos) {
+		console.log("recruit", recruitingClubDtos);
+	}
 
 
 	return (

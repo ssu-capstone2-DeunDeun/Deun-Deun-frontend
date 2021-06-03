@@ -15,9 +15,8 @@ import {
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { ContainerRow } from 'styles';
-import { withRouter } from 'react-router-dom';
 
-const ClubPostCard = ({ title, content, createdAt, clubName, likeCount, postId, history }) => {
+const ClubPostCard = ({ title, content, createdAt, clubName, likeCount, postId }) => {
 	return (
 		<Container>
 			{/* <PostImage /> */}
@@ -49,4 +48,4 @@ const ClubPostCard = ({ title, content, createdAt, clubName, likeCount, postId, 
 	);
 };
 
-export default withRouter(ClubPostCard);
+export default ClubPostCard;

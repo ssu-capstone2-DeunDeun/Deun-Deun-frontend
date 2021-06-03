@@ -3,7 +3,8 @@ import PopularClubCard from 'components/PopularClubCard';
 import React from 'react';
 import { Header, CardContainer, ContentKorean } from './styles';
 
-const PopularClubSection = ({ onClickSeeAll }) => {
+const PopularClubSection = ({ popularClubDtos, onClickSeeAll }) => {
+	console.log("popular", popularClubDtos);
 	return (
 		//
 		<>
@@ -14,11 +15,21 @@ const PopularClubSection = ({ onClickSeeAll }) => {
 				</ContentKorean>
 			</Header>
 			<CardContainer>
-				<PopularClubCard order={1} imageURL={'/images/test6.jpeg'} isRecruiting={true} clubName={'트와이스'} />
+				{
+					popularClubDtos && popularClubDtos.map((club, index) =>
+						<PopularClubCard
+							order={index + 1}
+							clubName={club.clubName}
+							imageURL={club.representImageUrl}
+							isRecruiting={club.dday < 0 ? false : true}
+						/>)
+				}
+
+				{/* <PopularClubCard order={1} imageURL={'/images/test6.jpeg'} isRecruiting={true} clubName={'트와이스'} />
 				<PopularClubCard order={2} imageURL={'/images/test7.jpeg'} isRecruiting={true} clubName={'트와이스'} />
 				<PopularClubCard order={3} imageURL={'/images/test8.jpeg'} clubName={'트와이스'} />
 				<PopularClubCard order={4} imageURL={'/images/test9.jpeg'} clubName={'트와이스'} />
-				<PopularClubCard order={5} imageURL={'/images/test5.jpeg'} clubName={'트와이스'} />
+				<PopularClubCard order={5} imageURL={'/images/test5.jpeg'} clubName={'트와이스'} /> */}
 			</CardContainer>
 		</>
 	);

@@ -18,7 +18,16 @@ const RecruitingClubList = ({ focusClubImage }) => {
 	const history = useHistory();
 	const [categoryIndex, setCategoryIndex] = useState(0);
 
-	const categories = ['전체 카테고리', 'IT / 개발', '카테고리 2', '카테고리 3', '카테고리 4'];
+	const categories = [
+		'전체 카테고리',
+		'IT(개발)',
+		'HEALTH(헬스)',
+		'STARTUP(창업)',
+		'FRIENDSHIP(친목)',
+		'VOLUNTEER(봉사)',
+		'CULTURE(문화)',
+		'LANGUAGE(어학)',
+		'OTHERS(기타)'];
 
 	const onClickClubName = useCallback(
 		(e) => {
