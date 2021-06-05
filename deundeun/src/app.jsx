@@ -17,6 +17,7 @@ import ClubManagePostPage from 'pages/ClubManagePostPage.js/index';
 import ClubPostItemPage from 'pages/ClubPostItemPage/index';
 import ClubAddSuccessPage from 'pages/ClubAddSuccessPage/index';
 import RecruitAddInfoContainer from 'container/recruit/RecruitAddInfoContainer';
+import ApplicationAddInfoContainer from 'container/application/ApplicationAddInfoContainer';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -149,7 +150,7 @@ const ClubManagePage = () => {
 				(addNewApplication ? (
 					<>
 						<Redirect to="/club/manage/application/new" />
-						<ApplicationAddPage setAddNewForm={setAddNewApplication} />
+						<ApplicationAddInfoContainer setAddNewForm={setAddNewApplication} />
 					</>
 				) : (
 					<>
@@ -175,6 +176,5 @@ const ClubManagePage = () => {
 		</>
 	);
 };
-
 
 export default App;

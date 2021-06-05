@@ -66,6 +66,14 @@ const ClubModifyPageContainer = () => {
 		[dispatch]
 	);
 
+	const onChangeClubImage = useCallback(() => {}, []);
+
+	const onChangeImage = useCallback(() => {}, []);
+
+	const onDeleteImage = useCallback(() => {}, []);
+
+	const onClickImage = useCallback(() => {}, []);
+
 	useEffect(() => {
 		axios({
 			method: 'get',
@@ -77,14 +85,24 @@ const ClubModifyPageContainer = () => {
 			.then((response) => {
 				const res = response.data[0].clubResponseDto;
 				console.log(res);
-				dispatch(changeInput({ type: 'generation', value: res.generation }));
-				dispatch(changeInput({ type: 'categoryType', value: res.categoryType }));
-				dispatch(changeInput({ type: 'clubName', value: res.clubName }));
-				dispatch(changeInput({ type: 'clubHashtags', value: res.clubHashtags }));
-				dispatch(changeInput({ type: 'introduction', value: res.introduction }));
-				dispatch(changeInput({ type: 'backgroundImageUrl', value: res.backgroundImageUrl }));
-				dispatch(changeInput({ type: 'representImageUrl', value: res.representImageUrl }));
-				dispatch(changeInput({ type: 'clubImageUrls', value: res.clubImageUrls }));
+				// dispatch(changeInput({ type: 'generation', value: res.generation }));
+				// dispatch(changeInput({ type: 'categoryType', value: res.categoryType }));
+				// dispatch(changeInput({ type: 'clubName', value: res.clubName }));
+				// dispatch(changeInput({ type: 'clubHashtags', value: res.clubHashtags }));
+				// dispatch(changeInput({ type: 'introduction', value: res.introduction }));
+				// dispatch(changeInput({ type: 'backgroundImageUrl', value: res.backgroundImageUrl }));
+				// dispatch(changeInput({ type: 'representImageUrl', value: res.representImageUrl }));
+				// dispatch(changeInput({ type: 'clubImageUrls', value: res.clubImageUrls }));
+				setClubInfo({
+					generation: res.generation,
+					categoryType: res.categoryType,
+					clubName: res.clubName,
+					introduction: res.introduction,
+					backgroundImageUrl: res.backgroundImageUrl,
+					representImageUrl: res.representImageUrl,
+					clubImageUrls: res.clubImageUrls
+				});
+				setImageFileList(clubInfo.clubImageUrls);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -98,6 +116,10 @@ const ClubModifyPageContainer = () => {
 			categoryError={categoryError}
 			onChangeGeneration={onChangeGeneration}
 			onChangeItem={onChangeCategory}
+			onChangeClubImage={onChangeClubImage}
+			onChangeImage={onChangeImage}
+			onDeleteImage={onDeleteImage}
+			onClickImage={onClickImage}
 			imageFileList={imageFileList}
 			setImageFileList={setImageFileList}
 		/>

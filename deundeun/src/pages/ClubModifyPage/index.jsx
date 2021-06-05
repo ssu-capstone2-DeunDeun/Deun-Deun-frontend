@@ -80,7 +80,11 @@ const ClubModifyPage = ({
 	onChangeGeneration,
 	imageFileList,
 	setImageFileList,
-	onChangeItem
+	onChangeItem,
+	onChangeClubImage,
+	onChangeImage,
+	onDeleteImage,
+	onClickImage
 }) => {
 	const { menuOptions } = useSelector(({ initCategory }) => ({
 		menuOptions: initCategory.category
@@ -174,10 +178,10 @@ const ClubModifyPage = ({
 						{/* </CoverImageContainer> */}
 						<MenuTitle>소개 이미지 업로드</MenuTitle>
 						<ContainerRow style={{ maxWidth: '100%', marginBottom: '2em', flexWrap: 'wrap', flex: 'none' }}>
-							{/* <InputButtonContainer>
+							<InputButtonContainer>
 								<ImageUpload onChangeFile={onChangeClubImage} multiple={true} />
 							</InputButtonContainer>
-							{clubInfo.clubImageUrls.map((image) => (
+							{imageFileList.map((image) => (
 								<div key={image}>
 									<IntroImageContainer>
 										<ImageDeleteButton id={image} onClick={onDeleteImage}>
@@ -186,7 +190,7 @@ const ClubModifyPage = ({
 										<IntroImage onClick={onClickImage} id={image} imageURL={image}></IntroImage>
 									</IntroImageContainer>
 								</div>
-							))} */}
+							))}
 						</ContainerRow>
 						<SubmitButton>정보 수정하기</SubmitButton>
 					</MenuContainer>
