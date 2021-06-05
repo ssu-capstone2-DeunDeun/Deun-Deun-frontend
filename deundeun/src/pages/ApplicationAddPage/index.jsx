@@ -10,22 +10,13 @@ import Alert from '@material-ui/lab/Alert';
 import { Footer } from 'pages/ClubAddPage/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Map, toJS } from 'immutable';
-import { addQuestion, deleteQuestion } from 'modules/applicationAddInfo';
-// import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
-// import { changeInput } from 'modules/applicationAddInfo';
+import { addQuestion, deleteQuestion, initializeQuestion } from 'modules/applicationAddInfo';
 const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle }) => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const [questionIndex, setQuestionIndex] = useState(2);
 	const [deleteError, setDeleteError] = useState(false);
 	const [submitError, setSubmitError] = useState(false);
-
-	// const { title, recruitQuestionRequestDtos, multipleChoiceRequestDtos } = useSelector(({ applicationAddInfo }) => ({
-	// 	title: applicationAddInfo.title,
-	// 	recruitQuestionRequestDtos: applicationAddInfo.recruitQuestionRequestDtos,
-	// 	multipleChoiceRequestDtos: applicationAddInfo.recruitQuestionRequestDtos.multipleChoiceRequestDtos
-	// }));
 
 	const [questionList, setQuestionList] = useState([
 		{
@@ -100,7 +91,7 @@ const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle }) => {
 	}, [questionList]);
 
 	useEffect(() => {
-		// dispatch(addQuestion(1, null, '', 'selective'));
+		dispatch(initializeQuestion());
 	}, []);
 
 	return (

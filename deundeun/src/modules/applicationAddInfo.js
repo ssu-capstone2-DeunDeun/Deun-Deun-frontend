@@ -3,8 +3,10 @@ import { Map, List } from 'immutable';
 const CHANGE_INPUT = 'applicationAddInfo/CHANGE_INPUT';
 const ADD_QUESTION = 'applicationAddInfo/ADD_QUESTION';
 const DELETE_QUESTION = 'applicationAddInfo/DELETE_QUESTION';
+const INITIALIZE_QUESTION = 'applicationAddInfo/INITIALIZE_QUESTION';
 
 export const changeInput = createAction(CHANGE_INPUT, (text) => text);
+export const initializeQuestion = createAction(INITIALIZE_QUESTION);
 export const addQuestion = createAction(
 	ADD_QUESTION,
 	(id, multipleChoiceRequestDtos, questionContent, questionType) => ({
@@ -35,12 +37,19 @@ const initialState = Map({
 
 const applicationAddInfo = handleActions(
 	{
-		// [CHANGE_INPUT]: (state, { payload: { type, value } }) => ({
-		// 	...state,
-		// 	[type]: value
-		// }),
 		[CHANGE_INPUT]: (state, action) => state.set('title', action.payload),
-		// [MODIFY_QUESTION]:
+		[INITIALIZE_QUESTION]: (state) =>
+			state.update('recruitQuestionRequestDtos', (list) =>
+				list.set(
+					0,
+					Map({
+						id: 1,
+						multipleChoiceRequestDtos: null,
+						questionContent: '',
+						questionType: 'selective'
+					})
+				)
+			),
 		[ADD_QUESTION]: (state, action) =>
 			state.update('recruitQuestionRequestDtos', (list) =>
 				list.push(
