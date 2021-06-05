@@ -55,10 +55,10 @@ const QuestionCard = ({ index, onDeleteQuestion, setQuestionTypeIdx, onChangeQue
 				{questionTypeIndex === 0 ? (
 					<>
 						<QuestionInput
-							id="questionTitle"
+							onChange={onChangeQuestionInput}
+							id="subjective"
 							name="questionContent"
 							placeholder="질문을 입력해주세요."
-							onChange={onChangeQuestionInput}
 						></QuestionInput>
 						<QuestionDeleteButton id={index} onClick={onDeleteQuestion}>
 							&times;
@@ -74,7 +74,7 @@ const QuestionCard = ({ index, onDeleteQuestion, setQuestionTypeIdx, onChangeQue
 								setSelectedIndex={setAnswerTypeIndex}
 							></DropdownMenu>
 						</DropdownContainer>
-						<QuestionInput className="small" placeholder="질문을 입력해주세요." />
+						<QuestionInput id="selective" className="small" placeholder="질문을 입력해주세요." />
 						<QuestionDeleteButton id={index} onClick={onDeleteQuestion}>
 							&times;
 						</QuestionDeleteButton>

@@ -1,12 +1,21 @@
+import applicationAddInfo, { changeInput } from 'modules/applicationAddInfo';
 import ApplicationAddPage from 'pages/ApplicationAddPage/index';
-import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-const ApplicationAddInfoContainer = () => {
+const ApplicationAddInfoContainer = ({ setAddNewForm }) => {
 	const dispatch = useDispatch();
+	const [appTitle, setAppTitle] = useState('');
 
-	const onChangeQuestionInput = useCallback(() => {}, []);
-	return <ApplicationAddPage onChangeQuestionInput={onChangeQuestionInput} />;
+	const onChangeAppTitle = useCallback(
+		(e) => {
+			setAppTitle(e.target.value);
+			dispatch(changeInput(e.target.value));
+		},
+		[dispatch]
+	);
+
+	return <ApplicationAddPage setAddNewForm={setAddNewForm} appTitle={appTitle} onChangeAppTitle={onChangeAppTitle} />;
 };
 
 export default ApplicationAddInfoContainer;

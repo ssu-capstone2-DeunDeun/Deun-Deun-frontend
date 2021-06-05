@@ -8,17 +8,24 @@ import { Prompt, useHistory } from 'react-router';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import { Footer } from 'pages/ClubAddPage/styles';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { changeInput } from 'modules/applicationAddInfo';
-const ApplicationAddPage = ({ setAddNewForm }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { Map, toJS } from 'immutable';
+import { addQuestion, deleteQuestion } from 'modules/applicationAddInfo';
+// import { useSelector } from 'react-redux';
+// import { useDispatch } from 'react-redux';
+// import { changeInput } from 'modules/applicationAddInfo';
+const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle }) => {
 	const history = useHistory();
+	const dispatch = useDispatch();
 	const [questionIndex, setQuestionIndex] = useState(2);
 	const [deleteError, setDeleteError] = useState(false);
 	const [submitError, setSubmitError] = useState(false);
 
-
-	const [questionTypeIdx, setQuestionTypeIdx] = useState(0);
+	// const { title, recruitQuestionRequestDtos, multipleChoiceRequestDtos } = useSelector(({ applicationAddInfo }) => ({
+	// 	title: applicationAddInfo.title,
+	// 	recruitQuestionRequestDtos: applicationAddInfo.recruitQuestionRequestDtos,
+	// 	multipleChoiceRequestDtos: applicationAddInfo.recruitQuestionRequestDtos.multipleChoiceRequestDtos
+	// }));
 
 	const [questionList, setQuestionList] = useState([
 		{
@@ -26,33 +33,6 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 			title: ''
 		}
 	]);
-
-	//내가 짠 코드
-	const dispatch = useDispatch();
-	const { title, recruitQuestion } = useSelector(({ applicationAddInfo }) => ({
-		title: applicationAddInfo.title,
-		recruitQuestion: applicationAddInfo.recruitQuestionRequestDtos,
-	}))
-
-	const onChangeTitle = useCallback((e) => {
-		dispatch(changeInput({ type: "title", value: e.target.value }))
-	}, [dispatch]);
-	//내가 짠 코드 종료
-
-	useEffect(() => {
-		const question = {
-			multipleChoiceRequestDtos: [],
-			questionContent: "",
-			questionType: "",
-		}
-
-		if (questionTypeIdx === 0) {  //주관식
-
-		}
-		else {  //선다형
-
-		}
-	}, [questionTypeIdx]);
 
 	const onSubmit = useCallback(() => {
 		history.push('/apply/success');
@@ -64,9 +44,36 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 			title: ''
 		};
 		setQuestionList(questionList.concat(newQuestion));
-		setQuestionIndex(questionIndex + 1);
-	}, [questionList, questionIndex]);
 
+		dispatch(addQuestion(questionIndex, null, '', 'selective'));
+		setQuestionIndex(questionIndex + 1);
+	}, [questionList, questionIndex, dispatch]);
+
+	// const onChangeQuestionInput = useCallback(
+	// 	(e) => {
+	// 		const value = e.target.value;
+
+	// 		if (e.target.id === 'subjective') {
+	// 			const req = recruitQuestionRequestDtos;
+	// 			const newReq = req.push(
+	// 				Map({
+	// 					multipleChoiceRequestDtos: null,
+	// 					questionType: 'selective',
+	// 					questionContent: value
+	// 				})
+	// 			);
+	// 			console.log(newReq.toJS());
+	// 			// need dispatch
+	// 		}
+	// 	},
+	// 	// dispatch(changeInput({ type: 'recruitQuestionRequestDtos', value: newQuestionContent }));
+	// 	[recruitQuestionRequestDtos]
+	// );
+
+	const onChangeQuestionInput = useCallback(() => {}, []);
+
+	// onChangeContent
+	// onChangeType
 
 	const onDeleteQuestion = useCallback(
 		(e) => {
@@ -75,8 +82,9 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 				return;
 			}
 			setQuestionList(questionList.filter((question) => question.index !== parseInt(e.target.id)));
+			dispatch(deleteQuestion(e.target.id));
 		},
-		[questionList]
+		[questionList, dispatch]
 	);
 
 	const onCloseSnackbar = useCallback(() => {
@@ -91,6 +99,10 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 		console.log(questionList);
 	}, [questionList]);
 
+	useEffect(() => {
+		// dispatch(addQuestion(1, null, '', 'selective'));
+	}, []);
+
 	return (
 		//
 		<>
@@ -103,17 +115,21 @@ const ApplicationAddPage = ({ setAddNewForm }) => {
 							type="text"
 							id="title"
 							name="title"
-							onChange={onChangeTitle}
+							onChange={onChangeAppTitle}
 							placeholder="제목을 입력해주세요."
-							value={title}
+							value={appTitle}
 						></ApplicationTitleInput>
-						{title === "" && <Error style={{ marginLeft: '0.3em' }}>* 제목은 필수 입력 항목입니다.</Error>}
+						{appTitle === '' && <Error style={{ marginLeft: '0.3em' }}>* 제목은 필수 입력 항목입니다.</Error>}
 					</ContainerColumn>
-
 					<ContainerColumn>
 						<TitleKorean style={{ marginBottom: '1em' }}>질문</TitleKorean>
 						{questionList.map((question) => (
-							<QuestionCard key={question.index} index={question.index} setQuestionTypeIdx={setQuestionTypeIdx} onDeleteQuestion={onDeleteQuestion} />
+							<QuestionCard
+								key={question.index}
+								index={question.index}
+								onDeleteQuestion={onDeleteQuestion}
+								onChangeQuestionInput={onChangeQuestionInput}
+							/>
 						))}
 						<AddQuestionButton>
 							<InnerContainer onClick={onClickAddQuestion}>

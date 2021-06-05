@@ -11,28 +11,30 @@ const AnswerCard = () => {
 	const [choiceList, setChoiceList] = useState([
 		{
 			choiceNumber: 1,
-			choiceContent: "",
+			choiceContent: ''
 		}
 	]);
 
-	const onAddChoice = useCallback(() => {
-		const value = document.getElementById("choiceValue");
-
-		const newChoice = {
-			choiceNumber: choiceIndex,
-			choiceContnetL: value,
-		};
-		setChoiceList(choiceList.concat(newChoice));
-		setChoiceIndex(choiceIndex + 1);
-	}, [choiceList, choiceIndex]);
+	const onAddChoice = useCallback(
+		(e) => {
+			const newChoice = {
+				choiceNumber: choiceIndex,
+				choiceContent: ''
+			};
+			setChoiceList(choiceList.concat(newChoice));
+			setChoiceIndex(choiceIndex + 1);
+		},
+		[choiceList, choiceIndex]
+	);
 
 	const onDeleteChoice = useCallback(
 		(e) => {
 			if (choiceList.length === 1) {
 				setDeleteError(true);
 				return;
+			} else {
+				setChoiceList(choiceList.filter((choice) => choice.choiceNumber !== parseInt(e.target.id)));
 			}
-			setChoiceList(choiceList.filter((choice) => choice.index !== parseInt(e.target.id)));
 		},
 		[choiceList]
 	);
@@ -41,10 +43,7 @@ const AnswerCard = () => {
 		setDeleteError(false);
 	}, []);
 
-
-	useEffect(() => {
-
-	}, []);
+	useEffect(() => {}, []);
 	return (
 		//
 		<>
@@ -52,10 +51,10 @@ const AnswerCard = () => {
 				<QuestionNumber>A</QuestionNumber>
 				<AnswerContainer>
 					{choiceList.map((choice) => (
-						<div key={choice.index}>
+						<div key={choice.choiceNumber}>
 							<ContainerRow style={{ marginBottom: '0.6em' }}>
-								<ChoiceInput id="choiceValue" placeholder="선택지를 입력해주세요."></ChoiceInput>
-								<ChoiceDeleteButton id={choice.index} onClick={onDeleteChoice}>
+								<ChoiceInput placeholder="선택지를 입력해주세요."></ChoiceInput>
+								<ChoiceDeleteButton id={choice.choiceNumber} onClick={onDeleteChoice}>
 									&times;
 								</ChoiceDeleteButton>
 							</ContainerRow>
