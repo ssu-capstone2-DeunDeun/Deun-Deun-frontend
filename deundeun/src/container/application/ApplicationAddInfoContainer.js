@@ -1,4 +1,4 @@
-import applicationAddInfo, { changeInput } from 'modules/applicationAddInfo';
+import applicationAddInfo, { changeInput, modifyQuestionType } from 'modules/applicationAddInfo';
 import ApplicationAddPage from 'pages/ApplicationAddPage/index';
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,7 +15,27 @@ const ApplicationAddInfoContainer = ({ setAddNewForm }) => {
 		[dispatch]
 	);
 
-	return <ApplicationAddPage setAddNewForm={setAddNewForm} appTitle={appTitle} onChangeAppTitle={onChangeAppTitle} />;
+	const onChangeQuestionType = useCallback(
+		(e) => {
+			const id = e.target.id;
+			const type = e.currentTarget.innerText;
+			if (type === '복수 선택') {
+				dispatch(modifyQuestionType(id, 'multiple'));
+			} else {
+				dispatch(modifyQuestionType(id, 'selective'));
+			}
+		},
+		[dispatch]
+	);
+
+	return (
+		<ApplicationAddPage
+			setAddNewForm={setAddNewForm}
+			appTitle={appTitle}
+			onChangeAppTitle={onChangeAppTitle}
+			onChangeQuestionType={onChangeQuestionType}
+		/>
+	);
 };
 
 export default ApplicationAddInfoContainer;

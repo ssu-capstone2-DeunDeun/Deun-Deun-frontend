@@ -11,7 +11,7 @@ import { Footer } from 'pages/ClubAddPage/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Map, toJS } from 'immutable';
 import { addQuestion, deleteQuestion, initializeQuestion } from 'modules/applicationAddInfo';
-const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle }) => {
+const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle, onChangeQuestionType }) => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const [questionIndex, setQuestionIndex] = useState(2);
@@ -83,12 +83,12 @@ const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle }) => {
 	}, []);
 
 	useEffect(() => {
-		return () => setAddNewForm(false);
-	}, []);
-
-	useEffect(() => {
 		console.log(questionList);
 	}, [questionList]);
+
+	useEffect(() => {
+		return () => setAddNewForm(false);
+	}, []);
 
 	useEffect(() => {
 		dispatch(initializeQuestion());
@@ -120,6 +120,7 @@ const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle }) => {
 								index={question.index}
 								onDeleteQuestion={onDeleteQuestion}
 								onChangeQuestionInput={onChangeQuestionInput}
+								onChangeQuestionType={onChangeQuestionType}
 							/>
 						))}
 						<AddQuestionButton>

@@ -3,9 +3,10 @@ import { useEffect } from 'react';
 import { ContainerColumn, ContainerRow } from 'styles';
 import AnswerCard from '../AnswerCard/index';
 import DropdownMenu from '../DropdownMenu/index';
+import DropdownMenuId from '../DropdownMenuId/index';
 import { DropdownContainer, QuestionInput, QuestionNumber, QuestionDeleteButton } from './styles';
 
-const QuestionCard = ({ index, onDeleteQuestion, setQuestionTypeIdx, onChangeQuestionInput }) => {
+const QuestionCard = ({ index, onDeleteQuestion, setQuestionTypeIdx, onChangeQuestionInput, onChangeQuestionType }) => {
 	const [questionTypeIndex, setQuestionTypeIndex] = useState(0);
 	const [answerTypeIndex, setAnswerTypeIndex] = useState(0);
 
@@ -68,11 +69,13 @@ const QuestionCard = ({ index, onDeleteQuestion, setQuestionTypeIdx, onChangeQue
 					<>
 						<DropdownContainer style={{ width: '138px' }}>
 							{`${answerTypes[answerTypeIndex]}`}
-							<DropdownMenu
+							<DropdownMenuId
+								id={index}
 								options={answerTypes}
 								selectedIndex={answerTypeIndex}
 								setSelectedIndex={setAnswerTypeIndex}
-							></DropdownMenu>
+								onChangeItem={onChangeQuestionType}
+							></DropdownMenuId>
 						</DropdownContainer>
 						<QuestionInput id="selective" className="small" placeholder="질문을 입력해주세요." />
 						<QuestionDeleteButton id={index} onClick={onDeleteQuestion}>
