@@ -1,4 +1,4 @@
-import applicationAddInfo, { changeInput, modifyQuestionType } from 'modules/applicationAddInfo';
+import applicationAddInfo, { changeInput, initializeChoice, modifyQuestionType } from 'modules/applicationAddInfo';
 import ApplicationAddPage from 'pages/ApplicationAddPage/index';
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,10 +19,11 @@ const ApplicationAddInfoContainer = ({ setAddNewForm }) => {
 		(e) => {
 			const id = e.target.id;
 			const type = e.currentTarget.innerText;
-			if (type === '복수 선택') {
-				dispatch(modifyQuestionType(id, 'multiple'));
+			if (type === '선다형') {
+				dispatch(modifyQuestionType(id, 'MULTIPLE'));
+				dispatch(initializeChoice(id));
 			} else {
-				dispatch(modifyQuestionType(id, 'selective'));
+				dispatch(modifyQuestionType(id, 'SUBJECTIVE'));
 			}
 		},
 		[dispatch]

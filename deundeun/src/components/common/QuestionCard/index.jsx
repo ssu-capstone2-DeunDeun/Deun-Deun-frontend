@@ -47,17 +47,19 @@ const QuestionCard = ({ index, onDeleteQuestion, setQuestionTypeIdx, onChangeQue
 				<QuestionNumber>Q</QuestionNumber>
 				<DropdownContainer>
 					{`${questionTypes[questionTypeIndex]}`}
-					<DropdownMenu
+					<DropdownMenuId
+						id={index}
 						options={questionTypes}
 						selectedIndex={questionTypeIndex}
 						setSelectedIndex={setQuestionTypeIndex}
-					></DropdownMenu>
+						onChangeItem={onChangeQuestionType}
+					></DropdownMenuId>
 				</DropdownContainer>
 				{questionTypeIndex === 0 ? (
 					<>
 						<QuestionInput
 							onChange={onChangeQuestionInput}
-							id="subjective"
+							id={index}
 							name="questionContent"
 							placeholder="질문을 입력해주세요."
 						></QuestionInput>
@@ -67,24 +69,22 @@ const QuestionCard = ({ index, onDeleteQuestion, setQuestionTypeIdx, onChangeQue
 					</>
 				) : (
 					<>
-						<DropdownContainer style={{ width: '138px' }}>
+						{/* <DropdownContainer style={{ width: '138px' }}>
 							{`${answerTypes[answerTypeIndex]}`}
 							<DropdownMenuId
-								id={index}
 								options={answerTypes}
 								selectedIndex={answerTypeIndex}
 								setSelectedIndex={setAnswerTypeIndex}
-								onChangeItem={onChangeQuestionType}
 							></DropdownMenuId>
-						</DropdownContainer>
-						<QuestionInput id="selective" className="small" placeholder="질문을 입력해주세요." />
+						</DropdownContainer> */}
+						<QuestionInput id={index} placeholder="질문을 입력해주세요." onChange={onChangeQuestionInput} />
 						<QuestionDeleteButton id={index} onClick={onDeleteQuestion}>
 							&times;
 						</QuestionDeleteButton>
 					</>
 				)}
 			</ContainerRow>
-			{questionTypeIndex === 1 && <AnswerCard />}
+			{questionTypeIndex === 1 && <AnswerCard id={index} />}
 		</div>
 	);
 };

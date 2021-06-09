@@ -10,7 +10,8 @@ import Alert from '@material-ui/lab/Alert';
 import { Footer } from 'pages/ClubAddPage/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Map, toJS } from 'immutable';
-import { addQuestion, deleteQuestion, initializeQuestion } from 'modules/applicationAddInfo';
+import { addQuestion, deleteQuestion, initializeQuestion, modifyQuestionContent } from 'modules/applicationAddInfo';
+import { List } from 'immutable';
 const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle, onChangeQuestionType }) => {
 	const history = useHistory();
 	const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle, onChang
 		};
 		setQuestionList(questionList.concat(newQuestion));
 
-		dispatch(addQuestion(questionIndex, null, '', 'selective'));
+		dispatch(addQuestion(questionIndex, List([]), '', 'SUBJECTIVE'));
 		setQuestionIndex(questionIndex + 1);
 	}, [questionList, questionIndex, dispatch]);
 
@@ -61,7 +62,12 @@ const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle, onChang
 	// 	[recruitQuestionRequestDtos]
 	// );
 
-	const onChangeQuestionInput = useCallback(() => {}, []);
+	const onChangeQuestionInput = useCallback(
+		(e) => {
+			dispatch(modifyQuestionContent(e.target.id, e.target.value));
+		},
+		[dispatch]
+	);
 
 	// onChangeContent
 	// onChangeType
