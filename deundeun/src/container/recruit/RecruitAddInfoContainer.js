@@ -2,55 +2,52 @@ import RecruitAddPage from 'pages/RecruitAddPage/index';
 import { useCallback, useEffect, useState } from 'react';
 import axios from '../../../node_modules/axios/index';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
+import { changeInput } from 'modules/recruitAddInfo';
+import { useDispatch } from 'react-redux';
 const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 	const [clubName, setClubName] = useState('');
+	const [applicationList, setApplicationList] = useState([]);
+	const [applicationId, setApplicationId] = useState(-1);
 	const [deadline, setDeadline] = useState({
-		startDate: new Date(),
-		endDate: new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
-		submitStartDate: new Date().getTime() + 8 * 24 * 60 * 60 * 1000,
-		submitEndDate: new Date().getTime() + 15 * 24 * 60 * 60 * 1000,
-		interviewStartDate: new Date().getTime() + 16 * 24 * 60 * 60 * 1000,
-		interviewEndDate: new Date().getTime() + 23 * 24 * 60 * 60 * 1000,
-		finalPassStartDate: new Date().getTime() + 24 * 24 * 60 * 60 * 1000,
-		finalPassEndDate: new Date().getTime() + 31 * 24 * 60 * 60 * 1000
+		submitStartDate: new Date(),
+		submitEndDate: new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
+		documentPassAnnounceDate: new Date().getTime() + 8 * 24 * 60 * 60 * 1000,
+		interviewStartDate: new Date().getTime() + 9 * 24 * 60 * 60 * 1000,
+		interviewEndDate: new Date().getTime() + 16 * 24 * 60 * 60 * 1000,
+		finalPassAnnounceDate: new Date().getTime() + 17 * 24 * 60 * 60 * 1000
 	});
+	const dispatch = useDispatch();
 
-	const onChangeStartDate = useCallback(
-		(date) => {
-			setDeadline({
-				...deadline,
-				startDate: date
-			});
-		},
-		[deadline]
-	);
-
-	const onChangeEndDate = useCallback(
-		(date) => {
-			setDeadline({
-				...deadline,
-				endDate: date
-			});
-		},
-		[deadline]
-	);
 	const onChangeSubmitStartDate = useCallback(
 		(date) => {
 			setDeadline({
 				...deadline,
 				submitStartDate: date
 			});
+			dispatch(changeInput({ type: 'submitStartDate', value: date }));
 		},
-		[deadline]
+		[deadline, dispatch]
 	);
+
 	const onChangeSubmitEndDate = useCallback(
 		(date) => {
 			setDeadline({
 				...deadline,
 				submitEndDate: date
 			});
+			dispatch(changeInput({ type: 'submitEndDate', value: date }));
 		},
-		[deadline]
+		[deadline, dispatch]
+	);
+	const onChangeDocumentPassAnnounceDate = useCallback(
+		(date) => {
+			setDeadline({
+				...deadline,
+				documentPassAnnounceDate: date
+			});
+			dispatch(changeInput({ type: 'documentPassAnnounceDate', value: date }));
+		},
+		[deadline, dispatch]
 	);
 	const onChangeInterviewStartDate = useCallback(
 		(date) => {
@@ -58,8 +55,9 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 				...deadline,
 				interviewStartDate: date
 			});
+			dispatch(changeInput({ type: 'interviewStartDate', value: date }));
 		},
-		[deadline]
+		[deadline, dispatch]
 	);
 	const onChangeInterviewEndDate = useCallback(
 		(date) => {
@@ -67,27 +65,19 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 				...deadline,
 				interviewEndDate: date
 			});
+			dispatch(changeInput({ type: 'interviewEndDate', value: date }));
 		},
-		[deadline]
+		[deadline, dispatch]
 	);
-	const onChangeFinalPassStartDate = useCallback(
+	const onChangeFinalPassAnnounceDate = useCallback(
 		(date) => {
 			setDeadline({
 				...deadline,
-				finalPassStartDate: date
+				finalPassAnnounceDate: date
 			});
+			dispatch(changeInput({ type: 'finalPassAnnounceDate', value: date }));
 		},
-		[deadline]
-	);
-
-	const onChangeFinalPassEndDate = useCallback(
-		(date) => {
-			setDeadline({
-				...deadline,
-				finalPassEndDate: date
-			});
-		},
-		[deadline]
+		[deadline, dispatch]
 	);
 
 	useEffect(() => {
@@ -105,7 +95,6 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 
 	useEffect(() => {
 		if (clubName !== '') {
-			console.log(clubName);
 			axios({
 				method: 'get',
 				url: `${API_BASE_URL}/clubs/${clubName}/forms`,
@@ -113,24 +102,24 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 					Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
 				}
 			}).then((response) => {
-				console.log(response.data);
+				setApplicationList(response.data);
 			});
 		}
-	});
+	}, [clubName]);
 
 	return (
 		<RecruitAddPage
 			setAddNewForm={setAddNewForm}
 			deadline={deadline}
 			setDeadline={setDeadline}
-			onChangeStartDate={onChangeStartDate}
-			onChangeEndDate={onChangeEndDate}
 			onChangeSubmitStartDate={onChangeSubmitStartDate}
 			onChangeSubmitEndDate={onChangeSubmitEndDate}
 			onChangeInterviewStartDate={onChangeInterviewStartDate}
 			onChangeInterviewEndDate={onChangeInterviewEndDate}
-			onChangeFinalPassStartDate={onChangeFinalPassStartDate}
-			onChangeFinalPassEndDate={onChangeFinalPassEndDate}
+			onChangeDocumentPassAnnounceDate={onChangeDocumentPassAnnounceDate}
+			onChangeFinalPassAnnounceDate={onChangeFinalPassAnnounceDate}
+			applicationList={applicationList}
+			clubName={clubName}
 		/>
 	);
 };

@@ -1,6 +1,8 @@
 import { withStyles } from '@material-ui/core';
 import StyledCheckbox from 'components/common/StyledCheckbox';
-import React, { useCallback } from 'react';
+import { changeInput } from 'modules/recruitAddInfo';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
 	CloseModalButton,
 	CreateModal,
@@ -12,10 +14,25 @@ import {
 	ApplicationTitle
 } from './styles';
 
-const LoadApplicationModal = ({ show, children, onCloseModal }) => {
+const LoadApplicationModal = ({ show, children, onCloseModal, applicationList, setFormError }) => {
+	const [applicationId, setApplicationId] = useState('-1');
+	const [applicationTitle, setApplicationTitle] = useState('');
+	const dispatch = useDispatch();
+
 	const stopPropagation = useCallback((e) => {
 		e.stopPropagation();
 	}, []);
+
+	const onSubmitApplication = useCallback(
+		(e) => {
+			// dispatch application id
+			setFormError(false);
+			dispatch(changeInput({ type: 'clubApplyFormId', value: parseInt(applicationId) }));
+			// dispatch(changeInput({ type: 'clubApplyFormTitle', value: parseInt(applicationTitle) }));
+			onCloseModal();
+		},
+		[onCloseModal, applicationId, setFormError, dispatch, applicationTitle]
+	);
 
 	if (!show) {
 		return null;
@@ -29,21 +46,29 @@ const LoadApplicationModal = ({ show, children, onCloseModal }) => {
 				<CloseModalButton onClick={onCloseModal}>&times;</CloseModalButton>
 				{children}
 				<ContentContainer>
-					<FormList>
-						<ListItem>
-							<StyledCheckbox />
-							<ApplicationTitle>[3기] 야! 너도 트와이스 할 수 있어!</ApplicationTitle>
-						</ListItem>
-						<ListItem>
-							<StyledCheckbox />
-							<ApplicationTitle>[2기] 야! 너도 트와이스 할 수 있어!</ApplicationTitle>
-						</ListItem>
-						<ListItem>
-							<StyledCheckbox />
-							<ApplicationTitle>[1기] 야! 너도 트와이스 할 수 있어!</ApplicationTitle>
-						</ListItem>
-					</FormList>
-					<SubmitButton>첨부하기</SubmitButton>
+					{applicationList.map((application) => (
+						<div key={application.applyFormId}>
+							<ListItem>
+								<StyledCheckbox
+									id={application.applyFormId + ''}
+									applicationId={applicationId}
+									value={application.title}
+									setApplicationId={setApplicationId}
+									setApplicationTitle={setApplicationTitle}
+								/>
+								<ApplicationTitle>{application.title}</ApplicationTitle>
+							</ListItem>
+						</div>
+					))}
+
+					<SubmitButton
+						id={applicationId}
+						value={applicationTitle}
+						onClick={onSubmitApplication}
+						style={{ marginTop: '2em' }}
+					>
+						첨부하기
+					</SubmitButton>
 				</ContentContainer>
 			</div>
 		</CreateModal>

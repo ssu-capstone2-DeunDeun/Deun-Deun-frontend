@@ -75,3 +75,11 @@ export const addApplication = (data) => {
 		}
 	});
 };
+
+export const addRecruit = (data) => {
+	client.post(API_BASE_URL + `/clubs/${data.clubName}/recruits`, data.newRecruit, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+		}
+	});
+};

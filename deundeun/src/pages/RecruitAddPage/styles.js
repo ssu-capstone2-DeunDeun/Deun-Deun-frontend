@@ -67,22 +67,6 @@ export const RecruitTitleInput = styled.input`
 	padding-left: 1.25em;
 `;
 
-// export const RecruitInfo = styled.input`
-// 	width: 123px;
-// 	height: 66px;
-// 	background-color: #f7f7f7;
-// 	display: flex;
-// 	justify-content: center;
-// 	align-items: center;
-// 	color: #282828;
-// 	margin-bottom: 0.6em;
-// 	margin-right: 0.5em;
-// 	font-family: 'NotoSansKR';
-// 	font-size: 1rem;
-// 	border: none;
-// 	text-align: center;
-// `;
-
 export const RecruitInfo = styled.div`
 	width: 123px;
 	height: 66px;

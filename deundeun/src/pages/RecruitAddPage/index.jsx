@@ -11,7 +11,7 @@ import {
 	ImageButton,
 	DateInputButton
 } from './styles';
-import React, { forwardRef, useCallback, useEffect, useState } from 'react';
+import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import { ContainerColumn, ContainerRow } from 'styles';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { Error, Header, SubmitButton } from 'pages/ApplicationAddPage/styles';
@@ -28,22 +28,25 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { setHours, setMinutes } from 'date-fns';
 import { Prompt, useHistory } from 'react-router';
-import TextEditor from 'components/common/TextEditor/index';
+import ReactQuill, { Quill } from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import ImageResize from 'quill-image-resize';
+import recruitAddInfo, { changeInput, initializeState, addRecruit } from 'modules/recruitAddInfo';
+Quill.register('modules/ImageResize', ImageResize);
 
 registerLocale('ko', ko);
 
 const RecruitAddPage = ({
 	setAddNewForm,
 	deadline,
-	setDeadline,
-	onChangeStartDate,
-	onChangeEndDate,
 	onChangeSubmitStartDate,
 	onChangeSubmitEndDate,
 	onChangeInterviewStartDate,
 	onChangeInterviewEndDate,
-	onChangeFinalPassStartDate,
-	onChangeFinalPassEndDate
+	onChangeDocumentPassAnnounceDate,
+	onChangeFinalPassAnnounceDate,
+	applicationList,
+	clubName
 }) => {
 	const [dateError, setDateError] = useState(false);
 	const [generationError, setGenerationError] = useState(true);
@@ -54,12 +57,44 @@ const RecruitAddPage = ({
 	const [generation, setGeneration] = useState('');
 	const [intro, setIntro] = useState('');
 	const [whenState, setWhenState] = useState(true);
-
+	const quillRef = useRef();
 	const dispatch = useDispatch();
-	const { clubAddRecruitInfo } = useSelector(({ clubAddRecruitInfo }) => ({
-		clubAddRecruitInfo
-	}));
-	// console.log("clubaddrecruitinfo", clubAddRecruitInfo);
+
+	const imageHandler = () => {
+		const input = document.createElement('input');
+		input.setAttribute('type', 'file');
+		input.setAttribute('accept', 'image/*');
+		input.click();
+		input.onchange = async function () {
+			const file = input.files[0];
+			console.log('User trying to uplaod this:', file);
+
+			//   const id = await uploadFile(file); // I'm using react, so whatever upload function
+			//   const range = quillRef.getSelection();
+			//   const link = `${ROOT_URL}/file/${id}`;
+
+			//   // this part the image is inserted
+			//   // by 'image' option below, you just have to put src(link) of img here.
+			//   this.quill.insertEmbed(range.index, 'image', link);
+		};
+	};
+
+	const modules = {
+		toolbar: [
+			[{ header: [1, 2, false] }],
+			['bold', 'italic', 'underline', 'strike', 'blockquote'],
+			[{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+			['image'],
+			[{ align: [] }, { color: [] }, { background: [] }], // dropdown with defaults from theme
+			['clean']
+		],
+		// handlers: {
+		// 	image: imageHandler
+		// },
+		ImageResize: {
+			parchment: Quill.import('parchment')
+		}
+	};
 
 	const history = useHistory();
 
@@ -75,19 +110,25 @@ const RecruitAddPage = ({
 		</DateInputButton>
 	));
 
-	const onChangeTitle = useCallback((e) => {
-		console.log(e.target.value);
-		if (e.target.value === '') {
-			setTitleError(true);
-		} else {
-			setTitle(e.target.value);
-			setTitleError(false);
-		}
-	}, []);
+	const onChangeTitle = useCallback(
+		(e) => {
+			console.log(e.target.value);
+			if (e.target.value === '') {
+				setTitleError(true);
+			} else {
+				setTitle(e.target.value);
+				dispatch(changeInput({ type: 'title', value: e.target.value }));
+				setTitleError(false);
+			}
+		},
+		[dispatch]
+	);
 
 	const onChangeGeneration = (e) => {
 		if (Number(e.target.value) > 0 && Number(e.target.value <= 999)) {
 			setGeneration(e.target.value);
+			dispatch(changeInput({ type: 'generation', value: e.target.value }));
+			setGenerationError(false);
 		} else {
 			setGeneration('');
 		}
@@ -105,12 +146,56 @@ const RecruitAddPage = ({
 		setDateError(false);
 	}, []);
 
-	const onChangeIntro = useCallback((e) => {
-		console.log(e.target.value);
+	const onChangeEditor = useCallback(
+		(e) => {
+			dispatch(changeInput({ type: 'content', value: e }));
+		},
+		[dispatch]
+	);
+
+	const { recruitAddInfo } = useSelector(({ recruitAddInfo }) => ({
+		recruitAddInfo: recruitAddInfo
+	}));
+
+	const onSubmit = useCallback(
+		(e) => {
+			e.preventDefault();
+			if (formError || titleError || generationError) {
+				window.scrollTo(0, 0);
+				console.log(formError, titleError, generationError);
+				return;
+			} else {
+				const data = {
+					newRecruit: {
+						clubApplyFormId: recruitAddInfo.clubApplyFormId,
+						documentPassAnnounceDate: recruitAddInfo.documentPassAnnounceDate,
+						submitStartDate: recruitAddInfo.submitStartDate,
+						submitEndDate: recruitAddInfo.submitEndDate,
+						interviewStartDate: recruitAddInfo.interviewStartDate,
+						interviewEndDate: recruitAddInfo.interviewEndDate,
+						finalPassAnnounceDate: recruitAddInfo.finalPassAnnounceDate,
+						title: recruitAddInfo.title,
+						generation: parseInt(recruitAddInfo.generation),
+						content: recruitAddInfo.content
+					},
+					clubName: clubName
+				};
+				console.log(data);
+				dispatch(addRecruit(data));
+			}
+		},
+		[formError, titleError, generationError, recruitAddInfo, clubName, dispatch]
+	);
+
+	useEffect(() => {
+		return () => {
+			setAddNewForm(false);
+			dispatch(initializeState());
+		};
 	}, []);
 
 	useEffect(() => {
-		return () => setAddNewForm(false);
+		dispatch(initializeState());
 	}, []);
 
 	return (
@@ -119,10 +204,16 @@ const RecruitAddPage = ({
 			<Header>새 모집 공고 추가하기</Header>
 			<TitleKorean>지원서 양식</TitleKorean>
 			<ApplicationLoadCard onClick={onClickLoadApplication}>
-				<InnerContainer className="inner">
-					<AddCircleOutlineIcon style={{ marginRight: '0.4em' }} />
-					<ContentKorean style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>지원서 불러오기</ContentKorean>
-				</InnerContainer>
+				{formError ? (
+					<>
+						<InnerContainer className="inner">
+							<AddCircleOutlineIcon style={{ marginRight: '0.4em' }} />
+							<ContentKorean style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>지원서 불러오기</ContentKorean>
+						</InnerContainer>
+					</>
+				) : (
+					<ContentKorean style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>test</ContentKorean>
+				)}
 			</ApplicationLoadCard>
 			{formError && <Error style={{ marginLeft: '0.5em' }}>* 지원서 양식이 필요합니다.</Error>}
 			<TitleKorean style={{ marginBottom: '1em', marginTop: '1.3em' }}>모집 기수 / 제목</TitleKorean>
@@ -143,28 +234,6 @@ const RecruitAddPage = ({
 					<RecruitInfo>서류 접수</RecruitInfo>
 					<DatePicker
 						locale="ko"
-						selected={deadline.startDate}
-						onChange={onChangeStartDate}
-						showTimeSelect
-						injectTimes={times}
-						customInput={<CustomDateInput />}
-						dateFormat="yyyy.MM.dd aa h:mm"
-					/>
-					<Tilde>~</Tilde>
-					<DatePicker
-						locale="ko"
-						selected={deadline.endDate}
-						onChange={onChangeEndDate}
-						showTimeSelect
-						injectTimes={times}
-						customInput={<CustomDateInput />}
-						dateFormat="yyyy.MM.dd aa h:mm"
-					/>
-				</ContainerRow>
-				<ContainerRow>
-					<RecruitInfo>1차 발표</RecruitInfo>
-					<DatePicker
-						locale="ko"
 						selected={deadline.submitStartDate}
 						onChange={onChangeSubmitStartDate}
 						showTimeSelect
@@ -182,6 +251,28 @@ const RecruitAddPage = ({
 						customInput={<CustomDateInput />}
 						dateFormat="yyyy.MM.dd aa h:mm"
 					/>
+				</ContainerRow>
+				<ContainerRow>
+					<RecruitInfo>1차 발표</RecruitInfo>
+					<DatePicker
+						locale="ko"
+						selected={deadline.documentPassAnnounceDate}
+						onChange={onChangeDocumentPassAnnounceDate}
+						showTimeSelect
+						injectTimes={times}
+						customInput={<CustomDateInput />}
+						dateFormat="yyyy.MM.dd aa h:mm"
+					/>
+					{/* <Tilde>~</Tilde>
+					<DatePicker
+						locale="ko"
+						selected={deadline.submitEndDate}
+						onChange={onChangeSubmitEndDate}
+						showTimeSelect
+						injectTimes={times}
+						customInput={<CustomDateInput />}
+						dateFormat="yyyy.MM.dd aa h:mm"
+					/> */}
 				</ContainerRow>
 				<ContainerRow>
 					<RecruitInfo>면접 진행</RecruitInfo>
@@ -209,14 +300,14 @@ const RecruitAddPage = ({
 					<RecruitInfo>최종 발표</RecruitInfo>
 					<DatePicker
 						locale="ko"
-						selected={deadline.finalPassStartDate}
-						onChange={onChangeFinalPassStartDate}
+						selected={deadline.finalPassAnnounceDate}
+						onChange={onChangeFinalPassAnnounceDate}
 						showTimeSelect
 						injectTimes={times}
 						customInput={<CustomDateInput />}
 						dateFormat="yyyy.MM.dd aa h:mm"
 					/>
-					<Tilde>~</Tilde>
+					{/* <Tilde>~</Tilde>
 					<DatePicker
 						locale="ko"
 						selected={deadline.finalPassEndDate}
@@ -225,17 +316,28 @@ const RecruitAddPage = ({
 						injectTimes={times}
 						customInput={<CustomDateInput />}
 						dateFormat="yyyy.MM.dd aa h:mm"
-					/>
+					/> */}
 				</ContainerRow>
 			</ContainerColumn>
 			<TitleKorean>모집 내용</TitleKorean>
-			<TextEditor />
-			<SubmitButton>모집 공고 등록하기</SubmitButton>
+			<ReactQuill
+				ref={quillRef}
+				style={{ height: '500px', marginBottom: '5em', marginTop: '1em' }}
+				modules={modules}
+				theme="snow"
+				onChange={onChangeEditor}
+			/>
+			<SubmitButton onClick={onSubmit}>모집 공고 등록하기</SubmitButton>
 
-			<LoadApplicationModal show={showLoadApplicationModal} onCloseModal={onCloseModal} />
+			<LoadApplicationModal
+				applicationList={applicationList}
+				show={showLoadApplicationModal}
+				onCloseModal={onCloseModal}
+				setFormError={setFormError}
+			/>
 			<ErrorMessage open={dateError} onCloseSnackbar={onCloseSnackbar} message="마감일은 시작일 이후여야 합니다." />
 			<Footer />
-			<Prompt
+			{/* <Prompt
 				when={whenState}
 				navigate={(path) => {
 					history.push(path);
@@ -243,7 +345,7 @@ const RecruitAddPage = ({
 				yes="확인"
 				no="취소"
 				message="작성된 정보가 모두 삭제됩니다. 정말 나가시겠어요?"
-			/>
+			/> */}
 		</ContainerColumn>
 	);
 };

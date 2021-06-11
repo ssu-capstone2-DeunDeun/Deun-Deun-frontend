@@ -12,16 +12,20 @@ const ColoredCheckbox = withStyles({
 	checked: {}
 })((props) => <Checkbox color="default" {...props} />);
 
-const StyledCheckbox = () => {
-	const [checked, setChecked] = useState(false);
+const StyledCheckbox = ({ id, applicationId, setApplicationId, setApplicationTitle }) => {
+	// const [checked, setChecked] = useState(false);
 
-	const onClickCheckbox = useCallback(() => {
-		setChecked((prev) => !prev);
-	}, []);
+	const onClickCheckbox = useCallback(
+		(e) => {
+			setApplicationId(e.target.id);
+			setApplicationTitle(e.target.value);
+		},
+		[setApplicationId, setApplicationTitle]
+	);
 
 	return (
 		//
-		<ColoredCheckbox onClick={onClickCheckbox} checked={checked} />
+		<ColoredCheckbox id={id} onClick={onClickCheckbox} checked={applicationId === id ? true : false} />
 	);
 };
 

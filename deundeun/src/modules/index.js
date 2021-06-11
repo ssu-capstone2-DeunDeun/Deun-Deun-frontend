@@ -8,7 +8,8 @@ import initHomePage, { initHomePageSaga } from './initHomePage';
 import clubAddInfo, { clubAddSaga } from './clubAddInfo';
 import clubModifyInfo from './clubModifyInfo';
 import initCategory from './initCategory';
-import clubAddRecruitInfo from './clubAddRecruitInfo';
+import recruitAddInfo, { recruitAddSaga } from './recruitAddInfo';
+
 import applicationAddInfo, { applicationAddSaga } from './applicationAddInfo';
 import write, { writeSaga } from './write';
 import currentClubPostList, { currentClubPostListSaga } from './currentClubPostList';
@@ -21,11 +22,11 @@ const rootReducer = combineReducers({
 	clubAddInfo,
 	initCategory,
 	clubModifyInfo,
-	clubAddRecruitInfo,
 	applicationAddInfo,
 	write,
 	currentClubPostList,
-	initHomePage
+	initHomePage,
+	recruitAddInfo
 });
 
 export function* rootSaga() {
@@ -37,7 +38,8 @@ export function* rootSaga() {
 		clubAddSaga(),
 		writeSaga(),
 		currentClubPostListSaga(),
-		applicationAddSaga()
+		applicationAddSaga(),
+		recruitAddSaga()
 	]);
 }
 

@@ -56,19 +56,17 @@ export const ListItem = styled.div`
 	flex-direction: row;
 	align-items: center;
 
-	width: 100%;
+	width: 670px;
 	height: 47.5px;
 	border-bottom: solid 1px #d5d5d5;
-
-	padding-left: 1em;
 `;
 
 export const ApplicationTitle = styled.span`
-	margin-left: 10.5em;
 	font-family: 'NotoSansKR';
 	font-size: 1rem;
 	font-weight: bold;
 	color: #282828;
+	margin: 0 auto;
 `;
 
 export const SubmitButton = styled.button`
