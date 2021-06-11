@@ -20,6 +20,7 @@ const SideBar = ({ location }) => {
 	const [clickRecruitTab, setClickRecruitTab] = useState(false);
 	const [clickApplicantTab, setClickApplicantTab] = useState(false);
 	const [clickMemberTab, setClickMemberTab] = useState(false);
+	const [clickClubPostTab, setClickClubPostTab] = useState(false);
 
 	const [addNewForm, setAddNewForm] = useState(false);
 
@@ -31,7 +32,7 @@ const SideBar = ({ location }) => {
 		setCategoryTab();
 	}, []);
 
-	const onClickCategoryOne = useCallback((e) => { }, []);
+	const onClickCategoryOne = useCallback((e) => {}, []);
 
 	const onClickMyPageTab = useCallback((e) => {
 		setMypageTab();
@@ -79,6 +80,10 @@ const SideBar = ({ location }) => {
 
 	const onClickMemberTab = useCallback(() => {
 		setMemberTab();
+	}, []);
+
+	const onClickClubPostTab = useCallback(() => {
+		setClubPostTab();
 	}, []);
 
 	const setHomeTab = () => {
@@ -168,6 +173,16 @@ const SideBar = ({ location }) => {
 	const setClubManageTab = () => {
 		setClickClubManageTab(true);
 		setClickClubAddTab(false);
+		setClickClubPostTab(false);
+		setClickManageApplicationtab(false);
+		setClickRecruitTab(false);
+		setClickApplicantTab(false);
+		setClickMemberTab(false);
+	};
+
+	const setClubPostTab = () => {
+		setClickClubManageTab(false);
+		setClickClubPostTab(true);
 		setClickManageApplicationtab(false);
 		setClickRecruitTab(false);
 		setClickApplicantTab(false);
@@ -176,7 +191,7 @@ const SideBar = ({ location }) => {
 
 	const setManageApplicationTab = () => {
 		setClickClubManageTab(false);
-
+		setClickClubPostTab(false);
 		setClickManageApplicationtab(true);
 
 		setClickRecruitTab(false);
@@ -186,6 +201,7 @@ const SideBar = ({ location }) => {
 
 	const setRecruitTab = () => {
 		setClickClubManageTab(false);
+		setClickClubPostTab(false);
 		setClickManageApplicationtab(false);
 
 		setClickRecruitTab(true);
@@ -196,6 +212,7 @@ const SideBar = ({ location }) => {
 
 	const setApplicantTab = () => {
 		setClickClubManageTab(false);
+		setClickClubPostTab(false);
 		setClickManageApplicationtab(false);
 		setClickRecruitTab(false);
 
@@ -206,14 +223,15 @@ const SideBar = ({ location }) => {
 
 	const setMemberTab = () => {
 		setClickClubManageTab(false);
+		setClickClubPostTab(false);
 		setClickManageApplicationtab(false);
 		setClickRecruitTab(false);
 		setClickApplicantTab(false);
+
 		setClickMemberTab(true);
 	};
 
 	useEffect(() => {
-		// console.log(location.pathname);
 		switch (location.pathname) {
 			case '/home':
 				setHomeTab();
@@ -242,6 +260,10 @@ const SideBar = ({ location }) => {
 			case '/club/manage/modify':
 				setMyClubTab();
 				setClubManageTab();
+				break;
+			case '/club/manage/post':
+				setMyClubTab();
+				setClubPostTab();
 				break;
 			case '/club/manage/application':
 				setMyClubTab();
@@ -318,39 +340,36 @@ const SideBar = ({ location }) => {
 						<Button className="category">{category[7]}(기타)</Button>
 					</Link>
 				</>
-			)
-			}
+			)}
 			<Link style={{ width: '9.4vh' }} to="/mypage/modify">
 				<Button className={`${clickMyPageTab ? 'clicked' : 'not-clicked'}`} onClick={onClickMyPageTab}>
 					마이페이지
 				</Button>
 			</Link>
-			{
-				clickMyPageTab && (
-					<>
-						<Link to="/mypage/modify">
-							<Button className={`${clickModify ? 'clicked-category' : 'category'}`} onClick={onClickModify}>
-								내 정보 수정
+			{clickMyPageTab && (
+				<>
+					<Link to="/mypage/modify">
+						<Button className={`${clickModify ? 'clicked-category' : 'category'}`} onClick={onClickModify}>
+							내 정보 수정
 						</Button>
-						</Link>
-						<Link to="/mypage/clubs">
-							<Button className={`${clickClubs ? 'clicked-category' : 'category'}`} onClick={onClickClubs}>
-								가입 동아리 목록
+					</Link>
+					<Link to="/mypage/clubs">
+						<Button className={`${clickClubs ? 'clicked-category' : 'category'}`} onClick={onClickClubs}>
+							가입 동아리 목록
 						</Button>
-						</Link>
-						<Link to="/mypage/application">
-							<Button className={`${clickApplication ? 'clicked-category' : 'category'}`} onClick={onClickApplication}>
-								지원 목록
+					</Link>
+					<Link to="/mypage/application">
+						<Button className={`${clickApplication ? 'clicked-category' : 'category'}`} onClick={onClickApplication}>
+							지원 목록
 						</Button>
-						</Link>
-						<Link to="/mypage/likes">
-							<Button className={`${clickLikes ? 'clicked-category' : 'category'}`} onClick={onClickLikes}>
-								관심 목록
+					</Link>
+					<Link to="/mypage/likes">
+						<Button className={`${clickLikes ? 'clicked-category' : 'category'}`} onClick={onClickLikes}>
+							관심 목록
 						</Button>
-						</Link>
-					</>
-				)
-			}
+					</Link>
+				</>
+			)}
 			<Link style={{ width: '9.4vh' }} to="/club/add">
 				<Button className={`${clickClubAddTab ? 'clicked' : 'not-clicked'}`} onClick={onClickClubAddTab}>
 					동아리 등록
@@ -361,52 +380,47 @@ const SideBar = ({ location }) => {
 					동아리 관리
 				</Button>
 			</Link>
-			{
-				clickMyClubTab && (
-					<>
-						<Link style={{ width: '15vw' }} to="/club/manage/modify">
-							<Button
-								className={`${clickClubManageTab ? 'clicked-category' : 'category'}`}
-								onClick={onClickClubManageTab}
-							>
-								정보 수정
+			{clickMyClubTab && (
+				<>
+					<Link style={{ width: '15vw' }} to="/club/manage/modify">
+						<Button
+							className={`${clickClubManageTab ? 'clicked-category' : 'category'}`}
+							onClick={onClickClubManageTab}
+						>
+							정보 수정
 						</Button>
-						</Link>
-						<Link style={{ width: '15vw' }} to="/club/manage/post">
-							<Button
-								className={`${clickClubManageTab ? 'clicked-category' : 'category'}`}
-								onClick={onClickClubManageTab}
-							>
-								게시글 관리
+					</Link>
+					<Link style={{ width: '15vw' }} to="/club/manage/post">
+						<Button className={`${clickClubPostTab ? 'clicked-category' : 'category'}`} onClick={onClickClubPostTab}>
+							게시글 관리
 						</Button>
-						</Link>
-						<Link style={{ width: '15vw' }} to="/club/manage/application">
-							<Button
-								className={`${clickManageApplicationTab ? 'clicked-category' : 'category'}`}
-								onClick={onClickManageApplicationTab}
-							>
-								지원서 양식
+					</Link>
+					<Link style={{ width: '15vw' }} to="/club/manage/application">
+						<Button
+							className={`${clickManageApplicationTab ? 'clicked-category' : 'category'}`}
+							onClick={onClickManageApplicationTab}
+						>
+							지원서 양식
 						</Button>
-						</Link>
-						<Link style={{ width: '15vw' }} to="/club/manage/recruit">
-							<Button className={`${clickRecruitTab ? 'clicked-category' : 'category'}`} onClick={onClickRecruitTab}>
-								모집 공고
+					</Link>
+					<Link style={{ width: '15vw' }} to="/club/manage/recruit">
+						<Button className={`${clickRecruitTab ? 'clicked-category' : 'category'}`} onClick={onClickRecruitTab}>
+							모집 공고
 						</Button>
-						</Link>
-						<Link style={{ width: '15vw' }} to="/club/manage/applicant">
-							<Button className={`${clickApplicantTab ? 'clicked-category' : 'category'}`} onClick={onClickApplicantTab}>
-								지원자 관리
+					</Link>
+					<Link style={{ width: '15vw' }} to="/club/manage/applicant">
+						<Button className={`${clickApplicantTab ? 'clicked-category' : 'category'}`} onClick={onClickApplicantTab}>
+							지원자 관리
 						</Button>
-						</Link>
-						<Link style={{ width: '15vw' }} to="/club/manage/member">
-							<Button className={`${clickMemberTab ? 'clicked-category' : 'category'}`} onClick={onClickMemberTab}>
-								멤버 관리
+					</Link>
+					<Link style={{ width: '15vw' }} to="/club/manage/member">
+						<Button className={`${clickMemberTab ? 'clicked-category' : 'category'}`} onClick={onClickMemberTab}>
+							멤버 관리
 						</Button>
-						</Link>
-					</>
-				)
-			}
-		</Container >
+					</Link>
+				</>
+			)}
+		</Container>
 	);
 };
 
