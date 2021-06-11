@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
 	width: 346px;
 	height: 436px;
-
+	cursor:pointer;
 	margin-right: 1.25em;
 `;
 

@@ -3,12 +3,14 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
 	width: 654px;
 	height: 176px;
+	cursor:pointer;
 
 	display: flex;
 	flex-direction: row;
 
 	margin-right: 2.375em;
-	margin-bottom: 1.75em;
+	/* margin-bottom: 1.75em; */
+	margin-bottom: 4em;
 
 	&.quit {
 		background-color: #f0f0f0;
@@ -18,8 +20,7 @@ export const Container = styled.div`
 export const ClubImage = styled.img`
 	width: 176px;
 	height: 176px;
-
-	/* src: url('/images/sample/') */
+	object-fit:cover;
 `;
 
 export const ClubInfo = styled.div`
@@ -30,6 +31,18 @@ export const ClubInfo = styled.div`
 	padding-top: 1.125em;
 	padding-left: 1.5em;
 	padding-right: 1.338em;
+
+	svg{
+		width:22px;
+		height:22px;
+		margin-left:auto;
+		color:#8f8f8f;
+		cursor:pointer;
+
+		&:hover{
+			color:red;
+		}
+	}
 `;
 
 export const ClubName = styled.span`
@@ -81,7 +94,7 @@ export const HashtagContainer = styled.div`
 	flex-wrap: wrap;
 	justify-content: flex-start;
 
-	margin-top: 1.2em;
+	margin-top:2.5em;
 `;
 
 export const Hashtag = styled.div`

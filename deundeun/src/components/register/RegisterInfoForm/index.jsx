@@ -25,7 +25,7 @@ const RegisterInfoForm = ({ all, error, handleSubmit, history, onChange, nicknam
 			// setAll(true);
 		}
 		else {
-			all = false;
+			// all = false;
 		}
 	}, [nickname, name])
 

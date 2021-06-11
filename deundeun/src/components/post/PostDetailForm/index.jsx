@@ -3,6 +3,9 @@ import { CommentListItemBlock, PostDetailFormBlock, StyledTextarea } from './sty
 import { FiShare2 } from "react-icons/fi";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
+import { useEffect } from 'react';
+import { getPost } from 'lib/api/post';
+import { withRouter } from 'react-router-dom';
 
 
 const CommentList = ({ comments }) => {
@@ -43,7 +46,9 @@ const CommentListItem = ({ comment }) => {
 	);
 }
 
-const PostDetailForm = () => {
+const PostDetailForm = ({ history, postData }) => {
+	console.log("postData", postData);
+	const { author, content, createdAt, likeCount, modifiedAt, postId, title, viewCount } = postData;
 	const contents = {
 		sector: "IT/개발", clubName: "IT 동아리 트와이스", postListTitles: ["다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파",
 			"다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파", "다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파"],
@@ -53,25 +58,25 @@ const PostDetailForm = () => {
 			{ writer: "헬스천재김상록", publishedDate: "2021.01.01 12:12", content: "프먼저 가벼운 스트레칭과 맨손체조 등으로 준비 운동을 하는 것이 좋습니다. 뻣뻣해진 관절을 늘려주는 준비 운동을 통해 근육의 온도먼저 가벼운 스트레칭과 맨손체조 등으로 준비 운동을 하는 것이 좋습니다. 뻣뻣해진 관절을 늘려주는 준비 운동을 통해 근육의 온도 및 체온을 높이고 관절의 부상과 근육 결림을 예방할 수 있습니다. 및 체온을 높이고 관절의 부상과 근육 결림을 예방할 수 있습니다.리웨이트 짱짱맨!! 아주 좋아용" }, { writer: "방구석헬창", publishedDate: "2021.01.01 12:12", content: "프리웨이트먼저 가벼운 스트레칭과 맨손체조 등으로 준비 운동을 하는 것이 좋습니다. 뻣뻣해진 관절을 늘려주는 준비 운동을 통해 근육의 온도 및 체온을 높이고 관절의 부상과 근육 결림을 예방할 수 있습니다. 짱짱맨!! 아주 좋아용 " }, { writer: "헬스isNo.1", publishedDate: "2021.01.01 12:12", content: "프리웨이트 짱짱맨먼저 가벼운 스트레칭과 맨손체조 등으로 준비 운동을 하는 것이 좋습니다. 뻣뻣해진 관절을 늘려주는 준비 운동을 통해 근육의 온도 및 체온을 높이고 관절의 부상과 근육 결림을 예방할 수 있습니다.!! 아주 좋아용 " }
 		],
 	};
-	const { postDetailTitle, nickname, publishedDate, likesNum, views, content, nextPostTitle, beforePostTitle, comments } = contents;
+	const { nextPostTitle, beforePostTitle, comments } = contents;
 
 	return (
 		<PostDetailFormBlock>
 			<div className="header">
 				<div className="headerContent">
 					<div className="post">게시글</div>
-					<div className="title">{postDetailTitle}</div>
+					<div className="title">{title}</div>
 
 					<div className="info">
 						<div className="postInfo">
-							<div className="nickname">{nickname}</div>
-							<div className="date">{publishedDate}</div>
+							<div className="nickname">{author}</div>
+							<div className="date">{createdAt}</div>
 							<div className="viewBlock">조회수</div>
-							<div className="viewNum">{views}</div>
+							<div className="viewNum">{viewCount}</div>
 						</div>
 						<div className="function">
 							<div className="heart"><AiOutlineHeart /></div>
-							<div>{likesNum}</div>
+							<div>{likeCount}</div>
 							<div className="share"><FiShare2 /></div>
 							<div className="shareText">공유하기</div>
 							<div className="dot"><BsThreeDots /></div>
@@ -85,11 +90,33 @@ const PostDetailForm = () => {
 				<div className="postlist">
 					<div>
 						<div className="listInfo">다음 글</div>
-						<div className="listTitle">{nextPostTitle}</div>
+						{postData && postData.afterPost ?
+							(
+								<div className="listTitle"
+									onClick={() => history.push(`/club/${postData.afterPost.club.clubName}/post/${postData.afterPost.postId}`)}>
+									{postData.afterPost.title}
+								</div>
+							)
+							:
+							(
+								<div className="listTitle">다음 글은 없습니다.</div>
+							)
+						}
 					</div>
 					<div>
 						<div className="listInfo">이전 글</div>
-						<div className="listTitle">{beforePostTitle}</div>
+						{postData && postData.beforePost ?
+							(
+								<div className="listTitle"
+									onClick={() => history.push(`/club/${postData.beforePost.club.clubName}/post/${postData.beforePost.postId}`)}>
+									{postData.beforePost.title}
+								</div>
+							)
+							:
+							(
+								<div className="listTitle">이전 글은 없습니다.</div>
+							)
+						}
 					</div>
 				</div>
 			</div>
@@ -112,4 +139,4 @@ const PostDetailForm = () => {
 		</PostDetailFormBlock>
 	);
 };
-export default PostDetailForm;
+export default withRouter(PostDetailForm);

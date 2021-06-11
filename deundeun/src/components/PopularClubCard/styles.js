@@ -9,7 +9,6 @@ export const Container = styled.div`
 	background-color: #f7f7f7;
 	background-image: url(${(props) => props.imageURL || ''});
 	background-size: cover;
-
 	cursor: pointer;
 `;
 

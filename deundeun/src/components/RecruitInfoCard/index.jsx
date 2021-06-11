@@ -11,22 +11,37 @@ import {
 	ApplyButton
 } from './styles';
 
-const RecruitInfoCard = ({ }) => {
+const RecruitInfoCard = ({ clubRecruitInfo, clubName }) => {
+	const { title, remainDays } = clubRecruitInfo;
+
 	return (
 		//
 		<Container>
 			<InnerContainer>
 				<RecruitingInfoContainer>
 					<RecruitingInfo>ON</RecruitingInfo>
-					<ClubName>트와이스</ClubName>
+					<ClubName>{clubName}</ClubName>
 				</RecruitingInfoContainer>
-				<RecruitTitle>[3기] 모집 공고 제목 모집 공고 제목</RecruitTitle>
+				<RecruitTitle>{title}</RecruitTitle>
 				<ApplyButtonContainer>
-					<Deadline>D-4</Deadline>
-					<ApplyButton>지원하기</ApplyButton>
+					{
+						remainDays < 0 ?
+							(
+								<>
+									<ApplyButton>지원마감</ApplyButton>
+								</>
+							)
+							: (
+
+								<div>
+									<Deadline>D-4</Deadline>
+									<ApplyButton>지원하기</ApplyButton>
+								</div>
+							)
+					}
 				</ApplyButtonContainer>
-			</InnerContainer>
-		</Container>
+			</InnerContainer >
+		</Container >
 	);
 };
 

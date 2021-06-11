@@ -5,7 +5,8 @@ export const Container = styled.div`
 	height: 370px;
 
 	background-color: #a3a3a3;
-	background-image: url('/images/sample/club-image/sample-cover.jpeg');
+	/* background-image: url('/images/sample/club-image/sample-cover.jpeg'); */
+	background-image:url(${(props) => props.backgroundImageUrl || ""});
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position-y: 80%;
@@ -145,5 +146,7 @@ export const ClubImage = styled.div`
 	color: #c3c3c3;
 	font-size: 1rem;
 	font-weight: bold;
+	background-image: url(${(props) => props.clubImageUrl || ''});
+	background-size: cover;
 	/* font-family: 'GmarketSans'; */
 `;
