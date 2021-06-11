@@ -11,6 +11,7 @@ import clubAddRecruitInfo from './clubAddRecruitInfo';
 import applicationAddInfo from './applicationAddInfo';
 import write, { writeSaga } from './write';
 import currentClubPostList, { currentClubPostListSaga } from './currentClubPostList';
+import likePost, { likePostSaga } from './likePost';
 
 
 const rootReducer = combineReducers({
@@ -25,7 +26,9 @@ const rootReducer = combineReducers({
 	write,
 	currentClubPostList,
 	initHomePage,
+	likePost
 });
+
 
 
 export function* rootSaga() {
@@ -37,6 +40,7 @@ export function* rootSaga() {
 		clubAddSaga(),
 		writeSaga(),
 		currentClubPostListSaga(),
+		likePostSaga(),
 		]);
 }
 
