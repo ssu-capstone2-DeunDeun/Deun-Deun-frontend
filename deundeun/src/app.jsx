@@ -100,14 +100,16 @@ const App = () => {
 			<Route component={RegisterHashtagContainer} path="/register/2" exact />
 			<Route component={ApplyPage} path="/apply" exact />
 			<Route component={ApplyPageSuccessPage} path="/apply/success" exact />
+
 			<Route component={RecruitDetailPage} path="/recruit/detail/id" exact />
-			<Route component={PostDetailPage} path="/post/detail/id" exact />
+			<Route component={PostDetailPage} path="/club/:clubName/post/:postId" exact />
+
 			<Route component={ApplicantManagePage} path="/manager/applicant" exact />
 			<Route component={MemberManagePage} path="/manager/member" exact />
 			<Route component={OAuth2RedirectHandler} path="/oauth2/redirect" exact />
 			<Route component={ClubPostPage} path="/club/post" exact />
 			<Route component={ClubPostItemPage} path="/club/post/:postId" exact />
-			<Route component={ClubDetailPage} path="/club/detail/:clubName" exact />
+			<Route component={ClubDetailPage} path="/club/:clubName" exact />
 
 		</Switch>
 	);

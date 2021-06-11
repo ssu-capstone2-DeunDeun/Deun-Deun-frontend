@@ -2,9 +2,9 @@ import ClubPostCardSmall from 'components/ClubPostCardSmall';
 import React from 'react';
 import { Container, PostContainer, CardContainer, Header, SubmitButton, ButtonContainer, Footer } from './styles';
 import { TitleKorean, SeeAll } from 'components/RecruitInfoSection/styles';
-const PostSection = ({ postResponse, clubName }) => {
+import { withRouter } from 'react-router-dom';
+const PostSection = ({ history, postResponse, clubName }) => {
 	return (
-		//
 		<Container>
 			<PostContainer>
 				<Header>
@@ -28,4 +28,4 @@ const PostSection = ({ postResponse, clubName }) => {
 	);
 };
 
-export default PostSection;
+export default withRouter(PostSection);

@@ -13,8 +13,9 @@ import {
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import styled from '@emotion/styled';
+import { withRouter } from 'react-router-dom';
 
-const ClubPostCardSmall = ({ postInfo, clubName }) => {
+const ClubPostCardSmall = ({ history, postInfo, clubName }) => {
 	const PostImage = styled.div`
 		height: 188px;
 		background-image: url('/images/sample/post/sample-post2.jpeg');
@@ -24,8 +25,12 @@ const ClubPostCardSmall = ({ postInfo, clubName }) => {
 
 	const { viewCount, likeCount, createdAt, content, title } = postInfo;
 	// post image 도 나중에 필요하다!!!
+
+	const onMove = () => {
+		history.push(`/club/${clubName}/post/${postInfo.postId}`)
+	}
 	return (
-		<Container>
+		<Container onClick={onMove}>
 			<PostImage />
 			<PostOverview>
 				<TitleKorean>{title}</TitleKorean>
@@ -49,4 +54,4 @@ const ClubPostCardSmall = ({ postInfo, clubName }) => {
 	);
 };
 
-export default ClubPostCardSmall;
+export default withRouter(ClubPostCardSmall);

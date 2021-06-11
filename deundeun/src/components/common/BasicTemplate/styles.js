@@ -10,6 +10,7 @@ export const BasicTemplateBlock = styled.div`
 export const BasicHeaderBlock = styled.div` 
     height:348px;
     background:url("/img/club/illi.jpg") no-repeat;
+    /* background:powderblue; */
     background-size:cover;
     margin:0 0 76px;
 `;

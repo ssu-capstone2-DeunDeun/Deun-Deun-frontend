@@ -16,7 +16,7 @@ import { withRouter } from 'react-router-dom';
 const ClubListCard = ({ history, clubName, introduction, hashtagNames, representClubImageUrl, liked, recruiting, dday }) => {
 
 	const onMove = () => {
-		history.push(`/club/detail/${clubName}`)
+		history.push(`/club/${clubName}`)
 	}
 	return (
 		<Container onClick={onMove}>

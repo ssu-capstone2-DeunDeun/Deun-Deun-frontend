@@ -6,7 +6,7 @@ export const Container = styled.div`
 
 	display: flex;
 	justify-content: center;
-
+	cursor:pointer;
 	margin-top: 4.375em;
 `;
 

@@ -95,7 +95,13 @@ export const PostDetailFormBlock = styled.div`
                     margin-right : 25.8px;
                 }
                 .listTitle{
-                    color:#282828;
+                    color:#707070;
+                    cursor:pointer;
+                    
+                    &:hover{
+                        color:#282828;
+                        font-weight:bold;
+                    }
                 }
             }
             padding-bottom:11.2px;

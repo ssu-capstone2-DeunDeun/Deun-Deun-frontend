@@ -26,7 +26,7 @@ const PopularOrderBox = styled.div`
 
 const PopularClubCard = ({ order, imageURL, isRecruiting, clubName, clubId, history }) => {
 	const onMove = (e) => {
-		history.push(`/club/detail/${clubName}`)
+		history.push(`/club/${clubName}`)
 	}
 
 	return (
