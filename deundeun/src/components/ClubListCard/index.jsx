@@ -15,7 +15,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 const ClubListCard = ({ clubName, introduction, hashtagNames, representClubImageUrl, liked, recruiting, dday }) => {
 	return (
 		<Container>
-			<ClubImage />
+			<ClubImage src={representClubImageUrl} />
 			<ClubInfo>
 				<ContainerRow style={{ height: '30px', alignItems: 'center' }}>
 					<ClubName>{clubName}</ClubName>

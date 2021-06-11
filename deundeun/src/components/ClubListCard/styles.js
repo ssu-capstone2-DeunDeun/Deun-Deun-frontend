@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { css } from 'styled-components';
 
 export const Container = styled.div`
 	width: 654px;
@@ -18,8 +19,7 @@ export const Container = styled.div`
 export const ClubImage = styled.img`
 	width: 176px;
 	height: 176px;
-
-	/* src: url('/images/sample/') */
+	object-fit:cover;
 `;
 
 export const ClubInfo = styled.div`
