@@ -27,9 +27,9 @@ import { Generation, GenerationInput, Placeholder } from 'pages/ClubAddPage/styl
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { setHours, setMinutes } from 'date-fns';
-// import ReactQuill from 'react-quill';
-// import ImageResize from '@looop/quill-image-resize-module-react';
-// Quill.register('modules/ImageResize', ImageResize);
+import { Prompt, useHistory } from 'react-router';
+import TextEditor from 'components/common/TextEditor/index';
+
 registerLocale('ko', ko);
 
 const RecruitAddPage = ({
@@ -53,6 +53,7 @@ const RecruitAddPage = ({
 	const [showLoadApplicationModal, setShowLoadApplicationModal] = useState(false);
 	const [generation, setGeneration] = useState('');
 	const [intro, setIntro] = useState('');
+	const [whenState, setWhenState] = useState(true);
 
 	const dispatch = useDispatch();
 	const { clubAddRecruitInfo } = useSelector(({ clubAddRecruitInfo }) => ({
@@ -60,41 +61,12 @@ const RecruitAddPage = ({
 	}));
 	// console.log("clubaddrecruitinfo", clubAddRecruitInfo);
 
+	const history = useHistory();
+
 	const times = [
 		setHours(setMinutes(new Date(), 1), 0),
 		setHours(setMinutes(new Date(), 5), 12),
 		setHours(setMinutes(new Date(), 59), 23)
-	];
-	const modules = {
-		toolbar: [
-			[{ header: [1, 2, false] }],
-			['bold', 'italic', 'underline', 'strike', 'blockquote'],
-			[{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
-			['link', 'image'],
-			[{ align: [] }, { color: [] }, { background: [] }], // dropdown with defaults from theme
-			['clean']
-		]
-	};
-
-	// imageResize: {
-	// 	parchment: Quill.import('parchment'),
-	// 	modules: ['Resize']
-	// }
-
-	const formats = [
-		'header',
-		'bold',
-		'italic',
-		'underline',
-		'blockquote',
-		'list',
-		'bullet',
-		'indent',
-		'link',
-		'image',
-		'align',
-		'color',
-		'background'
 	];
 
 	const CustomDateInput = forwardRef(({ value, onClick }, ref) => (
@@ -257,18 +229,21 @@ const RecruitAddPage = ({
 				</ContainerRow>
 			</ContainerColumn>
 			<TitleKorean>모집 내용</TitleKorean>
+			<TextEditor />
 			<SubmitButton>모집 공고 등록하기</SubmitButton>
 
-			{/* <ReactQuill
-				style={{ height: '500px' }}
-				modules={modules}
-				formats={formats}
-				value={intro || ''}
-				onChange={onChangeIntro}
-			/> */}
 			<LoadApplicationModal show={showLoadApplicationModal} onCloseModal={onCloseModal} />
 			<ErrorMessage open={dateError} onCloseSnackbar={onCloseSnackbar} message="마감일은 시작일 이후여야 합니다." />
 			<Footer />
+			<Prompt
+				when={whenState}
+				navigate={(path) => {
+					history.push(path);
+				}}
+				yes="확인"
+				no="취소"
+				message="작성된 정보가 모두 삭제됩니다. 정말 나가시겠어요?"
+			/>
 		</ContainerColumn>
 	);
 };

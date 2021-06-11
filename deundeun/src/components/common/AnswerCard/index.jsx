@@ -31,8 +31,6 @@ const AnswerCard = ({ id }) => {
 		[choiceList, choiceIndex, dispatch]
 	);
 
-	const onDeleteChoice = useCallback((e) => {}, [choiceList]);
-
 	const onCloseSnackbar = useCallback(() => {
 		setDeleteError(false);
 	}, []);

@@ -37,6 +37,7 @@ import { Error } from 'pages/ApplicationAddPage/styles';
 import { useSelector } from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
+import { Prompt, useHistory } from 'react-router';
 
 const ClubImage = styled.div`
 	width: 100%;
@@ -119,6 +120,9 @@ const ClubManagePage = ({
 
 	const [anchorEl, setAnchorEl] = useState(null);
 	const ITEM_HEIGHT = 48;
+	const history = useHistory();
+
+	const [whenState, setWhenState] = useState(true);
 
 	const { menuOptions } = useSelector(({ initCategory }) => ({
 		menuOptions: initCategory.category
@@ -298,6 +302,15 @@ const ClubManagePage = ({
 						필수 입력사항을 입력해주세요.
 					</Alert>
 				</Snackbar>
+				{/* <Prompt
+					when={whenState}
+					navigate={(path) => {
+						history.push(path);
+					}}
+					yes="확인"
+					no="취소"
+					message="작성된 정보가 모두 삭제됩니다. 정말 나가시겠어요?"
+				/> */}
 			</ContainerPage>
 		</>
 	);

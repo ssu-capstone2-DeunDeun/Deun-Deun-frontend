@@ -1,4 +1,5 @@
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
+import axios from '../../../node_modules/axios/index';
 import client from './client';
 
 // export const signup = (userRequestDto) => {
@@ -44,11 +45,6 @@ export const addHashtags = (hashtagInfoIds) =>
 		}
 	});
 
-// export const isDuplicatedNickname = (isDuplicatedNickname) => (
-//     client.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem(ACCESS_TOKEN);
-// client.get(API_BASE_URL + `/user/nickname?nickname=${isDuplicatedNickname}`);
-// );
-
 export const isDuplicatedNickname = (isDuplicatedNickname) =>
 	client.get(API_BASE_URL + `/user/nickname?nickname=${isDuplicatedNickname}`, {
 		headers: {
@@ -71,3 +67,11 @@ export const addClub = (clubRequestDto) =>
 			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
 		}
 	});
+
+export const addApplication = (data) => {
+	client.post(API_BASE_URL + `/clubs/${data.clubName}/forms`, data.newApplication, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+		}
+	});
+};

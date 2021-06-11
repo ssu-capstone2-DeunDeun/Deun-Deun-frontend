@@ -1,11 +1,21 @@
-import applicationAddInfo, { changeInput, initializeChoice, modifyQuestionType } from 'modules/applicationAddInfo';
+import applicationAddInfo, {
+	changeInput,
+	initializeChoice,
+	initializeQuestion,
+	modifyQuestionType
+} from 'modules/applicationAddInfo';
 import ApplicationAddPage from 'pages/ApplicationAddPage/index';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
+import axios from '../../../node_modules/axios/index';
 
 const ApplicationAddInfoContainer = ({ setAddNewForm }) => {
 	const dispatch = useDispatch();
 	const [appTitle, setAppTitle] = useState('');
+	const [clubName, setClubName] = useState('');
+	const [loading, setLoading] = useState(true);
+	const [appLoading, setAppLoading] = useState(true);
 
 	const onChangeAppTitle = useCallback(
 		(e) => {
@@ -29,12 +39,32 @@ const ApplicationAddInfoContainer = ({ setAddNewForm }) => {
 		[dispatch]
 	);
 
+	useEffect(() => {
+		axios({
+			method: 'get',
+			url: `${API_BASE_URL}/user/clubs`,
+			headers: {
+				Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
+			}
+		}).then((response) => {
+			const res = response.data[0].clubResponseDto;
+			dispatch(initializeQuestion());
+			setClubName(res.clubName);
+			setLoading(false);
+		});
+	}, []);
+
 	return (
 		<ApplicationAddPage
 			setAddNewForm={setAddNewForm}
 			appTitle={appTitle}
 			onChangeAppTitle={onChangeAppTitle}
 			onChangeQuestionType={onChangeQuestionType}
+			clubName={clubName}
+			loading={loading}
+			setLoading={setLoading}
+			appLoading={appLoading}
+			setAppLoading={setAppLoading}
 		/>
 	);
 };

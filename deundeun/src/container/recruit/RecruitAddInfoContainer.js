@@ -1,7 +1,9 @@
 import RecruitAddPage from 'pages/RecruitAddPage/index';
-import { useCallback, useState } from 'react';
-
+import { useCallback, useEffect, useState } from 'react';
+import axios from '../../../node_modules/axios/index';
+import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 const RecruitAddInfoContainer = ({ setAddNewForm }) => {
+	const [clubName, setClubName] = useState('');
 	const [deadline, setDeadline] = useState({
 		startDate: new Date(),
 		endDate: new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
@@ -87,6 +89,35 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 		},
 		[deadline]
 	);
+
+	useEffect(() => {
+		axios({
+			method: 'get',
+			url: `${API_BASE_URL}/user/clubs`,
+			headers: {
+				Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
+			}
+		}).then((response) => {
+			const res = response.data[0].clubResponseDto;
+			setClubName(res.clubName);
+		});
+	}, [clubName]);
+
+	useEffect(() => {
+		if (clubName !== '') {
+			console.log(clubName);
+			axios({
+				method: 'get',
+				url: `${API_BASE_URL}/clubs/${clubName}/forms`,
+				headers: {
+					Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
+				}
+			}).then((response) => {
+				console.log(response.data);
+			});
+		}
+	});
+
 	return (
 		<RecruitAddPage
 			setAddNewForm={setAddNewForm}

@@ -8,7 +8,6 @@ const CHANGE_INPUT = 'clubAddInfo/CHANGE_INPUT';
 const [DUPLICATED, DUPLICATED_SUCCESS, DUPLICATED_FAILURE] = createRequestActionType('clubAddInfo/DUPLICATED');
 const [ADDCLUB, ADDCLUB_SUCCESS, ADDCLUB_FAILURE] = createRequestActionType('clubAddInfo/ADDCLUB');
 
-
 export const changeInput = createAction(CHANGE_INPUT);
 export const duplicated = createAction(DUPLICATED);
 export const clubAdd = createAction(ADDCLUB);
@@ -32,8 +31,7 @@ const initialState = {
 	representImageUrl: '',
 	clubImages: [],
 	addClub: null,
-	addClubError: null,
-
+	addClubError: null
 };
 
 const clubAddInfo = handleActions(
@@ -52,13 +50,12 @@ const clubAddInfo = handleActions(
 		}),
 		[ADDCLUB_SUCCESS]: (state, { payload: addClub }) => ({
 			...state,
-			addClub,
+			addClub
 		}),
 		[ADDCLUB_FAILURE]: (state, { payload: addClubError }) => ({
 			...state,
-			addClubError,
-		}),
-
+			addClubError
+		})
 	},
 	initialState
 );

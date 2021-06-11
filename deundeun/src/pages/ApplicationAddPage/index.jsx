@@ -9,16 +9,34 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import { Footer } from 'pages/ClubAddPage/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { Map, toJS } from 'immutable';
-import { addQuestion, deleteQuestion, initializeQuestion, modifyQuestionContent } from 'modules/applicationAddInfo';
+import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
+import applicationAddInfo, {
+	addApplication,
+	addQuestion,
+	deleteQuestion,
+	initializeQuestion,
+	makeApplication,
+	modifyQuestionContent
+} from 'modules/applicationAddInfo';
 import { List } from 'immutable';
-const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle, onChangeQuestionType }) => {
+import axios from '../../../node_modules/axios/index';
+const ApplicationAddPage = ({
+	setAddNewForm,
+	onChangeAppTitle,
+	appTitle,
+	onChangeQuestionType,
+	clubName,
+	loading,
+	setLoading,
+	appLoading,
+	setAppLoading
+}) => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const [questionIndex, setQuestionIndex] = useState(2);
 	const [deleteError, setDeleteError] = useState(false);
 	const [submitError, setSubmitError] = useState(false);
-
+	const [whenState, setWhenState] = useState(true);
 	const [questionList, setQuestionList] = useState([
 		{
 			index: 1,
@@ -26,9 +44,41 @@ const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle, onChang
 		}
 	]);
 
-	const onSubmit = useCallback(() => {
-		history.push('/apply/success');
-	}, [history]);
+	// const { recruitQuestionRequestDtos, title } = useSelector(({ applicationAddInfo }) => ({
+	// 	recruitQuestionRequestDtos: applicationAddInfo.get('recruitQuestionRequestDtos'),
+	// 	title: applicationAddInfo.get('title')
+	// }));
+
+	const { applicationAddInfo } = useSelector(({ applicationAddInfo }) => ({
+		applicationAddInfo: applicationAddInfo
+	}));
+
+	const onSubmit = useCallback(
+		async (e) => {
+			e.preventDefault();
+			if (appTitle === '' && clubName) {
+				setSubmitError(true);
+				window.scrollTo(0, 0);
+				return;
+			} else {
+				if (!loading) {
+					const data = applicationAddInfo.toJS();
+					const newApplication = {
+						recruitQuestionRequestDtos: data.recruitQuestionRequestDtos,
+						title: data.title
+					};
+					const test = {
+						newApplication: newApplication,
+						clubName: clubName
+					};
+					console.log(test);
+					dispatch(addApplication(test));
+					history.push('/apply/success');
+				}
+			}
+		},
+		[appTitle, clubName, loading, history, dispatch, applicationAddInfo]
+	);
 
 	const onClickAddQuestion = useCallback(() => {
 		const newQuestion = {
@@ -40,27 +90,6 @@ const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle, onChang
 		dispatch(addQuestion(questionIndex, List([]), '', 'SUBJECTIVE'));
 		setQuestionIndex(questionIndex + 1);
 	}, [questionList, questionIndex, dispatch]);
-
-	// const onChangeQuestionInput = useCallback(
-	// 	(e) => {
-	// 		const value = e.target.value;
-
-	// 		if (e.target.id === 'subjective') {
-	// 			const req = recruitQuestionRequestDtos;
-	// 			const newReq = req.push(
-	// 				Map({
-	// 					multipleChoiceRequestDtos: null,
-	// 					questionType: 'selective',
-	// 					questionContent: value
-	// 				})
-	// 			);
-	// 			console.log(newReq.toJS());
-	// 			// need dispatch
-	// 		}
-	// 	},
-	// 	// dispatch(changeInput({ type: 'recruitQuestionRequestDtos', value: newQuestionContent }));
-	// 	[recruitQuestionRequestDtos]
-	// );
 
 	const onChangeQuestionInput = useCallback(
 		(e) => {
@@ -93,12 +122,17 @@ const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle, onChang
 	}, [questionList]);
 
 	useEffect(() => {
-		return () => setAddNewForm(false);
+		return () => {
+			setAddNewForm(false);
+			dispatch(initializeQuestion());
+		};
 	}, []);
 
-	useEffect(() => {
-		dispatch(initializeQuestion());
-	}, []);
+	// useEffect(() => {
+	// 	return () => {
+	//
+	// 	};
+	// });
 
 	return (
 		//
@@ -135,7 +169,9 @@ const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle, onChang
 								질문 추가하기
 							</InnerContainer>
 						</AddQuestionButton>
-						<SubmitButton type="submit">지원서 등록하기</SubmitButton>
+						<SubmitButton type="submit" onClick={onSubmit}>
+							지원서 등록하기
+						</SubmitButton>
 					</ContainerColumn>
 				</form>
 				<Snackbar open={deleteError} autoHideDuration={1000} onClose={onCloseSnackbar}>
@@ -145,7 +181,15 @@ const ApplicationAddPage = ({ setAddNewForm, onChangeAppTitle, appTitle, onChang
 				</Snackbar>
 				<Footer />
 			</ContainerPage>
-			{/* <Prompt when={true} message="작성된 정보가 모두 삭제됩니다. 정말 나가시겠어요?" /> */}
+			{/* <Prompt
+				when={whenState}
+				navigate={(path) => {
+					history.push(path);
+				}}
+				yes="확인"
+				no="취소"
+				message="작성된 정보가 모두 삭제됩니다. 정말 나가시겠어요?"
+			/> */}
 		</>
 	);
 };
