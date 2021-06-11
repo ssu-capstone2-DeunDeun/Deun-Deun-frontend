@@ -29,7 +29,8 @@ export const TitleKorean = styled.span`
 export const CardContainer = styled.div`
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	/* justify-content: space-between; */
+	
 	margin-top: 1.6em;
 `;
 

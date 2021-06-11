@@ -13,7 +13,8 @@ import {
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import styled from '@emotion/styled';
-const ClubPostCardSmall = () => {
+
+const ClubPostCardSmall = ({ postInfo, clubName }) => {
 	const PostImage = styled.div`
 		height: 188px;
 		background-image: url('/images/sample/post/sample-post2.jpeg');
@@ -21,26 +22,27 @@ const ClubPostCardSmall = () => {
 		background-color: #e8e8e8;
 	`;
 
+	const { viewCount, likeCount, createdAt, content, title } = postInfo;
+	// post image 도 나중에 필요하다!!!
 	return (
-		//
 		<Container>
 			<PostImage />
 			<PostOverview>
-				<TitleKorean>게시글 제목</TitleKorean>
+				<TitleKorean>{title}</TitleKorean>
 				<ContentKorean>
-					다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴 에 타고파. 다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파…
+					{content}
 				</ContentKorean>
-				<PostDate>2021.01.01</PostDate>
+				<PostDate>{createdAt}</PostDate>
 			</PostOverview>
 			<DetailContainer>
-				<ClubName>동아리명</ClubName>
+				<ClubName>{clubName}</ClubName>
 				<Comment>
 					<ChatBubbleOutlineIcon style={{ marginRight: '0.2em', cursor: 'pointer' }} />
-					123
+					{viewCount}
 				</Comment>
 				<Like>
 					<FavoriteIcon style={{ marginRight: '0.1em', cursor: 'pointer' }} />
-					123
+					{likeCount}
 				</Like>
 			</DetailContainer>
 		</Container>

@@ -12,15 +12,20 @@ import {
 	Hashtag
 } from './styles';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-const ClubListCard = ({ clubName, introduction, hashtagNames, representClubImageUrl, liked, recruiting, dday }) => {
+import { withRouter } from 'react-router-dom';
+const ClubListCard = ({ history, clubName, introduction, hashtagNames, representClubImageUrl, liked, recruiting, dday }) => {
+
+	const onMove = () => {
+		history.push(`/club/detail/${clubName}`)
+	}
 	return (
-		<Container>
+		<Container onClick={onMove}>
 			<ClubImage src={representClubImageUrl} />
 			<ClubInfo>
 				<ContainerRow style={{ height: '30px', alignItems: 'center' }}>
 					<ClubName>{clubName}</ClubName>
 					{true && <RecruitingIcon>{dday < 0 ? `모집종료` : `D - ${dday}`}</RecruitingIcon>}
-					<FavoriteIcon style={{ width: '20px', height: '20px', marginLeft: 'auto', color: '8f8f8f' }} />
+					<FavoriteIcon />
 					{/* {isRecruting && <RecruitingIcon />} */}
 				</ContainerRow>
 				<DetailContainer>
@@ -39,8 +44,8 @@ const ClubListCard = ({ clubName, introduction, hashtagNames, representClubImage
 					<Hashtag># 해시태그3</Hashtag> */}
 				</HashtagContainer>
 			</ClubInfo>
-		</Container>
+		</Container >
 	);
 };
 
-export default ClubListCard;
+export default withRouter(ClubListCard);

@@ -23,5 +23,5 @@ export const CardContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	width: 1400px;
-	min-height: 100vh;
+	/* min-height: 100vh; */
 `;

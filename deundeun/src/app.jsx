@@ -94,8 +94,6 @@ const App = () => {
 					<ClubAddInfoContainer />
 				</ContainerRow>
 			</Route>
-			<Route exact path="/club/detail" component={ClubDetailPage} />
-			{/* <Route exact path="/club/" */}
 			<Route component={LoginPage} path="/login" exact />
 			<Route component={RegisterInfoContainer} path="/register/1" exact />
 			{/* <Route component={RegisterPage2} path="/register/2" exact /> */}
@@ -109,6 +107,7 @@ const App = () => {
 			<Route component={OAuth2RedirectHandler} path="/oauth2/redirect" exact />
 			<Route component={ClubPostPage} path="/club/post" exact />
 			<Route component={ClubPostItemPage} path="/club/post/:postId" exact />
+			<Route component={ClubDetailPage} path="/club/detail/:clubName" exact />
 
 		</Switch>
 	);

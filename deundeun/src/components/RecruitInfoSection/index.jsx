@@ -2,10 +2,11 @@ import { Container, RecruitInfoContainer, RecruitDetail, ContentKorean, TitleKor
 import React, { useCallback } from 'react';
 import RecruitInfoCard from 'components/RecruitInfoCard';
 
-const RecruitAnnounceSection = () => {
+const RecruitAnnounceSection = ({ clubRecruitInfo, clubName }) => {
 	const onClickSeePrev = useCallback((e) => {
 		console.log('see prev recruitment');
 	}, []);
+
 
 	return (
 		//
@@ -16,7 +17,7 @@ const RecruitAnnounceSection = () => {
 					<ContentKorean>1개의 진행중인 모집 공고가 있습니다.</ContentKorean>
 					<SeeAll>전체보기</SeeAll>
 				</RecruitDetail>
-				<RecruitInfoCard />
+				{clubRecruitInfo && <RecruitInfoCard clubName={clubName} clubRecruitInfo={clubRecruitInfo} />}
 			</RecruitInfoContainer>
 		</Container>
 	);

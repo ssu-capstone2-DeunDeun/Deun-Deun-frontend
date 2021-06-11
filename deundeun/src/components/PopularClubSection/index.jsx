@@ -21,6 +21,8 @@ const PopularClubSection = ({ popularClubDtos, onClickSeeAll }) => {
 							clubName={club.clubName}
 							imageURL={club.representImageUrl}
 							isRecruiting={club.dday < 0 ? false : true}
+							clubId={club.clubId}
+							key={club.clubId}
 						/>)
 				}
 

@@ -71,3 +71,11 @@ export const addClub = (clubRequestDto) =>
 			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
 		}
 	});
+
+
+export const getClubInfo = (clubName) =>
+	client.get(API_BASE_URL + `/clubs/${clubName}`, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+		}
+	});

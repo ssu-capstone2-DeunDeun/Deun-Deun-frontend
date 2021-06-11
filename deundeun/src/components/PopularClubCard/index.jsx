@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, ClubName, RecruitingIcon } from './styles';
 import styled from 'styled-components';
 import { ContainerRow } from 'styles';
+import { withRouter } from 'react-router-dom';
 
 const PopularOrderBox = styled.div`
 	display: flex;
@@ -22,9 +23,14 @@ const PopularOrderBox = styled.div`
 	}
 `;
 
-const PopularClubCard = ({ order, imageURL, isRecruiting, clubName }) => {
+
+const PopularClubCard = ({ order, imageURL, isRecruiting, clubName, clubId, history }) => {
+	const onMove = (e) => {
+		history.push(`/club/detail/${clubName}`)
+	}
+
 	return (
-		<Container imageURL={imageURL}>
+		<Container imageURL={imageURL} onClick={onMove} >
 			<PopularOrderBox className={`${order <= 3 ? 'green' : 'gray'}`}>{order}</PopularOrderBox>
 			<ContainerRow style={{ marginTop: 'auto', marginBottom: '0.9em', marginLeft: '1em' }}>
 				{isRecruiting && <RecruitingIcon>ON</RecruitingIcon>}
@@ -34,4 +40,4 @@ const PopularClubCard = ({ order, imageURL, isRecruiting, clubName }) => {
 	);
 };
 
-export default PopularClubCard;
+export default withRouter(PopularClubCard);
