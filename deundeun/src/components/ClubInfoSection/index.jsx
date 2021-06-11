@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { useEffect } from 'react';
 import { Redirect, useHistory } from 'react-router';
 import {
 	Container,
@@ -18,7 +19,8 @@ import {
 	ContainerContent
 } from './styles';
 
-const ClubInfo = () => {
+const ClubInfoSection = ({ clubInfo }) => {
+	const { categoryType, clubName, introduction, clubHashtags, backgroundImageUrl, representImageUrl, clubImageUrls } = clubInfo;
 	const history = useHistory();
 	const onClickLogo = useCallback(
 		(e) => {
@@ -34,26 +36,27 @@ const ClubInfo = () => {
 	return (
 		//
 		<>
-			<Container>
+			<Container backgroundImageUrl={backgroundImageUrl}>
 				<Header>
 					<Logo onClick={onClickLogo} src="/images/logo/GROOPY_black.png"></Logo>
 				</Header>
 				<Background></Background>
 				<ContainerInfo>
-					<ClubLogoImage src="/images/sample/club-logo/sample-clublogo.png" />
+					<ClubLogoImage src={representImageUrl} />
 					<ContainerContent>
 						<NotificationButton>모집 공고 알림 받기</NotificationButton>
-						<Category>IT / 개발</Category>
-						<ClubName>IT동아리 트와이스</ClubName>
-						<ClubPreview>다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파. </ClubPreview>
+						<Category>{categoryType}</Category>
+						<ClubName>{clubName}</ClubName>
+						<ClubPreview>{introduction} </ClubPreview>
 						<ContainerHashtag>
-							<Hashtag># 해시태그1</Hashtag>
-							<Hashtag># 해시태그2</Hashtag>
-							<Hashtag># 해시태그3</Hashtag>
+							{clubHashtags.map(clubHashtag => <Hashtag key={clubHashtag.id}>{clubHashtag.name}</Hashtag>)}
 							<ContainerImage>
 								<ClubImage />
 								<ClubImage />
 								<ClubImage>+40</ClubImage>
+								{
+									clubImageUrls.map(clubImageUrl => <ClubImage clubImageUrl={clubImageUrl} ></ClubImage>)
+								}
 							</ContainerImage>
 						</ContainerHashtag>
 					</ContainerContent>
@@ -63,4 +66,4 @@ const ClubInfo = () => {
 	);
 };
 
-export default ClubInfo;
+export default ClubInfoSection;

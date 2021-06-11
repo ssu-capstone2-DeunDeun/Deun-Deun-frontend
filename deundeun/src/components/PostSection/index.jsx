@@ -2,9 +2,9 @@ import ClubPostCardSmall from 'components/ClubPostCardSmall';
 import React from 'react';
 import { Container, PostContainer, CardContainer, Header, SubmitButton, ButtonContainer, Footer } from './styles';
 import { TitleKorean, SeeAll } from 'components/RecruitInfoSection/styles';
-const PostSection = () => {
+import { withRouter } from 'react-router-dom';
+const PostSection = ({ history, postResponse, clubName }) => {
 	return (
-		//
 		<Container>
 			<PostContainer>
 				<Header>
@@ -12,17 +12,20 @@ const PostSection = () => {
 					<SeeAll>전체보기</SeeAll>
 				</Header>
 				<CardContainer>
-					<ClubPostCardSmall />
-					<ClubPostCardSmall />
-					<ClubPostCardSmall />
+					{
+						postResponse && postResponse.map(postInfo =>
+							<ClubPostCardSmall postInfo={postInfo}
+								clubName={clubName} />
+						)
+					}
 				</CardContainer>
 				<ButtonContainer>
-					<SubmitButton>게시글 작성</SubmitButton>
+					{/* <SubmitButton>게시글 작성</SubmitButton> */}
 				</ButtonContainer>
 				<Footer />
 			</PostContainer>
-		</Container>
+		</Container >
 	);
 };
 
-export default PostSection;
+export default withRouter(PostSection);

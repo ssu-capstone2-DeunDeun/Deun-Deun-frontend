@@ -2,7 +2,9 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
 	width: 370px;
+	/* width:350px; */
 	height: 467px;
+	margin-right:20px;
 `;
 
 export const PostOverview = styled.div`

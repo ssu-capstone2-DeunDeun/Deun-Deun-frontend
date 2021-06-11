@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BasicHeaderBlock, BasicLogoBlock, BasicTemplateBlock, BasicTitleBlock } from './styles';
 
-const BasicTemplate = ({ children, club, sector }) => {
+const BasicTemplate = ({ children, postData }) => {
 	return (
 		<BasicTemplateBlock>
 			<BasicHeaderBlock>
@@ -12,8 +12,8 @@ const BasicTemplate = ({ children, club, sector }) => {
 					</Link>
 				</BasicLogoBlock>
 				<BasicTitleBlock>
-					<div class="sector">{sector}</div>
-					<div class="club">{club}</div>
+					{postData && <div class="sector">{postData.club.categoryType}</div>}
+					{postData && <div class="club">{postData.club.clubName}</div>}
 				</BasicTitleBlock>
 			</BasicHeaderBlock>
 			{children}
