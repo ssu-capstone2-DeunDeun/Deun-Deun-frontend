@@ -1,0 +1,11 @@
+{
+  "name": "DeunDeun-frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ssu-capstone2-DeunDeun/DeunDeun-frontend.git",
+  "author": "Suyoung <jsy19970512@naver.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react-router-dom": "^5.2.0"
+  }
+}
