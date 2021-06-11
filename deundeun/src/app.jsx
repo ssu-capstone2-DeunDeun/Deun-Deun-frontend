@@ -15,8 +15,9 @@ import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileMod
 import ClubPostPage from 'pages/ClubPostPage/index';
 import ClubManagePostPage from 'pages/ClubManagePostPage.js/index';
 import ClubPostItemPage from 'pages/ClubPostItemPage/index';
-
-
+import ClubAddSuccessPage from 'pages/ClubAddSuccessPage/index';
+import RecruitAddInfoContainer from 'container/recruit/RecruitAddInfoContainer';
+import ApplicationAddInfoContainer from 'container/application/ApplicationAddInfoContainer';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -94,6 +95,11 @@ const App = () => {
 					<ClubAddInfoContainer />
 				</ContainerRow>
 			</Route>
+			<Route exact path="/club/add/success">
+				<HeaderContainer />
+				<ClubAddSuccessPage />
+			</Route>
+			{/* <Route exact path="/club/" */}
 			<Route component={LoginPage} path="/login" exact />
 			<Route component={RegisterInfoContainer} path="/register/1" exact />
 			{/* <Route component={RegisterPage2} path="/register/2" exact /> */}
@@ -110,7 +116,6 @@ const App = () => {
 			<Route component={ClubPostPage} path="/club/post" exact />
 			<Route component={ClubPostItemPage} path="/club/post/:postId" exact />
 			<Route component={ClubDetailPage} path="/club/:clubName" exact />
-
 		</Switch>
 	);
 };
@@ -147,32 +152,31 @@ const ClubManagePage = () => {
 				(addNewApplication ? (
 					<>
 						<Redirect to="/club/manage/application/new" />
-						<ApplicationAddPage setAddNewForm={setAddNewApplication} />
+						<ApplicationAddInfoContainer setAddNewForm={setAddNewApplication} />
 					</>
 				) : (
-						<>
-							<Redirect to="/club/manage/application" />
-							<ApplicationManagePage setAddNewForm={setAddNewApplication} />
-						</>
-					))}
+					<>
+						<Redirect to="/club/manage/application" />
+						<ApplicationManagePage setAddNewForm={setAddNewApplication} />
+					</>
+				))}
 			{name === 'recruit' &&
 				(addNewRecruit ? (
 					<>
 						<Redirect to="/club/manage/recruit/new" />
-						<RecruitAddPage setAddNewForm={setAddNewRecruit} />
+						<RecruitAddInfoContainer setAddNewForm={setAddNewRecruit} />
 					</>
 				) : (
-						<>
-							<Redirect to="/club/manage/recruit" />
-							<RecruitManagePage setAddNewForm={setAddNewRecruit} />
-						</>
-					))}
+					<>
+						<Redirect to="/club/manage/recruit" />
+						<RecruitManagePage setAddNewForm={setAddNewRecruit} />
+					</>
+				))}
 			{name === 'applicant' && <ApplicantManagePage />}
 			{name === 'member' && <MemberManagePage />}
-			{name === "post" && <ClubManagePostPage />}
+			{name === 'post' && <ClubManagePostPage />}
 		</>
 	);
 };
-
 
 export default App;

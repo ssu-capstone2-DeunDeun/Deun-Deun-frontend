@@ -35,7 +35,9 @@ import ImageUpload from 'components/common/ImageUpload/index';
 import ClubImageUpload from 'components/common/ClubImageUpload/index';
 import { Error } from 'pages/ApplicationAddPage/styles';
 import { useSelector } from 'react-redux';
-import CloseIcon from '@material-ui/icons/Close';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+import { Prompt, useHistory } from 'react-router';
 
 const ClubImage = styled.div`
 	width: 100%;
@@ -86,9 +88,11 @@ const IntroImage = styled.div`
 const ClubManagePage = ({
 	onChangeInput,
 	generation,
+	generationError,
 	clubName,
 	clubNameError,
 	categoryError,
+
 	isDuplicate,
 	onChangeGeneration,
 	onChangeItem,
@@ -101,7 +105,10 @@ const ClubManagePage = ({
 	representImageUrl,
 	clubImages,
 	onDeleteImage,
-	onSubmit
+	onSubmit,
+	submitError,
+	setSubmitError,
+	onCloseSnackbar
 }) => {
 	const [menuIndex, setMenuIndex] = useState(-1);
 	const [showImageModal, setShowImageModal] = useState(false);
@@ -113,6 +120,9 @@ const ClubManagePage = ({
 
 	const [anchorEl, setAnchorEl] = useState(null);
 	const ITEM_HEIGHT = 48;
+	const history = useHistory();
+
+	const [whenState, setWhenState] = useState(true);
 
 	const { menuOptions } = useSelector(({ initCategory }) => ({
 		menuOptions: initCategory.category
@@ -191,7 +201,7 @@ const ClubManagePage = ({
 								></DropdownMenuSelect>
 							</DropdownContainer>
 						</ContainerRow>
-						{categoryError && (
+						{(generationError || categoryError) && (
 							<Error style={{ marginTop: '-3em', marginLeft: '1em', marginBottom: '1.58em' }}>
 								* 동아리 기수 / 카테고리는 필수 입력사항 입니다.
 							</Error>
@@ -287,6 +297,20 @@ const ClubManagePage = ({
 				</Container>
 				<ImageModal show={showImageModal} onCloseModal={onCloseModal} modalImageURL={modalImageURL} />
 				<Footer />
+				<Snackbar open={submitError} autoHideDuration={1000} onClose={onCloseSnackbar}>
+					<Alert onClose={onCloseSnackbar} severity="error">
+						필수 입력사항을 입력해주세요.
+					</Alert>
+				</Snackbar>
+				{/* <Prompt
+					when={whenState}
+					navigate={(path) => {
+						history.push(path);
+					}}
+					yes="확인"
+					no="취소"
+					message="작성된 정보가 모두 삭제됩니다. 정말 나가시겠어요?"
+				/> */}
 			</ContainerPage>
 		</>
 	);

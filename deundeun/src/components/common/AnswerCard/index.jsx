@@ -5,46 +5,37 @@ import { AnswerContainer, ChoiceInput, ChoiceAddButton, ChoiceDeleteButton, Add 
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import { useEffect } from 'react';
-const AnswerCard = () => {
+import { addChoice, deleteChoice, modifyChoice } from 'modules/applicationAddInfo';
+import { useDispatch } from 'react-redux';
+const AnswerCard = ({ id }) => {
+	const dispatch = useDispatch();
 	const [choiceIndex, setChoiceIndex] = useState(2);
 	const [deleteError, setDeleteError] = useState(false);
 	const [choiceList, setChoiceList] = useState([
 		{
 			choiceNumber: 1,
-			choiceContent: "",
+			choiceContent: ''
 		}
 	]);
 
-	const onAddChoice = useCallback(() => {
-		const value = document.getElementById("choiceValue");
-
-		const newChoice = {
-			choiceNumber: choiceIndex,
-			choiceContnetL: value,
-		};
-		setChoiceList(choiceList.concat(newChoice));
-		setChoiceIndex(choiceIndex + 1);
-	}, [choiceList, choiceIndex]);
-
-	const onDeleteChoice = useCallback(
+	const onAddChoice = useCallback(
 		(e) => {
-			if (choiceList.length === 1) {
-				setDeleteError(true);
-				return;
-			}
-			setChoiceList(choiceList.filter((choice) => choice.index !== parseInt(e.target.id)));
+			const newChoice = {
+				choiceNumber: choiceIndex,
+				choiceContent: ''
+			};
+			setChoiceList(choiceList.concat(newChoice));
+			dispatch(addChoice(e.target.id, choiceIndex));
+			setChoiceIndex(choiceIndex + 1);
 		},
-		[choiceList]
+		[choiceList, choiceIndex, dispatch]
 	);
 
 	const onCloseSnackbar = useCallback(() => {
 		setDeleteError(false);
 	}, []);
 
-
-	useEffect(() => {
-
-	}, []);
+	useEffect(() => {}, []);
 	return (
 		//
 		<>
@@ -52,17 +43,38 @@ const AnswerCard = () => {
 				<QuestionNumber>A</QuestionNumber>
 				<AnswerContainer>
 					{choiceList.map((choice) => (
-						<div key={choice.index}>
+						<div key={choice.choiceNumber}>
 							<ContainerRow style={{ marginBottom: '0.6em' }}>
-								<ChoiceInput id="choiceValue" placeholder="선택지를 입력해주세요."></ChoiceInput>
-								<ChoiceDeleteButton id={choice.index} onClick={onDeleteChoice}>
+								<ChoiceInput
+									id={id}
+									placeholder="선택지를 입력해주세요."
+									onChange={(e) => {
+										dispatch(modifyChoice(e.target.id, choice.choiceNumber, e.target.value));
+									}}
+								></ChoiceInput>
+								<ChoiceDeleteButton
+									id={id}
+									className={choice.choiceNumber}
+									onClick={(e) => {
+										if (choiceList.length === 1) {
+											setDeleteError(true);
+											return;
+										} else {
+											const deleteIndex = parseInt(e.target.className.slice(0, 1));
+											setChoiceList(choiceList.filter((choice) => choice.choiceNumber !== deleteIndex));
+											dispatch(deleteChoice(e.target.id, choice.choiceNumber));
+										}
+									}}
+								>
 									&times;
 								</ChoiceDeleteButton>
 							</ContainerRow>
 						</div>
 					))}
 					<ChoiceAddButton>
-						<Add onClick={onAddChoice}>+ 선택지 추가하기</Add>
+						<Add id={id} onClick={onAddChoice}>
+							+ 선택지 추가하기
+						</Add>
 					</ChoiceAddButton>
 				</AnswerContainer>
 				<Snackbar open={deleteError} autoHideDuration={1000} onClose={onCloseSnackbar}>
