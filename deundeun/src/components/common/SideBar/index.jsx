@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button, Container } from './styles';
 const SideBar = ({ location }) => {
 	const { category } = useSelector(({ initCategory }) => ({ category: initCategory.category }));
-	// 영어를 한국어로 바꾸는 것이 좋다고 판단하여, 해당 상태는 수정합니다.
 	const [clickHomeTab, setClickHomeTab] = useState(true);
 	const [clickCategoryTab, setClickCategoryTab] = useState(false);
 	const [clickMyPageTab, setClickMyPageTab] = useState(false);
@@ -12,7 +11,16 @@ const SideBar = ({ location }) => {
 	const [clickClubs, setClickClubs] = useState(false);
 	const [clickApplication, setClickApplication] = useState(false);
 	const [clickLikes, setClickLikes] = useState(false);
+
 	const [clickCategoryOne, setClickCategoryOne] = useState(false);
+	const [clickCategoryTwo, setClickCategoryTwo] = useState(false);
+	const [clickCategoryThree, setClickCategoryThree] = useState(false);
+	const [clickCategoryFour, setClickCategoryFour] = useState(false);
+	const [clickCategoryFive, setClickCategoryFive] = useState(false);
+	const [clickCategorySix, setClickCategorySix] = useState(false);
+	const [clickCategorySeven, setClickCategorySeven] = useState(false);
+	const [clickCategoryEight, setClickCategoryEight] = useState(false);
+
 	const [clickClubManageTab, setClickClubManageTab] = useState(false);
 	const [clickClubAddTab, setClickClubAddTab] = useState(false);
 	const [clickMyClubTab, setClickMyClubTab] = useState(false);
@@ -32,7 +40,6 @@ const SideBar = ({ location }) => {
 		setCategoryTab();
 	}, []);
 
-	const onClickCategoryOne = useCallback((e) => {}, []);
 
 	const onClickMyPageTab = useCallback((e) => {
 		setMypageTab();
@@ -85,6 +92,113 @@ const SideBar = ({ location }) => {
 	const onClickClubPostTab = useCallback(() => {
 		setClubPostTab();
 	}, []);
+
+	const onClickCategoryOne = useCallback((e) => {
+		setClubCategoryOne();
+	}, []);
+	const onClickCategoryTwo = useCallback((e) => {
+		setClubCategoryTwo();
+	}, []);
+	const onClickCategoryThree = useCallback((e) => {
+		setClubCategoryThree();
+	}, []);
+	const onClickCategoryFour = useCallback((e) => {
+		setClubCategoryFour();
+	}, []);
+
+	const onClickCategoryFive = useCallback((e) => {
+		setClubCategoryFive();
+	}, []);
+	const onClickCategorySix = useCallback((e) => {
+		setClubCategorySix();
+	}, []);
+	const onClickCategorySeven = useCallback((e) => {
+		setClubCategorySeven();
+	}, []);
+	const onClickCategoryEight = useCallback((e) => {
+		setClubCategoryEight();
+	}, []);
+
+	const setClubCategoryOne = () => {
+		setClickCategoryOne(true);
+		setClickCategoryTwo(false);
+		setClickCategoryThree(false);
+		setClickCategoryFour(false);
+		setClickCategoryFive(false);
+		setClickCategorySix(false);
+		setClickCategorySeven(false);
+		setClickCategoryEight(false);
+	};
+	const setClubCategoryTwo = () => {
+		setClickCategoryOne(false);
+		setClickCategoryTwo(true);
+		setClickCategoryThree(false);
+		setClickCategoryFour(false);
+		setClickCategoryFive(false);
+		setClickCategorySix(false);
+		setClickCategorySeven(false);
+		setClickCategoryEight(false);
+	};
+	const setClubCategoryThree = () => {
+		setClickCategoryOne(false);
+		setClickCategoryTwo(false);
+		setClickCategoryThree(true);
+		setClickCategoryFour(false);
+		setClickCategoryFive(false);
+		setClickCategorySix(false);
+		setClickCategorySeven(false);
+		setClickCategoryEight(false);
+	};
+	const setClubCategoryFour = () => {
+		setClickCategoryOne(false);
+		setClickCategoryTwo(false);
+		setClickCategoryThree(false);
+		setClickCategoryFour(true);
+		setClickCategoryFive(false);
+		setClickCategorySix(false);
+		setClickCategorySeven(false);
+		setClickCategoryEight(false);
+	};
+	const setClubCategoryFive = () => {
+		setClickCategoryOne(false);
+		setClickCategoryTwo(false);
+		setClickCategoryThree(false);
+		setClickCategoryFour(false);
+		setClickCategoryFive(true);
+		setClickCategorySix(false);
+		setClickCategorySeven(false);
+		setClickCategoryEight(false);
+	};
+	const setClubCategorySix = () => {
+		setClickCategoryOne(false);
+		setClickCategoryTwo(false);
+		setClickCategoryThree(false);
+		setClickCategoryFour(false);
+		setClickCategoryFive(false);
+		setClickCategorySix(true);
+		setClickCategorySeven(false);
+		setClickCategoryEight(false);
+	};
+	const setClubCategorySeven = () => {
+		setClickCategoryOne(false);
+		setClickCategoryTwo(false);
+		setClickCategoryThree(false);
+		setClickCategoryFour(false);
+		setClickCategoryFive(false);
+		setClickCategorySix(false);
+		setClickCategorySeven(true);
+		setClickCategoryEight(false);
+	};
+	const setClubCategoryEight = () => {
+		setClickCategoryOne(false);
+		setClickCategoryTwo(false);
+		setClickCategoryThree(false);
+		setClickCategoryFour(false);
+		setClickCategoryFive(false);
+		setClickCategorySix(false);
+		setClickCategorySeven(false);
+		setClickCategoryEight(true);
+	};
 
 	const setHomeTab = () => {
 		setClickHomeTab(true);
@@ -319,25 +433,25 @@ const SideBar = ({ location }) => {
 						</Button>
 					</Link>
 					<Link to={`/club/category/${category[1]}`}>
-						<Button className="category">{category[1]}(헬스)</Button>
+						<Button className={`${clickCategoryTwo ? 'clicked-category' : 'category'}`} onClick={onClickCategoryTwo}>{category[1]}(헬스)</Button>
 					</Link>
 					<Link to={`/club/category/${category[2]}`}>
-						<Button className="category">{category[2]}(창업)</Button>
+						<Button className={`${clickCategoryThree ? 'clicked-category' : 'category'}`} onClick={onClickCategoryThree}>{category[2]}(창업)</Button>
 					</Link>
 					<Link to={`/club/category/${category[3]}`}>
-						<Button className="category">{category[3]}(친목)</Button>
+						<Button className={`${clickCategoryFour ? 'clicked-category' : 'category'}`} onClick={onClickCategoryFour}>{category[3]}(친목)</Button>
 					</Link>
 					<Link to={`/club/category/${category[4]}`}>
-						<Button className="category">{category[4]}(봉사)</Button>
+						<Button className={`${clickCategoryFive ? 'clicked-category' : 'category'}`} onClick={onClickCategoryFive}>{category[4]}(봉사)</Button>
 					</Link>
 					<Link to={`/club/category/${category[5]}`}>
-						<Button className="category">{category[5]}(문화)</Button>
+						<Button className={`${clickCategorySix ? 'clicked-category' : 'category'}`} onClick={onClickCategorySix}>{category[5]}(문화)</Button>
 					</Link>
 					<Link to={`/club/category/${category[6]}`}>
-						<Button className="category">{category[6]}(어학)</Button>
+						<Button className={`${clickCategorySeven ? 'clicked-category' : 'category'}`} onClick={onClickCategorySeven}>{category[6]}(어학)</Button>
 					</Link>
 					<Link to={`/club/category/${category[7]}`}>
-						<Button className="category">{category[7]}(기타)</Button>
+						<Button className={`${clickCategoryEight ? 'clicked-category' : 'category'}`} onClick={onClickCategoryEight}>{category[7]}(기타)</Button>
 					</Link>
 				</>
 			)}
