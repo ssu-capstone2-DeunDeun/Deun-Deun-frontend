@@ -10,10 +10,6 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getClubInfo, getUserInfo } from 'modules/currentUserInfo';
 const ClubHome = () => {
-	const onClickSeeAll = useCallback((e) => {
-		console.log('see all');
-	}, []);
-
 	const { getHome } = useSelector(({ initHomePage }) => ({
 		getHome: initHomePage.getHome,
 	}))
@@ -41,9 +37,9 @@ const ClubHome = () => {
 				<>
 					{/* <TitleEnglish style={{ marginBottom: '3.68em' }}>HOME</TitleEnglish>
 					<GlobalFonts /> */}
-					<RecruitingClubSection recruitingClubDtos={recruitingClubDtos} onClickSeeAll={onClickSeeAll} />
-					<PopularClubSection popularClubDtos={popularClubDtos} onClickSeeAll={onClickSeeAll} />
-					<ClubPostSection popularPostDtos={popularPostDtos} onClickSeeAll={onClickSeeAll} />
+					<RecruitingClubSection recruitingClubDtos={recruitingClubDtos} />
+					<PopularClubSection popularClubDtos={popularClubDtos} />
+					<ClubPostSection popularPostDtos={popularPostDtos} />
 				</>
 			</ContainerPage>
 		</>

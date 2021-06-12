@@ -18,6 +18,7 @@ import ClubPostItemPage from 'pages/ClubPostItemPage/index';
 import ClubAddSuccessPage from 'pages/ClubAddSuccessPage/index';
 import RecruitAddInfoContainer from 'container/recruit/RecruitAddInfoContainer';
 import ApplicationAddInfoContainer from 'container/application/ApplicationAddInfoContainer';
+import PostAllPage from 'pages/PostAllPage.js/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -61,6 +62,13 @@ const App = () => {
 				<ContainerRow>
 					<SideBar location={location} />
 					<ClubHomePage />
+				</ContainerRow>
+			</Route>
+			<Route path="/post/all" exact>
+				<HeaderContainer />
+				<ContainerRow>
+					<SideBar location={location} />
+					<PostAllPage />
 				</ContainerRow>
 			</Route>
 			<Route path="/club/category/:categoryType">
@@ -155,11 +163,11 @@ const ClubManagePage = () => {
 						<ApplicationAddInfoContainer setAddNewForm={setAddNewApplication} />
 					</>
 				) : (
-					<>
-						<Redirect to="/club/manage/application" />
-						<ApplicationManagePage setAddNewForm={setAddNewApplication} />
-					</>
-				))}
+						<>
+							<Redirect to="/club/manage/application" />
+							<ApplicationManagePage setAddNewForm={setAddNewApplication} />
+						</>
+					))}
 			{name === 'recruit' &&
 				(addNewRecruit ? (
 					<>
@@ -167,11 +175,11 @@ const ClubManagePage = () => {
 						<RecruitAddInfoContainer setAddNewForm={setAddNewRecruit} />
 					</>
 				) : (
-					<>
-						<Redirect to="/club/manage/recruit" />
-						<RecruitManagePage setAddNewForm={setAddNewRecruit} />
-					</>
-				))}
+						<>
+							<Redirect to="/club/manage/recruit" />
+							<RecruitManagePage setAddNewForm={setAddNewRecruit} />
+						</>
+					))}
 			{name === 'applicant' && <ApplicantManagePage />}
 			{name === 'member' && <MemberManagePage />}
 			{name === 'post' && <ClubManagePostPage />}

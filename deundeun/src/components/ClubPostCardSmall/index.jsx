@@ -12,6 +12,7 @@ import {
 } from './styles';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import styled from '@emotion/styled';
 import { withRouter } from 'react-router-dom';
 
@@ -42,7 +43,8 @@ const ClubPostCardSmall = ({ history, postInfo, clubName }) => {
 			<DetailContainer>
 				<ClubName>{clubName}</ClubName>
 				<Comment>
-					<ChatBubbleOutlineIcon style={{ marginRight: '0.2em', cursor: 'pointer' }} />
+					{/* <ChatBubbleOutlineIcon style={{ marginRight: '0.2em', cursor: 'pointer' }} /> */}
+					<VisibilityIcon style={{ marginRight: '0.2em', cursor: 'pointer' }} />
 					{viewCount}
 				</Comment>
 				<Like>

@@ -5,6 +5,7 @@ export const Container = styled.div`
 	height: 436px;
 	cursor:pointer;
 	margin-right: 1.25em;
+	margin-bottom:104.2px;
 `;
 
 export const PostImage = styled.div`
