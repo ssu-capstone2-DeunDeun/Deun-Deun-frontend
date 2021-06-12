@@ -215,7 +215,15 @@ const SideBar = ({ location }) => {
 		setClickMyClubTab(false);
 		setClickClubAddTab(false);
 
+
 		setClickCategoryOne(true);
+		setClickCategoryTwo(false);
+		setClickCategoryThree(false);
+		setClickCategoryFour(false);
+		setClickCategoryFive(false);
+		setClickCategorySix(false);
+		setClickCategorySeven(false);
+		setClickCategoryEight(false);
 	};
 
 	const setMypageTab = () => {
