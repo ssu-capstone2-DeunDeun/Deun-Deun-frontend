@@ -18,10 +18,15 @@ const modules = {
 	}
 };
 
-const TextEditor = () => {
+const TextEditor = ({ onChangeInput }) => {
 	return (
 		//
-		<ReactQuill style={{ height: '500px', marginBottom: '5em', marginTop: '1em' }} modules={modules} theme="snow" />
+		<ReactQuill
+			style={{ height: '500px', marginBottom: '5em', marginTop: '1em' }}
+			modules={modules}
+			theme="snow"
+			onChange={onChangeInput}
+		/>
 	);
 };
 

@@ -70,16 +70,22 @@ export const addClub = (clubRequestDto) =>
 
 export const getClubInfo = (clubName) =>
 	client.get(API_BASE_URL + `/clubs/${clubName}`, {
-    headers: {
+		headers: {
 			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
 		}
-  });
+	});
 export const addApplication = (data) => {
 	client.post(API_BASE_URL + `/clubs/${data.clubName}/forms`, data.newApplication, {
-
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
 		}
 	});
 };
 
+export const addRecruit = (data) => {
+	client.post(API_BASE_URL + `/clubs/${data.clubName}/recruits`, data.newRecruit, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+		}
+	});
+};

@@ -7,6 +7,7 @@ export const CreateModal = styled.div`
 	bottom: 0;
 	right: 0;
 	background: rgba(0, 0, 0, 0.7);
+	display: flex;
 
 	& > div {
 		position: fixed;
@@ -28,18 +29,18 @@ export const ModalTitle = styled.span`
 	margin-left: 2em;
 `;
 
+export const Container = styled.div`
+	width: 50px;
+	height: 50px;
+	margin-left: auto;
+	margin-right: 2em;
+`;
+
 export const CloseModalButton = styled.button`
 	background: transparent;
 	border: none;
 	cursor: pointer;
 	font-size: 2.3rem;
-`;
-
-export const ContentContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 3.5em;
 `;
 
 export const FormList = styled.div`
@@ -75,9 +76,36 @@ export const SubmitButton = styled.button`
 	background-color: #1f1f1f;
 
 	font-family: 'NotoSansKR';
-	font-size: 0.875rem;
+	font-size: 1.1rem;
 	font-weight: 500;
 	color: white;
 
 	margin: 0 auto;
+	border: none;
+	&.cancel {
+		background-color: #a3a3a3;
+	}
+`;
+
+export const ButtonContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	width: 70%;
+	margin: 0 auto;
+`;
+
+export const ContentContainer = styled.div`
+	height: 280px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+`;
+
+export const ContentKorean = styled.span`
+	font-family: 'NotoSansKR';
+	font-size: 1.8rem;
+	font-weight: 900;
+	color: #282828;
+	/* margin: 0 auto; */
 `;
