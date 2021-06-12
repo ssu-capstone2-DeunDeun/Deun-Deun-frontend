@@ -10,7 +10,7 @@ const PopularClubSection = ({ popularClubDtos, onClickSeeAll }) => {
 			<Header>
 				<TitleKorean>인기 동아리</TitleKorean>
 				<ContentKorean id="popular" onClick={onClickSeeAll}>
-					전체보기
+					{/* 전체보기 */}
 				</ContentKorean>
 			</Header>
 			<CardContainer>

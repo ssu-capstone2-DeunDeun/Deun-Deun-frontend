@@ -85,4 +85,8 @@ export const ApplyButton = styled.button`
 	font-size: 1rem;
 	font-weight: 700;
 	color: #fff;
+	
+	&:hover{
+		background-color:#26ebcd;
+	}
 `;

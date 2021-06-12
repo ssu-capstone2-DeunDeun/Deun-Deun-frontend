@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import {
 	Container,
 	RecruitTitle,
@@ -11,7 +12,7 @@ import {
 	ApplyButton
 } from './styles';
 
-const RecruitInfoCard = ({ clubRecruitInfo, clubName }) => {
+const RecruitInfoCard = ({ clubRecruitInfo, clubName, history }) => {
 	const { title, remainDays } = clubRecruitInfo;
 
 	return (
@@ -34,8 +35,8 @@ const RecruitInfoCard = ({ clubRecruitInfo, clubName }) => {
 							: (
 
 								<div>
-									<Deadline>D-4</Deadline>
-									<ApplyButton>지원하기</ApplyButton>
+									<Deadline>D - ${clubRecruitInfo.remainDays}</Deadline>
+									<ApplyButton onClick={() => history.push(`/forms/${clubName}`)}>지원하기</ApplyButton>
 								</div>
 							)
 					}
@@ -45,4 +46,4 @@ const RecruitInfoCard = ({ clubRecruitInfo, clubName }) => {
 	);
 };
 
-export default RecruitInfoCard;
+export default withRouter(RecruitInfoCard);

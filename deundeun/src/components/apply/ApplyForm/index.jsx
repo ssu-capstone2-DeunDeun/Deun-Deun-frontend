@@ -7,7 +7,7 @@ import Button from 'components/common/Button/index';
 
 
 
-const ApplyForm = () => {
+const ApplyForm = ({ match }) => {
 	// lists를 나중에는 props로 받아와야 한다. 우선은, 임의적으로 생성했습니다.
 	const lists = ["내용을 입력해주세요.", "내용을 입력해주세요.", "내용을 입력해주세요.", "내용을 입력해주세요.", "내용을 입력해주세요."];
 	return (

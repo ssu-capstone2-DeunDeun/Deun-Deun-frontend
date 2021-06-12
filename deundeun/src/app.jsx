@@ -112,8 +112,8 @@ const App = () => {
 			<Route component={RegisterInfoContainer} path="/register/1" exact />
 			{/* <Route component={RegisterPage2} path="/register/2" exact /> */}
 			<Route component={RegisterHashtagContainer} path="/register/2" exact />
-			<Route component={ApplyPage} path="/apply" exact />
-			<Route component={ApplyPageSuccessPage} path="/apply/success" exact />
+			<Route component={ApplyPage} path="/forms/:clubName" exact />
+			<Route component={ApplyPageSuccessPage} path="/forms/:clubName/success" exact />
 
 			<Route component={RecruitDetailPage} path="/recruit/detail/id" exact />
 			<Route component={PostDetailPage} path="/club/:clubName/post/:postId" exact />
