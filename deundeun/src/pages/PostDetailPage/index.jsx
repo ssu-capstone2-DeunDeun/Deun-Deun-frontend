@@ -21,6 +21,7 @@ const PostDetailPage = ({ match }) => {
     }))
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch(getPost(postId));
         dispatch(getPostLike(postId));
     }, [dispatch, postId]);

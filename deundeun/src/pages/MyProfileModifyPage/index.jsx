@@ -49,7 +49,7 @@ const MyPage = ({ onChange, userInfo, onChangeNickname, onSubmitNickname, error 
 							<InputBox id="inputNickname" onChange={onChangeNickname} placeholder={userInfo && userInfo.nickname}></InputBox>
 							<SubmitButton onClick={onSubmitNickname} type="submit">닉네임 변경</SubmitButton>
 						</InputBoxContainer>
-						<ErrorMessage>{error}</ErrorMessage>
+						<ErrorMessage style={{ marginLeft: '10.5em' }}>{error}</ErrorMessage>
 
 						{/* <TitleKorean style={{ marginLeft: '7.8em' }}>휴대폰 번호 *</TitleKorean>
 						<InputBoxContainer>
