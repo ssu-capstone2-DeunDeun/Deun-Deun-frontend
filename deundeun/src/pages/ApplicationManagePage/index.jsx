@@ -6,17 +6,21 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { createDispatchHook, useDispatch, useSelector } from 'react-redux';
 import axios from '../../../node_modules/axios/index';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
-import { Container } from './styles';
-
+import { Container, SpinnerContainer } from './styles';
+import LoadingSpinner from 'components/common/LoadingSpinner/index';
+import DeleteApplicationModal from 'components/modal/DeleteApplicationModal/index';
 const ApplicationManagePage = ({ setAddNewForm }) => {
 	const [clubName, setClubName] = useState('');
 	const [applicationList, setApplicationList] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
+	const [deleteId, setDeleteId] = useState(-1);
+	const [deleteTitle, setDeleteTitle] = useState('');
 
 	const onDeleteApplication = useCallback((e) => {
 		// 모달창 띄우기
 		setShowDeleteModal(true);
+		setDeleteId(parseInt(e.target.id));
 	}, []);
 
 	const onCloseModal = useCallback((e) => {
@@ -57,7 +61,7 @@ const ApplicationManagePage = ({ setAddNewForm }) => {
 		//
 		<Container>
 			<AddApplicationFormCard setAddNewForm={setAddNewForm} />
-			{!loading &&
+			{!loading ? (
 				applicationList.map((application) => (
 					<ApplicationFormCard
 						key={application.applyFormId}
@@ -71,7 +75,24 @@ const ApplicationManagePage = ({ setAddNewForm }) => {
 						applicationList={applicationList}
 						setApplicationList={setApplicationList}
 					/>
-				))}
+				))
+			) : (
+				<>
+					<SpinnerContainer>
+						<LoadingSpinner size="large" style={{ margin: '0 auto' }} />
+					</SpinnerContainer>
+				</>
+			)}
+			<DeleteApplicationModal
+				id={deleteId}
+				show={showDeleteModal}
+				onCloseModal={onCloseModal}
+				setShowDeleteModal={setShowDeleteModal}
+				onDeleteApplication={onDeleteApplication}
+				applicationList={applicationList}
+				setApplicationList={setApplicationList}
+				clubName={clubName}
+			/>
 		</Container>
 	);
 };

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from '../../../../node_modules/axios/index';
 import {
 	CreateModal,
@@ -10,29 +10,27 @@ import {
 	ContentContainer
 } from './styles';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
+import { SettingsOutlined } from '../../../../node_modules/@material-ui/icons/index';
 const DeleteApplicationModal = ({
 	id,
 	show,
-	children,
 	onCloseModal,
 	setShowDeleteModal,
-	title,
 	setApplicationList,
 	applicationList,
 	clubName
 }) => {
-	const stopPropagation = useCallback((e) => {
-		e.stopPropagation();
-	}, []);
+	const [title, setTitle] = useState('');
 
 	const onClickDelete = useCallback(
 		(e) => {
-			const id = parseInt(e.target.id);
-			setApplicationList(applicationList.filter((application) => application.applyFormId !== id));
+			const deleteId = parseInt(e.target.id);
+			console.log(e.target.id);
+			setApplicationList(applicationList.filter((application) => application.applyFormId !== deleteId));
 			setShowDeleteModal(false);
 			axios({
 				method: 'delete',
-				url: `${API_BASE_URL}/clubs/${clubName}/forms/${id}`,
+				url: `${API_BASE_URL}/clubs/${clubName}/forms/${deleteId}`,
 				headers: {
 					Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
 				}
@@ -54,6 +52,13 @@ const DeleteApplicationModal = ({
 		[setShowDeleteModal]
 	);
 
+	useEffect(() => {
+		const obj = applicationList.find((application) => application.applyFormId === id);
+		if (obj) {
+			setTitle(obj.title);
+		}
+	}, [applicationList, id]);
+
 	if (!show) {
 		return null;
 	}
@@ -61,12 +66,12 @@ const DeleteApplicationModal = ({
 	return (
 		//
 		<CreateModal>
-			<div onClick={stopPropagation}>
+			<div>
 				<ModalTitle>지원서 양식 삭제</ModalTitle>
 				<CloseModalButton onClick={onCloseModal}>&times;</CloseModalButton>
-				{children}
 				<ContentContainer>
-					<ContentKorean>{title} 지원서를 삭제하시겠어요?</ContentKorean>
+					<ContentKorean>" {title} "</ContentKorean>
+					<ContentKorean>지원서를 삭제하시겠어요?</ContentKorean>
 					<ContentKorean style={{ fontSize: '1.3rem' }}>(해당 작업은 되돌릴 수 없습니다.)</ContentKorean>
 				</ContentContainer>
 
