@@ -60,3 +60,18 @@ export const deletePost = (postId) =>
     });
 
 
+export const likePost = (postId) =>
+    screen.post(API_BASE_URL + `/like/posts/${postId}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
+export const getPostLike = (postId) =>
+    screen.get(API_BASE_URL + `/like/posts/${postId}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
+
