@@ -62,19 +62,19 @@ const currentUserInfo = handleActions(
         }),
         [INITIAL_USER_INFO]: (state, { payload: type }) => ({
             ...state,
-            [type]: null,
+            modifyNicknameError: null,
         }),
         [UPDATE_NICKNAME_SUCCESS]: (state, { payload: modifyNickname }) => (
             produce(state, draft => {
                 state["userInfo"]["nickname"] = modifyNickname;
                 state["modifyNicknameSuccess"] = modifyNickname;
-                state["modifyNicknameError"] = true;
+                state["modifyNicknameError"] = false;
             })
         ),
-        [UPDATE_NICKNAME_FAILURE]: (state, { payload: modifyNicknameError }) => ({
+        [UPDATE_NICKNAME_FAILURE]: (state, payload) => ({
             ...state,
-            // modifyNicknameError,
-            modifyNicknameError: false,
+            // modifyNicknameSuccess: null,
+            modifyNicknameError: true
         }),
         [CHANGE_NICKNAME_FIELD]: (state, { payload: { type, value } }) => ({
             ...state,

@@ -6,6 +6,9 @@ import PopularClubSection from 'components/PopularClubSection';
 import ClubPostSection from 'components/ClubPostSection';
 import { ContainerColumn, ContainerPage } from 'styles';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getClubInfo, getUserInfo } from 'modules/currentUserInfo';
 const ClubHome = () => {
 	const onClickSeeAll = useCallback((e) => {
 		console.log('see all');
@@ -14,6 +17,7 @@ const ClubHome = () => {
 	const { getHome } = useSelector(({ initHomePage }) => ({
 		getHome: initHomePage.getHome,
 	}))
+	const dispatch = useDispatch();
 
 
 	let popularClubDtos = null;
@@ -25,6 +29,11 @@ const ClubHome = () => {
 		popularClubDtos = getHome.popularClubDtos;
 		popularPostDtos = getHome.popularPostDtos;
 	}
+	useEffect(() => {
+		dispatch(getUserInfo());
+		dispatch(getClubInfo());
+	}, [dispatch])
+
 
 	return (
 		<>
