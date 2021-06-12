@@ -47,7 +47,7 @@ const CommentListItem = ({ comment }) => {
 	);
 }
 
-const PostDetailForm = ({ history, postData, postLike, onClickHeart }) => {
+const PostDetailForm = ({ history, postData, postLike, onClickHeart, onChangeInput, commentValue }) => {
 	const { author, content, createdAt, likeCount, modifiedAt, postId, title, viewCount } = postData;
 	const contents = {
 		sector: "IT/개발", clubName: "IT 동아리 트와이스", postListTitles: ["다람쥐 헌 쳇바퀴에 타고파. 다람쥐 헌 쳇바퀴에 타고파",
@@ -78,7 +78,7 @@ const PostDetailForm = ({ history, postData, postLike, onClickHeart }) => {
 						<div className="function">
 
 							{
-								postLike.like ?
+								postLike && postLike.like ?
 									(
 										<div className="heart" onClick={onClickHeart}>
 											<FavoriteBorderIcon />
@@ -139,7 +139,7 @@ const PostDetailForm = ({ history, postData, postLike, onClickHeart }) => {
 
 			<div className="footer">
 				<div className="addComment">
-					<StyledTextarea placeholder="댓글을 입력하세요." ></StyledTextarea>
+					<StyledTextarea value={commentValue} onChange={onChangeInput} placeholder="댓글을 입력하세요." ></StyledTextarea>
 					<div className="registerBtn">
 						<button>등록하기</button>
 					</div>

@@ -8,11 +8,12 @@ const [GET_POST_LIKE, GET_POST_LIKE_SUCCESS, GET_POST_LIKE_FAILURE] = createRequ
 const [GET_POST, GET_POST_SUCCESS, GET_POST_FAILURE] = createRequestActionType("likePost/GET_POST");
 
 const [ON_LIKE_POST, ON_LIKE_POST_SUCCESS, ON_LIKE_POST_FAILURE] = createRequestActionType("likePost/ON_LIKE_POST");
-
+const INPUT_COMMENT = "likePost/INPUT_COMMENT";
 
 export const getPostLike = createAction(GET_POST_LIKE);
 export const getPost = createAction(GET_POST);
 export const onLikePost = createAction(ON_LIKE_POST);
+export const inputComment = createAction(INPUT_COMMENT);
 
 
 const getPostLikeSaga = createRequestSaga(GET_POST_LIKE, postAPI.getPostLike)
@@ -33,6 +34,7 @@ const initialState = {
     getPostError: null,
     likePost: null,
     likePostError: null,
+    commentValue: null,
 
 }
 
@@ -52,7 +54,7 @@ const likePost = handleActions(
         }),
         [GET_POST_FAILURE]: (state, { payload: getPostError }) => ({
             ...state,
-            getPostLike,
+            getPostError,
         }),
         [ON_LIKE_POST_SUCCESS]: (state, { payload: likePost }) => ({
             ...state,
@@ -62,6 +64,10 @@ const likePost = handleActions(
             ...state,
             likePostError,
         }),
+        [INPUT_COMMENT]: (state, { payload: { value, type } }) => ({
+            ...state,
+            [type]: value,
+        })
 
     },
     initialState
