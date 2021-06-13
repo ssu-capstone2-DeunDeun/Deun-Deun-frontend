@@ -1,5 +1,4 @@
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
-import axios from '../../../node_modules/axios/index';
 import client from './client';
 
 // export const signup = (userRequestDto) => {

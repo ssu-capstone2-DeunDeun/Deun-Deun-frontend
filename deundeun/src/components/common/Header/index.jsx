@@ -8,15 +8,6 @@ import { MdClose } from "react-icons/md";
 import { Divider } from 'components/ApplicationFormCard/styles';
 
 const Header = ({ checkLogin, userInfo, onLogout }) => {
-	const onClickSearch = useCallback((e) => {
-		console.log('search');
-	}, []);
-
-	const onClickProfile = useCallback((e) => {
-		console.log('my profile');
-	}, []);
-
-
 	const popupClear = () => {
 		const t = document.getElementById("popup");
 		t.className = "delete";

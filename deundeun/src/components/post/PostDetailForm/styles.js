@@ -168,7 +168,7 @@ export const StyledTextarea = styled.textarea`
     padding-left:22.6px;
     padding-top:23.1px;
     font-size:15px;
-    color:#b7b7b7;
+    color:#282828;
 `;
 
 

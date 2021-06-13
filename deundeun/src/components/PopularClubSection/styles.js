@@ -28,5 +28,9 @@ export const ContentKorean = styled.span`
 	font-size: 1rem;
 	font-weight: bold;
 	color: #717171;
-	text-decoration: underline;
+	/* text-decoration: underline; */
+	&:hover{
+		color:#282828;
+		font-weight:bold;
+	}
 `;

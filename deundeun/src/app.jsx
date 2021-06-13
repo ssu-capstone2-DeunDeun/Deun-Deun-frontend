@@ -18,6 +18,7 @@ import ClubPostItemPage from 'pages/ClubPostItemPage/index';
 import ClubAddSuccessPage from 'pages/ClubAddSuccessPage/index';
 import RecruitAddInfoContainer from 'container/recruit/RecruitAddInfoContainer';
 import ApplicationAddInfoContainer from 'container/application/ApplicationAddInfoContainer';
+import PostAllPage from 'pages/PostAllPage.js/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -63,6 +64,13 @@ const App = () => {
 					<ClubHomePage />
 				</ContainerRow>
 			</Route>
+			<Route path="/post/all" exact>
+				<HeaderContainer />
+				<ContainerRow>
+					<SideBar location={location} />
+					<PostAllPage />
+				</ContainerRow>
+			</Route>
 			<Route path="/club/category/:categoryType">
 				{/* <Header /> */}
 				<HeaderContainer />
@@ -104,8 +112,8 @@ const App = () => {
 			<Route component={RegisterInfoContainer} path="/register/1" exact />
 			{/* <Route component={RegisterPage2} path="/register/2" exact /> */}
 			<Route component={RegisterHashtagContainer} path="/register/2" exact />
-			<Route component={ApplyPage} path="/apply" exact />
-			<Route component={ApplyPageSuccessPage} path="/apply/success" exact />
+			<Route component={ApplyPage} path="/forms/:clubName" exact />
+			<Route component={ApplyPageSuccessPage} path="/forms/:clubName/success" exact />
 
 			<Route component={RecruitDetailPage} path="/recruit/detail/id" exact />
 			<Route component={PostDetailPage} path="/club/:clubName/post/:postId" exact />
@@ -155,11 +163,11 @@ const ClubManagePage = () => {
 						<ApplicationAddInfoContainer setAddNewForm={setAddNewApplication} />
 					</>
 				) : (
-					<>
-						<Redirect to="/club/manage/application" />
-						<ApplicationManagePage setAddNewForm={setAddNewApplication} />
-					</>
-				))}
+						<>
+							<Redirect to="/club/manage/application" />
+							<ApplicationManagePage setAddNewForm={setAddNewApplication} />
+						</>
+					))}
 			{name === 'recruit' &&
 				(addNewRecruit ? (
 					<>
@@ -167,11 +175,11 @@ const ClubManagePage = () => {
 						<RecruitAddInfoContainer setAddNewForm={setAddNewRecruit} />
 					</>
 				) : (
-					<>
-						<Redirect to="/club/manage/recruit" />
-						<RecruitManagePage setAddNewForm={setAddNewRecruit} />
-					</>
-				))}
+						<>
+							<Redirect to="/club/manage/recruit" />
+							<RecruitManagePage setAddNewForm={setAddNewRecruit} />
+						</>
+					))}
 			{name === 'applicant' && <ApplicantManagePage />}
 			{name === 'member' && <MemberManagePage />}
 			{name === 'post' && <ClubManagePostPage />}
