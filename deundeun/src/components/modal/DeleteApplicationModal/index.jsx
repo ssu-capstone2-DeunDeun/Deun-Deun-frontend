@@ -10,7 +10,6 @@ import {
 	ContentContainer
 } from './styles';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
-import { SettingsOutlined } from '../../../../node_modules/@material-ui/icons/index';
 const DeleteApplicationModal = ({
 	id,
 	show,

@@ -180,7 +180,7 @@ const RecruitAddPage = ({
 					},
 					clubName: clubName
 				};
-				console.log(data);
+				console.log(data.newRecruit);
 				dispatch(addRecruit(data));
 			}
 		},
