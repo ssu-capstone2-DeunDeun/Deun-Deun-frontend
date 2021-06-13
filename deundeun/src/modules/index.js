@@ -27,11 +27,8 @@ const rootReducer = combineReducers({
 	write,
 	currentClubPostList,
 	initHomePage,
-<<<<<<< HEAD
-	likePost
-=======
-	recruitAddInfo
->>>>>>> ec91fa5b247eca3a93923fa9d422c0790e463164
+	likePost,
+	recruitAddInfo,
 });
 
 
@@ -44,13 +41,10 @@ export function* rootSaga() {
 		clubAddSaga(),
 		writeSaga(),
 		currentClubPostListSaga(),
-<<<<<<< HEAD
+
 		likePostSaga(),
-		applicationAddSaga()
-=======
 		applicationAddSaga(),
-		recruitAddSaga()
->>>>>>> ec91fa5b247eca3a93923fa9d422c0790e463164
+		recruitAddSaga(),
 	]);
 }
 

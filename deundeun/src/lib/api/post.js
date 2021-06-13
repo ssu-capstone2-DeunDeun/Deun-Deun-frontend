@@ -44,6 +44,14 @@ export const getPost = (postId) =>
         }
     });
 
+export const getPosts = () =>
+    screen.get(API_BASE_URL + "/posts", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
+
 export const updatePost = (post) =>
     screen.patch(API_BASE_URL + `/posts/${post.postId}`, post.postRequestDto, {
         headers: {

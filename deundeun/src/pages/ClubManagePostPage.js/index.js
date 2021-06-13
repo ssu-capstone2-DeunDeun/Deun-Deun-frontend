@@ -17,7 +17,7 @@ const ClubManagePostPage = ({ history }) => {
     }));
 
     useEffect(() => {
-        if (clubInfo) {
+        if (clubInfo && clubInfo[0]) {
             dispatch(getClubsPosts(clubInfo[0].clubResponseDto.clubId));
         }
     }, [clubInfo, dispatch]);

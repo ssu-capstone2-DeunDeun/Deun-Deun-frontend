@@ -19,6 +19,9 @@ import { CategoryKorean } from 'pages/MyLikeListPage/styles';
 import { ErrorMessage } from 'components/register/RegisterInfoForm/styles';
 
 const MyPage = ({ onChange, userInfo, onChangeNickname, onSubmitNickname, error }) => {
+	const inputNickname = document.getElementById("inputNickname");
+
+
 	return (
 		//
 		<>
@@ -43,10 +46,10 @@ const MyPage = ({ onChange, userInfo, onChangeNickname, onSubmitNickname, error 
 					<InputContainer>
 						<TitleKorean style={{ marginLeft: '7.8em' }}>닉네임 *</TitleKorean>
 						<InputBoxContainer>
-							<InputBox onChange={onChangeNickname} placeholder={userInfo && userInfo.nickname}></InputBox>
+							<InputBox id="inputNickname" onChange={onChangeNickname} placeholder={userInfo && userInfo.nickname}></InputBox>
 							<SubmitButton onClick={onSubmitNickname} type="submit">닉네임 변경</SubmitButton>
 						</InputBoxContainer>
-						{/* <ErrorMessage>{error}</ErrorMessage> */}
+						<ErrorMessage style={{ marginLeft: '10.5em' }}>{error}</ErrorMessage>
 
 						{/* <TitleKorean style={{ marginLeft: '7.8em' }}>휴대폰 번호 *</TitleKorean>
 						<InputBoxContainer>

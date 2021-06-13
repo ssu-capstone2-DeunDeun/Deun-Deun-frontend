@@ -4,6 +4,7 @@ export const Container = styled.div`
 	width: 346px;
     height:260px;
     margin-right: 1.25em;
+	margin-bottom:1.25em;
     
     background-color: #f7f7f7;
     cursor:pointer;

@@ -1,6 +1,6 @@
 import BasicTemplate from 'components/common/BasicTemplate';
 import PostDetailForm from 'components/post/PostDetailForm';
-import { getPost, getPostLike, onLikePost } from 'modules/likePost';
+import { getPost, getPostLike, onLikePost, inputComment } from 'modules/likePost';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -14,12 +14,14 @@ const PostDetailPage = ({ match }) => {
     // const [postLike, setPostLike] = useState(null);
 
     const dispatch = useDispatch();
-    const { postLike, postData } = useSelector(({ likePost }) => ({
+    const { postLike, postData, commentValue } = useSelector(({ likePost }) => ({
         postLike: likePost.getPostLike,
         postData: likePost.getPost,
+        commentValue: likePost.commentValue,
     }))
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch(getPost(postId));
         dispatch(getPostLike(postId));
     }, [dispatch, postId]);
@@ -47,9 +49,13 @@ const PostDetailPage = ({ match }) => {
         dispatch(getPost(postId));
     }
 
+    const onChangeInput = (e) => {
+        dispatch(inputComment({ type: "commentValue", value: e.target.value }))
+    }
+
     return (
         <BasicTemplate postData={postData}>
-            {postData && <PostDetailForm onClickHeart={onClickHeart} postData={postData} postLike={postLike} />}
+            {postData && <PostDetailForm commentValue={commentValue} onChangeInput={onChangeInput} onClickHeart={onClickHeart} postData={postData} postLike={postLike} />}
         </BasicTemplate>
     );
 };

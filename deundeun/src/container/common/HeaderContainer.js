@@ -17,13 +17,12 @@ const HeaderContainer = ({ history }) => {
 
     useEffect(() => {
         dispatch(getHome("DATE"));
-
     }, [dispatch])
 
-    useEffect(() => {
-        dispatch(getUserInfo());
-        dispatch(getClubInfo());
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(getUserInfo());
+    //     dispatch(getClubInfo());
+    // }, [dispatch]);
 
 
 
