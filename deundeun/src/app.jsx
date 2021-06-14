@@ -45,7 +45,6 @@ const MemberManagePage = loadable(() => import('pages/MemberManagePage'));
 
 const App = () => {
 	let location = useLocation();
-
 	useEffect(() => {
 		// console.log(location.pathname);
 	}, [location]);
@@ -112,7 +111,7 @@ const App = () => {
 			<Route component={RegisterInfoContainer} path="/register/1" exact />
 			{/* <Route component={RegisterPage2} path="/register/2" exact /> */}
 			<Route component={RegisterHashtagContainer} path="/register/2" exact />
-			<Route component={ApplyPage} path="/forms/:clubName" exact />
+			<Route component={ApplyPage} path="/forms/:clubName/:id" exact />
 			<Route component={ApplyPageSuccessPage} path="/forms/:clubName/success" exact />
 
 			<Route component={RecruitDetailPage} path="/recruit/detail/id" exact />
@@ -143,6 +142,7 @@ const MyPage = () => {
 
 const ClubManagePage = () => {
 	const { name } = useParams();
+	let location = useLocation();
 	const [addNewApplication, setAddNewApplication] = useState(false);
 	const [addNewRecruit, setAddNewRecruit] = useState(false);
 	useEffect(() => {
@@ -151,6 +151,19 @@ const ClubManagePage = () => {
 			setAddNewRecruit(false);
 		};
 	}, []);
+
+	useEffect(() => {
+		switch (location.pathname) {
+			case '/club/manage/application':
+				setAddNewApplication(false);
+				break;
+			case '/club/manage/recruit':
+				setAddNewRecruit(false);
+				break;
+			default:
+				break;
+		}
+	}, [location]);
 
 	return (
 		//
@@ -163,11 +176,11 @@ const ClubManagePage = () => {
 						<ApplicationAddInfoContainer setAddNewForm={setAddNewApplication} />
 					</>
 				) : (
-						<>
-							<Redirect to="/club/manage/application" />
-							<ApplicationManagePage setAddNewForm={setAddNewApplication} />
-						</>
-					))}
+					<>
+						<Redirect to="/club/manage/application" />
+						<ApplicationManagePage setAddNewForm={setAddNewApplication} />
+					</>
+				))}
 			{name === 'recruit' &&
 				(addNewRecruit ? (
 					<>
@@ -175,11 +188,11 @@ const ClubManagePage = () => {
 						<RecruitAddInfoContainer setAddNewForm={setAddNewRecruit} />
 					</>
 				) : (
-						<>
-							<Redirect to="/club/manage/recruit" />
-							<RecruitManagePage setAddNewForm={setAddNewRecruit} />
-						</>
-					))}
+					<>
+						<Redirect to="/club/manage/recruit" />
+						<RecruitManagePage setAddNewForm={setAddNewRecruit} />
+					</>
+				))}
 			{name === 'applicant' && <ApplicantManagePage />}
 			{name === 'member' && <MemberManagePage />}
 			{name === 'post' && <ClubManagePostPage />}

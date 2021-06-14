@@ -25,16 +25,17 @@ const ClubDetailPage = ({ match }) => {
 	useEffect(() => {
 		async function getClub() {
 			const response = await getClubInfo(clubName);
+			console.log(response.data);
 			setClub(response.data);
 		}
 		getClub();
-	}, [clubName, club]);
+	}, []);
 
 	return (
 		//
 		<>
 			{club && <ClubInfoSection clubInfo={club.clubResponseDto} />}
-			{club && <RecruitInfoSection clubRecruitInfo={club.clubRecruitResponseDto} clubName={clubName} />}
+			{club && <RecruitInfoSection clubRecruitInfo={club.clubRecruitResponseDtos[0]} clubName={clubName} />}
 			{club && <PostSection postResponse={club.postResponseDtos} clubName={clubName} />}
 		</>
 	);

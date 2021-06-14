@@ -28,8 +28,8 @@ const LoadApplicationModal = ({ show, children, onCloseModal, applicationList, s
 			// dispatch application id
 			setFormError(false);
 			dispatch(changeInput({ type: 'clubApplyFormId', value: parseInt(applicationId) }));
-			// dispatch(changeInput({ type: 'clubApplyFormTitle', value: applicationTitle }));
-			console.log(e.target.name);
+			dispatch(changeInput({ type: 'clubApplyFormTitle', value: applicationTitle }));
+			console.log(e.currentTarget.title);
 			onCloseModal();
 		},
 		[onCloseModal, applicationId, setFormError, dispatch, applicationTitle]

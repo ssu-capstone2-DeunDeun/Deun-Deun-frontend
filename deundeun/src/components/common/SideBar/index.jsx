@@ -40,7 +40,6 @@ const SideBar = ({ location }) => {
 		setCategoryTab();
 	}, []);
 
-
 	const onClickMyPageTab = useCallback((e) => {
 		setMypageTab();
 	}, []);
@@ -215,7 +214,6 @@ const SideBar = ({ location }) => {
 		setClickMyClubTab(false);
 		setClickClubAddTab(false);
 
-
 		setClickCategoryOne(true);
 		setClickCategoryTwo(false);
 		setClickCategoryThree(false);
@@ -358,8 +356,36 @@ const SideBar = ({ location }) => {
 			case '/home':
 				setHomeTab();
 				break;
-			case '/club/category/1':
+			case '/club/category/IT':
 				setCategoryTab();
+				break;
+			case '/club/category/HEALTH':
+				setCategoryTab();
+				setClubCategoryTwo();
+				break;
+			case '/club/category/STARTUP':
+				setCategoryTab();
+				setClubCategoryThree();
+				break;
+			case '/club/category/FRIENDSHIP':
+				setCategoryTab();
+				setClubCategoryFour();
+				break;
+			case '/club/category/VOLUNTEER':
+				setCategoryTab();
+				setClubCategoryFive();
+				break;
+			case '/club/category/CULTURE':
+				setCategoryTab();
+				setClubCategorySix();
+				break;
+			case '/club/category/LANGUAGE':
+				setCategoryTab();
+				setClubCategorySeven();
+				break;
+			case '/club/category/OTHERS':
+				setCategoryTab();
+				setClubCategoryEight();
 				break;
 			case '/mypage/modify':
 				setMypageTab();
@@ -441,25 +467,48 @@ const SideBar = ({ location }) => {
 						</Button>
 					</Link>
 					<Link to={`/club/category/${category[1]}`}>
-						<Button className={`${clickCategoryTwo ? 'clicked-category' : 'category'}`} onClick={onClickCategoryTwo}>{category[1]}(헬스)</Button>
+						<Button className={`${clickCategoryTwo ? 'clicked-category' : 'category'}`} onClick={onClickCategoryTwo}>
+							{category[1]}(헬스)
+						</Button>
 					</Link>
 					<Link to={`/club/category/${category[2]}`}>
-						<Button className={`${clickCategoryThree ? 'clicked-category' : 'category'}`} onClick={onClickCategoryThree}>{category[2]}(창업)</Button>
+						<Button
+							className={`${clickCategoryThree ? 'clicked-category' : 'category'}`}
+							onClick={onClickCategoryThree}
+						>
+							{category[2]}(창업)
+						</Button>
 					</Link>
 					<Link to={`/club/category/${category[3]}`}>
-						<Button className={`${clickCategoryFour ? 'clicked-category' : 'category'}`} onClick={onClickCategoryFour}>{category[3]}(친목)</Button>
+						<Button className={`${clickCategoryFour ? 'clicked-category' : 'category'}`} onClick={onClickCategoryFour}>
+							{category[3]}(친목)
+						</Button>
 					</Link>
 					<Link to={`/club/category/${category[4]}`}>
-						<Button className={`${clickCategoryFive ? 'clicked-category' : 'category'}`} onClick={onClickCategoryFive}>{category[4]}(봉사)</Button>
+						<Button className={`${clickCategoryFive ? 'clicked-category' : 'category'}`} onClick={onClickCategoryFive}>
+							{category[4]}(봉사)
+						</Button>
 					</Link>
 					<Link to={`/club/category/${category[5]}`}>
-						<Button className={`${clickCategorySix ? 'clicked-category' : 'category'}`} onClick={onClickCategorySix}>{category[5]}(문화)</Button>
+						<Button className={`${clickCategorySix ? 'clicked-category' : 'category'}`} onClick={onClickCategorySix}>
+							{category[5]}(문화)
+						</Button>
 					</Link>
 					<Link to={`/club/category/${category[6]}`}>
-						<Button className={`${clickCategorySeven ? 'clicked-category' : 'category'}`} onClick={onClickCategorySeven}>{category[6]}(어학)</Button>
+						<Button
+							className={`${clickCategorySeven ? 'clicked-category' : 'category'}`}
+							onClick={onClickCategorySeven}
+						>
+							{category[6]}(어학)
+						</Button>
 					</Link>
 					<Link to={`/club/category/${category[7]}`}>
-						<Button className={`${clickCategoryEight ? 'clicked-category' : 'category'}`} onClick={onClickCategoryEight}>{category[7]}(기타)</Button>
+						<Button
+							className={`${clickCategoryEight ? 'clicked-category' : 'category'}`}
+							onClick={onClickCategoryEight}
+						>
+							{category[7]}(기타)
+						</Button>
 					</Link>
 				</>
 			)}

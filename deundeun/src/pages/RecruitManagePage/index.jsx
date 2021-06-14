@@ -36,6 +36,7 @@ const RecruitManagePage = ({ setAddNewForm }) => {
 				}
 			}).then((response) => {
 				const res = response.data;
+				console.log(res);
 				setRecruitList(res);
 				setLoading(false);
 			});
