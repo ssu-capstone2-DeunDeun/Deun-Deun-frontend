@@ -5,7 +5,7 @@ import Button from 'components/common/Button/index';
 import { getApplyForms } from 'lib/api/apply';
 import LoadingSpinner from 'components/common/LoadingSpinner/index';
 import { List } from 'immutable';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams, withRouter } from 'react-router';
 import axios from '../../../../node_modules/axios/index';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 
@@ -21,8 +21,8 @@ const ApplyForm = ({ match }) => {
 	async function getApply() {
 		const response = await getApplyForms(clubName);
 		console.log(response.data);
-		setTitle(response.data[1].title);
-		setApply(response.data[1].recruitQuestionResponseDtos);
+		setTitle(response.data[0].title);
+		setApply(response.data[0].recruitQuestionResponseDtos);
 	}
 
 	const onChangeTextArea = useCallback(
@@ -128,4 +128,4 @@ const ApplyForm = ({ match }) => {
 	);
 };
 
-export default ApplyForm;
+export default withRouter(ApplyForm);

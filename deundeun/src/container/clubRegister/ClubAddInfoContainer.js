@@ -36,6 +36,7 @@ const ClubAddInfoContainer = () => {
 	const [categoryError, setCategoryError] = useState(true);
 	const [clubNameError, setClubNameError] = useState(true);
 	const [submitError, setSubmitError] = useState(false);
+	const [clubImageLoading, setClubImageLoading] = useState(false);
 
 	const onChangeGeneration = useCallback(
 		(e) => {
@@ -109,6 +110,7 @@ const ClubAddInfoContainer = () => {
 				.then((response) => {
 					console.log(response.data[0]);
 					dispatch(changeInput({ type: 'representImageUrl', value: response.data[0] }));
+					setClubImageLoading(false);
 				})
 				.catch((error) => {
 					console.log(error);
@@ -150,8 +152,37 @@ const ClubAddInfoContainer = () => {
 	const onChangeCategory = useCallback(
 		(e) => {
 			e.preventDefault();
-			const value = e.currentTarget.innerText;
-			dispatch(changeInput({ type: 'categoryType', value: value }));
+			const value = e.currentTarget.innerText.slice(-4);
+			console.log(value);
+			switch (value) {
+				case '(개발)':
+					dispatch(changeInput({ type: 'categoryType', value: 'IT' }));
+					break;
+				case '(헬스)':
+					dispatch(changeInput({ type: 'categoryType', value: 'HEALTH' }));
+					break;
+				case '(창업)':
+					dispatch(changeInput({ type: 'categoryType', value: 'STARTUP' }));
+					break;
+				case '(친목)':
+					dispatch(changeInput({ type: 'categoryType', value: 'FRIENDSHIP' }));
+					break;
+				case '(봉사)':
+					dispatch(changeInput({ type: 'categoryType', value: 'VOLUNTEER' }));
+					break;
+				case '(문화)':
+					dispatch(changeInput({ type: 'categoryType', value: 'CULTURE' }));
+					break;
+				case '(어학)':
+					dispatch(changeInput({ type: 'categoryType', value: 'LANGUAGE' }));
+					break;
+				case '(기타)':
+					dispatch(changeInput({ type: 'categoryType', value: 'OTHERS' }));
+					break;
+				default:
+					break;
+			}
+
 			setCategoryError(false);
 		},
 		[dispatch]
@@ -233,6 +264,7 @@ const ClubAddInfoContainer = () => {
 			submitError={submitError}
 			setSubmitError={setSubmitError}
 			onCloseSnackbar={onCloseSnackbar}
+			clubImageLoading={clubImageLoading}
 		/>
 	);
 };

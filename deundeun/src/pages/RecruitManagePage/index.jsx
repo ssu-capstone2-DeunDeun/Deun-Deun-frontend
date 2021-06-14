@@ -48,7 +48,9 @@ const RecruitManagePage = ({ setAddNewForm }) => {
 		<ContainerColumn>
 			<AddRecruitAnnounceCard setAddNewForm={setAddNewForm} />
 			{!loading ? (
-				recruitList.map((recruit) => <RecruitAnnounceCard key={recruit.id} />)
+				recruitList.map((recruit) => (
+					<RecruitAnnounceCard key={recruit.id} generation={recruit.generation} title={recruit.title} />
+				))
 			) : (
 				<>
 					<SpinnerContainer>

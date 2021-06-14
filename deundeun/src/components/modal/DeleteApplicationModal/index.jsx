@@ -25,8 +25,6 @@ const DeleteApplicationModal = ({
 		(e) => {
 			const deleteId = parseInt(e.target.id);
 			console.log(e.target.id);
-			setApplicationList(applicationList.filter((application) => application.applyFormId !== deleteId));
-			setShowDeleteModal(false);
 			axios({
 				method: 'delete',
 				url: `${API_BASE_URL}/clubs/${clubName}/forms/${deleteId}`,
@@ -36,6 +34,8 @@ const DeleteApplicationModal = ({
 			})
 				.then((res) => {
 					console.log(res);
+					setApplicationList(applicationList.filter((application) => application.applyFormId !== deleteId));
+					setShowDeleteModal(false);
 				})
 				.catch((err) => {
 					console.log(err);
