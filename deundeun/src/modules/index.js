@@ -15,6 +15,7 @@ import write, { writeSaga } from './write';
 import currentClubPostList, { currentClubPostListSaga } from './currentClubPostList';
 import likePost, { likePostSaga } from './likePost';
 import currentApplyForm, { currentApplySaga } from './currentApplyForm';
+import sendMsgForm from './sendMsgForm';
 
 const rootReducer = combineReducers({
 	currentUserInfo,
@@ -31,9 +32,8 @@ const rootReducer = combineReducers({
 	likePost,
 	recruitAddInfo,
 	currentApplyForm,
-	recruitAddInfo
+	sendMsgForm
 });
-
 export function* rootSaga() {
 	yield all([
 		initHashtagsSaga(),

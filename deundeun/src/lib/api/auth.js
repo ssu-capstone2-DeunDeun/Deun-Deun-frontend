@@ -82,3 +82,12 @@ export const addRecruit = (data) => {
 		}
 	});
 };
+
+
+export const sendAlarm = (messageRequest) => {
+	client.post(API_BASE_URL + '/alarms', messageRequest, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+		}
+	});
+};

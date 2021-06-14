@@ -213,7 +213,7 @@ export const PopupBlock = styled.div`
             display:flex;
             flex-wrap:wrap;
             button{
-                width:220px;
+                width:120px;
                 height:32px;
                 font-size:12px;
                 margin:15px 8px 0 0;
