@@ -7,7 +7,7 @@ import DropdownMenu from 'components/common/DropdownMenu/index';
 import Button from 'components/common/Button/index';
 import { useEffect } from 'react';
 import axios from '../../../../node_modules/axios/index';
-import { withRouter } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 
 
 
@@ -22,9 +22,10 @@ const popupMake = (event) => {
 let sendMsgLists = [];
 let msgLists = [];
 
-const ApplicantInfo = ({ applicant, clubName, history }) => {
+const ApplicantInfo = ({ applicant, clubName }) => {
 	const { nickname, email } = applicant;
 	const [click, setClick] = useState(false);
+	const history = useHistory();
 
 	if (!sendMsgLists.includes(applicant.nickname) && click === true) {
 		sendMsgLists.push(applicant.nickname);
@@ -167,7 +168,7 @@ const ApplicantManagementForm = ({ recruits, onClick, applicants, message, onCha
 					<div className="msgSubmitBtn">
 						<Button applyManageBtn onClick={(e) => {
 							sendEmail();
-							e.preventDefault();
+							popupClear();
 						}}>전송하기</Button>
 					</div>
 				</div>

@@ -1,7 +1,7 @@
 import BasicTemplate from 'components/common/BasicTemplate';
 import PostDetailForm from 'components/post/PostDetailForm';
 import { getPost, getPostLike, onLikePost, inputComment } from 'modules/likePost';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -64,6 +64,7 @@ const PostDetailPage = ({ match }) => {
             {postData && <PostDetailForm commentValue={commentValue} onChangeInput={onChangeInput} onClickHeart={onClickHeart} postData={postData} postLike={postLike} />}
         </BasicTemplate>
     );
+
 };
 
 export default withRouter(PostDetailPage);

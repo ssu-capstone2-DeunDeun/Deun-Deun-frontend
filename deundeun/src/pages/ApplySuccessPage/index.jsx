@@ -15,7 +15,9 @@ const ApplySuccessPage = () => {
 				<Button applyBtn1 to="/">
 					홈으로
 				</Button>
-				<Button applyBtn2>나의 지원서 관리</Button>
+				<Button applyBtn2 to="/mypage/application">
+					나의 지원서 관리
+				</Button>
 			</div>
 		</ApplySuccessBlock>
 	);
