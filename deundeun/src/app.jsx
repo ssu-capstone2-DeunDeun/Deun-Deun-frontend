@@ -22,6 +22,7 @@ import PostAllPage from 'pages/PostAllPage.js/index';
 import ApplicationSuccessPage from 'pages/ApplicationSuccessPage/index';
 import ApplySuccessPage from 'pages/ApplySuccessPage/index';
 import RecruitSuccessPage from 'pages/RecruitSuccessPage/index';
+import MyApplyPage from 'pages/MyApplyPage/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -128,6 +129,7 @@ const App = () => {
 			<Route component={RegisterHashtagContainer} path="/register/2" exact />
 			<Route component={ApplyPage} path="/forms/:clubName/:id" exact />
 			<Route component={ApplyPageSuccessPage} path="/forms/:clubName/success" exact />
+			<Route component={MyApplyPage} path="/apply/:clubName/:id" exact />
 
 			<Route component={RecruitDetailPage} path="/recruit/detail/id" exact />
 			<Route component={PostDetailPage} path="/club/:clubName/post/:postId" exact />

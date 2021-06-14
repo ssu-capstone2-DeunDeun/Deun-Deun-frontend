@@ -108,7 +108,8 @@ const ClubManagePage = ({
 	onSubmit,
 	submitError,
 	setSubmitError,
-	onCloseSnackbar
+	onCloseSnackbar,
+	clubImageLoading
 }) => {
 	const [menuIndex, setMenuIndex] = useState(-1);
 	const [showImageModal, setShowImageModal] = useState(false);
@@ -124,9 +125,19 @@ const ClubManagePage = ({
 
 	const [whenState, setWhenState] = useState(true);
 
-	const { menuOptions } = useSelector(({ initCategory }) => ({
-		menuOptions: initCategory.category
-	}));
+	// const { menuOptions } = useSelector(({ initCategory }) => ({
+	// 	menuOptions: initCategory.category
+	// }));
+	const menuOptions = [
+		'IT(개발)',
+		'HEALTH(헬스)',
+		'STARTUP(창업)',
+		'FRIENDSHIP(친목)',
+		'VOLUNTEER(봉사)',
+		'CULTURE(문화)',
+		'LANGUAGE(어학)',
+		'OTHERS(기타)'
+	];
 	const hashtagOptions = ['개발', '문화', '예술', '경제', '스포츠', '친목', '디자인', '봉사'];
 
 	const onClickImage = useCallback((e) => {
