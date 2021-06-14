@@ -11,6 +11,7 @@ import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 
 const ApplyForm = ({ match }) => {
 	const { clubName, id } = match.params;
+
 	const [apply, setApply] = useState(null);
 	const [title, setTitle] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -68,7 +69,7 @@ const ApplyForm = ({ match }) => {
 		getApply();
 	}, []);
 
-	useEffect(() => {}, [answerList]);
+	useEffect(() => { }, [answerList]);
 
 	useEffect(() => {
 		if (apply) {
@@ -103,21 +104,21 @@ const ApplyForm = ({ match }) => {
 								</FormContent>
 							</div>
 						) : (
-							<div key={question.questionNumber}>
-								<FormContent>
-									<div class="name">Q. {question.questionContent}</div>
-									<CheckList
-										id={question.questionNumber}
-										lists={question.multipleChoiceResponseDtos}
-										onChangeCheckList={onChangeCheckList}
-									/>
-								</FormContent>
-							</div>
-						)
+								<div key={question.questionNumber}>
+									<FormContent>
+										<div class="name">Q. {question.questionContent}</div>
+										<CheckList
+											id={question.questionNumber}
+											lists={question.multipleChoiceResponseDtos}
+											onChangeCheckList={onChangeCheckList}
+										/>
+									</FormContent>
+								</div>
+							)
 					)
 				) : (
-					<LoadingSpinner size="large" style={{ margin: '0 auto' }} />
-				)}
+						<LoadingSpinner size="large" style={{ margin: '0 auto' }} />
+					)}
 				<ButtonBlock>
 					<Button onClick={onSubmit} applyBtn>
 						지원하기

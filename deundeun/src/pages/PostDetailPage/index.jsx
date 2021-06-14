@@ -9,77 +9,62 @@ import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 const PostDetailPage = ({ match }) => {
-	const { postId } = match.params;
-	const [like, setLike] = useState(false);
-	// const [postData, setPostData] = useState(null);
-	// const [postLike, setPostLike] = useState(null);
+    const { postId } = match.params;
+    // const [postData, setPostData] = useState(null);
+    // const [postLike, setPostLike] = useState(null);
+    const dispatch = useDispatch();
+    const { postLike, postData, commentValue } = useSelector(({ likePost }) => ({
+        postLike: likePost.getPostLike,
+        postData: likePost.getPost,
+        commentValue: likePost.commentValue,
+    }))
+    let categoryType = null;
+    let clubName = null;
+    if (postData) {
+        categoryType = postData.club.categoryType;
+        clubName = postData.club.clubName
+    }
 
-	const dispatch = useDispatch();
-	const { postLike, postData, commentValue } = useSelector(({ likePost }) => ({
-		postLike: likePost.getPostLike,
-		postData: likePost.getPost,
-		commentValue: likePost.commentValue
-	}));
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        dispatch(getPost(postId));
+        dispatch(getPostLike(postId));
+    }, [dispatch, postId]);
 
-	// async function loadGetPost() {
-	// 	await getPost(postId).then((response) => {
-	// 		// setPostData(response.data);
-	// 		console.log(response.data);
-	// 	});
-	// }
+    // useEffect(() => {
+    //     async function loadGetPost() {
+    //         await getPost(postId).then(response => {
+    //             setPostData(response.data);
+    //         })
+    //     }
+    //     loadGetPost();
+    // }, [postId]);
 
-	// async function loadGetPostLike() {
-	// 	await getPostLike(postId).then((response) => {
-	// 		// setPostLike(response.data);
-	// 		console.log(response.data);
-	// 	});
-	// }
+    // useEffect(() => {
+    //     async function loadGetPostLike() {
+    //         await getPostLike(postId).then(response => {
+    //             setPostLike(response.data);
+    //         })
+    //     }
+    //     loadGetPostLike();
+    // }, [postId])
 
-	useEffect(() => {
-		window.scrollTo(0, 0);
-		dispatch(getPost(postId));
-		dispatch(getPostLike(postId));
-	}, []);
+    const onClickHeart = () => {
+        dispatch(onLikePost(postId));
+        dispatch(getPostLike(postId));
+        dispatch(getPost(postId));
+    }
 
-	// useEffect(() => {
-	// 	loadGetPost();
-	// }, []);
+    const onChangeInput = (e) => {
+        dispatch(inputComment({ type: "commentValue", value: e.target.value }))
+    }
 
-	// useEffect(() => {
-	// 	loadGetPostLike();
-	// }, []);
+    return (
+        <BasicTemplate categoryType={categoryType} clubName={clubName}>
+            {postData && <PostDetailForm commentValue={commentValue} onChangeInput={onChangeInput} onClickHeart={onClickHeart} postData={postData} postLike={postLike} />}
+        </BasicTemplate>
+    );
 
-	const onClickHeart = useCallback(
-		(e) => {
-			e.preventDefault();
-			dispatch(onLikePost(postId));
-			dispatch(getPost(postId));
-			dispatch(getPostLike(postId));
-		},
-		[dispatch, postId]
-	);
-
-	useEffect(() => {
-		console.log(postLike);
-	}, [postLike]);
-
-	const onChangeInput = (e) => {
-		dispatch(inputComment({ type: 'commentValue', value: e.target.value }));
-	};
-
-	return (
-		<BasicTemplate postData={postData}>
-			{postData && (
-				<PostDetailForm
-					commentValue={commentValue}
-					onChangeInput={onChangeInput}
-					onClickHeart={onClickHeart}
-					postData={postData}
-					postLike={postLike}
-				/>
-			)}
-		</BasicTemplate>
-	);
 };
 
 export default withRouter(PostDetailPage);

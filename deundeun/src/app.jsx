@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch, useLocation, useParams } from 'react-router-dom';
 import loadable from '@loadable/component';
-import SideBar from 'components/common/SideBar';
-import Header from 'components/common/Header';
 import { ContainerRow } from 'styles';
 import OAuth2RedirectHandler from 'components/login/oauth2/OAuth2RedirectHandler';
 import RegisterInfoContainer from 'container/register/RegisterInfoContainer';
@@ -19,6 +17,8 @@ import ClubAddSuccessPage from 'pages/ClubAddSuccessPage/index';
 import RecruitAddInfoContainer from 'container/recruit/RecruitAddInfoContainer';
 import ApplicationAddInfoContainer from 'container/application/ApplicationAddInfoContainer';
 import PostAllPage from 'pages/PostAllPage.js/index';
+import { Fragment } from 'react';
+import SideBar from '../src/components/common/SideBar';
 import ApplicationSuccessPage from 'pages/ApplicationSuccessPage/index';
 import ApplySuccessPage from 'pages/ApplySuccessPage/index';
 import RecruitSuccessPage from 'pages/RecruitSuccessPage/index';
@@ -156,12 +156,12 @@ const MyPage = () => {
 	const { name } = useParams();
 	return (
 		//
-		<>
+		<Fragment>
 			{name === 'modify' && <MyProfileModifyPageContainer />}
 			{name === 'clubs' && <MyClubListPage />}
 			{name === 'application' && <MyApplicationPage />}
 			{name === 'likes' && <MyLikeListPage />}
-		</>
+		</Fragment>
 	);
 };
 
@@ -192,36 +192,36 @@ const ClubManagePage = () => {
 
 	return (
 		//
-		<>
+		<Fragment>
 			{name === 'modify' && <ClubModifyPageContainer />}
 			{name === 'application' &&
 				(addNewApplication ? (
-					<>
+					<Fragment>
 						<Redirect to="/club/manage/application/new" />
 						<ApplicationAddInfoContainer setAddNewForm={setAddNewApplication} />
-					</>
+					</Fragment>
 				) : (
-					<>
-						<Redirect to="/club/manage/application" />
-						<ApplicationManagePage setAddNewForm={setAddNewApplication} />
-					</>
-				))}
+						<Fragment>
+							<Redirect to="/club/manage/application" />
+							<ApplicationManagePage setAddNewForm={setAddNewApplication} />
+						</Fragment>
+					))}
 			{name === 'recruit' &&
 				(addNewRecruit ? (
-					<>
+					<Fragment>
 						<Redirect to="/club/manage/recruit/new" />
 						<RecruitAddInfoContainer setAddNewForm={setAddNewRecruit} />
-					</>
+					</Fragment>
 				) : (
-					<>
-						<Redirect to="/club/manage/recruit" />
-						<RecruitManagePage setAddNewForm={setAddNewRecruit} />
-					</>
-				))}
+						<Fragment>
+							<Redirect to="/club/manage/recruit" />
+							<RecruitManagePage setAddNewForm={setAddNewRecruit} />
+						</Fragment>
+					))}
 			{name === 'applicant' && <ApplicantManagePage />}
 			{name === 'member' && <MemberManagePage />}
 			{name === 'post' && <ClubManagePostPage />}
-		</>
+		</Fragment>
 	);
 };
 
