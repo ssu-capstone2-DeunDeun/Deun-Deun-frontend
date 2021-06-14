@@ -3,6 +3,7 @@ import { CheckBox, CheckBoxBlock, CheckListBlock } from './styles';
 import { IoCheckmarkCircleOutline } from 'react-icons/io5';
 
 const CheckList = ({ id, lists, onChangeCheckList }) => {
+	const [current, setCurrent] = useState('');
 	return (
 		<CheckListBlock>
 			{lists.map((list) => (
@@ -10,24 +11,24 @@ const CheckList = ({ id, lists, onChangeCheckList }) => {
 					id={id}
 					key={list.choiceNumber}
 					text={list.choiceContent}
+					value={list.choiceContent}
 					onChangeCheckList={onChangeCheckList}
+					current={current}
+					setCurrent={setCurrent}
 				/>
 			))}
 		</CheckListBlock>
 	);
 };
 
-const CheckListItem = ({ id, text, onChangeCheckList }) => {
-	const [click, setClick] = useState(false);
-
+const CheckListItem = ({ id, text, onChangeCheckList, current, setCurrent }) => {
 	return (
 		<>
-			{click === true ? (
+			{current === text ? (
 				<CheckBoxBlock
 					active
 					onClick={(e) => {
-						setClick(!click);
-						console.log(e.target.id);
+						setCurrent('');
 						const id = parseInt(e.target.id);
 						if (id) {
 							onChangeCheckList(id, text);
@@ -36,15 +37,16 @@ const CheckListItem = ({ id, text, onChangeCheckList }) => {
 					id={id}
 				>
 					<CheckBox>
-						<IoCheckmarkCircleOutline />
-						<div className="text">{text}</div>
+						<IoCheckmarkCircleOutline id={id} />
+						<div className="text" id={id}>
+							{text}
+						</div>
 					</CheckBox>
 				</CheckBoxBlock>
 			) : (
 				<CheckBoxBlock
 					onClick={(e) => {
-						setClick(!click);
-						console.log(e.target.id);
+						setCurrent(text);
 						const id = parseInt(e.target.id);
 						if (id) {
 							onChangeCheckList(id, text);
@@ -52,8 +54,10 @@ const CheckListItem = ({ id, text, onChangeCheckList }) => {
 					}}
 					id={id}
 				>
-					<CheckBox>
-						<div className="text">{text}</div>
+					<CheckBox id={id}>
+						<div className="text" id={id}>
+							{text}
+						</div>
 					</CheckBox>
 				</CheckBoxBlock>
 			)}

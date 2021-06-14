@@ -181,11 +181,11 @@ const RecruitAddPage = ({
 					},
 					clubName: clubName
 				};
-				console.log(data.newRecruit);
 				dispatch(addRecruit(data));
+				history.push('/recruit/success');
 			}
 		},
-		[formError, titleError, generationError, recruitAddInfo, clubName, dispatch]
+		[formError, titleError, generationError, recruitAddInfo, clubName, dispatch, history]
 	);
 
 	useEffect(() => {

@@ -19,6 +19,9 @@ import ClubAddSuccessPage from 'pages/ClubAddSuccessPage/index';
 import RecruitAddInfoContainer from 'container/recruit/RecruitAddInfoContainer';
 import ApplicationAddInfoContainer from 'container/application/ApplicationAddInfoContainer';
 import PostAllPage from 'pages/PostAllPage.js/index';
+import ApplicationSuccessPage from 'pages/ApplicationSuccessPage/index';
+import ApplySuccessPage from 'pages/ApplySuccessPage/index';
+import RecruitSuccessPage from 'pages/RecruitSuccessPage/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -105,6 +108,18 @@ const App = () => {
 			<Route exact path="/club/add/success">
 				<HeaderContainer />
 				<ClubAddSuccessPage />
+			</Route>
+			<Route exact path="/application/success">
+				<HeaderContainer />
+				<ApplicationSuccessPage />
+			</Route>
+			<Route exact path="/apply/success">
+				<HeaderContainer />
+				<ApplySuccessPage />
+			</Route>
+			<Route exact path="/recruit/success">
+				<HeaderContainer />
+				<RecruitSuccessPage />
 			</Route>
 			{/* <Route exact path="/club/" */}
 			<Route component={LoginPage} path="/login" exact />
