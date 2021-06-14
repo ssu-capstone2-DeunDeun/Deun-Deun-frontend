@@ -13,8 +13,7 @@ import {
 } from './styles';
 
 const RecruitInfoCard = ({ clubRecruitInfo, clubName, history }) => {
-	const { title, remainDays } = clubRecruitInfo;
-
+	const { title, remainDays, id } = clubRecruitInfo;
 	return (
 		//
 		<Container>
@@ -25,24 +24,19 @@ const RecruitInfoCard = ({ clubRecruitInfo, clubName, history }) => {
 				</RecruitingInfoContainer>
 				<RecruitTitle>{title}</RecruitTitle>
 				<ApplyButtonContainer>
-					{
-						remainDays < 0 ?
-							(
-								<>
-									<ApplyButton>지원마감</ApplyButton>
-								</>
-							)
-							: (
-
-								<div>
-									<Deadline>D - ${clubRecruitInfo.remainDays}</Deadline>
-									<ApplyButton onClick={() => history.push(`/forms/${clubName}`)}>지원하기</ApplyButton>
-								</div>
-							)
-					}
+					{remainDays < 0 ? (
+						<>
+							<ApplyButton>지원마감</ApplyButton>
+						</>
+					) : (
+						<div>
+							<Deadline>{`D - ${clubRecruitInfo.remainDays}`}</Deadline>
+							<ApplyButton onClick={() => history.push(`/forms/${clubName}/${id}`)}>지원하기</ApplyButton>
+						</div>
+					)}
 				</ApplyButtonContainer>
-			</InnerContainer >
-		</Container >
+			</InnerContainer>
+		</Container>
 	);
 };
 

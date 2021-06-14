@@ -28,7 +28,8 @@ const LoadApplicationModal = ({ show, children, onCloseModal, applicationList, s
 			// dispatch application id
 			setFormError(false);
 			dispatch(changeInput({ type: 'clubApplyFormId', value: parseInt(applicationId) }));
-			// dispatch(changeInput({ type: 'clubApplyFormTitle', value: parseInt(applicationTitle) }));
+			dispatch(changeInput({ type: 'clubApplyFormTitle', value: applicationTitle }));
+			console.log(e.currentTarget.title);
 			onCloseModal();
 		},
 		[onCloseModal, applicationId, setFormError, dispatch, applicationTitle]
@@ -52,7 +53,7 @@ const LoadApplicationModal = ({ show, children, onCloseModal, applicationList, s
 								<StyledCheckbox
 									id={application.applyFormId + ''}
 									applicationId={applicationId}
-									value={application.title}
+									title={application.title}
 									setApplicationId={setApplicationId}
 									setApplicationTitle={setApplicationTitle}
 								/>
@@ -63,7 +64,7 @@ const LoadApplicationModal = ({ show, children, onCloseModal, applicationList, s
 
 					<SubmitButton
 						id={applicationId}
-						value={applicationTitle}
+						title={applicationTitle}
 						onClick={onSubmitApplication}
 						style={{ marginTop: '2em' }}
 					>

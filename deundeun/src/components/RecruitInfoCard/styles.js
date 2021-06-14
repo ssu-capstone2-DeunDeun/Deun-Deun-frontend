@@ -70,7 +70,7 @@ export const Deadline = styled.span`
 	font-family: 'NotoSansKR';
 	font-size: 1rem;
 	color: #282828;
-
+	margin-right: 1em;
 	font-weight: 700;
 `;
 
@@ -85,8 +85,8 @@ export const ApplyButton = styled.button`
 	font-size: 1rem;
 	font-weight: 700;
 	color: #fff;
-	
-	&:hover{
-		background-color:#26ebcd;
+
+	&:hover {
+		background-color: #26ebcd;
 	}
 `;

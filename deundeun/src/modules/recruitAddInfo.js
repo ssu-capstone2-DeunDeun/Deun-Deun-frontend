@@ -6,7 +6,7 @@ import { takeLatest } from 'redux-saga/effects';
 
 const CHANGE_INPUT = 'recruitAddInfo/CHANGE_INPUT';
 const INITIALIZE_STATE = 'recruitAddInfo/INITIALIZE_STATE';
-const [ADD_RECRUIT, ADD_RECRUIT_SUCCESS, ADD_RECRUIT_FAILURE] = createRequestActionType('clubAddInfo/ADDCLUB');
+const [ADD_RECRUIT, ADD_RECRUIT_SUCCESS, ADD_RECRUIT_FAILURE] = createRequestActionType('recruitAddInfo/ADD_RECRUIT');
 
 export const changeInput = createAction(CHANGE_INPUT);
 export const initializeState = createAction(INITIALIZE_STATE);
@@ -30,7 +30,7 @@ const initialState = {
 	submitEndDate: '',
 	submitStartDate: '',
 	title: '',
-	addRecruit: null,
+	addRecruitSuccess: null,
 	addRecruitError: null
 };
 
@@ -43,9 +43,9 @@ const recruitAddInfo = handleActions(
 			...state,
 			[type]: value
 		}),
-		[ADD_RECRUIT_SUCCESS]: (state, { payload: addRecruit }) => ({
+		[ADD_RECRUIT_SUCCESS]: (state, { payload: addRecruitSuccess }) => ({
 			...state,
-			addRecruit
+			addRecruitSuccess
 		}),
 		[ADD_RECRUIT_FAILURE]: (state, { payload: addRecruitError }) => ({
 			...state,

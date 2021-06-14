@@ -3,13 +3,15 @@ import BasicTemplate from 'components/common/BasicTemplate';
 import { getClubInfo } from 'lib/api/auth';
 import { getApplyForm } from 'modules/currentApplyForm';
 import React from 'react';
-import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { getApplyForms } from 'lib/api/apply';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 const ApplyPage = ({ match }) => {
+
     const { clubName } = match.params;
     const [clubInfo, setClubInfo] = useState(null);
     let categoryType = null;
