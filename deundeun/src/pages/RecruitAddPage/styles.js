@@ -131,3 +131,8 @@ export const ImageButton = styled.div`
 	margin-top: 1em;
 	margin-bottom: 4em;
 `;
+
+export const AppTitle = styled.span`
+	font-weight: 700;
+	color: #282828;
+`;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { ButtonContainer, Button } from 'components/MyApplicationCard/styles';
 import { ApplicationDetail, ApplicationTitle, Container, Divider } from './styles';
-import DeleteApplicationModal from 'components/modal/DeleteApplicationModal/index';
 const ApplicationFormCard = ({ id, title, clubName, onDeleteApplication }) => {
 	return (
 		//

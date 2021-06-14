@@ -28,9 +28,8 @@ const rootReducer = combineReducers({
 	currentClubPostList,
 	initHomePage,
 	likePost,
-	recruitAddInfo,
+	recruitAddInfo
 });
-
 
 export function* rootSaga() {
 	yield all([
@@ -41,10 +40,9 @@ export function* rootSaga() {
 		clubAddSaga(),
 		writeSaga(),
 		currentClubPostListSaga(),
-
 		likePostSaga(),
 		applicationAddSaga(),
-		recruitAddSaga(),
+		recruitAddSaga()
 	]);
 }
 

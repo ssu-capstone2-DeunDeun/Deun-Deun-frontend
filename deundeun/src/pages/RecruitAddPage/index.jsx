@@ -9,7 +9,8 @@ import {
 	Tilde,
 	RecruitInfoTextarea,
 	ImageButton,
-	DateInputButton
+	DateInputButton,
+	AppTitle
 } from './styles';
 import React, { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import { ContainerColumn, ContainerRow } from 'styles';
@@ -180,7 +181,7 @@ const RecruitAddPage = ({
 					},
 					clubName: clubName
 				};
-				console.log(data);
+				console.log(data.newRecruit);
 				dispatch(addRecruit(data));
 			}
 		},
@@ -212,7 +213,7 @@ const RecruitAddPage = ({
 						</InnerContainer>
 					</>
 				) : (
-					<ContentKorean style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>test</ContentKorean>
+					<AppTitle style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>{recruitAddInfo.clubApplyFormTitle}</AppTitle>
 				)}
 			</ApplicationLoadCard>
 			{formError && <Error style={{ marginLeft: '0.5em' }}>* 지원서 양식이 필요합니다.</Error>}

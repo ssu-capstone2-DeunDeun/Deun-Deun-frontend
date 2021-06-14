@@ -8,6 +8,7 @@ export const Container = styled.div`
 	height: 180px;
 	padding-left: 2.56vw;
 	padding-right: 1.1vw;
+	margin-bottom: 1em;
 `;
 
 export const HeaderContainer = styled.div`
