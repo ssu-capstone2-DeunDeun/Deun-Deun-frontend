@@ -9,7 +9,6 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import { Footer } from 'pages/ClubAddPage/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import applicationAddInfo, {
 	addApplication,
 	addQuestion,
@@ -73,7 +72,7 @@ const ApplicationAddPage = ({
 					};
 					console.log(test);
 					dispatch(addApplication(test));
-					history.push('/apply/success');
+					history.push('/application/success');
 				}
 			}
 		},
@@ -97,9 +96,6 @@ const ApplicationAddPage = ({
 		},
 		[dispatch]
 	);
-
-	// onChangeContent
-	// onChangeType
 
 	const onDeleteQuestion = useCallback(
 		(e) => {
@@ -127,12 +123,6 @@ const ApplicationAddPage = ({
 			dispatch(initializeQuestion());
 		};
 	}, []);
-
-	// useEffect(() => {
-	// 	return () => {
-	//
-	// 	};
-	// });
 
 	return (
 		//
