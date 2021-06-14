@@ -15,3 +15,20 @@ export const getApplyForm = (clubInfo) =>
             Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
         }
     });
+
+
+export const getRecruits = (clubName) =>
+    client.get(API_BASE_URL + `/clubs/${clubName}/recruits`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
+
+export const getAppliesInfo = (recruitId) =>
+    client.get(API_BASE_URL + `/club/recruit/${recruitId}/applies`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
