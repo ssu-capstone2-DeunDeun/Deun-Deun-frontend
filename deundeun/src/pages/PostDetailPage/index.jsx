@@ -12,13 +12,18 @@ const PostDetailPage = ({ match }) => {
     const { postId } = match.params;
     // const [postData, setPostData] = useState(null);
     // const [postLike, setPostLike] = useState(null);
-
     const dispatch = useDispatch();
     const { postLike, postData, commentValue } = useSelector(({ likePost }) => ({
         postLike: likePost.getPostLike,
         postData: likePost.getPost,
         commentValue: likePost.commentValue,
     }))
+    let categoryType = null;
+    let clubName = null;
+    if (postData) {
+        categoryType = postData.club.categoryType;
+        clubName = postData.club.clubName
+    }
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -43,6 +48,7 @@ const PostDetailPage = ({ match }) => {
     //     }
     //     loadGetPostLike();
     // }, [postId])
+
     const onClickHeart = () => {
         dispatch(onLikePost(postId));
         dispatch(getPostLike(postId));
@@ -54,7 +60,7 @@ const PostDetailPage = ({ match }) => {
     }
 
     return (
-        <BasicTemplate postData={postData}>
+        <BasicTemplate categoryType={categoryType} clubName={clubName}>
             {postData && <PostDetailForm commentValue={commentValue} onChangeInput={onChangeInput} onClickHeart={onClickHeart} postData={postData} postLike={postLike} />}
         </BasicTemplate>
     );
