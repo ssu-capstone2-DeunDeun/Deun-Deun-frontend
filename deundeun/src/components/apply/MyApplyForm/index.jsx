@@ -12,10 +12,8 @@ import CheckListReadOnly from '../CheckListReadOnly/index';
 
 const MyApplyForm = ({ match }) => {
 	const { clubName, id } = match.params;
-	const [apply, setApply] = useState(null);
 	const [title, setTitle] = useState(null);
 	const [loading, setLoading] = useState(true);
-	const [value, setValue] = useState('');
 	const [answerList, setAnswerList] = useState(null);
 
 	const history = useHistory();
@@ -29,6 +27,7 @@ const MyApplyForm = ({ match }) => {
 			}
 		}).then((res) => {
 			console.log(res.data);
+			setTitle(res.data.recruitTitle);
 			setAnswerList(res.data.applyQAResponseDtos);
 			setLoading(false);
 		});
@@ -41,7 +40,7 @@ const MyApplyForm = ({ match }) => {
 			<ApplyInfoBox>
 				<div class="step">지원서 보기 [{clubName}]</div>
 				<div class="info">
-					<div>{title}</div>
+					<div>{title ? title : ''}</div>
 				</div>
 			</ApplyInfoBox>
 
