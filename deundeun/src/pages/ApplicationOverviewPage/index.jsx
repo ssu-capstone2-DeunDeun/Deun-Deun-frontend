@@ -1,13 +1,12 @@
 import LoadingSpinner from 'components/common/LoadingSpinner/index';
 import { API_BASE_URL, ACCESS_TOKEN } from 'constants/index';
 import { ApplicationTitleInput, Header } from 'pages/ApplicationAddPage/styles';
-import { SpinnerContainer } from 'pages/ApplicationManagePage/styles';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { ContainerColumn, ContainerPage } from 'styles';
+import { SpinnerContainer } from './styles';
 import axios from '../../../node_modules/axios/index';
 import { TitleKorean } from 'pages/RecruitAddPage/styles';
-import QuestionCard from 'components/common/QuestionCard/index';
 import QuestionList from 'components/QuestionList/index';
 
 const ApplicationOverviewPage = () => {
@@ -55,7 +54,7 @@ const ApplicationOverviewPage = () => {
 			) : (
 				<>
 					<SpinnerContainer>
-						<LoadingSpinner size="large" style={{ margin: '0 auto' }} />
+						<LoadingSpinner size="large" />
 					</SpinnerContainer>
 				</>
 			)}
