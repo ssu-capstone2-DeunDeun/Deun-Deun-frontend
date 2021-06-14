@@ -2,12 +2,13 @@ import { Content, HeaderContainer, TitleKorean } from 'pages/MyClubListPage/styl
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import React, { useEffect, useState } from 'react';
 import MyApplicationCard from 'components/MyApplicationCard';
-import { CardContainer, ContentKorean } from './styles';
+import { CardContainer, ContentKorean, SpinnerContainer } from './styles';
 import { ContainerColumn, ContainerPage, ContainerRow } from 'styles';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { CategoryKorean } from 'pages/MyLikeListPage/styles';
 import axios from '../../../node_modules/axios/index';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
+import LoadingSpinner from 'components/common/LoadingSpinner/index';
 const MyApplicationPage = () => {
 	const [applyList, setApplyList] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -48,12 +49,17 @@ const MyApplicationPage = () => {
 					</ContainerRow>
 				</ContainerColumn>
 				<CardContainer>
-					{!loading &&
+					{!loading ? (
 						applyList.map((apply) => (
 							<div key={apply.clubApplyId}>
 								<MyApplicationCard id={apply.clubApplyId} title={apply.title} clubName={apply.clubName} />
 							</div>
-						))}
+						))
+					) : (
+						<SpinnerContainer>
+							<LoadingSpinner size="large" />
+						</SpinnerContainer>
+					)}
 				</CardContainer>
 			</ContainerPage>
 		</>
