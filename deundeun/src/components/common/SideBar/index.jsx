@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { Button, Container } from './styles';
 const SideBar = ({ location }) => {
 	const { category } = useSelector(({ initCategory }) => ({ category: initCategory.category }));
+	const { clubName, id } = useParams();
 	const [clickHomeTab, setClickHomeTab] = useState(true);
 	const [clickCategoryTab, setClickCategoryTab] = useState(false);
 	const [clickMyPageTab, setClickMyPageTab] = useState(false);
@@ -414,6 +415,14 @@ const SideBar = ({ location }) => {
 				setClubPostTab();
 				break;
 			case '/club/manage/application':
+				setMyClubTab();
+				setManageApplicationTab();
+				break;
+			case `/application/${clubName}/${id}`:
+				setMyClubTab();
+				setManageApplicationTab();
+				break;
+			case '/application':
 				setMyClubTab();
 				setManageApplicationTab();
 				break;

@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { ButtonContainer, Button } from 'components/MyApplicationCard/styles';
 import { ApplicationDetail, ApplicationTitle, Container, Divider } from './styles';
+import { useHistory } from 'react-router';
 const ApplicationFormCard = ({ id, title, clubName, onDeleteApplication }) => {
+	const history = useHistory();
+
+	const onClickApplication = useCallback(
+		(e) => {
+			console.log(e.target.id);
+			history.push(`/application/${clubName}/${id}`);
+		},
+		[history, clubName, id]
+	);
+
 	return (
 		//
 		<Container>
-			<ApplicationTitle>{title}</ApplicationTitle>
+			<ApplicationTitle style={{ cursor: 'pointer' }} id={id} onClick={onClickApplication}>
+				{title}
+			</ApplicationTitle>
 			<Divider />
 			<ApplicationDetail>{clubName}</ApplicationDetail>
 			<ButtonContainer>

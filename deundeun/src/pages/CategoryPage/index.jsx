@@ -15,11 +15,11 @@ const CategoryPage = ({ match }) => {
 	const { categoryType } = match.params;
 	const dispatch = useDispatch();
 	const { clubs } = useSelector(({ initHomePage }) => ({
-		clubs: initHomePage.getAllClubs,
-	}))
+		clubs: initHomePage.getAllClubs
+	}));
 
 	if (clubs) {
-		console.log("getAllclubs", clubs)
+		console.log('getAllclubs', clubs);
 	}
 
 	useEffect(() => {
@@ -38,9 +38,10 @@ const CategoryPage = ({ match }) => {
 					</Content>
 				</ContentContainer>
 				<CardContainer>
-					{
-						clubs && clubs.map(club =>
+					{clubs &&
+						clubs.map((club) => (
 							<ClubListCard
+								id={club.clubId}
 								clubName={club.clubName}
 								introduction={club.introduction}
 								hashtagNames={club.hashtagNames}
@@ -49,8 +50,7 @@ const CategoryPage = ({ match }) => {
 								recruiting={club.recruting}
 								dday={club.dday}
 							/>
-						)
-					}
+						))}
 				</CardContainer>
 			</ContainerPage>
 		</>

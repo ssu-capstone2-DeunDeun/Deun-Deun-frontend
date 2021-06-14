@@ -23,6 +23,7 @@ import ApplicationSuccessPage from 'pages/ApplicationSuccessPage/index';
 import ApplySuccessPage from 'pages/ApplySuccessPage/index';
 import RecruitSuccessPage from 'pages/RecruitSuccessPage/index';
 import MyApplyPage from 'pages/MyApplyPage/index';
+import ApplicationOverviewPage from 'pages/ApplicationOverviewPage/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -121,6 +122,13 @@ const App = () => {
 			<Route exact path="/recruit/success">
 				<HeaderContainer />
 				<RecruitSuccessPage />
+			</Route>
+			<Route exact path="/application/:clubName/:id">
+				<HeaderContainer />
+				<ContainerRow>
+					<SideBar location={location} />
+					<ApplicationOverviewPage />
+				</ContainerRow>
 			</Route>
 			{/* <Route exact path="/club/" */}
 			<Route component={LoginPage} path="/login" exact />

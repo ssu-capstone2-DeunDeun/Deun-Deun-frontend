@@ -14,3 +14,10 @@ export const ContentKorean = styled.span`
 	font-weight: 500;
 	color: #484848;
 `;
+
+export const SpinnerContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 2em;
+`;
