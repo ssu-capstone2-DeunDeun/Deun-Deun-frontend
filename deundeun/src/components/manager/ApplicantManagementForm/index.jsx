@@ -41,9 +41,9 @@ const ApplicantInfo = ({ applicant }) => {
 }
 
 
-const RecruitNotice = ({ content }) => {
+const RecruitNotice = ({ recruit }) => {
 	const [click, setClick] = useState(false);
-
+	const { title, generation } = recruit;
 	return (
 		<RecruitNoticeBlock onClick={() => setClick(!click)}>
 			<div className="recruitNoticeBox">
@@ -51,14 +51,14 @@ const RecruitNotice = ({ content }) => {
 					click === false ? <ImCheckboxUnchecked /> :
 						<ImCheckboxChecked />
 				}
-				<div className="content">{content}</div>
+				<div className="content">[{generation}기] {title}</div>
 			</div>
 		</RecruitNoticeBlock>
 	)
 }
 
 
-const ApplicantManagementForm = () => {
+const ApplicantManagementForm = ({ recruits }) => {
 	const contents = {
 		clubName: "IT 동아리 트와이스", unit: 3, recruitStart: "2021.01.01", recruitEnd: "2021.01.08",
 		title: "야! 너도 트와이스 할 수 있어!", applicants: [
@@ -83,7 +83,7 @@ const ApplicantManagementForm = () => {
 						<div className="mainInfoTitle">모집중인 공고</div>
 						<div className="recruitNotice">
 							{
-								recruitNotices.map(recruitNotice => <RecruitNotice content={recruitNotice}></RecruitNotice>)
+								recruits && recruits.map(recruit => <RecruitNotice recruit={recruit} ></RecruitNotice>)
 							}
 						</div>
 					</div>

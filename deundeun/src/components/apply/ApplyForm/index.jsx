@@ -22,8 +22,8 @@ const ApplyForm = ({ match }) => {
 	async function getApply() {
 		const response = await getApplyForms(clubName);
 		console.log(response.data);
-		setTitle(response.data[1].title);
-		setApply(response.data[1].recruitQuestionResponseDtos);
+		setTitle(response.data[0].title);
+		setApply(response.data[0].recruitQuestionResponseDtos);
 	}
 
 	const onChangeTextArea = useCallback(
