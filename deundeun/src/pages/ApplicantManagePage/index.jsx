@@ -1,5 +1,5 @@
 import ApplicantManagementForm from 'components/manager/ApplicantManagementForm'
-import { getClubs, getRecruits } from 'modules/currentApplyForm';
+import { getApplicant, getClubs, getRecruits } from 'modules/currentApplyForm';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -8,12 +8,11 @@ import { useDispatch } from 'react-redux';
 
 
 const ApplicantManagePage = () => {
-	const [club, setClub] = useState(null);
 	const dispatch = useDispatch();
-	const { getClub, recruits } = useSelector(({ currentApplyForm }) => ({
+	const { getClub, recruits, applicants } = useSelector(({ currentApplyForm }) => ({
 		getClub: currentApplyForm.getClubs,
 		recruits: currentApplyForm.getRecruits,
-
+		applicants: currentApplyForm.getApplicant,
 	}))
 
 	useEffect(() => {
@@ -26,9 +25,12 @@ const ApplicantManagePage = () => {
 		dispatch(getClubs());
 	}, [dispatch]);
 
+	const onClick = (recruitId) => {
+		dispatch(getApplicant(recruitId));
+	}
 
 	return (
-		<ApplicantManagementForm recruits={recruits} club={club} />
+		<ApplicantManagementForm applicants={applicants} onClick={onClick} recruits={recruits} />
 	);
 };
 

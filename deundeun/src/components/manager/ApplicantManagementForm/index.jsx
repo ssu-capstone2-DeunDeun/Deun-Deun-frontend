@@ -19,7 +19,7 @@ const popupMake = (event) => {
 let sendMsgLists = [];
 
 const ApplicantInfo = ({ applicant }) => {
-	const { nickname, id, phoneNumber, email } = applicant;
+	const { nickname, email } = applicant;
 	const [click, setClick] = useState(false);
 	if (!sendMsgLists.includes(applicant) && click === true) sendMsgLists.push(applicant);
 	if (sendMsgLists.includes(applicant) && click === false) sendMsgLists.pop(applicant);
@@ -30,10 +30,10 @@ const ApplicantInfo = ({ applicant }) => {
 					<ImCheckboxChecked onClick={() => setClick(!click)} />
 			}
 			<div>
-				<div className="nickname">{nickname} ({id})</div>
-				<div className="phoneNumber">{phoneNumber}</div>
+				<div className="nickname">{nickname}</div>
+				{/* <div className="phoneNumber">{phoneNumber}</div> */}
 				<div className="email">{email}</div>
-				<div className="firstPass">1차 합격</div>
+				<div className="firstPass">서류 전형</div>
 				<button>지원서 보기</button>
 			</div>
 		</ApplicantInfoBlock>
@@ -41,14 +41,18 @@ const ApplicantInfo = ({ applicant }) => {
 }
 
 
-const RecruitNotice = ({ recruit }) => {
+const RecruitNotice = ({ recruit, onClick, index, setNumber, number }) => {
 	const [click, setClick] = useState(false);
 	const { title, generation } = recruit;
 	return (
-		<RecruitNoticeBlock onClick={() => setClick(!click)}>
+		<RecruitNoticeBlock onClick={() => {
+			onClick(recruit.id);
+			// setClick(!click);
+			setNumber(index);
+		}}>
 			<div className="recruitNoticeBox">
 				{
-					click === false ? <ImCheckboxUnchecked /> :
+					number !== index ? <ImCheckboxUnchecked /> :
 						<ImCheckboxChecked />
 				}
 				<div className="content">[{generation}기] {title}</div>
@@ -58,32 +62,26 @@ const RecruitNotice = ({ recruit }) => {
 }
 
 
-const ApplicantManagementForm = ({ recruits }) => {
+const ApplicantManagementForm = ({ recruits, onClick, applicants }) => {
 	const contents = {
 		clubName: "IT 동아리 트와이스", unit: 3, recruitStart: "2021.01.01", recruitEnd: "2021.01.08",
-		title: "야! 너도 트와이스 할 수 있어!", applicants: [
-			{ nickname: "불꽃남자상록", id: "wowoowo", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com" },
-			{ nickname: "안동핵주먹", id: "evergreen", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com" },
-			{ nickname: "인생별거없어", id: "underood", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com" },
-			{ nickname: "리액트짱재밌엉", id: "goddyshit", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com" }
-		],
-		recruitNotices: ["[3기] 모집공고 제목 모집공고 제목", "[4기] 모집공고 제목 모집공고 제목"],
+		title: "야! 너도 트와이스 할 수 있어!",
 	}
-	const { applicants, recruitNotices } = contents;
 	const [click, setClick] = useState(false);
 
 	const [viewIndex, setViewIndex] = useState(0);
 	const view = ['최신순', '오래된 순'];
+	const [number, setNumber] = useState(0);
 
 	return (
 		<BasicBlock>
 			<ContentBlock>
 				<div className="main">
 					<div className="mainInfo">
-						<div className="mainInfoTitle">모집중인 공고</div>
+						<div className="mainInfoTitle">모집중인 공고 선택</div>
 						<div className="recruitNotice">
 							{
-								recruits && recruits.map(recruit => <RecruitNotice recruit={recruit} ></RecruitNotice>)
+								recruits && recruits.map((recruit, index) => <RecruitNotice index={index + 1} setNumber={setNumber} number={number} onClick={onClick} recruit={recruit} ></RecruitNotice>)
 							}
 						</div>
 					</div>
@@ -116,7 +114,7 @@ const ApplicantManagementForm = ({ recruits }) => {
 							</div>
 						</div>
 						{
-							applicants.map(applicant => <ApplicantInfo id={applicant} applicant={applicant} />)
+							applicants && applicants.map(applicant => <ApplicantInfo id={applicant} applicant={applicant} />)
 						}
 					</div>
 				</div>

@@ -25,3 +25,10 @@ export const getRecruits = (clubName) =>
     });
 
 
+export const getAppliesInfo = (recruitId) =>
+    client.get(API_BASE_URL + `/club/recruit/${recruitId}/applies`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
