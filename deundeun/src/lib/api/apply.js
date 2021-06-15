@@ -32,3 +32,12 @@ export const getAppliesInfo = (recruitId) =>
         }
     });
 
+
+export const getParticipates = (clubName) =>
+    client.get(API_BASE_URL + `/participates/club?clubName=${clubName}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
+
