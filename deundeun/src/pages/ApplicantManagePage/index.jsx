@@ -19,6 +19,7 @@ const ApplicantManagePage = () => {
 		sendMsgForm: sendMsgForm,
 	}))
 	const [clubName, setClubName] = useState(null);
+	
 
 	useEffect(() => {
 		if (getClub) {
@@ -51,6 +52,7 @@ const ApplicantManagePage = () => {
 	const sendEmail = () => {
 		sendAlarm(sendMsgForm);
 	}
+	
 	return (
 		<ApplicantManagementForm clubName={clubName} sendEmail={sendEmail} onResetEmail={onResetEmail} onChangeEmail={onChangeEmail} onChangeContent={onChangeContent} message={message} applicants={applicants} onClick={onClick} recruits={recruits} />
 	);

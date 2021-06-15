@@ -19,7 +19,6 @@ const msgPopupMake = (event) => {
 	const t = document.getElementById("msgPopup");
 	t.className = "msgPopupBlock";
 };
-let sendMsgLists = [];
 
 const rolePopupClear = (event) => {
 	const t = document.getElementById("rolePopup");
@@ -31,16 +30,25 @@ const rolePopupMake = (event) => {
 };
 
 
-const MemberInfo = ({ member }) => {
-	const { nickname, id, phoneNumber, email, unit, role, authorized } = member;
+let sendMsgLists = [];
+let msgLists = [];
+
+const MemberInfo = ({ info }) => {
+	const { nickname, userId, email, positionName, generation, admin } = info;
 	const [click, setClick] = useState(false);
 
 	const [menuIndex, setMenuIndex] = useState(0);
 	const menu = ['멤버 정보 수정', '강제 퇴장'];
 
 
-	if (!sendMsgLists.includes(member) && click === true) sendMsgLists.push(member);
-	if (sendMsgLists.includes(member) && click === false) sendMsgLists.pop(member);
+	if (!sendMsgLists.includes(nickname) && click === true) {
+		sendMsgLists.push(nickname);
+		msgLists.push(email);
+	}
+	if (sendMsgLists.includes(nickname) && click === false) {
+		sendMsgLists.pop(nickname);
+		msgLists.pop(email);
+	}
 	return (
 		<ApplicantInfoBlock>
 			{
@@ -49,13 +57,13 @@ const MemberInfo = ({ member }) => {
 			}
 			<div className="userInfo">
 				<div className="userImg"></div>
-				<div className="nickname">{nickname} ({id})</div>
+				<div className="nickname">{nickname} ({userId}기)</div>
 			</div>
-			<div className="phoneNumber">{phoneNumber}</div>
+			{/* <div className="phoneNumber">{userId}기 </div> */}
 			<div className="email">{email}</div>
-			<div className="unit">{unit}기</div>
-			<div className="role">{role}</div>
-			<div className="authorized">{authorized}</div>
+			<div className="unit">{generation}기</div>
+			<div className="role">{positionName}</div>
+			<div className="authorized">{admin ? "운영진" : "일반 회원"}</div>
 			<div className="other">
 				<DropdownMenuDot
 					options={menu}
@@ -68,16 +76,7 @@ const MemberInfo = ({ member }) => {
 }
 
 
-const MemberManagementForm = () => {
-	const contents = {
-		clubName: "IT 동아리 트와이스",
-		members: [
-			{ nickname: "불꽃남자상록", id: "wowowo", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com", unit: "1", role: "서버", authorized: "멤버" },
-			{ nickname: "안동핵주먹", id: "evergreen", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com", unit: "2", role: "디자니어", authorized: "운영진" },
-			{ nickname: "인생별거없어", id: "understood", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com", unit: "1", role: "서버", authorized: "멤버" },
-			{ nickname: "리액트짱재밌엉", id: "goddammot", phoneNumber: "010-1234-5678", email: "abcd1234@gmail.com", unit: "3", role: "프론트", authorized: "멤버" }
-		]
-	}
+const MemberManagementForm = ({ memberInfo, clubName }) => {
 	const [unitIndex, setUnitIndex] = useState(0);
 	const unit = ['1기', '2기', '3기'];
 
@@ -88,7 +87,7 @@ const MemberManagementForm = () => {
 	const auth = ['운영진', '멤버'];
 
 	const [click, setClick] = useState(false);
-	const { clubName, members } = contents;
+
 	return (
 		<BasicBlock>
 			<ContentBlock>
@@ -146,7 +145,7 @@ const MemberManagementForm = () => {
 							</div>
 						</div>
 						{
-							members.map(member => <MemberInfo id={member} member={member} />)
+							memberInfo && memberInfo.map(member => <MemberInfo info={member} />)
 						}
 					</div>
 				</div>

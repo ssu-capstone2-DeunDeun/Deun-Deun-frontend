@@ -9,7 +9,7 @@ export const initialValue = createAction(INITIAL_VALUE);
 
 const initialState = {
     clubId: null,
-    contentType: "REGISTER",
+    contentType: "ㅇ",
     emails: [],
     phoneNumbers: [],
     message: "",

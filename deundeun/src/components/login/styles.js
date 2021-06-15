@@ -24,6 +24,7 @@ export const LoginContainer = styled.div`
 export const LoginModal = styled.div`
     width:496px;
     height:484px;
+    /* height:700px; */
     background:white;
 
     .logo{
@@ -84,7 +85,7 @@ export const SocialContainer = styled.a`
         display:flex;
         align-items:center;
         text-decoration:none;
-        .googleBtn{
+        .socialBtn{
             width :60px;
             .googleImg{
                 text-align:center;
@@ -94,7 +95,7 @@ export const SocialContainer = styled.a`
                 }
             }
         }
-        .googleText{
+        .socialText{
             flex:1;
             height:52px;
             font-size:16px;
