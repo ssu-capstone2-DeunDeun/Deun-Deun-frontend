@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import { Container, Logo, IconContainer, ProfileIcon } from './styles';
-import { ImageContainer, LoginContainer, LoginModal, SocialContainer } from './styles';
-import { GOOGLE_AUTH_URL } from 'constants/index';
+import { ImageContainer, LoginContainer, LoginModal, NaverContainer, GoogleContainer } from './styles';
+import { GOOGLE_AUTH_URL, NAVER_AUTH_URL } from 'constants/index';
 import { MdClose } from "react-icons/md";
 import { Divider } from 'components/ApplicationFormCard/styles';
 
@@ -65,7 +65,7 @@ const Header = ({ checkLogin, userInfo, onLogout }) => {
 								<div className="bar"></div>
 							</div>
 
-							<SocialContainer>
+							<GoogleContainer>
 								<a href={GOOGLE_AUTH_URL}>
 									<div>
 										<div className="googleBtn" href={GOOGLE_AUTH_URL}>
@@ -78,7 +78,21 @@ const Header = ({ checkLogin, userInfo, onLogout }) => {
 										GOOGLE 계정으로 로그인 하기
 									</div>
 								</a>
-							</SocialContainer>
+							</GoogleContainer>
+							<NaverContainer>
+								<a href={NAVER_AUTH_URL}>
+									<div>
+										<div className="naverBtn" href={NAVER_AUTH_URL}>
+											<div className="naverImg">
+												<img src="../../img/login/btnW_아이콘사각.png" alt="Naver" />
+											</div>
+										</div>
+									</div>
+									<div className="naverText">
+										NAVER 계정으로 로그인 하기
+									</div>
+								</a>
+							</NaverContainer>
 						</div>
 					</LoginModal>
 				</div>

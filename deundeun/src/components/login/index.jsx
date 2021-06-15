@@ -1,4 +1,4 @@
-import { GOOGLE_AUTH_URL } from 'constants/index';
+import { GOOGLE_AUTH_URL, NAVER_AUTH_URL } from 'constants/index';
 import React from 'react';
 import { ImageContainer, LoginContainer, LoginModal, SocialContainer } from './styles';
 import { MdClose } from "react-icons/md";
@@ -32,15 +32,22 @@ const LoginForm = () => {
 						<SocialContainer>
 							<a href={GOOGLE_AUTH_URL}>
 								<div>
-									<div className="googleBtn" href={GOOGLE_AUTH_URL}>
+									<div className="socialBtn" href={GOOGLE_AUTH_URL}>
 										<div className="googleImg">
 											<img src="../../img/login/google-logo.png" alt="Google" />
 										</div>
 									</div>
 								</div>
-								<div className="googleText">
+								<div className="socialText">
 									GOOGLE 계정으로 로그인 하기
 							</div>
+							</a>
+						</SocialContainer>
+						<SocialContainer>
+							<a href={NAVER_AUTH_URL}>
+								<div>
+									<img src="../../img/login/btnG_완성형.textClipping" alt="NAVER" />
+								</div>
 							</a>
 						</SocialContainer>
 					</div>
