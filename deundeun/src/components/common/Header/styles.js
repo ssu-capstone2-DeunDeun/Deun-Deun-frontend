@@ -143,7 +143,8 @@ export const LoginContainer = styled.div`
 
 export const LoginModal = styled.div`
     width:496px;
-    height:484px;
+    /* height:484px; */
+    height:500px;
     background:white;
 	margin-top: 10%;
 
@@ -194,24 +195,32 @@ export const ImageContainer = styled.div`
     }
 `;
 
-export const SocialContainer = styled.a`
+export const GoogleContainer = styled.a`
     border:1px solid #4284F4;
     width:356px;
     height:54px;
     margin-top:30px;
     cursor:pointer;
-    
+
     a{
         display:flex;
         align-items:center;
         text-decoration:none;
+        background-color:#4284F4;
         .googleBtn{
-            width :60px;
+            width:44px;
+            height:44px;
+            border-radius:5px;
+            background-color:white;
+            margin-left:8.6px;
             .googleImg{
-                text-align:center;
+                    display:flex;
+                    justify-content: center;
                 img{
-                    width:44px;
-                    height:44px;
+                    margin-top:4.5px;
+                    margin-right:1px;
+                    width:35px;
+                    height:35px;
                 }
             }
         }
@@ -226,7 +235,46 @@ export const SocialContainer = styled.a`
             justify-content: center;
             color:white;
         }
+    }
+`;
 
+
+export const NaverContainer = styled.a`
+    border:1px solid #05C75B;
+    width:356px;
+    height:54px;
+    margin-top:10px;
+    cursor:pointer;
+    background-color:#05C75B;
+    a{
+        display:flex;
+        align-items:center;
+        /* text-decoration:none !important; */
+        a:hover{
+            text-decoration :none !important;
+        }
+        .naverBtn{
+            width :60px;
+            .naverImg{
+                text-align:center;
+                img{
+                    width:44px;
+                    height:44px;
+                }
+            }
+        }
+        .naverText{
+            flex:1;
+            height:52px;
+            font-size:16px;
+            background-color:#05C75B;
+            font-weight:bold;
+            display:flex;
+            align-items:center;
+            justify-content: center;
+            color:white;
+            margin-right:6.5px;
+        }
     }
 `;
 

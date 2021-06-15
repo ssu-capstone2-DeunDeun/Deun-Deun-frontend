@@ -17,7 +17,7 @@ import { ContainerRow } from 'styles';
 const RecruitingClubList = ({ focusClubImage, recruitingClubDtos }) => {
 	const history = useHistory();
 	const [categoryIndex, setCategoryIndex] = useState(0);
-
+	console.log("recruiting", recruitingClubDtos);
 	const categories = [
 		'전체 카테고리',
 		'IT(개발)',
@@ -28,14 +28,6 @@ const RecruitingClubList = ({ focusClubImage, recruitingClubDtos }) => {
 		'CULTURE(문화)',
 		'LANGUAGE(어학)',
 		'OTHERS(기타)'];
-
-	const onClickClubName = useCallback(
-		(e) => {
-			history.push('/club/detail');
-			console.log(e.target.id);
-		},
-		[history]
-	);
 
 	return (
 		//
@@ -54,7 +46,7 @@ const RecruitingClubList = ({ focusClubImage, recruitingClubDtos }) => {
 						<>
 							<ClubListItem className={`${focusClubImage === index ? 'focus' : 'unfocus'}`}>
 								<RecruitingOrder className="first">{index + 1}</RecruitingOrder>
-								<ClubName id="first" onClick={onClickClubName}>
+								<ClubName id="first" onClick={() => history.push(`club/${club.clubName}`)}>
 									IT 동아리 트와이스입니다.
 								</ClubName>
 								<ClubCategory>{club.categoryType}</ClubCategory>
