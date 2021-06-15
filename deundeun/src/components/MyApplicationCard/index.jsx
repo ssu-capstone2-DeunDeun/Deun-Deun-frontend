@@ -1,10 +1,16 @@
 import React, { useCallback } from 'react';
+import { useHistory } from 'react-router';
 import { Container, ApplicationTitle, ClubName, ButtonContainer, Button } from './styles';
 
-const MyApplicationCard = () => {
-	const onClickDetailButton = useCallback((e) => {
-		console.log('application detail');
-	}, []);
+const MyApplicationCard = ({ id, title, clubName }) => {
+	const history = useHistory();
+	const onClickDetailButton = useCallback(
+		(e) => {
+			console.log('application detail');
+			history.push(`/apply/${clubName}/${id}`);
+		},
+		[history, id, clubName]
+	);
 
 	const onClickResultButton = useCallback((e) => {
 		console.log('application result');
@@ -13,11 +19,11 @@ const MyApplicationCard = () => {
 	return (
 		//
 		<Container>
-			<ApplicationTitle>[3기] 야! 너도 트와이스 할 수 있어!</ApplicationTitle>
-			<ClubName>IT동아리 트와이스</ClubName>
+			<ApplicationTitle>{title}</ApplicationTitle>
+			<ClubName>{clubName}</ClubName>
 			<ButtonContainer>
 				<Button onClick={onClickDetailButton} style={{ marginRight: '1.23em' }}>
-					지원 내역
+					지원서 보기
 				</Button>
 				<Button onClick={onClickResultButton}>지원 결과</Button>
 			</ButtonContainer>

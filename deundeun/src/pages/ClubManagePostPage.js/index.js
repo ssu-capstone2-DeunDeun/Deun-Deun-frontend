@@ -1,6 +1,7 @@
 import ClubPostCard from 'components/ClubPostCard/index';
 import ClubPostCardMove from 'components/ClubPostCardMove/index';
 import { getClubsPosts } from 'modules/currentClubPostList';
+import { getClubInfo } from 'modules/currentUserInfo';
 import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -17,10 +18,15 @@ const ClubManagePostPage = ({ history }) => {
     }));
 
     useEffect(() => {
-        if (clubInfo) {
+        dispatch(getClubInfo());
+        if (clubInfo && clubInfo[0]) {
             dispatch(getClubsPosts(clubInfo[0].clubResponseDto.clubId));
         }
     }, [clubInfo, dispatch]);
+
+    useEffect(() => {
+
+    })
 
     // if (clubInfo) {
     //     const { clubName, likeCount } = clubInfo[0].clubResponseDto;

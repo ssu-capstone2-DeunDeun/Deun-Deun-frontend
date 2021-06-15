@@ -1,13 +1,6 @@
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
-import axios from '../../../node_modules/axios/index';
 import client from './client';
 
-// export const signup = (userRequestDto) => {
-//    client.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem(ACCESS_TOKEN);
-//     client.post(API_BASE_URL + '/user', userRequestDto)
-// }
-// export const signup = (userRequestDto) =>
-//     client.post(API_BASE_URL + '/user', userRequestDto)
 
 export const signup = (userRequestDto) =>
 	client.post(API_BASE_URL + '/user', userRequestDto, {
@@ -84,6 +77,15 @@ export const addApplication = (data) => {
 
 export const addRecruit = (data) => {
 	client.post(API_BASE_URL + `/clubs/${data.clubName}/recruits`, data.newRecruit, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+		}
+	});
+};
+
+
+export const sendAlarm = (messageRequest) => {
+	client.post(API_BASE_URL + '/alarms', messageRequest, {
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
 		}

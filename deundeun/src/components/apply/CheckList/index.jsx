@@ -1,39 +1,68 @@
 import React, { useState } from 'react';
 import { CheckBox, CheckBoxBlock, CheckListBlock } from './styles';
-import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import { IoCheckmarkCircleOutline } from 'react-icons/io5';
 
-
-const CheckList = ({ lists }) => {
+const CheckList = ({ id, lists, onChangeCheckList }) => {
+	const [current, setCurrent] = useState('');
 	return (
 		<CheckListBlock>
-			{
-				lists.map(list => <CheckListItem id={list} text={list} />)
-			}
-		</CheckListBlock >
-	)
-}
+			{lists.map((list) => (
+				<CheckListItem
+					id={id}
+					key={list.choiceNumber}
+					text={list.choiceContent}
+					value={list.choiceContent}
+					onChangeCheckList={onChangeCheckList}
+					current={current}
+					setCurrent={setCurrent}
+				/>
+			))}
+		</CheckListBlock>
+	);
+};
 
-const CheckListItem = ({ text }) => {
-	const [click, setClick] = useState(false);
-
+const CheckListItem = ({ id, text, onChangeCheckList, current, setCurrent }) => {
 	return (
 		<>
-			{click === true ?
-				<CheckBoxBlock active onClick={(e) => { setClick(!click); }}>
-					<CheckBox >
-						<IoCheckmarkCircleOutline />
-						<div className="text">{text}</div>
+			{current === text ? (
+				<CheckBoxBlock
+					active
+					onClick={(e) => {
+						setCurrent('');
+						const id = parseInt(e.target.id);
+						if (id) {
+							onChangeCheckList(id, text);
+						}
+					}}
+					id={id}
+				>
+					<CheckBox>
+						<IoCheckmarkCircleOutline id={id} />
+						<div className="text" id={id}>
+							{text}
+						</div>
 					</CheckBox>
 				</CheckBoxBlock>
-				:
-				<CheckBoxBlock onClick={(e) => { setClick(!click); }}>
-					<CheckBox >
-						<div className="text">{text}</div>
+			) : (
+				<CheckBoxBlock
+					onClick={(e) => {
+						setCurrent(text);
+						const id = parseInt(e.target.id);
+						if (id) {
+							onChangeCheckList(id, text);
+						}
+					}}
+					id={id}
+				>
+					<CheckBox id={id}>
+						<div className="text" id={id}>
+							{text}
+						</div>
 					</CheckBox>
 				</CheckBoxBlock>
-			}
+			)}
 		</>
-	)
-}
+	);
+};
 
 export default CheckList;

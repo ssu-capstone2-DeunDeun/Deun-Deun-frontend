@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch, useLocation, useParams } from 'react-router-dom';
 import loadable from '@loadable/component';
-import SideBar from 'components/common/SideBar';
-import Header from 'components/common/Header';
 import { ContainerRow } from 'styles';
 import OAuth2RedirectHandler from 'components/login/oauth2/OAuth2RedirectHandler';
 import RegisterInfoContainer from 'container/register/RegisterInfoContainer';
@@ -18,6 +16,14 @@ import ClubPostItemPage from 'pages/ClubPostItemPage/index';
 import ClubAddSuccessPage from 'pages/ClubAddSuccessPage/index';
 import RecruitAddInfoContainer from 'container/recruit/RecruitAddInfoContainer';
 import ApplicationAddInfoContainer from 'container/application/ApplicationAddInfoContainer';
+import PostAllPage from 'pages/PostAllPage.js/index';
+import { Fragment } from 'react';
+import SideBar from '../src/components/common/SideBar';
+import ApplicationSuccessPage from 'pages/ApplicationSuccessPage/index';
+import ApplySuccessPage from 'pages/ApplySuccessPage/index';
+import RecruitSuccessPage from 'pages/RecruitSuccessPage/index';
+import MyApplyPage from 'pages/MyApplyPage/index';
+import ApplicationOverviewPage from 'pages/ApplicationOverviewPage/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -44,7 +50,6 @@ const MemberManagePage = loadable(() => import('pages/MemberManagePage'));
 
 const App = () => {
 	let location = useLocation();
-
 	useEffect(() => {
 		// console.log(location.pathname);
 	}, [location]);
@@ -61,6 +66,13 @@ const App = () => {
 				<ContainerRow>
 					<SideBar location={location} />
 					<ClubHomePage />
+				</ContainerRow>
+			</Route>
+			<Route path="/post/all" exact>
+				<HeaderContainer />
+				<ContainerRow>
+					<SideBar location={location} />
+					<PostAllPage />
 				</ContainerRow>
 			</Route>
 			<Route path="/club/category/:categoryType">
@@ -99,13 +111,33 @@ const App = () => {
 				<HeaderContainer />
 				<ClubAddSuccessPage />
 			</Route>
+			<Route exact path="/application/success">
+				<HeaderContainer />
+				<ApplicationSuccessPage />
+			</Route>
+			<Route exact path="/apply/success">
+				<HeaderContainer />
+				<ApplySuccessPage />
+			</Route>
+			<Route exact path="/recruit/success">
+				<HeaderContainer />
+				<RecruitSuccessPage />
+			</Route>
+			<Route exact path="/application/:clubName/:id">
+				<HeaderContainer />
+				<ContainerRow>
+					<SideBar location={location} />
+					<ApplicationOverviewPage />
+				</ContainerRow>
+			</Route>
 			{/* <Route exact path="/club/" */}
 			<Route component={LoginPage} path="/login" exact />
 			<Route component={RegisterInfoContainer} path="/register/1" exact />
 			{/* <Route component={RegisterPage2} path="/register/2" exact /> */}
 			<Route component={RegisterHashtagContainer} path="/register/2" exact />
-			<Route component={ApplyPage} path="/apply" exact />
-			<Route component={ApplyPageSuccessPage} path="/apply/success" exact />
+			<Route component={ApplyPage} path="/forms/:clubName/:id" exact />
+			<Route component={ApplyPageSuccessPage} path="/forms/:clubName/success" exact />
+			<Route component={MyApplyPage} path="/apply/:clubName/:id" exact />
 
 			<Route component={RecruitDetailPage} path="/recruit/detail/id" exact />
 			<Route component={PostDetailPage} path="/club/:clubName/post/:postId" exact />
@@ -124,17 +156,18 @@ const MyPage = () => {
 	const { name } = useParams();
 	return (
 		//
-		<>
+		<Fragment>
 			{name === 'modify' && <MyProfileModifyPageContainer />}
 			{name === 'clubs' && <MyClubListPage />}
 			{name === 'application' && <MyApplicationPage />}
 			{name === 'likes' && <MyLikeListPage />}
-		</>
+		</Fragment>
 	);
 };
 
 const ClubManagePage = () => {
 	const { name } = useParams();
+	let location = useLocation();
 	const [addNewApplication, setAddNewApplication] = useState(false);
 	const [addNewRecruit, setAddNewRecruit] = useState(false);
 	useEffect(() => {
@@ -144,38 +177,51 @@ const ClubManagePage = () => {
 		};
 	}, []);
 
+	useEffect(() => {
+		switch (location.pathname) {
+			case '/club/manage/application':
+				setAddNewApplication(false);
+				break;
+			case '/club/manage/recruit':
+				setAddNewRecruit(false);
+				break;
+			default:
+				break;
+		}
+	}, [location]);
+
 	return (
 		//
-		<>
+		<Fragment>
 			{name === 'modify' && <ClubModifyPageContainer />}
 			{name === 'application' &&
 				(addNewApplication ? (
-					<>
+					<Fragment>
 						<Redirect to="/club/manage/application/new" />
 						<ApplicationAddInfoContainer setAddNewForm={setAddNewApplication} />
-					</>
+					</Fragment>
 				) : (
-					<>
-						<Redirect to="/club/manage/application" />
-						<ApplicationManagePage setAddNewForm={setAddNewApplication} />
-					</>
-				))}
+						<Fragment>
+							<Redirect to="/club/manage/application" />
+							<ApplicationManagePage setAddNewForm={setAddNewApplication} />
+						</Fragment>
+					))}
 			{name === 'recruit' &&
 				(addNewRecruit ? (
-					<>
+					<Fragment>
 						<Redirect to="/club/manage/recruit/new" />
 						<RecruitAddInfoContainer setAddNewForm={setAddNewRecruit} />
-					</>
+					</Fragment>
 				) : (
-					<>
-						<Redirect to="/club/manage/recruit" />
-						<RecruitManagePage setAddNewForm={setAddNewRecruit} />
-					</>
-				))}
+						<Fragment>
+							<Redirect to="/club/manage/recruit" />
+							<RecruitManagePage setAddNewForm={setAddNewRecruit} />
+						</Fragment>
+					))}
 			{name === 'applicant' && <ApplicantManagePage />}
 			{name === 'member' && <MemberManagePage />}
 			{name === 'post' && <ClubManagePostPage />}
-		</>
+		</Fragment>
 	);
 };
 

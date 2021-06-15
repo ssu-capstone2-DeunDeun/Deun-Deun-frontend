@@ -44,6 +44,14 @@ export const getPost = (postId) =>
         }
     });
 
+export const getPosts = () =>
+    screen.get(API_BASE_URL + "/posts", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
+
 export const updatePost = (post) =>
     screen.patch(API_BASE_URL + `/posts/${post.postId}`, post.postRequestDto, {
         headers: {
@@ -54,6 +62,21 @@ export const updatePost = (post) =>
 
 export const deletePost = (postId) =>
     screen.delete(API_BASE_URL + `/posts/${postId}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
+
+export const likePost = (postId) =>
+    screen.post(API_BASE_URL + `/like/posts/${postId}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
+export const getPostLike = (postId) =>
+    screen.get(API_BASE_URL + `/like/posts/${postId}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
         }

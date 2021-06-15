@@ -54,8 +54,27 @@ export const PostDetailFormBlock = styled.div`
                         margin-right:9.7px;
                         width:17.4px;
                         height:17.4px;
-                        
+                        cursor:pointer;
+                        color:red;
+
+                        &:hover{
+                            color:black;
+                        }
                     }
+
+                    .unheart{
+                        margin-right:9.7px;
+                        width:17.4px;
+                        height:17.4px;
+                        cursor:pointer;
+
+                        &:hover{
+                            color:red;
+                        }
+                    }
+
+
+
                     .share{
                         margin-left:19.4px;
                         margin-right:10.4px;
@@ -149,7 +168,7 @@ export const StyledTextarea = styled.textarea`
     padding-left:22.6px;
     padding-top:23.1px;
     font-size:15px;
-    color:#b7b7b7;
+    color:#282828;
 `;
 
 

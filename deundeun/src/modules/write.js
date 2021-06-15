@@ -57,7 +57,6 @@ const write = handleActions(
         [WRITE_POST_SUCCESS]: (state, { payload: post }) => ({
             ...state,
             post,
-
         }),
         [WRITE_POST_FAILURE]: (state, { payload: postError }) => ({
             ...state,
@@ -66,7 +65,6 @@ const write = handleActions(
         [INIT_POST_SUCCESS]: (state, { payload: initpost }) => ({
             ...state,
             initpost,
-
         }),
         [INIT_POST_FAILURE]: (state, { payload: initpostError }) => ({
             ...state,

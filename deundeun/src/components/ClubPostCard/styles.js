@@ -5,11 +5,15 @@ export const Container = styled.div`
 	height: 436px;
 	cursor:pointer;
 	margin-right: 1.25em;
+	margin-bottom:104.2px;
 `;
 
 export const PostImage = styled.div`
 	height: 176px;
-	background-color: #e8e8e8;
+	/* background-color: #e8e8e8; */
+	background:url('../../images/logo/GROOPY.png');
+	background-size:contain;
+	background-repeat:no-repeat;
 `;
 export const PostOverview = styled.div`
 	height: 196.6px;
