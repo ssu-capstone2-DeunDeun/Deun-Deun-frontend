@@ -1,7 +1,6 @@
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import client from './client';
 
-
 export const signup = (userRequestDto) =>
 	client.post(API_BASE_URL + '/user', userRequestDto, {
 		headers: {
@@ -82,7 +81,6 @@ export const addRecruit = (data) => {
 		}
 	});
 };
-
 
 export const sendAlarm = (messageRequest) => {
 	client.post(API_BASE_URL + '/alarms', messageRequest, {

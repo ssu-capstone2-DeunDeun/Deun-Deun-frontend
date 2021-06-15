@@ -33,6 +33,8 @@ import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import ImageResize from 'quill-image-resize';
 import recruitAddInfo, { changeInput, initializeState, addRecruit } from 'modules/recruitAddInfo';
+import axios from '../../../node_modules/axios/index';
+import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 Quill.register('modules/ImageResize', ImageResize);
 
 registerLocale('ko', ko);
@@ -181,11 +183,21 @@ const RecruitAddPage = ({
 					},
 					clubName: clubName
 				};
-				dispatch(addRecruit(data));
-				history.push('/recruit/success');
+				// dispatch(addRecruit(data));
+				axios({
+					method: 'post',
+					url: `${API_BASE_URL}/clubs/${clubName}/recruits`,
+					data: data.newRecruit,
+					headers: {
+						Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
+					}
+				}).then((res) => {
+					console.log(res);
+					history.push('/recruit/success');
+				});
 			}
 		},
-		[formError, titleError, generationError, recruitAddInfo, clubName, dispatch, history]
+		[formError, titleError, generationError, recruitAddInfo, clubName, history]
 	);
 
 	useEffect(() => {

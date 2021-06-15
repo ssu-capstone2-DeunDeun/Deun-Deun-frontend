@@ -23,7 +23,6 @@ const ApplicationOverviewPage = () => {
 				Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
 			}
 		}).then((res) => {
-			console.log(res.data);
 			setTitle(res.data.title);
 			setQuestionList(res.data.recruitQuestionResponseDtos);
 			setLoading(false);

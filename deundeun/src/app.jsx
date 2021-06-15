@@ -201,23 +201,23 @@ const ClubManagePage = () => {
 						<ApplicationAddInfoContainer setAddNewForm={setAddNewApplication} />
 					</Fragment>
 				) : (
-						<Fragment>
-							<Redirect to="/club/manage/application" />
-							<ApplicationManagePage setAddNewForm={setAddNewApplication} />
-						</Fragment>
-					))}
+					<Fragment>
+						<Redirect to="/club/manage/application" />
+						<ApplicationManagePage setAddNewForm={setAddNewApplication} />
+					</Fragment>
+				))}
 			{name === 'recruit' &&
 				(addNewRecruit ? (
-					<Fragment>
+					<>
 						<Redirect to="/club/manage/recruit/new" />
 						<RecruitAddInfoContainer setAddNewForm={setAddNewRecruit} />
-					</Fragment>
+					</>
 				) : (
-						<Fragment>
-							<Redirect to="/club/manage/recruit" />
-							<RecruitManagePage setAddNewForm={setAddNewRecruit} />
-						</Fragment>
-					))}
+					<>
+						<Redirect to="/club/manage/recruit" />
+						<RecruitManagePage setAddNewForm={setAddNewRecruit} />
+					</>
+				))}
 			{name === 'applicant' && <ApplicantManagePage />}
 			{name === 'member' && <MemberManagePage />}
 			{name === 'post' && <ClubManagePostPage />}
