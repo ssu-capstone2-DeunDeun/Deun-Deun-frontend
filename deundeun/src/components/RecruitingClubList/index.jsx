@@ -47,7 +47,7 @@ const RecruitingClubList = ({ focusClubImage, recruitingClubDtos }) => {
 							<ClubListItem className={`${focusClubImage === index ? 'focus' : 'unfocus'}`}>
 								<RecruitingOrder className="first">{index + 1}</RecruitingOrder>
 								<ClubName id="first" onClick={() => history.push(`club/${club.clubName}`)}>
-									IT 동아리 트와이스입니다.
+									{club.clubName}
 								</ClubName>
 								<ClubCategory>{club.categoryType}</ClubCategory>
 								<Deadline>D - {club.dday}</Deadline>
