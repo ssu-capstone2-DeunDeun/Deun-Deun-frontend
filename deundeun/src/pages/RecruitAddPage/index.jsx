@@ -33,6 +33,8 @@ import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import ImageResize from 'quill-image-resize';
 import recruitAddInfo, { changeInput, initializeState, addRecruit } from 'modules/recruitAddInfo';
+import axios from '../../../node_modules/axios/index';
+import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 Quill.register('modules/ImageResize', ImageResize);
 
 registerLocale('ko', ko);
@@ -161,6 +163,7 @@ const RecruitAddPage = ({
 	const onSubmit = useCallback(
 		(e) => {
 			e.preventDefault();
+			console.log("qefqe");
 			if (formError || titleError || generationError) {
 				window.scrollTo(0, 0);
 				console.log(formError, titleError, generationError);
@@ -181,11 +184,21 @@ const RecruitAddPage = ({
 					},
 					clubName: clubName
 				};
-				dispatch(addRecruit(data));
-				history.push('/recruit/success');
+				axios({
+					method: 'post',
+					url: `${API_BASE_URL}/clubs/${clubName}/recruits`,
+					data: data.newRecruit,
+					headers: {
+						Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
+					}
+				}).then((res) => {
+					console.log(res);
+					history.push('/recruit/success');
+				});
+
 			}
 		},
-		[formError, titleError, generationError, recruitAddInfo, clubName, dispatch, history]
+		[formError, titleError, generationError, recruitAddInfo, clubName, history]
 	);
 
 	useEffect(() => {
@@ -213,8 +226,8 @@ const RecruitAddPage = ({
 						</InnerContainer>
 					</>
 				) : (
-					<AppTitle style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>{recruitAddInfo.clubApplyFormTitle}</AppTitle>
-				)}
+						<AppTitle style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>{recruitAddInfo.clubApplyFormTitle}</AppTitle>
+					)}
 			</ApplicationLoadCard>
 			{formError && <Error style={{ marginLeft: '0.5em' }}>* 지원서 양식이 필요합니다.</Error>}
 			<TitleKorean style={{ marginBottom: '1em', marginTop: '1.3em' }}>모집 기수 / 제목</TitleKorean>
