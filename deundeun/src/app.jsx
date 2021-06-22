@@ -24,6 +24,7 @@ import ApplySuccessPage from 'pages/ApplySuccessPage/index';
 import RecruitSuccessPage from 'pages/RecruitSuccessPage/index';
 import MyApplyPage from 'pages/MyApplyPage/index';
 import ApplicationOverviewPage from 'pages/ApplicationOverviewPage/index';
+import ApplicationModifyPage from 'pages/ApplicationModifyPage/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -128,6 +129,13 @@ const App = () => {
 				<ContainerRow>
 					<SideBar location={location} />
 					<ApplicationOverviewPage />
+				</ContainerRow>
+			</Route>
+			<Route exact path="/application/:clubName/:id/modify">
+				<HeaderContainer />
+				<ContainerRow>
+					<SideBar location={location} />
+					<ApplicationModifyPage />
 				</ContainerRow>
 			</Route>
 			{/* <Route exact path="/club/" */}

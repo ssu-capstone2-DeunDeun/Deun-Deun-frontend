@@ -1,6 +1,6 @@
 import LoadingSpinner from 'components/common/LoadingSpinner/index';
 import { API_BASE_URL, ACCESS_TOKEN } from 'constants/index';
-import { ApplicationTitleInput, Header } from 'pages/ApplicationAddPage/styles';
+import { ApplicationTitleInput, Header, SubmitButton } from 'pages/ApplicationAddPage/styles';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { ContainerColumn, ContainerPage } from 'styles';
@@ -8,8 +8,9 @@ import { SpinnerContainer } from './styles';
 import axios from '../../../node_modules/axios/index';
 import { TitleKorean } from 'pages/RecruitAddPage/styles';
 import QuestionList from 'components/QuestionList/index';
+import { Footer } from 'components/PostSection/styles';
 
-const ApplicationOverviewPage = () => {
+const ApplicationModifyPage = () => {
 	const { clubName, id } = useParams();
 	const [questionList, setQuestionList] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -36,18 +37,19 @@ const ApplicationOverviewPage = () => {
 				<>
 					<ContainerPage style={{ width: '1300px' }}>
 						<ContainerColumn style={{ marginBottom: '3em' }}>
-							<Header>지원서 미리보기</Header>
+							<Header>지원서 수정하기</Header>
 							<TitleKorean>제목</TitleKorean>
 							<ApplicationTitleInput
 								type="text"
 								id="title"
 								name="title"
 								value={title ? title : ''}
-								readOnly
 							></ApplicationTitleInput>
 							<TitleKorean style={{ marginBottom: '2em', marginTop: '2em' }}>질문</TitleKorean>
 							<QuestionList questionList={questionList} />
+							<SubmitButton>지원서 수정하기</SubmitButton>
 						</ContainerColumn>
+						<Footer />
 					</ContainerPage>
 				</>
 			) : (
@@ -61,4 +63,4 @@ const ApplicationOverviewPage = () => {
 	);
 };
 
-export default ApplicationOverviewPage;
+export default ApplicationModifyPage;
