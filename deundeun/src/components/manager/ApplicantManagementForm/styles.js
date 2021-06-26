@@ -153,7 +153,8 @@ export const PopupBlock = styled.div`
     }
     .popupBlock{
         width:782px;
-        height:672px;
+        /* height:672px; */
+        height:720px;
         position:absolute;
         box-shadow:15px 15px 30px 0 rgba(0,0,0,0.16);
         margin:auto;

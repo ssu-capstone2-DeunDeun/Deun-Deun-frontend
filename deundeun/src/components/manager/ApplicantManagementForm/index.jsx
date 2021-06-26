@@ -10,7 +10,6 @@ import axios from '../../../../node_modules/axios/index';
 import { useHistory, withRouter } from 'react-router-dom';
 
 
-
 const popupClear = (event) => {
 	const t = document.getElementById("msgPopup");
 	t.className = "delete";
@@ -23,7 +22,6 @@ const popupMake = (event) => {
 let sendMsgLists = []; //닉네임 리스트
 let msgLists = [];  // 이메일 리스트
 
-
 const ApplicantInfo = ({ applicant, clubName }) => {
 	const { nickname, email } = applicant;
 	const [click, setClick] = useState(false);
@@ -35,7 +33,7 @@ const ApplicantInfo = ({ applicant, clubName }) => {
 	}
 	if (sendMsgLists.includes(applicant.nickname) && click === false) {
 		sendMsgLists = sendMsgLists.filter(value => value !== applicant.nickname);
-		msgLists = msgLists.filter(value => value !== applicant.nickname);
+		msgLists = msgLists.filter(value => value !== applicant.email);
 	}
 
 	return (
@@ -48,7 +46,7 @@ const ApplicantInfo = ({ applicant, clubName }) => {
 				<div className="nickname">{nickname}</div>
 				{/* <div className="phoneNumber">{phoneNumber}</div> */}
 				<div className="email">{email}</div>
-				<div className="firstPass">서류 전형</div>
+				<div className="firstPass">지원 완료</div>
 				<button onClick={() => history.push(`/apply/${clubName}/${applicant.clubApplyId}`)}>지원서 보기</button>
 			</div>
 		</ApplicantInfoBlock>
@@ -77,16 +75,26 @@ const RecruitNotice = ({ recruit, onClick, index, setNumber, number }) => {
 }
 
 
-const ApplicantManagementForm = ({ recruits, onClick, applicants, message, onResetContent, onChangeContent, onChangeEmail, onResetEmail, sendEmail, clubName }) => {
-	const contents = {
-		clubName: "IT 동아리 트와이스", unit: 3, recruitStart: "2021.01.01", recruitEnd: "2021.01.08",
-		title: "야! 너도 트와이스 할 수 있어!",
-	}
+const ApplicantManagementForm = ({
+	recruits,
+	onClick,
+	applicants,
+	message,
+	onResetContent,
+	onChangeContent,
+	onChangeEmail,
+	onResetEmail,
+	sendEmail,
+	clubName,
+	onChangeType,
+	onResetType,
+}) => {
 	const [click, setClick] = useState(false);
 
 	const [viewIndex, setViewIndex] = useState(0);
 	const view = ['최신순', '오래된 순'];
 	const [number, setNumber] = useState(0);
+	const [type, setType] = useState(null);
 
 	return (
 		<BasicBlock>
@@ -142,11 +150,12 @@ const ApplicantManagementForm = ({ recruits, onClick, applicants, message, onRes
 					<div className="popupTitle">
 						<div>메세지 보내기</div>
 						<MdClose onClick={() => {
-							popupClear(); setClick(!click);
+							popupClear();
+							setClick(!click);
 							onResetEmail();
 							onResetContent();
-							// window.location.reload();
-							// 해결해야한다.
+							onResetType();
+							setType(null);
 						}} />
 					</div>
 
@@ -156,6 +165,19 @@ const ApplicantManagementForm = ({ recruits, onClick, applicants, message, onRes
 						{/* <div>SMS</div> */}
 						<ImCheckboxChecked />
 						<div>E-mail</div>
+					</div>
+					<div className="kind">메세지 형식</div>
+					<div className="kindItem">
+						{
+							type === 1 ? <ImCheckboxChecked onClick={() => { setType(null); onChangeType(""); }} /> :
+								<ImCheckboxUnchecked onClick={() => { setType(1); onChangeType("INTERVIEW"); }} />
+						}
+						<div>1차 합격</div>
+						{
+							type === 2 ? <ImCheckboxChecked onClick={() => { setType(null); onChangeType(""); }} /> :
+								<ImCheckboxUnchecked onClick={() => { setType(2); onChangeType("PASS"); }} />
+						}
+						<div>최종 합격</div>
 					</div>
 					<div className="receiver">받는 사람</div>
 					<div className="receiverIist">

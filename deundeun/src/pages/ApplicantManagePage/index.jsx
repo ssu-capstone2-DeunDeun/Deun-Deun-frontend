@@ -1,7 +1,7 @@
 import ApplicantManagementForm from 'components/manager/ApplicantManagementForm'
 import { sendAlarm } from 'lib/api/auth';
 import { getApplicant, getClubs, getRecruits } from 'modules/currentApplyForm';
-import { initialValue, inputValue } from 'modules/sendMsgForm';
+import { initialValue, inputContentType, inputValue } from 'modules/sendMsgForm';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -43,6 +43,9 @@ const ApplicantManagePage = () => {
 	const onResetContent = (e) => {
 		dispatch(inputValue({ type: "message", value: "" }))
 	}
+	const onResetType = (e) => {
+		dispatch(inputValue({ type: "contentType", value: "" }))
+	}
 
 	const onChangeEmail = (emailList) => {
 		dispatch(inputValue({ type: "emails", value: emailList }))
@@ -57,9 +60,25 @@ const ApplicantManagePage = () => {
 	const sendEmail = () => {
 		sendAlarm(sendMsgForm);
 	}
+	const onChangeType = (value) => {
+		dispatch(inputContentType(value))
+	}
 
 	return (
-		<ApplicantManagementForm clubName={clubName} sendEmail={sendEmail} onResetContent={onResetContent} onResetEmail={onResetEmail} onChangeEmail={onChangeEmail} onChangeContent={onChangeContent} message={message} applicants={applicants} onClick={onClick} recruits={recruits} />
+		<ApplicantManagementForm
+			clubName={clubName}
+			sendEmail={sendEmail}
+			onResetContent={onResetContent}
+			onResetEmail={onResetEmail}
+			onChangeEmail={onChangeEmail}
+			onChangeContent={onChangeContent}
+			message={message}
+			applicants={applicants}
+			onClick={onClick}
+			recruits={recruits}
+			onChangeType={onChangeType}
+			onResetType={onResetType}
+		/>
 	);
 };
 
