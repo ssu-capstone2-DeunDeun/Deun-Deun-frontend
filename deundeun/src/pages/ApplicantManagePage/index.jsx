@@ -68,6 +68,7 @@ const ApplicantManagePage = () => {
 		<ApplicantManagementForm
 			clubName={clubName}
 			sendEmail={sendEmail}
+			sendMsgForm={sendMsgForm}
 			onResetContent={onResetContent}
 			onResetEmail={onResetEmail}
 			onChangeEmail={onChangeEmail}

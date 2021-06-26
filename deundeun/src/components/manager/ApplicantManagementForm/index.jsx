@@ -8,6 +8,7 @@ import Button from 'components/common/Button/index';
 import { useEffect } from 'react';
 import axios from '../../../../node_modules/axios/index';
 import { useHistory, withRouter } from 'react-router-dom';
+import { ErrorMessage } from 'components/register/RegisterInfoForm/styles';
 
 
 const popupClear = (event) => {
@@ -88,6 +89,8 @@ const ApplicantManagementForm = ({
 	clubName,
 	onChangeType,
 	onResetType,
+	sendMsgForm,
+	history,
 }) => {
 	const [click, setClick] = useState(false);
 
@@ -95,6 +98,7 @@ const ApplicantManagementForm = ({
 	const view = ['최신순', '오래된 순'];
 	const [number, setNumber] = useState(0);
 	const [type, setType] = useState(null);
+	const [error, setError] = useState(false);
 
 	return (
 		<BasicBlock>
@@ -156,6 +160,7 @@ const ApplicantManagementForm = ({
 							onResetContent();
 							onResetType();
 							setType(null);
+							setError(false);
 						}} />
 					</div>
 
@@ -175,9 +180,19 @@ const ApplicantManagementForm = ({
 						<div>1차 합격</div>
 						{
 							type === 2 ? <ImCheckboxChecked onClick={() => { setType(null); onChangeType(""); }} /> :
-								<ImCheckboxUnchecked onClick={() => { setType(2); onChangeType("PASS"); }} />
+								<ImCheckboxUnchecked onClick={() => { setType(2); onChangeType("FAIL"); }} />
+						}
+						<div>1차 탈락</div>
+						{
+							type === 3 ? <ImCheckboxChecked onClick={() => { setType(null); onChangeType(""); }} /> :
+								<ImCheckboxUnchecked onClick={() => { setType(3); onChangeType("PASS"); }} />
 						}
 						<div>최종 합격</div>
+						{
+							type === 4 ? <ImCheckboxChecked onClick={() => { setType(null); onChangeType(""); }} /> :
+								<ImCheckboxUnchecked onClick={() => { setType(4); onChangeType("FAIL"); }} />
+						}
+						<div>최종 탈락</div>
 					</div>
 					<div className="receiver">받는 사람</div>
 					<div className="receiverIist">
@@ -189,11 +204,17 @@ const ApplicantManagementForm = ({
 						<div>내용</div>
 						<StyledTextarea className="message" value={message} onChange={onChangeContent} placeholder="내용을 입력하세요." ></StyledTextarea>
 					</div>
-
+					{error && <ErrorMessage>*모든 값을 입력하세요.</ErrorMessage>}
 					<div className="msgSubmitBtn">
 						<Button applyManageBtn onClick={(e) => {
-							sendEmail();
-							popupClear();
+							if (sendMsgLists.length !== 0 && sendMsgForm.contentType !== "" && sendMsgForm.message !== "") {
+								sendEmail();
+								popupClear();
+								history.push("/applicant/message/success");
+							}
+							else {
+								setError(true);
+							}
 						}}>전송하기</Button>
 					</div>
 				</div>

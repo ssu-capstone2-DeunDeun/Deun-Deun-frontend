@@ -24,6 +24,7 @@ import ApplySuccessPage from 'pages/ApplySuccessPage/index';
 import RecruitSuccessPage from 'pages/RecruitSuccessPage/index';
 import MyApplyPage from 'pages/MyApplyPage/index';
 import ApplicationOverviewPage from 'pages/ApplicationOverviewPage/index';
+import SendMsgSuccess from 'components/SendMsgSuccess/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -114,6 +115,10 @@ const App = () => {
 			<Route exact path="/application/success">
 				<HeaderContainer />
 				<ApplicationSuccessPage />
+			</Route>
+			<Route exact path="/applicant/message/success">
+				<HeaderContainer />
+				<SendMsgSuccess />
 			</Route>
 			<Route exact path="/apply/success">
 				<HeaderContainer />
