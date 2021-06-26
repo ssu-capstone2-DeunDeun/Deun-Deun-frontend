@@ -19,7 +19,7 @@ const ApplicantManagePage = () => {
 		sendMsgForm: sendMsgForm,
 	}))
 	const [clubName, setClubName] = useState(null);
-	
+
 
 	useEffect(() => {
 		if (getClub) {
@@ -39,6 +39,11 @@ const ApplicantManagePage = () => {
 	const onChangeContent = (e) => {
 		dispatch(inputValue({ type: "message", value: e.target.value }))
 	}
+
+	const onResetContent = (e) => {
+		dispatch(inputValue({ type: "message", value: "" }))
+	}
+
 	const onChangeEmail = (emailList) => {
 		dispatch(inputValue({ type: "emails", value: emailList }))
 	}
@@ -52,9 +57,9 @@ const ApplicantManagePage = () => {
 	const sendEmail = () => {
 		sendAlarm(sendMsgForm);
 	}
-	
+
 	return (
-		<ApplicantManagementForm clubName={clubName} sendEmail={sendEmail} onResetEmail={onResetEmail} onChangeEmail={onChangeEmail} onChangeContent={onChangeContent} message={message} applicants={applicants} onClick={onClick} recruits={recruits} />
+		<ApplicantManagementForm clubName={clubName} sendEmail={sendEmail} onResetContent={onResetContent} onResetEmail={onResetEmail} onChangeEmail={onChangeEmail} onChangeContent={onChangeContent} message={message} applicants={applicants} onClick={onClick} recruits={recruits} />
 	);
 };
 

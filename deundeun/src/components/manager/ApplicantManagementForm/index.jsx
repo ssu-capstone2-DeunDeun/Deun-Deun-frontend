@@ -19,8 +19,10 @@ const popupMake = (event) => {
 	const t = document.getElementById("msgPopup");
 	t.className = "popupBlock";
 };
-let sendMsgLists = [];
-let msgLists = [];
+
+let sendMsgLists = []; //닉네임 리스트
+let msgLists = [];  // 이메일 리스트
+
 
 const ApplicantInfo = ({ applicant, clubName }) => {
 	const { nickname, email } = applicant;
@@ -32,8 +34,8 @@ const ApplicantInfo = ({ applicant, clubName }) => {
 		msgLists.push(applicant.email);
 	}
 	if (sendMsgLists.includes(applicant.nickname) && click === false) {
-		sendMsgLists.pop(applicant.nickname);
-		msgLists.pop(applicant.email);
+		sendMsgLists = sendMsgLists.filter(value => value !== applicant.nickname);
+		msgLists = msgLists.filter(value => value !== applicant.nickname);
 	}
 
 	return (
@@ -75,7 +77,7 @@ const RecruitNotice = ({ recruit, onClick, index, setNumber, number }) => {
 }
 
 
-const ApplicantManagementForm = ({ recruits, onClick, applicants, message, onChangeContent, onChangeEmail, onResetEmail, sendEmail, clubName }) => {
+const ApplicantManagementForm = ({ recruits, onClick, applicants, message, onResetContent, onChangeContent, onChangeEmail, onResetEmail, sendEmail, clubName }) => {
 	const contents = {
 		clubName: "IT 동아리 트와이스", unit: 3, recruitStart: "2021.01.01", recruitEnd: "2021.01.08",
 		title: "야! 너도 트와이스 할 수 있어!",
@@ -142,6 +144,7 @@ const ApplicantManagementForm = ({ recruits, onClick, applicants, message, onCha
 						<MdClose onClick={() => {
 							popupClear(); setClick(!click);
 							onResetEmail();
+							onResetContent();
 							// window.location.reload();
 							// 해결해야한다.
 						}} />
