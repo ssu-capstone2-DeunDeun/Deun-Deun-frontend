@@ -54,14 +54,11 @@ const ApplicantInfo = ({ applicant, clubName }) => {
 	);
 }
 
-
 const RecruitNotice = ({ recruit, onClick, index, setNumber, number }) => {
-	const [click, setClick] = useState(false);
 	const { title, generation } = recruit;
 	return (
 		<RecruitNoticeBlock onClick={() => {
 			onClick(recruit.id);
-			// setClick(!click);
 			setNumber(index);
 		}}>
 			<div className="recruitNoticeBox">
@@ -74,7 +71,6 @@ const RecruitNotice = ({ recruit, onClick, index, setNumber, number }) => {
 		</RecruitNoticeBlock>
 	)
 }
-
 
 const ApplicantManagementForm = ({
 	recruits,
@@ -99,6 +95,8 @@ const ApplicantManagementForm = ({
 	const [number, setNumber] = useState(0);
 	const [type, setType] = useState(null);
 	const [error, setError] = useState(false);
+
+	console.log("nunber", number);
 
 	return (
 		<BasicBlock>
@@ -203,14 +201,15 @@ const ApplicantManagementForm = ({
 					<div className="content">
 						<div>내용</div>
 						<StyledTextarea className="message" value={message} onChange={onChangeContent} placeholder="내용을 입력하세요." ></StyledTextarea>
+						{error && <ErrorMessage>*모든 값을 입력하세요.</ErrorMessage>}
 					</div>
-					{error && <ErrorMessage>*모든 값을 입력하세요.</ErrorMessage>}
 					<div className="msgSubmitBtn">
 						<Button applyManageBtn onClick={(e) => {
 							if (sendMsgLists.length !== 0 && sendMsgForm.contentType !== "" && sendMsgForm.message !== "") {
 								sendEmail();
 								popupClear();
 								history.push("/applicant/message/success");
+								onClick(10000);
 							}
 							else {
 								setError(true);
@@ -218,7 +217,6 @@ const ApplicantManagementForm = ({
 						}}>전송하기</Button>
 					</div>
 				</div>
-
 			</PopupBlock>
 		</BasicBlock >
 	);

@@ -153,7 +153,6 @@ export const PopupBlock = styled.div`
     }
     .popupBlock{
         width:782px;
-        /* height:672px; */
         height:750px;
         position:absolute;
         box-shadow:15px 15px 30px 0 rgba(0,0,0,0.16);
@@ -213,6 +212,7 @@ export const PopupBlock = styled.div`
         .receiverIist{
             display:flex;
             flex-wrap:wrap;
+            height:40px;
             button{
                 width:120px;
                 height:32px;
@@ -236,6 +236,7 @@ export const PopupBlock = styled.div`
         .content{
             font-weight:bold;
             margin-top:20px;
+            height:270px;
         }
         .msgSubmitBtn{
             margin-top:38px;
