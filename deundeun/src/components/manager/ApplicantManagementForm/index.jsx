@@ -209,7 +209,6 @@ const ApplicantManagementForm = ({
 								sendEmail();
 								popupClear();
 								history.push("/applicant/message/success");
-								onClick(10000);
 							}
 							else {
 								setError(true);
