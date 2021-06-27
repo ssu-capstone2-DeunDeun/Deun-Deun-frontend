@@ -19,6 +19,7 @@ import applicationAddInfo, {
 } from 'modules/applicationAddInfo';
 import { List } from 'immutable';
 import axios from '../../../node_modules/axios/index';
+import { useLocation } from 'react-router-dom';
 const ApplicationAddPage = ({
 	setAddNewForm,
 	onChangeAppTitle,
@@ -34,6 +35,7 @@ const ApplicationAddPage = ({
 }) => {
 	const history = useHistory();
 	const dispatch = useDispatch();
+	const location = useLocation();
 	const [questionIndex, setQuestionIndex] = useState(2);
 	const [deleteError, setDeleteError] = useState(false);
 	const [submitError, setSubmitError] = useState(false);
@@ -126,6 +128,14 @@ const ApplicationAddPage = ({
 			dispatch(initializeQuestion());
 		};
 	}, []);
+
+	useEffect(() => {
+		window.onpopstate = (e) => {
+			if (location.pathname === '/club/manage/application/new') {
+				history.push('/club/manage/application');
+			}
+		};
+	});
 
 	return (
 		//

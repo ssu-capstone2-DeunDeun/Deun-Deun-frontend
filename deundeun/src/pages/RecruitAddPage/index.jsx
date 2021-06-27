@@ -75,7 +75,7 @@ const RecruitAddPage = ({
 	const removeBase64 = () => {
 		let editorInstance = editorRef.current.getInstance();
 		let content = editorInstance.getMarkdown();
-		console.log(content.match(/!\[.*\]\(data:image\/.*\)!/, '!'));
+		// console.log(content.match(/!\[.*\]\(data:image\/.*\)!/, '!'));
 		editorInstance.setMarkdown(content.replace(/!\[.*\]\(data:image\/.*\)!/, '!'));
 		editorInstance.insertText('\n');
 	};
@@ -209,6 +209,14 @@ const RecruitAddPage = ({
 	useEffect(() => {
 		dispatch(initializeState());
 	}, []);
+
+	useEffect(() => {
+		window.onpopstate = (e) => {
+			if (location.pathname === '/club/manage/recruit/new') {
+				history.push('/club/manage/recruit');
+			}
+		};
+	}, [location.pathname, history]);
 
 	return (
 		//

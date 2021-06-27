@@ -49,7 +49,14 @@ const RecruitManagePage = ({ setAddNewForm }) => {
 			<AddRecruitAnnounceCard setAddNewForm={setAddNewForm} />
 			{!loading ? (
 				recruitList.map((recruit) => (
-					<RecruitAnnounceCard key={recruit.id} generation={recruit.generation} title={recruit.title} />
+					<RecruitAnnounceCard
+						recruitList={recruitList}
+						setRecruitList={setRecruitList}
+						key={recruit.id}
+						id={recruit.id}
+						generation={recruit.generation}
+						title={recruit.title}
+					/>
 				))
 			) : (
 				<>

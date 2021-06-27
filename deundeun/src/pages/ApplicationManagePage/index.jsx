@@ -83,9 +83,6 @@ const ApplicationManagePage = ({ setAddNewForm }) => {
 					</SpinnerContainer>
 				</>
 			)}
-			{/* <SpinnerContainer>
-				<LoadingSpinner size="large" style={{ margin: '0 auto' }} />
-			</SpinnerContainer> */}
 			<DeleteApplicationModal
 				id={deleteId}
 				show={showDeleteModal}
