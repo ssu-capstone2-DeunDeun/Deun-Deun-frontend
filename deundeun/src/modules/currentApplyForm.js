@@ -9,11 +9,13 @@ const [GET_APPLY_FORM, GET_APPLY_FORM_SUCCESS, GET_APPLY_FORM_FAILURE] = createR
 const [GET_RECRUITS, GET_RECRUITS_SUCCESS, GET_RECRUITS_FAILURE] = createRequestActionType('currentApplyFrom/GET_RECRUITS');
 const [GET_CLUBS, GET_CLUBS_SUCCESS, GET_CLUBS_FAILURE] = createRequestActionType('currentApplyForm/GET_CLUBS');
 const [GET_APPLICANT, GET_APPLICANT_SUCCESS, GET_APPLICANT_FAILURE] = createRequestActionType('currentApplyForm/GET_APPLICANT');
+const INITIAL_APPLICANT = 'currentApplyForm/INITIAL_APPLICANT';
 
 export const getApplicant = createAction(GET_APPLICANT);
 export const getApplyForm = createAction(GET_APPLY_FORM);
 export const getRecruits = createAction(GET_RECRUITS);
 export const getClubs = createAction(GET_CLUBS);
+export const initialApplicant = createAction(INITIAL_APPLICANT);
 
 const isGetClubsSaga = createRequestSaga(GET_CLUBS, authAPI.getClubs)
 const isGetApplyFormSaga = createRequestSaga(GET_APPLY_FORM, applyAPI.getApplyForms);
@@ -73,6 +75,10 @@ const currentApplyForm = handleActions(
             ...state,
             getApplicantError,
         }),
+        [INITIAL_APPLICANT]: (state, action) => ({
+            ...state,
+            getApplicant: "",
+        })
     },
     initialState
 );

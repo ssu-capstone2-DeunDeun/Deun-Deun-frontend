@@ -57,7 +57,8 @@ const ClubListCard = ({
 			<ClubInfo>
 				<ContainerRow style={{ height: '30px', alignItems: 'center' }}>
 					<ClubName>{clubName}</ClubName>
-					{true && <RecruitingIcon>{dday < 0 ? `모집종료` : `D - ${dday}`}</RecruitingIcon>}
+					{/* {true && <RecruitingIcon>{dday < 0 ? `모집종료` : `D - ${dday}`}</RecruitingIcon>} */}
+					{true && <RecruitingIcon>{dday < 0 ? `D ${dday}` : `D - ${dday}`}</RecruitingIcon>}
 					<FavoriteIcon id={id} />
 					{/* {isRecruting && <RecruitingIcon />} */}
 				</ContainerRow>

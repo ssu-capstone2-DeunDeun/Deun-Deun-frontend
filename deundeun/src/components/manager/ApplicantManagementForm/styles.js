@@ -153,7 +153,7 @@ export const PopupBlock = styled.div`
     }
     .popupBlock{
         width:782px;
-        height:672px;
+        height:750px;
         position:absolute;
         box-shadow:15px 15px 30px 0 rgba(0,0,0,0.16);
         margin:auto;
@@ -212,6 +212,7 @@ export const PopupBlock = styled.div`
         .receiverIist{
             display:flex;
             flex-wrap:wrap;
+            height:40px;
             button{
                 width:120px;
                 height:32px;
@@ -234,9 +235,11 @@ export const PopupBlock = styled.div`
         }
         .content{
             font-weight:bold;
-            margin-top:19px;
+            margin-top:20px;
+            height:270px;
         }
         .msgSubmitBtn{
+            margin-top:38px;
             text-align:center;
         }
     }
@@ -246,7 +249,7 @@ export const StyledTextarea = styled.textarea`
     width:688px;
     height:188px;
     margin-top:15px;
-    margin-bottom:38px;
+    margin-bottom:0px;
     font-size:14px;
     border:none;
     background-color:#f7f7f7;
