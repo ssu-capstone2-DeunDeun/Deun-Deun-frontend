@@ -34,6 +34,7 @@ import axios from '../../../node_modules/axios/index';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
+import { useLocation } from 'react-router-dom';
 registerLocale('ko', ko);
 
 const RecruitAddPage = ({
@@ -62,6 +63,7 @@ const RecruitAddPage = ({
 	const dispatch = useDispatch();
 
 	const history = useHistory();
+	const location = useLocation();
 
 	const times = [
 		setHours(setMinutes(new Date(), 1), 0),
@@ -349,15 +351,16 @@ const RecruitAddPage = ({
 			/>
 			<ErrorMessage open={dateError} onCloseSnackbar={onCloseSnackbar} message="마감일은 시작일 이후여야 합니다." />
 			<Footer />
-			{/* <Prompt
+			<Prompt
 				when={whenState}
-				navigate={(path) => {
-					history.push(path);
-				}}
 				yes="확인"
 				no="취소"
-				message="작성된 정보가 모두 삭제됩니다. 정말 나가시겠어요?"
-			/> */}
+				message={(location) => {
+					return location.pathname === '/recruit/success'
+						? true
+						: '작성 중인 정보가 모두 삭제됩니다. 정말 이동하시겠어요?';
+				}}
+			/>
 		</ContainerColumn>
 	);
 };
