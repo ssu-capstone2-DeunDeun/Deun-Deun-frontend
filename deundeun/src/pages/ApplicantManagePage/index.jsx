@@ -1,7 +1,7 @@
 import ApplicantManagementForm from 'components/manager/ApplicantManagementForm'
 import { sendAlarm } from 'lib/api/auth';
-import { getApplicant, getClubs, getRecruits } from 'modules/currentApplyForm';
-import { initialValue, inputValue } from 'modules/sendMsgForm';
+import { getApplicant, getClubs, getRecruits, initialApplicant } from 'modules/currentApplyForm';
+import { initialValue, inputContentType, inputValue } from 'modules/sendMsgForm';
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -19,7 +19,10 @@ const ApplicantManagePage = () => {
 		sendMsgForm: sendMsgForm,
 	}))
 	const [clubName, setClubName] = useState(null);
-	
+
+	const onClick = (recruitId) => {
+		dispatch(getApplicant(recruitId));
+	}
 
 	useEffect(() => {
 		if (getClub) {
@@ -27,18 +30,24 @@ const ApplicantManagePage = () => {
 			setClubName(getClub[0].clubResponseDto.clubName);
 			dispatch(inputValue({ type: "clubId", value: getClub[0].clubResponseDto.clubId }));
 		}
-	}, [dispatch, getClub])
+		dispatch(initialApplicant());
+	}, [dispatch, getClub]);
 
 	useEffect(() => {
 		dispatch(getClubs());
 	}, [dispatch]);
 
-	const onClick = (recruitId) => {
-		dispatch(getApplicant(recruitId));
-	}
 	const onChangeContent = (e) => {
 		dispatch(inputValue({ type: "message", value: e.target.value }))
 	}
+
+	const onResetContent = (e) => {
+		dispatch(inputValue({ type: "message", value: "" }))
+	}
+	const onResetType = (e) => {
+		dispatch(inputValue({ type: "contentType", value: "" }))
+	}
+
 	const onChangeEmail = (emailList) => {
 		dispatch(inputValue({ type: "emails", value: emailList }))
 	}
@@ -52,9 +61,26 @@ const ApplicantManagePage = () => {
 	const sendEmail = () => {
 		sendAlarm(sendMsgForm);
 	}
-	
+	const onChangeType = (value) => {
+		dispatch(inputContentType(value))
+	}
+
 	return (
-		<ApplicantManagementForm clubName={clubName} sendEmail={sendEmail} onResetEmail={onResetEmail} onChangeEmail={onChangeEmail} onChangeContent={onChangeContent} message={message} applicants={applicants} onClick={onClick} recruits={recruits} />
+		<ApplicantManagementForm
+			clubName={clubName}
+			sendEmail={sendEmail}
+			sendMsgForm={sendMsgForm}
+			onResetContent={onResetContent}
+			onResetEmail={onResetEmail}
+			onChangeEmail={onChangeEmail}
+			onChangeContent={onChangeContent}
+			message={message}
+			applicants={applicants}
+			onClick={onClick}
+			recruits={recruits}
+			onChangeType={onChangeType}
+			onResetType={onResetType}
+		/>
 	);
 };
 

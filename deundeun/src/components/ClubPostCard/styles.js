@@ -11,7 +11,9 @@ export const Container = styled.div`
 export const PostImage = styled.div`
 	height: 176px;
 	/* background-color: #e8e8e8; */
-	background:url('../../GROOPY.png')
+	background:url('../../images/logo/GROOPY.png');
+	background-size:contain;
+	background-repeat:no-repeat;
 `;
 export const PostOverview = styled.div`
 	height: 196.6px;

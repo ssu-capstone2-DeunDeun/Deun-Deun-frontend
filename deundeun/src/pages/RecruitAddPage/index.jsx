@@ -35,6 +35,8 @@ import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import { useLocation } from 'react-router-dom';
+Quill.register('modules/ImageResize', ImageResize);
+
 registerLocale('ko', ko);
 
 const RecruitAddPage = ({
@@ -155,6 +157,7 @@ const RecruitAddPage = ({
 	const onSubmit = useCallback(
 		(e) => {
 			e.preventDefault();
+			console.log("qefqe");
 			if (formError || titleError || generationError) {
 				window.scrollTo(0, 0);
 				console.log(formError, titleError, generationError);
@@ -179,6 +182,7 @@ const RecruitAddPage = ({
 					clubName: clubName
 				};
 				// dispatch(addRecruit(data));
+        
 				axios({
 					method: 'post',
 					url: `${API_BASE_URL}/clubs/${clubName}/recruits`,
@@ -224,8 +228,8 @@ const RecruitAddPage = ({
 						</InnerContainer>
 					</>
 				) : (
-					<AppTitle style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>{recruitAddInfo.clubApplyFormTitle}</AppTitle>
-				)}
+						<AppTitle style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>{recruitAddInfo.clubApplyFormTitle}</AppTitle>
+					)}
 			</ApplicationLoadCard>
 			{formError && <Error style={{ marginLeft: '0.5em' }}>* 지원서 양식이 필요합니다.</Error>}
 			<TitleKorean style={{ marginBottom: '1em', marginTop: '1.3em' }}>모집 기수 / 제목</TitleKorean>
