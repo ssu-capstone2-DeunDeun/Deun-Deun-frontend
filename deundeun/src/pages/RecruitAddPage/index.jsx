@@ -47,7 +47,9 @@ const RecruitAddPage = ({
 	onChangeDocumentPassAnnounceDate,
 	onChangeFinalPassAnnounceDate,
 	applicationList,
-	clubName
+	clubName,
+	whenState,
+	setWhenState
 }) => {
 	const [dateError, setDateError] = useState(false);
 	const [generationError, setGenerationError] = useState(true);
@@ -57,7 +59,6 @@ const RecruitAddPage = ({
 	const [showLoadApplicationModal, setShowLoadApplicationModal] = useState(false);
 	const [generation, setGeneration] = useState('');
 	const [intro, setIntro] = useState('');
-	const [whenState, setWhenState] = useState(true);
 	const editorRef = useRef();
 	const [editorContent, setEditorContent] = useState('');
 	const dispatch = useDispatch();
@@ -86,6 +87,7 @@ const RecruitAddPage = ({
 	));
 
 	const uploadImage = (blob) => {
+		setWhenState(true);
 		let formData = new FormData();
 		formData.append('multipartFiles', blob);
 
@@ -104,6 +106,8 @@ const RecruitAddPage = ({
 
 	const onChangeTitle = useCallback(
 		(e) => {
+			setWhenState(true);
+
 			console.log(e.target.value);
 			if (e.target.value === '') {
 				setTitleError(true);
@@ -113,10 +117,12 @@ const RecruitAddPage = ({
 				setTitleError(false);
 			}
 		},
-		[dispatch]
+		[dispatch, setWhenState]
 	);
 
 	const onChangeGeneration = (e) => {
+		setWhenState(true);
+
 		if (Number(e.target.value) > 0 && Number(e.target.value <= 999)) {
 			setGeneration(e.target.value);
 			dispatch(changeInput({ type: 'generation', value: e.target.value }));
@@ -126,9 +132,13 @@ const RecruitAddPage = ({
 		}
 	};
 
-	const onClickLoadApplication = useCallback((e) => {
-		setShowLoadApplicationModal(true);
-	}, []);
+	const onClickLoadApplication = useCallback(
+		(e) => {
+			setWhenState(true);
+			setShowLoadApplicationModal(true);
+		},
+		[setWhenState]
+	);
 
 	const onCloseModal = useCallback((e) => {
 		setShowLoadApplicationModal(false);
