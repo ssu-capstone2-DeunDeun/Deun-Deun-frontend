@@ -24,6 +24,7 @@ import ApplySuccessPage from 'pages/ApplySuccessPage/index';
 import RecruitSuccessPage from 'pages/RecruitSuccessPage/index';
 import MyApplyPage from 'pages/MyApplyPage/index';
 import ApplicationOverviewPage from 'pages/ApplicationOverviewPage/index';
+import ApplicationModifyPage from 'pages/ApplicationModifyPage/index';
 import SendMsgSuccess from 'components/SendMsgSuccess/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
@@ -135,6 +136,13 @@ const App = () => {
 					<ApplicationOverviewPage />
 				</ContainerRow>
 			</Route>
+			<Route exact path="/application/:clubName/:id/modify">
+				<HeaderContainer />
+				<ContainerRow>
+					<SideBar location={location} />
+					<ApplicationModifyPage />
+				</ContainerRow>
+			</Route>
 			{/* <Route exact path="/club/" */}
 			<Route component={LoginPage} path="/login" exact />
 			<Route component={RegisterInfoContainer} path="/register/1" exact />
@@ -206,23 +214,23 @@ const ClubManagePage = () => {
 						<ApplicationAddInfoContainer setAddNewForm={setAddNewApplication} />
 					</Fragment>
 				) : (
-						<Fragment>
-							<Redirect to="/club/manage/application" />
-							<ApplicationManagePage setAddNewForm={setAddNewApplication} />
-						</Fragment>
-					))}
+					<Fragment>
+						<Redirect to="/club/manage/application" />
+						<ApplicationManagePage setAddNewForm={setAddNewApplication} />
+					</Fragment>
+				))}
 			{name === 'recruit' &&
 				(addNewRecruit ? (
-					<Fragment>
+					<>
 						<Redirect to="/club/manage/recruit/new" />
 						<RecruitAddInfoContainer setAddNewForm={setAddNewRecruit} />
-					</Fragment>
+					</>
 				) : (
-						<Fragment>
-							<Redirect to="/club/manage/recruit" />
-							<RecruitManagePage setAddNewForm={setAddNewRecruit} />
-						</Fragment>
-					))}
+					<>
+						<Redirect to="/club/manage/recruit" />
+						<RecruitManagePage setAddNewForm={setAddNewRecruit} />
+					</>
+				))}
 			{name === 'applicant' && <ApplicantManagePage />}
 			{name === 'member' && <MemberManagePage />}
 			{name === 'post' && <ClubManagePostPage />}

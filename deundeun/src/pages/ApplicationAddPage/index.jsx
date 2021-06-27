@@ -28,14 +28,15 @@ const ApplicationAddPage = ({
 	loading,
 	setLoading,
 	appLoading,
-	setAppLoading
+	setAppLoading,
+	whenState,
+	setWhenState
 }) => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const [questionIndex, setQuestionIndex] = useState(2);
 	const [deleteError, setDeleteError] = useState(false);
 	const [submitError, setSubmitError] = useState(false);
-	const [whenState, setWhenState] = useState(true);
 	const [questionList, setQuestionList] = useState([
 		{
 			index: 1,
@@ -80,6 +81,7 @@ const ApplicationAddPage = ({
 	);
 
 	const onClickAddQuestion = useCallback(() => {
+		setWhenState(true);
 		const newQuestion = {
 			index: questionIndex,
 			title: ''
@@ -88,13 +90,14 @@ const ApplicationAddPage = ({
 
 		dispatch(addQuestion(questionIndex, List([]), '', 'SUBJECTIVE'));
 		setQuestionIndex(questionIndex + 1);
-	}, [questionList, questionIndex, dispatch]);
+	}, [questionList, questionIndex, dispatch, setWhenState]);
 
 	const onChangeQuestionInput = useCallback(
 		(e) => {
+			setWhenState(true);
 			dispatch(modifyQuestionContent(e.target.id, e.target.value));
 		},
-		[dispatch]
+		[dispatch, setWhenState]
 	);
 
 	const onDeleteQuestion = useCallback(
@@ -171,15 +174,16 @@ const ApplicationAddPage = ({
 				</Snackbar>
 				<Footer />
 			</ContainerPage>
-			{/* <Prompt
+			<Prompt
 				when={whenState}
-				navigate={(path) => {
-					history.push(path);
-				}}
 				yes="확인"
 				no="취소"
-				message="작성된 정보가 모두 삭제됩니다. 정말 나가시겠어요?"
-			/> */}
+				message={(location) => {
+					return location.pathname === '/aplication/success'
+						? true
+						: '작성 중인 정보가 모두 삭제됩니다. 정말 이동하시겠어요?';
+				}}
+			/>
 		</>
 	);
 };

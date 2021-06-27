@@ -8,6 +8,7 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 	const [clubName, setClubName] = useState('');
 	const [applicationList, setApplicationList] = useState([]);
 	const [applicationId, setApplicationId] = useState(-1);
+	const [whenState, setWhenState] = useState(false);
 	const [deadline, setDeadline] = useState({
 		submitStartDate: new Date(),
 		submitEndDate: new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
@@ -20,6 +21,7 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 
 	const onChangeSubmitStartDate = useCallback(
 		(date) => {
+			setWhenState(true);
 			setDeadline({
 				...deadline,
 				submitStartDate: date
@@ -31,6 +33,7 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 
 	const onChangeSubmitEndDate = useCallback(
 		(date) => {
+			setWhenState(true);
 			setDeadline({
 				...deadline,
 				submitEndDate: date
@@ -41,6 +44,7 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 	);
 	const onChangeDocumentPassAnnounceDate = useCallback(
 		(date) => {
+			setWhenState(true);
 			setDeadline({
 				...deadline,
 				documentPassAnnounceDate: date
@@ -51,6 +55,7 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 	);
 	const onChangeInterviewStartDate = useCallback(
 		(date) => {
+			setWhenState(true);
 			setDeadline({
 				...deadline,
 				interviewStartDate: date
@@ -61,6 +66,7 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 	);
 	const onChangeInterviewEndDate = useCallback(
 		(date) => {
+			setWhenState(true);
 			setDeadline({
 				...deadline,
 				interviewEndDate: date
@@ -71,6 +77,7 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 	);
 	const onChangeFinalPassAnnounceDate = useCallback(
 		(date) => {
+			setWhenState(true);
 			setDeadline({
 				...deadline,
 				finalPassAnnounceDate: date
@@ -120,6 +127,8 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 			onChangeFinalPassAnnounceDate={onChangeFinalPassAnnounceDate}
 			applicationList={applicationList}
 			clubName={clubName}
+			whenState={whenState}
+			setWhenState={setWhenState}
 		/>
 	);
 };
