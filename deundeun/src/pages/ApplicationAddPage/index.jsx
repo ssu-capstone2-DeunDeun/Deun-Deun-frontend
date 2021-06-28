@@ -31,11 +31,11 @@ const ApplicationAddPage = ({
 	appLoading,
 	setAppLoading,
 	whenState,
-	setWhenState
+	setWhenState,
+	location
 }) => {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const location = useLocation();
 	const [questionIndex, setQuestionIndex] = useState(2);
 	const [deleteError, setDeleteError] = useState(false);
 	const [submitError, setSubmitError] = useState(false);
@@ -132,10 +132,11 @@ const ApplicationAddPage = ({
 	useEffect(() => {
 		window.onpopstate = (e) => {
 			if (location.pathname === '/club/manage/application/new') {
-				history.push('/club/manage/application');
+				console.log(location.pathname);
+				console.log('back');
 			}
 		};
-	});
+	}, []);
 
 	return (
 		//

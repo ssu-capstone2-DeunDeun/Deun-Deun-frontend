@@ -25,6 +25,7 @@ import RecruitSuccessPage from 'pages/RecruitSuccessPage/index';
 import MyApplyPage from 'pages/MyApplyPage/index';
 import ApplicationOverviewPage from 'pages/ApplicationOverviewPage/index';
 import ApplicationModifyPage from 'pages/ApplicationModifyPage/index';
+import RecruitModifyPage from 'pages/RecruitModifyPage/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -97,7 +98,7 @@ const App = () => {
 				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
-					<ClubManagePage />
+					<ClubManagePage location={location} />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/add">
@@ -138,6 +139,13 @@ const App = () => {
 					<ApplicationModifyPage />
 				</ContainerRow>
 			</Route>
+			<Route exact path="/recruit/:id/modify">
+				<HeaderContainer />
+				<ContainerRow>
+					<SideBar location={location} />
+					<RecruitModifyPage />
+				</ContainerRow>
+			</Route>
 			{/* <Route exact path="/club/" */}
 			<Route component={LoginPage} path="/login" exact />
 			<Route component={RegisterInfoContainer} path="/register/1" exact />
@@ -173,9 +181,8 @@ const MyPage = () => {
 	);
 };
 
-const ClubManagePage = () => {
+const ClubManagePage = ({ location }) => {
 	const { name } = useParams();
-	let location = useLocation();
 	const [addNewApplication, setAddNewApplication] = useState(false);
 	const [addNewRecruit, setAddNewRecruit] = useState(false);
 	useEffect(() => {
@@ -206,7 +213,7 @@ const ClubManagePage = () => {
 				(addNewApplication ? (
 					<Fragment>
 						<Redirect to="/club/manage/application/new" />
-						<ApplicationAddInfoContainer setAddNewForm={setAddNewApplication} />
+						<ApplicationAddInfoContainer location={location} setAddNewForm={setAddNewApplication} />
 					</Fragment>
 				) : (
 					<Fragment>
@@ -218,7 +225,7 @@ const ClubManagePage = () => {
 				(addNewRecruit ? (
 					<>
 						<Redirect to="/club/manage/recruit/new" />
-						<RecruitAddInfoContainer setAddNewForm={setAddNewRecruit} />
+						<RecruitAddInfoContainer location={location} setAddNewForm={setAddNewRecruit} />
 					</>
 				) : (
 					<>

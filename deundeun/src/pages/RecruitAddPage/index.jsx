@@ -49,7 +49,8 @@ const RecruitAddPage = ({
 	applicationList,
 	clubName,
 	whenState,
-	setWhenState
+	setWhenState,
+	location
 }) => {
 	const [dateError, setDateError] = useState(false);
 	const [generationError, setGenerationError] = useState(true);
@@ -59,12 +60,11 @@ const RecruitAddPage = ({
 	const [showLoadApplicationModal, setShowLoadApplicationModal] = useState(false);
 	const [generation, setGeneration] = useState('');
 	const [intro, setIntro] = useState('');
-	const editorRef = useRef();
 	const [editorContent, setEditorContent] = useState('');
-	const dispatch = useDispatch();
 
+	const editorRef = useRef();
+	const dispatch = useDispatch();
 	const history = useHistory();
-	const location = useLocation();
 
 	const times = [
 		setHours(setMinutes(new Date(), 1), 0),
@@ -213,10 +213,11 @@ const RecruitAddPage = ({
 	useEffect(() => {
 		window.onpopstate = (e) => {
 			if (location.pathname === '/club/manage/recruit/new') {
-				history.push('/club/manage/recruit');
+				console.log(location.pathname);
+				console.log('back');
 			}
 		};
-	}, [location.pathname, history]);
+	}, []);
 
 	return (
 		//

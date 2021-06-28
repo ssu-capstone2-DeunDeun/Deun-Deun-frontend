@@ -8,8 +8,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { useCallback } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteRecruitModal from 'components/modal/DeleteRecruitModal/index';
+import { useHistory } from 'react-router-dom';
 const RecruitAnnounceCard = ({ generation, title, id, recruitList, setRecruitList }) => {
 	const ITEM_HEIGHT = 48;
+	const history = useHistory();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -22,11 +24,11 @@ const RecruitAnnounceCard = ({ generation, title, id, recruitList, setRecruitLis
 	}, []);
 
 	const onClickModify = () => {
-		onCloseMenu();
+		history.push(`/recruit/${id}/modify`);
+		// onCloseMenu();
 	};
 
 	const onClickDelete = () => {
-		// open modal
 		setShowDeleteModal(true);
 		onCloseMenu();
 	};

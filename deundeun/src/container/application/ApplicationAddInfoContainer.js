@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import axios from '../../../node_modules/axios/index';
 
-const ApplicationAddInfoContainer = ({ setAddNewForm }) => {
+const ApplicationAddInfoContainer = ({ setAddNewForm, location }) => {
 	const dispatch = useDispatch();
 	const [appTitle, setAppTitle] = useState('');
 	const [clubName, setClubName] = useState('');
@@ -70,6 +70,7 @@ const ApplicationAddInfoContainer = ({ setAddNewForm }) => {
 			setAppLoading={setAppLoading}
 			whenState={whenState}
 			setWhenState={setWhenState}
+			location={location}
 		/>
 	);
 };
