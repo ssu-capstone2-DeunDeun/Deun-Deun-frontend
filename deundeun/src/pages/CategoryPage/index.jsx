@@ -87,9 +87,23 @@ const CategoryPage = ({ match }) => {
 					</Content>
 				</ContentContainer>
 				<CardContainer>
-					{clubs && checked
-						? clubs.map((club) =>
-								club.dday > 0 ? (
+					{clubs &&
+						(checked
+							? clubs.map((club) =>
+									club.dday > 0 ? (
+										<ClubListCard
+											id={club.clubId}
+											clubName={club.clubName}
+											introduction={club.introduction}
+											hashtagNames={club.hashtagNames}
+											representClubImageUrl={club.representClubImageUrl}
+											liked={club.liked}
+											recruiting={club.recruting}
+											dday={club.dday}
+										/>
+									) : null
+							  )
+							: clubs.map((club) => (
 									<ClubListCard
 										id={club.clubId}
 										clubName={club.clubName}
@@ -100,22 +114,7 @@ const CategoryPage = ({ match }) => {
 										recruiting={club.recruting}
 										dday={club.dday}
 									/>
-								) : (
-									''
-								)
-						  )
-						: clubs.map((club) => (
-								<ClubListCard
-									id={club.clubId}
-									clubName={club.clubName}
-									introduction={club.introduction}
-									hashtagNames={club.hashtagNames}
-									representClubImageUrl={club.representClubImageUrl}
-									liked={club.liked}
-									recruiting={club.recruting}
-									dday={club.dday}
-								/>
-						  ))}
+							  )))}
 				</CardContainer>
 			</ContainerPage>
 		</>
