@@ -1,9 +1,7 @@
 import React from 'react';
-import { Content } from 'pages/MyClubListPage/styles';
 import { ContentKorean } from 'components/ClubPostCard/styles';
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import ClubListCard from 'components/ClubListCard';
-import { TitleEnglish, ContentContainer, CardContainer } from './styles';
+import { TitleEnglish, ContentContainer, CardContainer, Content } from './styles';
 import { ContainerPage } from 'styles';
 import { withRouter } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -11,11 +9,24 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { getAllClubs } from 'modules/initHomePage';
 import { useState } from 'react';
+import { withStyles } from '@material-ui/core';
+import Checkbox from '@material-ui/core/Checkbox';
+
+const ColoredCheckbox = withStyles({
+	root: {
+		color: '#9ddfd3',
+		'&$checked': {
+			color: '#9ddfd3'
+		}
+	},
+	checked: {}
+})((props) => <Checkbox color="default" {...props} />);
 
 const CategoryPage = ({ match }) => {
 	const { categoryType } = match.params;
 	const dispatch = useDispatch();
 	const [title, setTitle] = useState('');
+	const [checked, setChecked] = useState(false);
 	const { clubs } = useSelector(({ initHomePage }) => ({
 		clubs: initHomePage.getAllClubs
 	}));
@@ -23,6 +34,10 @@ const CategoryPage = ({ match }) => {
 	if (clubs) {
 		console.log('getAllclubs', clubs);
 	}
+
+	const onCheck = () => {
+		setChecked((prev) => !prev);
+	};
 
 	useEffect(() => {
 		dispatch(getAllClubs(categoryType));
@@ -64,27 +79,43 @@ const CategoryPage = ({ match }) => {
 		//
 		<>
 			<ContainerPage>
-				<ContentContainer>
+				<ContentContainer style={{ width: '1346px' }}>
 					<TitleEnglish>{title}</TitleEnglish>
-					<Content style={{ marginLeft: 'auto', marginRight: '4em', marginTop: 'auto' }}>
-						<CheckCircleOutlineIcon style={{ marginRight: '0.5em' }} />
-						<ContentKorean>모집중인 동아리만 보기</ContentKorean>
+					<Content>
+						<ColoredCheckbox checked={checked} onClick={onCheck} />
+						<ContentKorean style={{ fontSize: '0.97rem' }}>모집중인 동아리만 보기</ContentKorean>
 					</Content>
 				</ContentContainer>
 				<CardContainer>
-					{clubs &&
-						clubs.map((club) => (
-							<ClubListCard
-								id={club.clubId}
-								clubName={club.clubName}
-								introduction={club.introduction}
-								hashtagNames={club.hashtagNames}
-								representClubImageUrl={club.representClubImageUrl}
-								liked={club.liked}
-								recruiting={club.recruting}
-								dday={club.dday}
-							/>
-						))}
+					{clubs && checked
+						? clubs.map((club) =>
+								club.dday > 0 ? (
+									<ClubListCard
+										id={club.clubId}
+										clubName={club.clubName}
+										introduction={club.introduction}
+										hashtagNames={club.hashtagNames}
+										representClubImageUrl={club.representClubImageUrl}
+										liked={club.liked}
+										recruiting={club.recruting}
+										dday={club.dday}
+									/>
+								) : (
+									''
+								)
+						  )
+						: clubs.map((club) => (
+								<ClubListCard
+									id={club.clubId}
+									clubName={club.clubName}
+									introduction={club.introduction}
+									hashtagNames={club.hashtagNames}
+									representClubImageUrl={club.representClubImageUrl}
+									liked={club.liked}
+									recruiting={club.recruting}
+									dday={club.dday}
+								/>
+						  ))}
 				</CardContainer>
 			</ContainerPage>
 		</>
