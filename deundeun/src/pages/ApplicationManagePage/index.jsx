@@ -1,5 +1,5 @@
-import AddApplicationFormCard from 'components/AddApplicationFormCard';
-import ApplicationFormCard from 'components/ApplicationFormCard';
+import AddApplicationFormCard from 'components/applicationForm/AddApplicationFormCard';
+import ApplicationFormCard from 'components/applicationForm/ApplicationFormCard';
 import { initializeQuestion } from 'modules/applicationAddInfo';
 import { initialField } from 'modules/registerUserInfo';
 import React, { useCallback, useEffect, useState } from 'react';

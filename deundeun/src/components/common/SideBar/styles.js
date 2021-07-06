@@ -39,24 +39,23 @@ export const Button = styled.button`
 	&:hover {
 		background-color: rgba(31, 208, 181, 0.3);
 	}
-	&.clicked {
-		font-family: 'NotoSansKR';
-		background-color: rgba(31, 208, 181, 0.3);
-		color: #282828;
-	}
+
 	&.category {
 		font-family: 'NotoSansKR';
 		font-size: 1.125rem;
 	}
-	&.clicked-category {
+
+	.active &.tab {
 		font-family: 'NotoSansKR';
-		font-size: 1.125rem;
-		font-weight: 900;
+		background-color: rgba(31, 208, 181, 0.3);
 		color: #282828;
 	}
 
-	&.category,
-	&.clicked-category {
+	.active &.category {
+		color: #282828;
+	}
+
+	&.category {
 		padding-left: 6em;
 	}
 `;

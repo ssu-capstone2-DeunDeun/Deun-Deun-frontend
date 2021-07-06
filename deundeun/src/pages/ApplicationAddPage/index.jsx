@@ -18,8 +18,6 @@ import applicationAddInfo, {
 	modifyQuestionContent
 } from 'modules/applicationAddInfo';
 import { List } from 'immutable';
-import axios from '../../../node_modules/axios/index';
-import { useLocation } from 'react-router-dom';
 const ApplicationAddPage = ({
 	setAddNewForm,
 	onChangeAppTitle,
@@ -45,11 +43,6 @@ const ApplicationAddPage = ({
 			title: ''
 		}
 	]);
-
-	// const { recruitQuestionRequestDtos, title } = useSelector(({ applicationAddInfo }) => ({
-	// 	recruitQuestionRequestDtos: applicationAddInfo.get('recruitQuestionRequestDtos'),
-	// 	title: applicationAddInfo.get('title')
-	// }));
 
 	const { applicationAddInfo } = useSelector(({ applicationAddInfo }) => ({
 		applicationAddInfo: applicationAddInfo
@@ -131,10 +124,14 @@ const ApplicationAddPage = ({
 
 	useEffect(() => {
 		window.onpopstate = (e) => {
-			if (location.pathname === '/club/manage/application/new') {
-				console.log(location.pathname);
-				console.log('back');
-			}
+			// if (location.pathname === '/club/manage/application/new') {
+			// 	console.log(location.pathname);
+			// 	console.log('back');
+			// 	return () => {
+			// 		<Redirect to="/club/manage/application" />;
+			// 	};
+			// }
+			// console.log('back');
 		};
 	}, []);
 

@@ -1,6 +1,6 @@
 // import MyPage from 'pages/MyPage';
 import React, { useEffect, useState } from 'react';
-import { Redirect, Route, Switch, useLocation, useParams } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory, useLocation, useParams } from 'react-router-dom';
 import loadable from '@loadable/component';
 import { ContainerRow } from 'styles';
 import OAuth2RedirectHandler from 'components/login/oauth2/OAuth2RedirectHandler';
@@ -12,11 +12,9 @@ import HeaderContainer from 'container/common/HeaderContainer';
 import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileModifyPageContainer';
 import RecruitAddInfoContainer from 'container/recruit/RecruitAddInfoContainer';
 import ApplicationAddInfoContainer from 'container/application/ApplicationAddInfoContainer';
-import { Fragment } from 'react';
 import SideBar from '../src/components/common/SideBar';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
-const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
 const CategoryPage = loadable(() => import('pages/CategoryPage'));
 const ClubDetailPage = loadable(() => import('pages/ClubDetailPage'));
 const MyProfileModifyPage = loadable(() => import('pages/MyProfileModifyPage'));
@@ -167,12 +165,12 @@ const MyPage = () => {
 	const { name } = useParams();
 	return (
 		//
-		<Fragment>
-			{name === 'modify' && <MyProfileModifyPageContainer />}
+		<>
+			{(name === 'modify' || name === '') && <MyProfileModifyPageContainer />}
 			{name === 'clubs' && <MyClubListPage />}
 			{name === 'application' && <MyApplicationPage />}
 			{name === 'likes' && <MyLikeListPage />}
-		</Fragment>
+		</>
 	);
 };
 
@@ -180,6 +178,7 @@ const ClubManagePage = ({ location }) => {
 	const { name } = useParams();
 	const [addNewApplication, setAddNewApplication] = useState(false);
 	const [addNewRecruit, setAddNewRecruit] = useState(false);
+	const history = useHistory();
 	useEffect(() => {
 		return () => {
 			setAddNewApplication(false);
@@ -188,11 +187,11 @@ const ClubManagePage = ({ location }) => {
 	}, []);
 
 	useEffect(() => {
-		switch (location.pathname) {
-			case '/club/manage/application':
+		switch (true) {
+			case location.pathname === '/club/manage/application':
 				setAddNewApplication(false);
 				break;
-			case '/club/manage/recruit':
+			case location.pathname === '/club/manage/recruit':
 				setAddNewRecruit(false);
 				break;
 			default:
@@ -202,19 +201,20 @@ const ClubManagePage = ({ location }) => {
 
 	return (
 		//
-		<Fragment>
+		<>
 			{name === 'modify' && <ClubModifyPageContainer />}
 			{name === 'application' &&
 				(addNewApplication ? (
-					<Fragment>
-						<Redirect to="/club/manage/application/new" />
+					<>
+						{/* <Redirect to="/club/manage/application/new" /> */}
+						{/* {history.push('/club/manage/application/new')} */}
 						<ApplicationAddInfoContainer location={location} setAddNewForm={setAddNewApplication} />
-					</Fragment>
+					</>
 				) : (
-					<Fragment>
-						<Redirect to="/club/manage/application" />
+					<>
+						{/* <Redirect to="/club/manage/application" /> */}
 						<ApplicationManagePage setAddNewForm={setAddNewApplication} />
-					</Fragment>
+					</>
 				))}
 			{name === 'recruit' &&
 				(addNewRecruit ? (
@@ -231,7 +231,7 @@ const ClubManagePage = ({ location }) => {
 			{name === 'applicant' && <ApplicantManagePage />}
 			{name === 'member' && <MemberManagePage />}
 			{name === 'post' && <ClubManagePostPage />}
-		</Fragment>
+		</>
 	);
 };
 
