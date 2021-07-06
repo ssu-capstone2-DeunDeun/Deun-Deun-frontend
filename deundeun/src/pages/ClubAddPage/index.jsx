@@ -34,10 +34,11 @@ import ClubHashtag from 'components/common/ClubHashtag/index';
 import ImageUpload from 'components/common/ImageUpload/index';
 import ClubImageUpload from 'components/common/ClubImageUpload/index';
 import { Error } from 'pages/ApplicationAddPage/styles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import { Prompt, useHistory } from 'react-router';
+import { initializeInfo } from 'modules/clubAddInfo';
 
 const ClubImage = styled.div`
 	width: 100%;
@@ -113,6 +114,7 @@ const ClubManagePage = ({
 }) => {
 	const [menuIndex, setMenuIndex] = useState(-1);
 	const [showImageModal, setShowImageModal] = useState(false);
+	const [hashtagError, setHashtagError] = useState(false);
 
 	const [imageFileList, setImageFileList] = useState([]);
 	const [hashtagList, setHashtagList] = useState([]);
@@ -121,6 +123,8 @@ const ClubManagePage = ({
 
 	const [anchorEl, setAnchorEl] = useState(null);
 	const ITEM_HEIGHT = 48;
+
+	const dispatch = useDispatch();
 	const history = useHistory();
 
 	const [whenState, setWhenState] = useState(true);
@@ -162,6 +166,8 @@ const ClubManagePage = ({
 		const found = hashtagList.find((hashtag) => hashtag.name === hashtagOptions[index]);
 		if (!found) {
 			setHashtagList(hashtagList.concat(newHashtag));
+		} else {
+			setHashtagError(true);
 		}
 		setAnchorEl(null);
 	};
@@ -177,9 +183,19 @@ const ClubManagePage = ({
 		setAnchorEl(null);
 	}, []);
 
+	const handleHashtagAlert = useCallback(() => {
+		setHashtagError(false);
+	}, []);
+
 	useEffect(() => {
 		onChangeHashtag(hashtagList);
 	}, [onChangeHashtag, hashtagList]);
+
+	useEffect(() => {
+		return () => {
+			dispatch(initializeInfo());
+		};
+	}, [dispatch]);
 
 	return (
 		//
@@ -311,6 +327,11 @@ const ClubManagePage = ({
 				<Snackbar open={submitError} autoHideDuration={1000} onClose={onCloseSnackbar}>
 					<Alert onClose={onCloseSnackbar} severity="error">
 						필수 입력사항을 입력해주세요.
+					</Alert>
+				</Snackbar>
+				<Snackbar open={hashtagError} autoHideDuration={1000} onClose={onCloseSnackbar}>
+					<Alert onClose={handleHashtagAlert} severity="error">
+						이미 추가된 태그입니다.
 					</Alert>
 				</Snackbar>
 				{/* <Prompt

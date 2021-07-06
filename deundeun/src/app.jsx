@@ -10,22 +10,10 @@ import ClubAddInfoContainer from 'container/clubRegister/ClubAddInfoContainer';
 import ClubModifyPageContainer from 'container/clubRegister/ClubModifyPageContainer';
 import HeaderContainer from 'container/common/HeaderContainer';
 import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileModifyPageContainer';
-import ClubPostPage from 'pages/ClubPostPage/index';
-import ClubManagePostPage from 'pages/ClubManagePostPage.js/index';
-import ClubPostItemPage from 'pages/ClubPostItemPage/index';
-import ClubAddSuccessPage from 'pages/ClubAddSuccessPage/index';
 import RecruitAddInfoContainer from 'container/recruit/RecruitAddInfoContainer';
 import ApplicationAddInfoContainer from 'container/application/ApplicationAddInfoContainer';
-import PostAllPage from 'pages/PostAllPage.js/index';
 import { Fragment } from 'react';
 import SideBar from '../src/components/common/SideBar';
-import ApplicationSuccessPage from 'pages/ApplicationSuccessPage/index';
-import ApplySuccessPage from 'pages/ApplySuccessPage/index';
-import RecruitSuccessPage from 'pages/RecruitSuccessPage/index';
-import MyApplyPage from 'pages/MyApplyPage/index';
-import ApplicationOverviewPage from 'pages/ApplicationOverviewPage/index';
-import ApplicationModifyPage from 'pages/ApplicationModifyPage/index';
-import RecruitModifyPage from 'pages/RecruitModifyPage/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -35,6 +23,19 @@ const MyProfileModifyPage = loadable(() => import('pages/MyProfileModifyPage'));
 const MyClubListPage = loadable(() => import('pages/MyClubListPage'));
 const MyApplicationPage = loadable(() => import('pages/MyApplicationPage'));
 const MyLikeListPage = loadable(() => import('pages/MyLikeListPage'));
+const ApplicationSuccessPage = loadable(() => import('pages/ApplicationSuccessPage'));
+const ApplySuccessPage = loadable(() => import('pages/ApplySuccessPage'));
+const RecruitSuccessPage = loadable(() => import('pages/RecruitSuccessPage'));
+const MyApplyPage = loadable(() => import('pages/MyApplyPage'));
+const ApplicationOverviewPage = loadable(() => import('pages/ApplicationOverviewPage'));
+const ApplicationModifyPage = loadable(() => import('pages/ApplicationModifyPage'));
+const RecruitModifyPage = loadable(() => import('pages/RecruitModifyPage'));
+
+const ClubPostPage = loadable(() => import('pages/ClubPostPage'));
+const ClubPostItemPage = loadable(() => import('pages/ClubPostItemPage'));
+const ClubManagePostPage = loadable(() => import('pages/ClubManagePostPage'));
+const ClubAddSuccessPage = loadable(() => import('pages/ClubAddSuccessPage'));
+const PostAllPage = loadable(() => import('pages/PostAllPage'));
 
 const LoginPage = loadable(() => import('pages/LoginPage'));
 const ApplyPage = loadable(() => import('pages/ApplyPage'));
@@ -63,7 +64,6 @@ const App = () => {
 				<Redirect to="/home" />
 			</Route>
 			<Route exact path="/home">
-				{/* <Header /> */}
 				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
@@ -78,7 +78,6 @@ const App = () => {
 				</ContainerRow>
 			</Route>
 			<Route path="/club/category/:categoryType">
-				{/* <Header /> */}
 				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
@@ -86,7 +85,6 @@ const App = () => {
 				</ContainerRow>
 			</Route>
 			<Route path="/mypage/:name">
-				{/* <Header /> */}
 				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
@@ -94,7 +92,6 @@ const App = () => {
 				</ContainerRow>
 			</Route>
 			<Route path="/club/manage/:name">
-				{/* <Header /> */}
 				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
@@ -102,7 +99,6 @@ const App = () => {
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/add">
-				{/* <Header /> */}
 				<HeaderContainer />
 				<ContainerRow>
 					<SideBar location={location} />
@@ -146,7 +142,6 @@ const App = () => {
 					<RecruitModifyPage />
 				</ContainerRow>
 			</Route>
-			{/* <Route exact path="/club/" */}
 			<Route component={LoginPage} path="/login" exact />
 			<Route component={RegisterInfoContainer} path="/register/1" exact />
 			{/* <Route component={RegisterPage2} path="/register/2" exact /> */}

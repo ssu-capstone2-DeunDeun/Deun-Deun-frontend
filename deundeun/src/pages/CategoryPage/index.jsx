@@ -92,6 +92,7 @@ const CategoryPage = ({ match }) => {
 							? clubs.map((club) =>
 									club.dday > 0 ? (
 										<ClubListCard
+											key={club.clubId}
 											id={club.clubId}
 											clubName={club.clubName}
 											introduction={club.introduction}
@@ -105,6 +106,7 @@ const CategoryPage = ({ match }) => {
 							  )
 							: clubs.map((club) => (
 									<ClubListCard
+										key={club.clubId}
 										id={club.clubId}
 										clubName={club.clubName}
 										introduction={club.introduction}
