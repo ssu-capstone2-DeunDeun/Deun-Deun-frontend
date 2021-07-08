@@ -35,6 +35,7 @@ import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import { useLocation } from 'react-router-dom';
+import { validateLocaleAndSetLanguage } from '../../../node_modules/typescript/lib/typescript';
 registerLocale('ko', ko);
 
 const RecruitAddPage = ({
@@ -66,25 +67,27 @@ const RecruitAddPage = ({
 	const dispatch = useDispatch();
 	const history = useHistory();
 
+	let editorInstance = null;
+	let content = null;
+	let modifiedContent = null;
+
 	const times = [
 		setHours(setMinutes(new Date(), 1), 0),
 		setHours(setMinutes(new Date(), 5), 12),
 		setHours(setMinutes(new Date(), 59), 23)
 	];
 
-	const removeBase64 = () => {
-		let editorInstance = editorRef.current.getInstance();
-		let content = editorInstance.getMarkdown();
-		// console.log(content.match(/!\[.*\]\(data:image\/.*\)!/, '!'));
-		editorInstance.setMarkdown(content.replace(/!\[.*\]\(data:image\/.*\)!/, '!'));
-		editorInstance.insertText('\n');
-	};
-
 	const CustomDateInput = forwardRef(({ value, onClick }, ref) => (
 		<DateInputButton onClick={onClick} ref={ref}>
 			{value}
 		</DateInputButton>
 	));
+
+	const removeBase64 = () => {
+		editorInstance = editorRef.current.getInstance();
+		content = editorInstance.getMarkdown();
+		editorInstance.setMarkdown(content.replace(/!\[.*\]\(data:image\/.*\)!/, '!'), true);
+	};
 
 	const uploadImage = (blob) => {
 		setWhenState(true);
@@ -178,7 +181,7 @@ const RecruitAddPage = ({
 					},
 					clubName: clubName
 				};
-				// dispatch(addRecruit(data));
+
 				axios({
 					method: 'post',
 					url: `${API_BASE_URL}/clubs/${clubName}/recruits`,
@@ -196,14 +199,7 @@ const RecruitAddPage = ({
 	);
 
 	useEffect(() => {
-		return () => {
-			setAddNewForm(false);
-			dispatch(initializeState());
-		};
-	}, []);
-
-	useEffect(() => {
-		console.log(editorContent);
+		// console.log(editorContent);
 	}, [editorContent]);
 
 	useEffect(() => {
@@ -211,11 +207,9 @@ const RecruitAddPage = ({
 	}, []);
 
 	useEffect(() => {
-		window.onpopstate = (e) => {
-			if (location.pathname === '/club/manage/recruit/new') {
-				console.log(location.pathname);
-				console.log('back');
-			}
+		return () => {
+			setAddNewForm(false);
+			dispatch(initializeState());
 		};
 	}, []);
 
@@ -284,16 +278,6 @@ const RecruitAddPage = ({
 						customInput={<CustomDateInput />}
 						dateFormat="yyyy.MM.dd aa h:mm"
 					/>
-					{/* <Tilde>~</Tilde>
-					<DatePicker
-						locale="ko"
-						selected={deadline.submitEndDate}
-						onChange={onChangeSubmitEndDate}
-						showTimeSelect
-						injectTimes={times}
-						customInput={<CustomDateInput />}
-						dateFormat="yyyy.MM.dd aa h:mm"
-					/> */}
 				</ContainerRow>
 				<ContainerRow>
 					<RecruitInfo>면접 진행</RecruitInfo>
@@ -328,16 +312,6 @@ const RecruitAddPage = ({
 						customInput={<CustomDateInput />}
 						dateFormat="yyyy.MM.dd aa h:mm"
 					/>
-					{/* <Tilde>~</Tilde>
-					<DatePicker
-						locale="ko"
-						selected={deadline.finalPassEndDate}
-						onChange={onChangeFinalPassEndDate}
-						showTimeSelect
-						injectTimes={times}
-						customInput={<CustomDateInput />}
-						dateFormat="yyyy.MM.dd aa h:mm"
-					/> */}
 				</ContainerRow>
 			</ContainerColumn>
 			<TitleKorean style={{ marginBottom: '1.3em' }}>모집 내용</TitleKorean>
@@ -370,7 +344,7 @@ const RecruitAddPage = ({
 			/>
 			<ErrorMessage open={dateError} onCloseSnackbar={onCloseSnackbar} message="마감일은 시작일 이후여야 합니다." />
 			<Footer />
-			<Prompt
+			{/* <Prompt
 				when={whenState}
 				yes="확인"
 				no="취소"
@@ -379,7 +353,7 @@ const RecruitAddPage = ({
 						? true
 						: '작성 중인 정보가 모두 삭제됩니다. 정말 이동하시겠어요?';
 				}}
-			/>
+			/> */}
 		</ContainerColumn>
 	);
 };
