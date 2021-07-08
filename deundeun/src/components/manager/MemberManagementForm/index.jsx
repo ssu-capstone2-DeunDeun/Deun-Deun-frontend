@@ -4,14 +4,13 @@ import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { ApplicantInfoBlock, BasicBlock, ContentBlock, PopupBlock, RoleSetBlock, StyledTextarea } from './styles';
+import { ApplicantInfoBlock, AuthSetBlock, BasicBlock, ContentBlock, PopupBlock, RoleSetBlock, StyledTextarea } from './styles';
 
 import DropdownMenu from 'components/common/DropdownMenu/index';
 import DropdownMenuDot from 'components/common/DropdownMenuDot/index';
 import Button from 'components/common/Button/index';
 import { ErrorMessage } from 'components/register/RegisterInfoForm/styles';
 import { withRouter } from 'react-router-dom';
-
 
 const msgPopupClear = (event) => {
 	const t = document.getElementById("msgPopup");
@@ -31,6 +30,15 @@ const rolePopupMake = (event) => {
 	t.className = "rolePopupBlock";
 };
 
+const authPopupClear = (event) => {
+	const t = document.getElementById("authPopup");
+	t.className = "authDelete";
+};
+const authPopupMake = (event) => {
+	const t = document.getElementById("authPopup");
+	t.className = "authPopupBlock";
+};
+
 
 let sendMsgLists = [];  //닉네임 리스트
 let msgLists = [];     //이메일 리스트
@@ -41,7 +49,6 @@ const MemberInfo = ({ info }) => {
 
 	const [menuIndex, setMenuIndex] = useState(0);
 	const menu = ['멤버 정보 수정', '강제 퇴장'];
-
 
 	if (!sendMsgLists.includes(nickname) && click === true) {
 		sendMsgLists.push(nickname);
@@ -78,7 +85,6 @@ const MemberInfo = ({ info }) => {
 	);
 }
 
-
 const MemberManagementForm = ({
 	memberInfo,
 	clubName,
@@ -93,6 +99,7 @@ const MemberManagementForm = ({
 	onResetType,
 	history
 }) => {
+
 	const [unitIndex, setUnitIndex] = useState(0);
 	const unit = ['1기', '2기', '3기'];
 
@@ -102,10 +109,12 @@ const MemberManagementForm = ({
 	const [authIndex, setAuthIndex] = useState(0);
 	const auth = ['운영진', '멤버'];
 
-	const [click, setClick] = useState(false);
+	const [msgClick, setMsgClick] = useState(false);
+	const [roleClick, setRoleClick] = useState(false);
+	const [authClick, setAuthClick] = useState(false);
 
-	const [type, setType] = useState(null);
-	const [error, setError] = useState(false);
+	const [type, setType] = useState(null);      //message type 관리
+	const [error, setError] = useState(false);   //에러 메세지 상태 관리
 
 	return (
 		<BasicBlock>
@@ -123,18 +132,40 @@ const MemberManagementForm = ({
 						<div className="mainContentHeader">
 							<div className="skills">
 								<div className="message" onClick={() => {
-									setClick(!click);
+									setMsgClick(!msgClick);
 									msgPopupMake();
 									onChangeEmail(msgLists);
 								}}>
 									{
-										click === false ? <ImCheckboxUnchecked /> :
+										msgClick === false ? <ImCheckboxUnchecked /> :
 											<ImCheckboxChecked />
 									}
 								</div>
 								<div className="skill">메시지 보내기</div>
-								<div className="skill roleSet" onClick={() => rolePopupMake()}>역할 설정하기</div>
-								<div className="skill authSet" onClick={() => rolePopupMake()}>권한 설정하기</div>
+
+								<div className="message" onClick={() => {
+									setRoleClick(!roleClick);
+									rolePopupMake();
+									// onChangeEmail(msgLists);
+								}}>
+									{
+										roleClick === false ? <ImCheckboxUnchecked /> :
+											<ImCheckboxChecked />
+									}
+								</div>
+								<div className="skill roleSet">역할 변경하기</div>
+
+								<div className="message" onClick={() => {
+									setAuthClick(!authClick);
+									authPopupMake();
+									// onChangeEmail(msgLists);
+								}}>
+									{
+										authClick === false ? <ImCheckboxUnchecked /> :
+											<ImCheckboxChecked />
+									}
+								</div>
+								<div className="skill authSet">권한 변경하기</div>
 							</div>
 
 							<div className="func">
@@ -170,6 +201,7 @@ const MemberManagementForm = ({
 					</div>
 				</div>
 			</ContentBlock>
+
 			{/* 메시지 팝업창 */}
 			<PopupBlock >
 				<div id="msgPopup" className="msgDelete">
@@ -177,7 +209,7 @@ const MemberManagementForm = ({
 						<div>메세지 보내기</div>
 						<MdClose onClick={() => {
 							msgPopupClear();
-							setClick(!click);
+							setMsgClick(false);
 							onResetEmail();
 							onResetContent();
 							onResetType();
@@ -245,26 +277,46 @@ const MemberManagementForm = ({
 				</div>
 			</PopupBlock>
 
-			{/* 역할 권한 설정 팝업 */}
+			{/* 권한 설정 팝업 */}
 			<RoleSetBlock >
 				<div id="rolePopup" className="roleDelete">
 					<div className="rolePopupTitle">
-						<div>역할 / 권한 설정</div>
+						<div>역할 설정</div>
 						<MdClose onClick={() => {
 							rolePopupClear();
-							// window.location.reload();
-							// 해결해야한다.
+							setRoleClick(false);
 						}} />
 					</div>
-					<div className="addAuth">
+					<div className="addRole">
 						<AiOutlinePlusCircle />
-						<div> 새 권한 추가하기</div>
+						<div> 새 역할 추가하기</div>
 					</div>
 					<div className="roleSetBtn">
 						<Button applyManageBtn>저장하기</Button>
 					</div>
 				</div>
 			</RoleSetBlock>
+
+			{/* 권한 설정 팝업 */}
+			<AuthSetBlock >
+				<div id="authPopup" className="authDelete">
+					<div className="authPopupTitle">
+						<div>권한 설정</div>
+						<MdClose onClick={() => {
+							authPopupClear();
+							setAuthClick(false);
+						}} />
+					</div>
+					<div className="addAuth">
+						<AiOutlinePlusCircle />
+						<div> 새 권한 추가하기</div>
+					</div>
+					<div className="authSetBtn">
+						<Button applyManageBtn>저장하기</Button>
+					</div>
+				</div>
+			</AuthSetBlock>
+
 		</BasicBlock >
 	);
 };

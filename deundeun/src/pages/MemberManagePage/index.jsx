@@ -2,14 +2,10 @@ import MemberManagementForm from 'components/manager/MemberManagementForm';
 import { getClubs, sendAlarm } from 'lib/api/auth';
 import { getMemberInfo } from 'modules/memberManageInfo';
 import { initialValue, inputContentType, inputValue } from 'modules/sendMsgForm';
-import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 const MemberManagePage = () => {
-
 	const dispatch = useDispatch();
 	const [clubName, setClubName] = useState(null);
 	const { memberInfo, message, sendMsgForm } = useSelector(({ memberManageInfo, sendMsgForm }) => (
@@ -34,7 +30,6 @@ const MemberManagePage = () => {
 		clubName && dispatch(getMemberInfo(clubName))
 	}, [dispatch, clubName]);
 
-
 	const onChangeContent = (e) => {
 		dispatch(inputValue({ type: "message", value: e.target.value }))
 	}
@@ -52,10 +47,10 @@ const MemberManagePage = () => {
 	const onResetEmail = () => {
 		dispatch(inputValue({ type: "emails", value: [] }))
 	}
+
 	useEffect(() => {
 		dispatch(initialValue())
 	}, [dispatch]);
-
 
 	const sendEmail = () => {
 		sendAlarm(sendMsgForm);
@@ -70,16 +65,15 @@ const MemberManagePage = () => {
 			{ memberInfo && <MemberManagementForm
 				clubName={clubName}
 				memberInfo={memberInfo.getMemberInfo}
-
-				sendEmail={sendEmail}
+				message={message}
 				sendMsgForm={sendMsgForm}
 				onResetContent={onResetContent}
 				onResetEmail={onResetEmail}
 				onChangeEmail={onChangeEmail}
 				onChangeContent={onChangeContent}
-				message={message}
 				onChangeType={onChangeType}
 				onResetType={onResetType}
+				sendEmail={sendEmail}
 			/>}
 		</>
 
