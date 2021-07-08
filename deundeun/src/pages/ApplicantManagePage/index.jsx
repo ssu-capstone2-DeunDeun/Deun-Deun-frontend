@@ -8,7 +8,6 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
-
 const ApplicantManagePage = () => {
 	const dispatch = useDispatch();
 	const { getClub, recruits, applicants, message, sendMsgForm } = useSelector(({ currentApplyForm, sendMsgForm }) => ({
