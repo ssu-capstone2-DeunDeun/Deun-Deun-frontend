@@ -27,7 +27,7 @@ const ClubManagePostPage = ({ history }) => {
     useEffect(() => {
         dispatch(getClubInfo());
     }, [dispatch])
-
+    //
     // if (clubInfo) {
     //     const { clubName, likeCount } = clubInfo[0].clubResponseDto;
     // }
