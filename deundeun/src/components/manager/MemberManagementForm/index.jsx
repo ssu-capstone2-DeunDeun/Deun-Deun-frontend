@@ -9,6 +9,8 @@ import { ApplicantInfoBlock, BasicBlock, ContentBlock, PopupBlock, RoleSetBlock,
 import DropdownMenu from 'components/common/DropdownMenu/index';
 import DropdownMenuDot from 'components/common/DropdownMenuDot/index';
 import Button from 'components/common/Button/index';
+import { ErrorMessage } from 'components/register/RegisterInfoForm/styles';
+import { withRouter } from 'react-router-dom';
 
 
 const msgPopupClear = (event) => {
@@ -30,8 +32,8 @@ const rolePopupMake = (event) => {
 };
 
 
-let sendMsgLists = [];
-let msgLists = [];
+let sendMsgLists = [];  //닉네임 리스트
+let msgLists = [];     //이메일 리스트
 
 const MemberInfo = ({ info }) => {
 	const { nickname, userId, email, positionName, generation, admin } = info;
@@ -46,9 +48,10 @@ const MemberInfo = ({ info }) => {
 		msgLists.push(email);
 	}
 	if (sendMsgLists.includes(nickname) && click === false) {
-		sendMsgLists.pop(nickname);
-		msgLists.pop(email);
+		sendMsgLists = sendMsgLists.filter(value => value !== nickname);
+		msgLists = msgLists.filter(value => value !== email);
 	}
+
 	return (
 		<ApplicantInfoBlock>
 			{
@@ -76,7 +79,20 @@ const MemberInfo = ({ info }) => {
 }
 
 
-const MemberManagementForm = ({ memberInfo, clubName }) => {
+const MemberManagementForm = ({
+	memberInfo,
+	clubName,
+	sendEmail,
+	sendMsgForm,
+	onResetContent,
+	onResetEmail,
+	onChangeEmail,
+	onChangeContent,
+	message,
+	onChangeType,
+	onResetType,
+	history
+}) => {
 	const [unitIndex, setUnitIndex] = useState(0);
 	const unit = ['1기', '2기', '3기'];
 
@@ -87,6 +103,9 @@ const MemberManagementForm = ({ memberInfo, clubName }) => {
 	const auth = ['운영진', '멤버'];
 
 	const [click, setClick] = useState(false);
+
+	const [type, setType] = useState(null);
+	const [error, setError] = useState(false);
 
 	return (
 		<BasicBlock>
@@ -106,6 +125,7 @@ const MemberManagementForm = ({ memberInfo, clubName }) => {
 								<div className="message" onClick={() => {
 									setClick(!click);
 									msgPopupMake();
+									onChangeEmail(msgLists);
 								}}>
 									{
 										click === false ? <ImCheckboxUnchecked /> :
@@ -156,32 +176,71 @@ const MemberManagementForm = ({ memberInfo, clubName }) => {
 					<div className="msgPopupTitle">
 						<div>메세지 보내기</div>
 						<MdClose onClick={() => {
-							msgPopupClear(); setClick(!click);
-							// window.location.reload();
-							// // 해결해야한다.
+							msgPopupClear();
+							setClick(!click);
+							onResetEmail();
+							onResetContent();
+							onResetType();
+							setType(null);
+							setError(false);
 						}} />
 					</div>
 
 					<div className="kind">종류</div>
 					<div className="kindItem">
-						<ImCheckboxUnchecked />
-						<div>SMS</div>
-						<ImCheckboxUnchecked />
+						{/* <ImCheckboxUnchecked />
+						<div>SMS</div> */}
+						<ImCheckboxChecked />
 						<div>E-mail</div>
+					</div>
+					<div className="kind">메세지 형식</div>
+					<div className="kindItem">
+						{
+							type === 1 ? <ImCheckboxChecked onClick={() => { setType(null); onChangeType(""); }} /> :
+								<ImCheckboxUnchecked onClick={() => { setType(1); onChangeType("INTERVIEW"); }} />
+						}
+						<div>1차 합격</div>
+						{
+							type === 2 ? <ImCheckboxChecked onClick={() => { setType(null); onChangeType(""); }} /> :
+								<ImCheckboxUnchecked onClick={() => { setType(2); onChangeType("FAIL"); }} />
+						}
+						<div>1차 탈락</div>
+						{
+							type === 3 ? <ImCheckboxChecked onClick={() => { setType(null); onChangeType(""); }} /> :
+								<ImCheckboxUnchecked onClick={() => { setType(3); onChangeType("PASS"); }} />
+						}
+						<div>최종 합격</div>
+						{
+							type === 4 ? <ImCheckboxChecked onClick={() => { setType(null); onChangeType(""); }} /> :
+								<ImCheckboxUnchecked onClick={() => { setType(4); onChangeType("FAIL"); }} />
+						}
+						<div>최종 탈락</div>
 					</div>
 					<div className="receiver">받는 사람</div>
 					<div className="receiverIist">
 						{
-							sendMsgLists.map(sendMsgList => <button id={sendMsgList}>{sendMsgList.nickname}({sendMsgList.id} )<MdClose /></button>)
+							sendMsgLists.map(sendMsgList => <button id={sendMsgList}>{sendMsgList}</button>)
 						}
 					</div>
 					<div className="content">
 						<div>내용</div>
-						<StyledTextarea placeholder="내용을 입력하세요." ></StyledTextarea>
+						<StyledTextarea placeholder="내용을 입력하세요." onChange={onChangeContent}></StyledTextarea>
+						{error && <ErrorMessage>*모든 값을 입력하세요.</ErrorMessage>}
 					</div>
 
 					<div className="msgSubmitBtn">
-						<Button applyManageBtn>전송하기</Button>
+						<Button applyManageBtn
+							onClick={(e) => {
+								if (sendMsgLists.length !== 0 && sendMsgForm.contentType !== "" && sendMsgForm.message !== "") {
+									sendEmail();
+									msgPopupClear();
+									history.push("/applicant/message/success");
+								}
+								else {
+									setError(true);
+								}
+							}}
+						>전송하기</Button>
 					</div>
 				</div>
 			</PopupBlock>
@@ -210,4 +269,4 @@ const MemberManagementForm = ({ memberInfo, clubName }) => {
 	);
 };
 
-export default MemberManagementForm;
+export default withRouter(MemberManagementForm);

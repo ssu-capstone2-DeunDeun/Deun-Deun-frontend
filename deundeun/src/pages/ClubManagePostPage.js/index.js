@@ -23,7 +23,6 @@ const ClubManagePostPage = ({ history }) => {
         }
     }, [clubInfo, dispatch]);
 
-
     useEffect(() => {
         dispatch(getClubInfo());
     }, [dispatch])

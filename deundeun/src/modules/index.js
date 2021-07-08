@@ -17,6 +17,7 @@ import likePost, { likePostSaga } from './likePost';
 import currentApplyForm, { currentApplySaga } from './currentApplyForm';
 import sendMsgForm from './sendMsgForm';
 import memberManageInfo, { memberManageSaga } from './memberManageInfo';
+import currentMemberForm, { currentMemberSaga } from './currentMemberForm';
 
 const rootReducer = combineReducers({
 	currentUserInfo,
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
 	currentApplyForm,
 	sendMsgForm,
 	memberManageInfo,
+	currentMemberForm,
 });
 
 
@@ -54,6 +56,7 @@ export function* rootSaga() {
 		currentApplySaga(),
 		recruitAddSaga(),
 		memberManageSaga(),
+		currentMemberSaga(),
 	]);
 }
 
