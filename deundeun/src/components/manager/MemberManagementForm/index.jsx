@@ -234,7 +234,7 @@ const MemberManagementForm = ({
 								if (sendMsgLists.length !== 0 && sendMsgForm.contentType !== "" && sendMsgForm.message !== "") {
 									sendEmail();
 									msgPopupClear();
-									history.push("/applicant/message/success");
+									history.push("/member/message/success");
 								}
 								else {
 									setError(true);

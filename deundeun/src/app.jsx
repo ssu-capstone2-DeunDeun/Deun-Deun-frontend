@@ -118,7 +118,11 @@ const App = () => {
 			</Route>
 			<Route exact path="/applicant/message/success">
 				<HeaderContainer />
-				<SendMsgSuccess />
+				<SendMsgSuccess applicant />
+			</Route>
+			<Route exact path="/member/message/success">
+				<HeaderContainer />
+				<SendMsgSuccess member />
 			</Route>
 			<Route exact path="/apply/success">
 				<HeaderContainer />
