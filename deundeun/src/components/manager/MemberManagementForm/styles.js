@@ -64,17 +64,10 @@ export const ContentBlock = styled.div`
                         }
                     }
                     .skill{
-                        text-decoration:underline;
                         margin-right:17.5px;
                         font-size:14px;
                         font-weight:bold;
                         color:#282828;
-                    }
-                    .roleSet{
-                        cursor:pointer;
-                    }
-                    .authSet{
-                        cursor:pointer;
                     }
                 }
 
@@ -138,6 +131,8 @@ export const ApplicantInfoBlock = styled.div`
     .userInfo{
         display:flex;
         align-items:center;
+        
+        //나중에 지워도 상관 없음
         .userImg{
             width:30px;
             height:30px;
@@ -260,7 +255,7 @@ export const PopupBlock = styled.div`
             }
         }
         .content{
-            font-weight:bold;
+            font-weight:bold; 
             margin-top:20px;
             height:270px;
         }
@@ -275,7 +270,7 @@ export const StyledTextarea = styled.textarea`
     width:688px;
     height:188px;
     margin-top:15px;
-    margin-bottom:38px;
+    margin-bottom:0;
     font-size:14px;
     border:none;
     background-color:#f7f7f7;

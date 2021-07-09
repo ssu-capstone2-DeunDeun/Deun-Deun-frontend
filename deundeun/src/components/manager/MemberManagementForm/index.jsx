@@ -66,10 +66,10 @@ const MemberInfo = ({ info }) => {
 					<ImCheckboxChecked onClick={() => setClick(!click)} />
 			}
 			<div className="userInfo">
-				<div className="userImg"></div>
-				<div className="nickname">{nickname} ({userId}기)</div>
+				{/* <div className="userImg"></div> */}
+				<div className="nickname">{nickname}</div>
 			</div>
-			{/* <div className="phoneNumber">{userId}기 </div> */}
+			{/* <div className="phoneNumber"></div> */}
 			<div className="email">{email}</div>
 			<div className="unit">{generation}기</div>
 			<div className="role">{positionName}</div>
@@ -153,7 +153,7 @@ const MemberManagementForm = ({
 											<ImCheckboxChecked />
 									}
 								</div>
-								<div className="skill roleSet">역할 변경하기</div>
+								<div className="skill">역할 변경하기</div>
 
 								<div className="message" onClick={() => {
 									setAuthClick(!authClick);
@@ -165,7 +165,7 @@ const MemberManagementForm = ({
 											<ImCheckboxChecked />
 									}
 								</div>
-								<div className="skill authSet">권한 변경하기</div>
+								<div className="skill">권한 변경하기</div>
 							</div>
 
 							<div className="func">

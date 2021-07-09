@@ -63,17 +63,6 @@ export const buttonStyle = css`
     }
 
     ${props =>
-        props.applyManageBtn &&
-        css`
-            background-color:#1f1f1f;
-            font-size:14px;
-            padding:15px 73px 16px;
-            width:198px;
-            height:51px;
-        `
-    }
-
-    ${props =>
         props.postBtn1 &&
         css`
             background-color:#63e6be;
@@ -83,9 +72,9 @@ export const buttonStyle = css`
             width:300px;
             height:66px;
         `
-    }   
+    }
 
-    ${props =>
+${props =>
         props.postBtn2 &&
         css`
             background-color:#a2a2a2;
@@ -96,8 +85,8 @@ export const buttonStyle = css`
             height:66px;
             margin-left : 12px;
         `
-    }   
-    ${props =>
+    }
+${props =>
         props.removeBtn1 &&
         css`
             background-color:#63e6be;
@@ -107,9 +96,9 @@ export const buttonStyle = css`
             width:140px;
             height:40px;
         `
-    }   
+    }
 
-    ${props =>
+${props =>
         props.removeBtn2 &&
         css`
             background-color:#a2a2a2;
@@ -120,13 +109,13 @@ export const buttonStyle = css`
             height:40px;
             margin-left : 12px;
         `
-    }   
+    }
 `;
 
 export const StyledLink = styled(Link)`
-    ${buttonStyle}
+${buttonStyle}
 `;
 
 export const StyledButton = styled.button`
-    ${buttonStyle}
+${buttonStyle}
 `;
