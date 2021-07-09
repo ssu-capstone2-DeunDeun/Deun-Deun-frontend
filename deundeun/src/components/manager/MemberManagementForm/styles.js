@@ -321,11 +321,40 @@ export const RoleSetBlock = styled.div`
             justify-content:flex-end;
             font-size:14px;
             color:#b5b5b5;
+            font-weight:400;
+            cursor:pointer;
             margin-bottom:11.5px;
             svg{
                 margin-right:6px;
             }
+            &:hover{
+                color:#282828;
+            }
         }
+        
+        .kind{
+            font-size:15px;
+            font-weight:900;
+            margin-bottom:11px;
+        }
+        .kindItem{
+            display:flex;
+            align-items:center;
+            font-weight:bold;
+            margin-bottom:21px;
+            
+            svg{
+                margin-right:10px;
+                width:18px;
+                height:18px;
+                opacity:0.2;
+            }
+            div{
+                margin-right:20px;
+                font-size:14px;
+            }
+        }
+
         .roleSetBtn{
             text-align:center;
         }
@@ -382,6 +411,76 @@ export const AuthSetBlock = styled.div`
             }
         }
         .authSetBtn{
+            text-align:center;
+        }
+    }
+    
+`;
+
+
+
+export const AddRoleBlock = styled.div`
+    .addRoleDelete{
+        display:none;
+    }
+
+    .addRolePopupBlock{
+        width:600px;
+        height:310px;
+        position:absolute;
+        box-shadow:15px 15px 30px 0 rgba(0,0,0,0.16);
+        margin:auto;
+        right:0;
+        left:0;
+        top:0%;
+        bottom:0;
+        z-index:100;
+        background-color:#ffffff;
+        padding:38px 40.5px 49px 44px;
+        color:#282828;
+
+        .addRolePopupTitle{
+            font-size:25px;
+            font-weight:900;
+            color:#282828;
+            margin-bottom:36px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            svg{
+                opacity :0.3;
+                width:25px;
+                height:25px;
+                &:hover{
+                    opacity:0.7;
+                }
+            }
+        }
+        .addRole{
+            height:100px;
+            .addRoleInfo{
+                display:flex;
+                align-items:center;
+                font-size:20px;
+                
+                .addRoleTit{
+                    margin-right:20px;
+                }
+                input{
+                    padding:5px;
+                    padding-left:10px;
+                    border:2px solid #808080;
+                    border-radius:5px;
+                    outline:none;
+                    height:40px;
+
+                    &:focus{
+                        border:2px solid black;
+                    }
+                }
+            }
+        }
+        .addRoleSetBtn{
             text-align:center;
         }
     }

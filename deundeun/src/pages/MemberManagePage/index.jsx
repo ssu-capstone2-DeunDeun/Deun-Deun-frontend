@@ -1,6 +1,6 @@
 import MemberManagementForm from 'components/manager/MemberManagementForm';
 import { getClubs, sendAlarm } from 'lib/api/auth';
-import { addClubPosition, getClubPositions } from 'modules/manageMemberPosition';
+import { addClubPosition, deleteClubPosition, getClubPositions, updateClubPosition } from 'modules/manageMemberPosition';
 import { getMemberInfo } from 'modules/memberManageInfo';
 import { initialValue, inputContentType, inputValue } from 'modules/sendMsgForm';
 import React, { useState, useEffect } from 'react';
@@ -75,6 +75,21 @@ const MemberManagePage = () => {
 		}));
 	}
 
+	const deleteClubPos = (positionId) => {
+		dispatch(deleteClubPosition(positionId))
+	};
+
+	const updateClubPos = (positionName, positionId) => {
+		const value = {
+			positionId,
+			clubPositionRequestDto: {
+				clubId: `${sendMsgForm.clubId}`,
+				positionName,
+			}
+		}
+		dispatch(updateClubPosition(value));
+	}
+
 	return (
 		<>
 			{
@@ -93,6 +108,8 @@ const MemberManagePage = () => {
 					sendEmail={sendEmail}
 					clubPositions={clubPositions}
 					addClubPos={addClubPos}
+					deleteClubPos={deleteClubPos}
+					updateClubPos={updateClubPos}
 				/>
 			}
 		</>

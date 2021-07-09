@@ -61,6 +61,29 @@ export const buttonStyle = css`
             height:51px;
         `
     }
+    ${props =>
+        props.addRoleBtn1 &&
+        css`
+            background-color:#1f1f1f;
+            font-size:14px;
+            padding:15px 73px 16px;
+            padding:0;
+            width:198px;
+            height:51px;
+            margin-right :10px;
+        `
+    }
+    ${props =>
+        props.addRoleBtn2 &&
+        css`
+            background-color:#1f1f1f;
+            font-size:14px;
+            padding:15px 73px 16px;
+            width:198px;
+            height:51px;
+        `
+    }
+
 
     ${props =>
         props.postBtn1 &&

@@ -4,12 +4,12 @@ import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { ApplicantInfoBlock, AuthSetBlock, BasicBlock, ContentBlock, PopupBlock, RoleSetBlock, StyledTextarea } from './styles';
+import { AddRoleBlock, ApplicantInfoBlock, AuthSetBlock, BasicBlock, ContentBlock, PopupBlock, RoleSetBlock, StyledTextarea } from './styles';
 
 import DropdownMenu from 'components/common/DropdownMenu/index';
 import DropdownMenuDot from 'components/common/DropdownMenuDot/index';
 import Button from 'components/common/Button/index';
-import { ErrorMessage } from 'components/register/RegisterInfoForm/styles';
+import { ErrorMessage, StyledInput } from 'components/register/RegisterInfoForm/styles';
 import { withRouter } from 'react-router-dom';
 
 const msgPopupClear = (event) => {
@@ -37,6 +37,16 @@ const authPopupClear = (event) => {
 const authPopupMake = (event) => {
 	const t = document.getElementById("authPopup");
 	t.className = "authPopupBlock";
+};
+
+
+const addRolePopupClear = (event) => {
+	const t = document.getElementById("addRolePopup");
+	t.className = "addRoleDelete";
+};
+const addRolePopupMake = (event) => {
+	const t = document.getElementById("addRolePopup");
+	t.className = "addRolePopupBlock";
 };
 
 
@@ -99,6 +109,9 @@ const MemberManagementForm = ({
 	onResetType,
 	history,
 	clubPositions,
+	addClubPos,
+	deleteClubPos,
+	updateClubPos,
 }) => {
 
 	const [unitIndex, setUnitIndex] = useState(0);
@@ -117,6 +130,7 @@ const MemberManagementForm = ({
 	const [type, setType] = useState(null);      //message type 관리
 	const [error, setError] = useState(false);   //에러 메세지 상태 관리
 
+	const [addValue, setAddValue] = useState("");
 	return (
 		<BasicBlock>
 			<ContentBlock>
@@ -288,10 +302,28 @@ const MemberManagementForm = ({
 							setRoleClick(false);
 						}} />
 					</div>
-					<div className="addRole">
+					<div className="addRole" onClick={addRolePopupMake}>
 						<AiOutlinePlusCircle />
 						<div> 새 역할 추가하기</div>
 					</div>
+
+					<div className="kind">역할 리스트</div>
+					<div className="kindItem">
+						{
+							clubPositions && (clubPositions.length !== 0 ? (
+								clubPositions.map((value, index) =>
+									<>
+										<ImCheckboxUnchecked />
+										<div>{value.positionName}</div>
+									</>
+								)
+							) :
+								(
+									<div>*현재 등록된 역할이 없습니다.</div>
+								))
+						}
+					</div>
+
 					<div className="roleSetBtn">
 						<Button applyManageBtn>저장하기</Button>
 					</div>
@@ -317,6 +349,38 @@ const MemberManagementForm = ({
 					</div>
 				</div>
 			</AuthSetBlock>
+
+			{/* 역할 추가 설정 팝업 */}
+			<AddRoleBlock >
+				<div id="addRolePopup" className="addRoleDelete">
+					<div className="addRolePopupTitle">
+						<div>새 역할 추가하기</div>
+						<MdClose onClick={() => {
+							addRolePopupClear();
+							setError(false);
+							setAddValue("");
+						}} />
+					</div>
+					<div className="addRole">
+						<div class="addRoleInfo">
+							<div className="addRoleTit">역할 이름*</div>
+							<input value={addValue} onChange={(e) => setAddValue(e.target.value)} className="addRoleInput" />
+						</div>
+						{error && <ErrorMessage>*모든 값을 입력하세요.</ErrorMessage>}
+					</div>
+					<div className="addRoleSetBtn">
+						<Button addRoleBtn1 onClick={() => {
+							setError(true);
+						}}>적용하기</Button>
+						<Button addRoleBtn2 onClick={() => {
+							addRolePopupClear();
+							setError(false);
+							setAddValue("");
+						}
+						}>취소하기</Button>
+					</div>
+				</div>
+			</AddRoleBlock>
 
 		</BasicBlock >
 	);

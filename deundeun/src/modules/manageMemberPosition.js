@@ -20,6 +20,7 @@ const [UPDATE_CLUB_POSITION, UPDATE_CLUB_POSITION_SUCCESS, UPDATE_CLUB_POSITION_
 // const [DELETE_PARTICIPATE_POSITIONS, DELETE_PARTICIPATE_POSITIONS_SUCCESS, DELETE_PARTICIPATE_POSITIONS_FAILURE] = createRequestActionType('manageMemberPosition/DELETE_PARTICIPATE_POSITIONS');
 const [ASSIGN_PARTICIPATE_POSITIONS, ASSIGN_PARTICIPATE_POSITIONS_SUCCESS, ASSIGN_PARTICIPATE_POSITIONS_FAILURE] = createRequestActionType('manageMemberPosition/ASSIGN_PARTICIPATE_POSITIONS')
 
+
 export const getClubPositions = createAction(GET_CLUB_POSITIONS);
 export const addClubPosition = createAction(ADD_CLUB_POSITION);
 export const deleteClubPosition = createAction(DELETE_CLUB_POSITION);
@@ -44,6 +45,7 @@ export function* manageMemberPositionSaga() {
 const initialState = {
     clubPositions: null,
     clubPositionsError: null,
+    addPositionValue: null,
 }
 
 const manageMemberPosition = handleActions(
