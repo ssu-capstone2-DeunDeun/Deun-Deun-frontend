@@ -1,24 +1,6 @@
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import client from './client';
 
-
-// export const getApplyForms = (clubName) =>
-//     client.get(API_BASE_URL + `/clubs/${clubName}/forms`, {
-//         headers: {
-//             Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
-//         }
-//     });
-
-
-// export const getParticipates = (clubName) =>
-//     client.get(API_BASE_URL + `/participates/club?clubName=${clubName}`, {
-//         headers: {
-//             Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
-//         }
-//     });
-
-
-
 //해당 클럽의 모든 역할을 불러오는 것
 export const getClubPositions = (clubName) =>
     client.get(API_BASE_URL + `/positions?clubName=${clubName}`, {
@@ -53,7 +35,7 @@ export const updateClubPosition = ({ body }) =>
         }
     });
 
-
+// -------------------------------------------------------------------------------------------------
 
 //해당 클럽의 멤버의 역할을 삭제하는 것
 export const deleteParticipateClubPositions = (positionChangeDto) =>
@@ -66,8 +48,8 @@ export const deleteParticipateClubPositions = (positionChangeDto) =>
 
 
 //해당 클럽의 멤버의 역할을 할당하는 것
-export const deleteParticipateClubPositions = (positionChangeDto) =>
-    client.delete(API_BASE_URL + 'positions/participates', positionChangeDto, {
+export const assignParticipateClubPositions = (positionChangeDto) =>
+    client.patch(API_BASE_URL + 'positions/participates', positionChangeDto, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
         }
