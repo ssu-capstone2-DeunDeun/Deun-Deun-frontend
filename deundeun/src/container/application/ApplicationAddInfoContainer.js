@@ -6,7 +6,7 @@ import applicationAddInfo, {
 } from 'modules/applicationAddInfo';
 import ApplicationAddPage from 'pages/ApplicationAddPage/index';
 import { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import axios from '../../../node_modules/axios/index';
 

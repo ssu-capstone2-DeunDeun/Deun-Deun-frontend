@@ -11,10 +11,9 @@ import { useDispatch } from 'react-redux';
 import { getClubInfo, getUserInfo } from 'modules/currentUserInfo';
 const ClubHome = () => {
 	const { getHome } = useSelector(({ initHomePage }) => ({
-		getHome: initHomePage.getHome,
-	}))
+		getHome: initHomePage.getHome
+	}));
 	const dispatch = useDispatch();
-
 
 	let popularClubDtos = null;
 	let popularPostDtos = null;
@@ -28,8 +27,7 @@ const ClubHome = () => {
 	useEffect(() => {
 		dispatch(getUserInfo());
 		dispatch(getClubInfo());
-	}, [dispatch])
-
+	}, [dispatch]);
 
 	return (
 		<>
@@ -47,4 +45,3 @@ const ClubHome = () => {
 };
 
 export default ClubHome;
-

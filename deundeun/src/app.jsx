@@ -13,6 +13,8 @@ import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileMod
 import RecruitAddInfoContainer from 'container/recruit/RecruitAddInfoContainer';
 import ApplicationAddInfoContainer from 'container/application/ApplicationAddInfoContainer';
 import SideBar from '../src/components/common/SideBar';
+import SendMsgSuccess from 'components/SendMsgSuccess/index';
+import { ACCESS_TOKEN } from 'constants/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryPage = loadable(() => import('pages/CategoryPage'));
@@ -51,9 +53,10 @@ const MemberManagePage = loadable(() => import('pages/MemberManagePage'));
 
 const App = () => {
 	let location = useLocation();
-	useEffect(() => {
-		// console.log(location.pathname);
-	}, [location]);
+
+	const [user, setUser] = useState(false);
+
+	useEffect(() => {}, [location]);
 
 	return (
 		//
@@ -62,81 +65,85 @@ const App = () => {
 				<Redirect to="/home" />
 			</Route>
 			<Route exact path="/home">
-				<HeaderContainer />
+				<HeaderContainer setUser={setUser} />
 				<ContainerRow>
-					<SideBar location={location} />
+					<SideBar user={user} location={location} />
 					<ClubHomePage />
 				</ContainerRow>
 			</Route>
 			<Route path="/post/all" exact>
-				<HeaderContainer />
+				<HeaderContainer setUser={setUser} />
 				<ContainerRow>
-					<SideBar location={location} />
+					<SideBar user={user} location={location} />
 					<PostAllPage />
 				</ContainerRow>
 			</Route>
 			<Route path="/club/category/:categoryType">
-				<HeaderContainer />
+				<HeaderContainer setUser={setUser} />
 				<ContainerRow>
-					<SideBar location={location} />
+					<SideBar user={user} location={location} />
 					<CategoryPage />
 				</ContainerRow>
 			</Route>
 			<Route path="/mypage/:name">
-				<HeaderContainer />
+				<HeaderContainer setUser={setUser} />
 				<ContainerRow>
-					<SideBar location={location} />
+					<SideBar user={user} location={location} />
 					<MyPage />
 				</ContainerRow>
 			</Route>
 			<Route path="/club/manage/:name">
-				<HeaderContainer />
+				<HeaderContainer setUser={setUser} />
 				<ContainerRow>
-					<SideBar location={location} />
+					<SideBar user={user} location={location} />
 					<ClubManagePage location={location} />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/add">
-				<HeaderContainer />
+				<HeaderContainer setUser={setUser} />
 				<ContainerRow>
-					<SideBar location={location} />
+					<SideBar user={user} location={location} />
 					<ClubAddInfoContainer />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/club/add/success">
-				<HeaderContainer />
+				<HeaderContainer setUser={setUser} />
 				<ClubAddSuccessPage />
 			</Route>
 			<Route exact path="/application/success">
-				<HeaderContainer />
+				<HeaderContainer setUser={setUser} />
 				<ApplicationSuccessPage />
 			</Route>
+			<Route exact path="/applicant/message/success">
+				<HeaderContainer setUser={setUser} />
+				<SendMsgSuccess />
+			</Route>
 			<Route exact path="/apply/success">
-				<HeaderContainer />
+				<HeaderContainer setUser={setUser} />
 				<ApplySuccessPage />
 			</Route>
 			<Route exact path="/recruit/success">
-				<HeaderContainer />
+				<HeaderContainer setUser={setUser} />
 				<RecruitSuccessPage />
 			</Route>
 			<Route exact path="/application/:clubName/:id">
-				<HeaderContainer />
+				<HeaderContainer setUser={setUser} />
 				<ContainerRow>
-					<SideBar location={location} />
+					<SideBar user={user} location={location} />
 					<ApplicationOverviewPage />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/application/:clubName/:id/modify">
-				<HeaderContainer />
+				<HeaderContainer setUser={setUser} />
 				<ContainerRow>
-					<SideBar location={location} />
+					<SideBar user={user} location={location} />
 					<ApplicationModifyPage />
 				</ContainerRow>
 			</Route>
 			<Route exact path="/recruit/:id/modify">
-				<HeaderContainer />
+				<HeaderContainer setUser={setUser} />
 				<ContainerRow>
-					<SideBar location={location} />
+					<SideBar user={user} location={location} />
 					<RecruitModifyPage />
 				</ContainerRow>
 			</Route>
@@ -178,7 +185,7 @@ const ClubManagePage = ({ location }) => {
 	const { name } = useParams();
 	const [addNewApplication, setAddNewApplication] = useState(false);
 	const [addNewRecruit, setAddNewRecruit] = useState(false);
-	const history = useHistory();
+
 	useEffect(() => {
 		return () => {
 			setAddNewApplication(false);

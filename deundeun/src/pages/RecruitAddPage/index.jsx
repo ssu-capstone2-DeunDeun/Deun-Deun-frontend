@@ -34,8 +34,7 @@ import axios from '../../../node_modules/axios/index';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
-import { useLocation } from 'react-router-dom';
-import { validateLocaleAndSetLanguage } from '../../../node_modules/typescript/lib/typescript';
+
 registerLocale('ko', ko);
 
 const RecruitAddPage = ({
@@ -158,6 +157,7 @@ const RecruitAddPage = ({
 	const onSubmit = useCallback(
 		(e) => {
 			e.preventDefault();
+			console.log('qefqe');
 			if (formError || titleError || generationError) {
 				window.scrollTo(0, 0);
 				console.log(formError, titleError, generationError);

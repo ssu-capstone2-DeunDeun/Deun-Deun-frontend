@@ -112,26 +112,13 @@ const ApplicationAddPage = ({
 	}, []);
 
 	useEffect(() => {
-		console.log(questionList);
+		// console.log(questionList);
 	}, [questionList]);
 
 	useEffect(() => {
 		return () => {
 			setAddNewForm(false);
 			dispatch(initializeQuestion());
-		};
-	}, []);
-
-	useEffect(() => {
-		window.onpopstate = (e) => {
-			// if (location.pathname === '/club/manage/application/new') {
-			// 	console.log(location.pathname);
-			// 	console.log('back');
-			// 	return () => {
-			// 		<Redirect to="/club/manage/application" />;
-			// 	};
-			// }
-			// console.log('back');
 		};
 	}, []);
 

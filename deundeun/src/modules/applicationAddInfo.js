@@ -4,6 +4,7 @@ import * as authAPI from '../lib/api/auth';
 import { takeLatest } from 'redux-saga/effects';
 import createRequestSaga from 'lib/createRequestSaga';
 import { createRequestActionType } from 'lib/createRequestActionTypes';
+
 const CHANGE_INPUT = 'applicationAddInfo/CHANGE_INPUT';
 const ADD_QUESTION = 'applicationAddInfo/ADD_QUESTION';
 const ADD_CHOICE = 'applicationAddInfo/ADD_CHOICE';
