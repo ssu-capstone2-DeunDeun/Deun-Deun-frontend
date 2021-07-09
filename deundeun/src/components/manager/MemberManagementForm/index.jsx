@@ -356,9 +356,9 @@ const MemberManagementForm = ({
 					<div className="addRolePopupTitle">
 						<div>새 역할 추가하기</div>
 						<MdClose onClick={() => {
-							addRolePopupClear();
-							setError(false);
 							setAddValue("");
+							setError(false);
+							addRolePopupClear();
 						}} />
 					</div>
 					<div className="addRole">
@@ -369,8 +369,15 @@ const MemberManagementForm = ({
 						{error && <ErrorMessage>*모든 값을 입력하세요.</ErrorMessage>}
 					</div>
 					<div className="addRoleSetBtn">
-						<Button addRoleBtn1 onClick={() => {
-							setError(true);
+						<Button addRoleBtn1 onClick={(e) => {
+							if (addValue.length === 0) {
+								setError(true);
+							}
+							else {
+								addRolePopupClear();
+								setError(false);
+								addClubPos(addValue);
+							}
 						}}>적용하기</Button>
 						<Button addRoleBtn2 onClick={() => {
 							addRolePopupClear();
