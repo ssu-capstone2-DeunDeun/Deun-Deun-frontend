@@ -18,7 +18,6 @@ export function* currentClubPostListSaga() {
 const initialState = {
     getClubsPosts: null,
     getClubsPostsError: null,
-
 }
 
 const currentClubPostList = handleActions(

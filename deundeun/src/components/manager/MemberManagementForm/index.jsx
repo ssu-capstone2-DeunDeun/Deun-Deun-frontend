@@ -97,7 +97,8 @@ const MemberManagementForm = ({
 	message,
 	onChangeType,
 	onResetType,
-	history
+	history,
+	clubPositions,
 }) => {
 
 	const [unitIndex, setUnitIndex] = useState(0);
