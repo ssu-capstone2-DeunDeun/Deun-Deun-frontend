@@ -4,7 +4,7 @@ import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { AddRoleBlock, ApplicantInfoBlock, AuthSetBlock, BasicBlock, ContentBlock, PopupBlock, RoleSetBlock, StyledTextarea } from './styles';
+import { AddRoleBlock, AddRoleModal, ApplicantInfoBlock, AuthSetBlock, BasicBlock, ContentBlock, DeleteModal, ModalBox, PopupBlock, RoleSetBlock, StyledTextarea } from './styles';
 
 import DropdownMenu from 'components/common/DropdownMenu/index';
 import DropdownMenuDot from 'components/common/DropdownMenuDot/index';
@@ -49,6 +49,19 @@ const addRolePopupMake = (event) => {
 	const t = document.getElementById("addRolePopup");
 	t.className = "addRolePopupBlock";
 };
+
+const deleteRolePopupClear = (event) => {
+	const t = document.getElementById("modalId");
+	t.className = "delete";
+};
+const deleteRolePopupMake = (event) => {
+	const t = document.getElementById("modalId");
+	t.className = "make";
+};
+
+
+
+
 
 
 let sendMsgLists = [];  //닉네임 리스트
@@ -132,6 +145,9 @@ const MemberManagementForm = ({
 	const [error, setError] = useState(false);   //에러 메세지 상태 관리
 
 	const [addValue, setAddValue] = useState("");
+
+	const [deletePosId, setDeletePosId] = useState(null); //삭제한 positionId 저장
+	const [deletePosName, setDeletePosName] = useState(null); //삭제한 positionName 저장
 	return (
 		<BasicBlock>
 			<ContentBlock>
@@ -316,7 +332,11 @@ const MemberManagementForm = ({
 									<>
 										<ImCheckboxUnchecked />
 										<div className="posInfo">{value.positionName}</div>
-										<div className="delIcon"><RiDeleteBinLine onClick={() => deleteClubPos(value.positionId)} /></div>
+										<div className="delIcon"><RiDeleteBinLine onClick={() => {
+											deleteRolePopupMake();
+											setDeletePosId(value.positionId);
+											setDeletePosName(value.positionName);
+										}} /></div>
 									</>
 								)
 							) :
@@ -391,6 +411,24 @@ const MemberManagementForm = ({
 					</div>
 				</div>
 			</AddRoleBlock>
+
+
+
+			{/*역할을 삭제할때 뜨는 팝업창 */}
+			<DeleteModal>
+				<div id="modalId" className="delete">
+					<ModalBox>
+						<div className="deleteBtn">정말 "{deletePosName}" 역할을 삭제하시겠습니까?</div>
+						<div className="removeBtn">
+							<Button removeBtn1 onClick={() => {
+								deleteClubPos(deletePosId);
+								deleteRolePopupClear();
+							}}>예</Button>
+							<Button removeBtn2 onClick={deleteRolePopupClear}>아니오</Button>
+						</div>
+					</ModalBox>
+				</div>
+			</DeleteModal>
 
 		</BasicBlock >
 	);

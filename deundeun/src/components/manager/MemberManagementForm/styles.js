@@ -431,6 +431,7 @@ export const AuthSetBlock = styled.div`
 
 
 
+
 export const AddRoleBlock = styled.div`
     .addRoleDelete{
         display:none;
@@ -439,14 +440,14 @@ export const AddRoleBlock = styled.div`
     .addRolePopupBlock{
         width:600px;
         height:310px;
-        position:absolute;
+        position:fixed;
         box-shadow:15px 15px 30px 0 rgba(0,0,0,0.16);
         margin:auto;
         right:0;
         left:0;
-        top:0%;
-        bottom:0;
-        z-index:100;
+        top:0;
+        bottom:15%;
+        z-index:120;
         background-color:#ffffff;
         padding:38px 40.5px 49px 44px;
         color:#282828;
@@ -497,4 +498,45 @@ export const AddRoleBlock = styled.div`
         }
     }
     
+`;
+
+
+export const DeleteModal = styled.div`
+    .make{
+        position:fixed;
+        top:0;
+        right:0;
+        left:0;
+        bottom:0; 
+        background:rgba(0,0,0,0.3);
+        
+
+        display:flex;
+        justify-content: center;
+		z-index:100;
+    }
+    .delete{
+        display:none;
+    }
+`;
+
+export const ModalBox = styled.div`
+    width:530px;
+    height:220px;
+    background:white;
+    margin-top: 15%;
+    display:flex;
+    flex-direction: column;
+    align-items:center; 
+
+    .deleteBtn{
+        font-size:24px;
+        font-weight:900;
+        margin-top:40px;
+        
+    }
+    .removeBtn{
+        display:flex;
+        margin-top:60px;
+    }
 `;
