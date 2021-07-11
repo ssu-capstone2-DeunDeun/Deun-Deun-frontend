@@ -395,13 +395,14 @@ export const RoleSetBlock = styled.div`
                         background-color:#f7f7f7;
                         padding:0 8px;
                     }
-        }
-
-        .roleSetBtn{
-            text-align:center;
+                    
+                }
+                .roleSetBtn{
+                    margin-top:100px;
+                    text-align:center;
+                }
         }
     }
-}
 `;
 
 

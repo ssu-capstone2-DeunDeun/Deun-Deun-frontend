@@ -1,7 +1,7 @@
 import { createRequestActionType } from "lib/createRequestActionTypes";
 import createRequestSaga from "lib/createRequestSaga";
 import { createAction, handleAction, handleActions } from "redux-actions";
-import { takeLatest } from 'redux-saga/effects';
+import { takeLatest, takeEvery } from 'redux-saga/effects';
 import * as applyAPI from '../lib/api/apply';
 import * as position from '../lib/api/position';
 
@@ -50,14 +50,14 @@ const memberManageInfo = handleActions(
             ...state,
             getMemberInfoError,
         }),
-        [ASSIGN_PARTICIPATE_POSITIONS_SUCCESS]: (state, { payload: getMemberInfo }) => ({
-            ...state,
-            getMemberInfo,
-        }),
-        [ASSIGN_PARTICIPATE_POSITIONS_FAILURE]: (state, { payload: getMemberInfoError }) => ({
-            ...state,
-            getMemberInfoError,
-        }),
+        // [ASSIGN_PARTICIPATE_POSITIONS_SUCCESS]: (state, { payload: getMemberInfo }) => ({
+        //     ...state,
+        //     getMemberInfo,
+        // }),
+        // [ASSIGN_PARTICIPATE_POSITIONS_FAILURE]: (state, { payload: getMemberInfoError }) => ({
+        //     ...state,
+        //     getMemberInfoError,
+        // }),
 
     }
     , initialState

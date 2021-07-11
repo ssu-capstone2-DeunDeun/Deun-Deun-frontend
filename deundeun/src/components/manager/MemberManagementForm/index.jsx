@@ -64,22 +64,28 @@ const deleteRolePopupMake = (event) => {
 
 
 let sendMsgLists = [];  //닉네임 리스트
+let sendMsgIdLists = []; // 닉네임 id 리스트
 let msgLists = [];     //이메일 리스트
 
 const MemberInfo = ({ info }) => {
-	const { nickname, userId, email, positionName, generation, admin } = info;
+	const { nickname, userId, email, positionName, generation, admin, id } = info;
 	const [click, setClick] = useState(false);
 
 	const [menuIndex, setMenuIndex] = useState(0);
 	const menu = ['멤버 정보 수정', '강제 퇴장'];
 
 	if (!sendMsgLists.includes(nickname) && click === true) {
+		// const list = { nickname, userId };
+		// sendMsgLists.push(list);
+
 		sendMsgLists.push(nickname);
+		sendMsgIdLists.push(id);
 		msgLists.push(email);
 	}
 	if (sendMsgLists.includes(nickname) && click === false) {
 		sendMsgLists = sendMsgLists.filter(value => value !== nickname);
 		msgLists = msgLists.filter(value => value !== email);
+		sendMsgIdLists = sendMsgIdLists.filter(value => value !== userId);
 	}
 
 	return (
@@ -125,6 +131,7 @@ const MemberManagementForm = ({
 	addClubPos,
 	deleteClubPos,
 	updateClubPos,
+	assignParticipateClubPos,
 }) => {
 
 	const [unitIndex, setUnitIndex] = useState(0);
@@ -351,14 +358,14 @@ const MemberManagementForm = ({
 					<div className="roleList">역할 변경</div>
 					<div className="roleChangeItemBox">
 						{
-							sendMsgLists.map(member =>
+							sendMsgLists.map((member, index) =>
 								<div className="roleChangeItem">
 									<div className="selectedMember">{member}</div>
-									<select name="roleMenu" className="roleSelectList">
+									<select id={sendMsgIdLists[index]} name="roleMenu" className="roleSelectList">
 										<option value="">역할선택</option>
 										{
 											clubPositions.map(value =>
-												<option value={value.positionName}>{value.positionName}</option>
+												<option value={value.positionId}>{value.positionName}</option>
 											)
 										}
 									</select>
@@ -366,13 +373,25 @@ const MemberManagementForm = ({
 							)
 
 						}
-					</div>
-
-					<div className="roleSetBtn">
-						<Button applyManageBtn>저장하기</Button>
+						<div className="roleSetBtn">
+							<Button addRoleBtn1 onClick={() => {
+								const roleSelectedLists = Array.from(document.querySelectorAll('.roleSelectList'));
+								roleSelectedLists.map(value =>
+									// console.log("fe", value.options[value.selectedIndex].value)
+									// console.log(value.id)
+									assignParticipateClubPos(Number(value.id), Number(value.options[value.selectedIndex].value))
+								)
+								setRoleClick(false);
+								rolePopupClear();
+							}}>저장하기</Button>
+							<Button addRoleBtn2 onClick={() => {
+								rolePopupClear();
+								setRoleClick(false);
+							}}>취소하기</Button>
+						</div>
 					</div>
 				</div>
-			</RoleSetBlock>
+			</RoleSetBlock >
 
 			{/* 권한 설정 팝업 */}
 			<AuthSetBlock >
@@ -395,7 +414,7 @@ const MemberManagementForm = ({
 			</AuthSetBlock>
 
 			{/* 역할 추가 설정 팝업 */}
-			<AddRoleBlock >
+			< AddRoleBlock>
 				<div id="addRolePopup" className="addRoleDelete">
 					<div className="addRolePopupTitle">
 						<div>새 역할 추가하기</div>
@@ -432,7 +451,7 @@ const MemberManagementForm = ({
 						}>취소하기</Button>
 					</div>
 				</div>
-			</AddRoleBlock>
+			</ AddRoleBlock>
 
 
 
