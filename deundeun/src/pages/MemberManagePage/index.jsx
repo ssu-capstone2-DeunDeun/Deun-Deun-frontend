@@ -76,7 +76,7 @@ const MemberManagePage = () => {
 	}
 
 	const deleteClubPos = (positionId) => {
-		dispatch(deleteClubPosition(positionId))
+		dispatch(deleteClubPosition(positionId));
 	};
 
 	const updateClubPos = (positionName, positionId) => {

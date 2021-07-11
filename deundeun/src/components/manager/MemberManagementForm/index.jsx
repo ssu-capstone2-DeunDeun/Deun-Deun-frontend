@@ -11,6 +11,7 @@ import DropdownMenuDot from 'components/common/DropdownMenuDot/index';
 import Button from 'components/common/Button/index';
 import { ErrorMessage, StyledInput } from 'components/register/RegisterInfoForm/styles';
 import { withRouter } from 'react-router-dom';
+import { RiDeleteBinLine } from "react-icons/ri";
 
 const msgPopupClear = (event) => {
 	const t = document.getElementById("msgPopup");
@@ -292,7 +293,7 @@ const MemberManagementForm = ({
 				</div>
 			</PopupBlock>
 
-			{/* 권한 설정 팝업 */}
+			{/* 역할 설정 팝업 */}
 			<RoleSetBlock >
 				<div id="rolePopup" className="roleDelete">
 					<div className="rolePopupTitle">
@@ -314,7 +315,8 @@ const MemberManagementForm = ({
 								clubPositions.map((value, index) =>
 									<>
 										<ImCheckboxUnchecked />
-										<div>{value.positionName}</div>
+										<div className="posInfo">{value.positionName}</div>
+										<div className="delIcon"><RiDeleteBinLine onClick={() => deleteClubPos(value.positionId)} /></div>
 									</>
 								)
 							) :
@@ -377,6 +379,7 @@ const MemberManagementForm = ({
 								addRolePopupClear();
 								setError(false);
 								addClubPos(addValue);
+								setAddValue("");
 							}
 						}}>적용하기</Button>
 						<Button addRoleBtn2 onClick={() => {

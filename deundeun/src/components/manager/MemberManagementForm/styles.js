@@ -220,7 +220,7 @@ export const PopupBlock = styled.div`
                 height:18px;
                 opacity:0.2;
             }
-            div{
+            .div{
                 margin-right:20px;
                 font-size:14px;
             }
@@ -349,10 +349,22 @@ export const RoleSetBlock = styled.div`
                 height:18px;
                 opacity:0.2;
             }
-            div{
-                margin-right:20px;
+            .posInfo{
+                margin-right:15px;
                 font-size:14px;
             }
+            .delIcon{
+                margin-right :15px;
+                
+                svg{
+                    cursor:pointer;
+                }
+                svg:hover{
+                    color:#1CD0B5;
+                    opacity:1;
+                }
+            }
+
         }
 
         .roleSetBtn{
