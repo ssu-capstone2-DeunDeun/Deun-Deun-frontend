@@ -4,63 +4,14 @@ import { ImCheckboxUnchecked, ImCheckboxChecked } from "react-icons/im";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { BsThreeDots } from "react-icons/bs";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { AddRoleBlock, AddRoleModal, ApplicantInfoBlock, AuthSetBlock, BasicBlock, ContentBlock, DeleteModal, ModalBox, PopupBlock, RoleSetBlock, StyledTextarea } from './styles';
-
+import { AddRoleBlock, ApplicantInfoBlock, AuthSetBlock, BasicBlock, ContentBlock, DeleteModal, ModalBox, PopupBlock, RoleSetBlock, StyledTextarea } from './styles';
 import DropdownMenu from 'components/common/DropdownMenu/index';
 import DropdownMenuDot from 'components/common/DropdownMenuDot/index';
 import Button from 'components/common/Button/index';
 import { ErrorMessage, StyledInput } from 'components/register/RegisterInfoForm/styles';
 import { withRouter } from 'react-router-dom';
 import { RiDeleteBinLine } from "react-icons/ri";
-
-const msgPopupClear = (event) => {
-	const t = document.getElementById("msgPopup");
-	t.className = "msgDelete";
-};
-const msgPopupMake = (event) => {
-	const t = document.getElementById("msgPopup");
-	t.className = "msgPopupBlock";
-};
-
-const rolePopupClear = (event) => {
-	const t = document.getElementById("rolePopup");
-	t.className = "roleDelete";
-};
-const rolePopupMake = (event) => {
-	const t = document.getElementById("rolePopup");
-	t.className = "rolePopupBlock";
-};
-
-const authPopupClear = (event) => {
-	const t = document.getElementById("authPopup");
-	t.className = "authDelete";
-};
-const authPopupMake = (event) => {
-	const t = document.getElementById("authPopup");
-	t.className = "authPopupBlock";
-};
-
-
-const addRolePopupClear = (event) => {
-	const t = document.getElementById("addRolePopup");
-	t.className = "addRoleDelete";
-};
-const addRolePopupMake = (event) => {
-	const t = document.getElementById("addRolePopup");
-	t.className = "addRolePopupBlock";
-};
-
-const deleteRolePopupClear = (event) => {
-	const t = document.getElementById("modalId");
-	t.className = "delete";
-};
-const deleteRolePopupMake = (event) => {
-	const t = document.getElementById("modalId");
-	t.className = "make";
-};
-
-
-
+import { addRolePopupClear, addRolePopupMake, authPopupClear, authPopupMake, deleteRolePopupClear, deleteRolePopupMake, msgPopupClear, msgPopupMake, rolePopupClear, rolePopupMake } from './popup';
 
 
 let sendMsgLists = [];  //닉네임 리스트
