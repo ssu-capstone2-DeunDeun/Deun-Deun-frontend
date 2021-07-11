@@ -23,7 +23,7 @@ const isAssignParticipatePos = createRequestSaga(ASSIGN_PARTICIPATE_POSITIONS, p
 export function* memberManageSaga() {
     yield takeLatest(GET_MEMBER_INFO, isgetMemberInfoSaga);
     yield takeLatest(DELETE_PARTICIPATE_POSITIONS, isDeleteParticipatePos);
-    yield takeLatest(ASSIGN_PARTICIPATE_POSITIONS, isAssignParticipatePos);
+    yield takeEvery(ASSIGN_PARTICIPATE_POSITIONS, isAssignParticipatePos);
 }
 
 const initialState = {
