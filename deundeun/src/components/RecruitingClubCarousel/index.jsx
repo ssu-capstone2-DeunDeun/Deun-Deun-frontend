@@ -5,10 +5,9 @@ import { Card, Container } from './styles';
 const Item = (props) => {
 	return (
 		<Card>
-			{/* <h2>{props.item.name}</h2>
-			<p>{props.item.description}</p> */}
 			<img
-				style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+				// style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+				style={{ width: '70%', objectFit: 'cover' }}
 				src={`${props.item.imageURL}`}
 				alt="clubimage"
 			/>
@@ -17,47 +16,37 @@ const Item = (props) => {
 };
 
 const ClubImageCarousel = ({ setFocusClubImage, recruitingClubDtos }) => {
-	let items = [
+	let tempImage = [
 		{
 			id: 1,
-			imageURL: '/images/mcl.png'
-		},
-		{
-			id: 2,
-			imageURL: '/images/test7.jpeg'
-		},
-		{
-			id: 3,
-			imageURL: '/images/test8.jpeg'
-		},
-		{
-			id: 4,
-			imageURL: '/images/test9.jpeg'
-		},
-		{
-			id: 5,
-			imageURL: '/images/test10.jpeg'
+			imageURL: '/images/default_image.png'
 		}
 	];
+	const [items, setItems] = useState([]);
 
-	const [mounted, setMounted] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	const onChangeCarousel = useCallback(
 		(e) => {
-			if (mounted) {
+			if (!loading) {
 				setFocusClubImage(e);
 			}
 		},
-		[setFocusClubImage, mounted]
+		[setFocusClubImage, loading]
 	);
 
 	useEffect(() => {
-		setFocusClubImage(0);
-		setMounted(true);
+		if (recruitingClubDtos) {
+			setFocusClubImage(0);
+			// need to set recruiting club images
+			setLoading(false);
+		} else {
+			setItems(items.concat(tempImage));
+		}
 	}, []);
 
 	useEffect(() => {
-		return () => setMounted(false);
+		return () => setLoading(true);
 	}, []);
 
 	return (

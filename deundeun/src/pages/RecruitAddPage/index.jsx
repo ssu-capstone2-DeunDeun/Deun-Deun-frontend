@@ -283,6 +283,7 @@ const RecruitAddPage = ({
 					<RecruitInfo>면접 진행</RecruitInfo>
 					<DatePicker
 						locale="ko"
+						popperPlacement="top"
 						selected={deadline.interviewStartDate}
 						onChange={onChangeInterviewStartDate}
 						showTimeSelect
@@ -293,6 +294,7 @@ const RecruitAddPage = ({
 					<Tilde>~</Tilde>
 					<DatePicker
 						locale="ko"
+						popperPlacement="top"
 						selected={deadline.interviewEndDate}
 						onChange={onChangeInterviewEndDate}
 						showTimeSelect
@@ -305,6 +307,7 @@ const RecruitAddPage = ({
 					<RecruitInfo>최종 발표</RecruitInfo>
 					<DatePicker
 						locale="ko"
+						popperPlacement="top"
 						selected={deadline.finalPassAnnounceDate}
 						onChange={onChangeFinalPassAnnounceDate}
 						showTimeSelect
@@ -325,7 +328,7 @@ const RecruitAddPage = ({
 				hooks={{
 					addImageBlobHook: async (blob, callback) => {
 						const src = await uploadImage(blob);
-						callback(src, 'alt_markdown_image');
+						callback(src, 'image');
 						removeBase64();
 						return false;
 					}

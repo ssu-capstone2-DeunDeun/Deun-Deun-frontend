@@ -1,6 +1,6 @@
 // import MyPage from 'pages/MyPage';
 import React, { useEffect, useState } from 'react';
-import { Redirect, Route, Switch, useHistory, useLocation, useParams } from 'react-router-dom';
+import { Redirect, Route, Switch, useLocation, useParams } from 'react-router-dom';
 import loadable from '@loadable/component';
 import { ContainerRow } from 'styles';
 import OAuth2RedirectHandler from 'components/login/oauth2/OAuth2RedirectHandler';
@@ -14,7 +14,6 @@ import RecruitAddInfoContainer from 'container/recruit/RecruitAddInfoContainer';
 import ApplicationAddInfoContainer from 'container/application/ApplicationAddInfoContainer';
 import SideBar from '../src/components/common/SideBar';
 import SendMsgSuccess from 'components/SendMsgSuccess/index';
-import { ACCESS_TOKEN } from 'constants/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryPage = loadable(() => import('pages/CategoryPage'));
@@ -27,7 +26,7 @@ const ApplicationSuccessPage = loadable(() => import('pages/ApplicationSuccessPa
 const ApplySuccessPage = loadable(() => import('pages/ApplySuccessPage'));
 const RecruitSuccessPage = loadable(() => import('pages/RecruitSuccessPage'));
 const MyApplyPage = loadable(() => import('pages/MyApplyPage'));
-const ApplicationOverviewPage = loadable(() => import('pages/ApplicationOverviewPage'));
+const ApplicationPreviewPage = loadable(() => import('pages/ApplicationPreviewPage'));
 const ApplicationModifyPage = loadable(() => import('pages/ApplicationModifyPage'));
 const RecruitModifyPage = loadable(() => import('pages/RecruitModifyPage'));
 
@@ -92,6 +91,27 @@ const App = () => {
 					<MyPage />
 				</ContainerRow>
 			</Route>
+			<Route exact path="/club/manage/application/:id">
+				<HeaderContainer setUser={setUser} />
+				<ContainerRow>
+					<SideBar user={user} location={location} />
+					<ApplicationPreviewPage />
+				</ContainerRow>
+			</Route>
+			<Route exact path="/club/manage/application/modify/:id/">
+				<HeaderContainer setUser={setUser} />
+				<ContainerRow>
+					<SideBar user={user} location={location} />
+					<ApplicationModifyPage />
+				</ContainerRow>
+			</Route>
+			<Route exact path="/club/manage/recruit/modify/:id">
+				<HeaderContainer setUser={setUser} />
+				<ContainerRow>
+					<SideBar user={user} location={location} />
+					<RecruitModifyPage />
+				</ContainerRow>
+			</Route>
 			<Route path="/club/manage/:name">
 				<HeaderContainer setUser={setUser} />
 				<ContainerRow>
@@ -125,27 +145,6 @@ const App = () => {
 			<Route exact path="/recruit/success">
 				<HeaderContainer setUser={setUser} />
 				<RecruitSuccessPage />
-			</Route>
-			<Route exact path="/application/:clubName/:id">
-				<HeaderContainer setUser={setUser} />
-				<ContainerRow>
-					<SideBar user={user} location={location} />
-					<ApplicationOverviewPage />
-				</ContainerRow>
-			</Route>
-			<Route exact path="/application/:clubName/:id/modify">
-				<HeaderContainer setUser={setUser} />
-				<ContainerRow>
-					<SideBar user={user} location={location} />
-					<ApplicationModifyPage />
-				</ContainerRow>
-			</Route>
-			<Route exact path="/recruit/:id/modify">
-				<HeaderContainer setUser={setUser} />
-				<ContainerRow>
-					<SideBar user={user} location={location} />
-					<RecruitModifyPage />
-				</ContainerRow>
 			</Route>
 			<Route component={LoginPage} path="/login" exact />
 			<Route component={RegisterInfoContainer} path="/register/1" exact />
@@ -183,6 +182,7 @@ const MyPage = () => {
 
 const ClubManagePage = ({ location }) => {
 	const { name } = useParams();
+
 	const [addNewApplication, setAddNewApplication] = useState(false);
 	const [addNewRecruit, setAddNewRecruit] = useState(false);
 

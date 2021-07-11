@@ -1,5 +1,6 @@
+import { Add, ChoiceAddButton, ChoiceDeleteButton, ChoiceInput } from 'components/common/AnswerCard/styles';
 import QuestionCard from 'components/common/QuestionCard/index';
-import { QuestionInput, QuestionNumber } from 'components/common/QuestionCard/styles';
+import { QuestionDeleteButton, QuestionInput, QuestionNumber } from 'components/common/QuestionCard/styles';
 import { modifyQuestionContent } from 'modules/applicationModifyInfo';
 import { DropdownContainer } from 'pages/ApplicationAddPage/styles';
 import React, { useRef } from 'react';
@@ -7,15 +8,12 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { ContainerColumn, ContainerRow } from 'styles';
 
-const QuestionList = ({ questionList }) => {
+const QuestionList = ({ questionList, handleDeleteQuestion, handleAddChoice, handleDeleteChoice }) => {
 	const dispatch = useDispatch();
-	const subjectiveQuestionRef = useRef();
-	const selectiveQuestionRef = useRef();
-	const choiceRef = useRef();
 
 	const handleQuestionChange = useCallback(
 		(e) => {
-			dispatch(modifyQuestionContent(e.target.id, e.target.value));
+			// dispatch(modifyQuestionContent(e.target.id, e.target.value));
 		},
 		[dispatch]
 	);
@@ -39,6 +37,13 @@ const QuestionList = ({ questionList }) => {
 								// placeholder={question.questionContent}
 								onChange={handleQuestionChange}
 							></QuestionInput>
+							<QuestionDeleteButton
+								style={{ marginLeft: '-0.01em' }}
+								id={question.questionNumber}
+								onClick={handleDeleteQuestion}
+							>
+								&times;
+							</QuestionDeleteButton>
 						</ContainerRow>
 					</div>
 				) : (
@@ -52,20 +57,38 @@ const QuestionList = ({ questionList }) => {
 								value={question.questionContent}
 								onChange={handleQuestionChange}
 							></QuestionInput>
+							<QuestionDeleteButton
+								style={{ marginLeft: '-0.01em' }}
+								id={question.questionNumber}
+								onClick={handleDeleteQuestion}
+							>
+								&times;
+							</QuestionDeleteButton>
 						</ContainerRow>
 						<ContainerRow style={{ marginBottom: '2em' }}>
 							<QuestionNumber>A</QuestionNumber>
 							<ContainerColumn>
 								{question.multipleChoiceResponseDtos.map((choice) => (
-									<QuestionInput
-										key={choice.choiceNumber}
-										// id={choice.choiceNumber}
-										type="text"
-										style={{ width: '1167px', height: '60px', marginBottom: '0.6em' }}
-										value={choice.choiceContent}
-										onChange={handleChoiceChange}
-									/>
+									<div key={choice.choiceNumber}>
+										<ContainerRow>
+											<ChoiceInput
+												// id={choice.choiceNumber}
+												type="text"
+												style={{ width: '1167px', height: '60px', marginBottom: '0.6em' }}
+												value={choice.choiceContent}
+												onChange={handleChoiceChange}
+											/>
+											<ChoiceDeleteButton id={choice.choiceNumber} onClick={handleDeleteChoice}>
+												&times;
+											</ChoiceDeleteButton>
+										</ContainerRow>
+									</div>
 								))}
+								<ChoiceAddButton>
+									<Add id={question.questionNumber} onClick={handleAddChoice}>
+										+ 선택지 추가하기
+									</Add>
+								</ChoiceAddButton>
 							</ContainerColumn>
 						</ContainerRow>
 					</div>

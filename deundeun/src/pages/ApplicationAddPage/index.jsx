@@ -1,14 +1,14 @@
-import { TitleKorean } from 'pages/RecruitAddPage/styles';
 import React, { useCallback, useEffect, useState } from 'react';
+import { Prompt, useHistory } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import QuestionCard from 'components/common/QuestionCard/index';
+import { TitleKorean } from 'pages/RecruitAddPage/styles';
 import { ContainerColumn, ContainerPage } from 'styles';
 import { AddQuestionButton, ApplicationTitleInput, InnerContainer, SubmitButton, Header, Error } from './styles';
+import { Footer } from 'pages/ClubAddPage/styles';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import QuestionCard from 'components/common/QuestionCard/index';
-import { Prompt, useHistory } from 'react-router';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
-import { Footer } from 'pages/ClubAddPage/styles';
-import { useDispatch, useSelector } from 'react-redux';
 import applicationAddInfo, {
 	addApplication,
 	addQuestion,

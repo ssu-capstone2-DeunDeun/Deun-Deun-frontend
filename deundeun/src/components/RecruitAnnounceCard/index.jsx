@@ -24,7 +24,7 @@ const RecruitAnnounceCard = ({ generation, title, id, recruitList, setRecruitLis
 	}, []);
 
 	const onClickModify = () => {
-		history.push(`/recruit/${id}/modify`);
+		history.push(`/club/manage/recruit/modify/${id}`);
 		// onCloseMenu();
 	};
 
