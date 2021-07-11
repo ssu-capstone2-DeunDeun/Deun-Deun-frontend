@@ -80,7 +80,7 @@ const MemberManagementForm = ({
 	deleteClubPos,
 	updateClubPos,
 	assignParticipateClubPos,
-	assginAdmin,
+	assignAdmin,
 	quitAdmin,
 }) => {
 
@@ -145,7 +145,7 @@ const MemberManagementForm = ({
 											<ImCheckboxChecked />
 									}
 								</div>
-								<div className="skill">역할 변경하기</div>
+								<div className="skill">역할 설정하기</div>
 
 								<div className="message" onClick={() => {
 									setAuthClick(!authClick);
@@ -157,7 +157,7 @@ const MemberManagementForm = ({
 											<ImCheckboxChecked />
 									}
 								</div>
-								<div className="skill">권한 변경하기</div>
+								<div className="skill">권한 설정하기</div>
 							</div>
 
 							<div className="func">
@@ -353,12 +353,42 @@ const MemberManagementForm = ({
 							setAuthClick(false);
 						}} />
 					</div>
-					<div className="addAuth">
-						<AiOutlinePlusCircle />
-						<div> 새 권한 추가하기</div>
-					</div>
-					<div className="authSetBtn">
-						<Button applyManageBtn>저장하기</Button>
+
+					<div className="authList">권한 변경</div>
+					<div className="authChangeItemBox">
+						{
+							sendMsgLists.map((member, index) =>
+								<div className="authChangeItem">
+									<div className="authSelectedMember">{member}</div>
+									<select id={sendMsgIdLists[index]} name="authMenu" className="authSelectList">
+										<option value="">권한선택</option>
+										<option value="admin">관리자 권한</option>
+										<option value="staff">일반 권한</option>
+									</select>
+								</div>
+							)
+						}
+						<div className="authSetBtn">
+							<Button addRoleBtn1 onClick={() => {
+								const authSelectedLists = Array.from(document.querySelectorAll('.authSelectList'));
+								authSelectedLists.map(value =>
+									value.options[value.selectedIndex].value === "admin" ?
+										(
+											assignAdmin(value.id)
+										)
+										:
+										(
+											quitAdmin(value.id)
+										)
+								);
+								setAuthClick(false);
+								authPopupClear();
+							}}>저장하기</Button>
+							<Button addRoleBtn2 onClick={() => {
+								authPopupClear();
+								setAuthClick(false);
+							}}>취소하기</Button>
+						</div>
 					</div>
 				</div>
 			</AuthSetBlock>

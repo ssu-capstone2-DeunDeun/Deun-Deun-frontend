@@ -443,19 +443,48 @@ export const AuthSetBlock = styled.div`
                 }
             }
         }
-        .addAuth{
-            display:flex;
-            align-items:center;
-            justify-content:flex-end;
-            font-size:14px;
-            color:#b5b5b5;
-            margin-bottom:11.5px;
-            svg{
-                margin-right:6px;
-            }
+        .authList{
+            font-size:15px;
+            font-weight:900;
+            margin-bottom:11px;
         }
-        .authSetBtn{
-            text-align:center;
+        .authChangeItemBox{
+                display:flex;
+                flex-direction:column;
+
+                .authChangeItem{
+                    display:flex;
+                    height:32px;
+                    align-items: center;
+                    margin-bottom:15px;
+                    font-size:12px;
+                    .authSelectedMember{
+                        width:100px;
+                        height:32px;
+                        margin:15px 15px 0 0;
+                        color:#282828;
+                        background-color:#C8F1E9;
+                        border:none;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center; 
+                    }
+                    
+                    .authSelectList{
+                        margin-top:14px;
+                        height:32px;
+                        width:100px;
+                        border:none;
+                        background-color:#f7f7f7;
+                        padding:0 8px;
+                    }
+                    
+                }
+                .authSetBtn{
+                    margin-top:220px;
+                    text-align:center;
+                    
+                }
         }
     }
     
