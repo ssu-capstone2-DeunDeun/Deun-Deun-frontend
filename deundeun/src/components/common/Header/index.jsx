@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import SearchIcon from '@material-ui/icons/Search';
 import { Container, Logo, IconContainer, ProfileIcon } from './styles';
 import { ImageContainer, LoginContainer, LoginModal, NaverContainer, GoogleContainer } from './styles';
 import { GOOGLE_AUTH_URL, NAVER_AUTH_URL } from 'constants/index';
@@ -19,7 +18,7 @@ const Header = ({ checkLogin, userInfo, onLogout }) => {
 	return (
 		<Container>
 			<Link to="/home">
-				<Logo src="/images/logo/GROOPY.png" />
+				<Logo src="/img/logo/GROOPY.svg" />
 			</Link>
 			{/* <SearchBoxContainer>
 				<SearchBox placeholder="동아리명 / 해시태그로 검색"></SearchBox>

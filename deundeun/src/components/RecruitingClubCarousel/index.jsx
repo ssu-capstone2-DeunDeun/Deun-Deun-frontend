@@ -21,7 +21,7 @@ const ClubImageCarousel = ({ setFocusClubImage, recruitingClubDtos }) => {
 	let items = [
 		{
 			id: 1,
-			imageURL: '/images/default_image.png'
+			imageURL: '/img/logo/GROOPY.svg'
 		}
 	];
 	// const [items, setItems] = useState([]);
