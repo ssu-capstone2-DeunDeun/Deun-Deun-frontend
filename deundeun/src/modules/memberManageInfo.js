@@ -9,21 +9,32 @@ const [GET_MEMBER_INFO, GET_MEMBER_INFO_SUCCESS, GET_MEMBER_INFO_FAILURE] = crea
 const [DELETE_PARTICIPATE_POSITIONS, DELETE_PARTICIPATE_POSITIONS_SUCCESS, DELETE_PARTICIPATE_POSITIONS_FAILURE] = createRequestActionType('memberMangeInfo/DELETE_PARTICIPATE_POSITIONS');
 const [ASSIGN_PARTICIPATE_POSITIONS, ASSIGN_PARTICIPATE_POSITIONS_SUCCESS, ASSIGN_PARTICIPATE_POSITIONS_FAILURE] = createRequestActionType('memberMangeInfo/ASSIGN_PARTICIPATE_POSITIONS');
 
+const [ASSIGN_ADMIN_ROLE, ASSIGN_ADMIN_ROLE_SUCCESS, ASSIGN_ADMIN_ROLE_FAILURE] = createRequestActionType('memberManageInfo/ASSIGN_ADMIN_ROLE');
+const [QUIT_ADMIN_ROLE, QUIT_ADMIN_ROLE_SUCCESS, QUIT_ADMIN_ROLE_FAILURE] = createRequestActionType('memberManageInfo/QUIT_ADMIN_ROLE');
+
 
 export const getMemberInfo = createAction(GET_MEMBER_INFO);
 export const deleteParticipatePositions = createAction(DELETE_PARTICIPATE_POSITIONS);
 export const assignParticipatePositions = createAction(ASSIGN_PARTICIPATE_POSITIONS);
+
+export const assignAdminRole = createAction(ASSIGN_ADMIN_ROLE);
+export const quitAdminRole = createAction(QUIT_ADMIN_ROLE);
 
 
 const isgetMemberInfoSaga = createRequestSaga(GET_MEMBER_INFO, applyAPI.getParticipates);
 const isDeleteParticipatePos = createRequestSaga(DELETE_PARTICIPATE_POSITIONS, position.deleteParticipateClubPositions);
 const isAssignParticipatePos = createRequestSaga(ASSIGN_PARTICIPATE_POSITIONS, position.assignParticipateClubPositions);
 
+const isAssignAdminRole = createRequestSaga(ASSIGN_ADMIN_ROLE, position.assignAdminRole);
+const isQuitAdminRole = createRequestSaga(QUIT_ADMIN_ROLE, position.quitAdminRole);
+
 
 export function* memberManageSaga() {
     yield takeLatest(GET_MEMBER_INFO, isgetMemberInfoSaga);
     yield takeLatest(DELETE_PARTICIPATE_POSITIONS, isDeleteParticipatePos);
     yield takeEvery(ASSIGN_PARTICIPATE_POSITIONS, isAssignParticipatePos);
+    yield takeEvery(ASSIGN_ADMIN_ROLE, isAssignAdminRole);
+    yield takeEvery(QUIT_ADMIN_ROLE, isQuitAdminRole);
 }
 
 const initialState = {
@@ -58,7 +69,22 @@ const memberManageInfo = handleActions(
         //     ...state,
         //     getMemberInfoError,
         // }),
-
+        // [ASSIGN_ADMIN_ROLE_SUCCESS]: (state, { payload: getMemberInfo }) => ({
+        //     ...state,
+        //     getMemberInfo,
+        // }),
+        // [ASSIGN_ADMIN_ROLE_FAILURE]: (state, { payload: getMemberInfoError }) => ({
+        //     ...state,
+        //     getMemberInfoError,
+        // }),
+        // [QUIT_ADMIN_ROLE_SUCCESS]: (state, { payload: getMemberInfo }) => ({
+        //     ...state,
+        //     getMemberInfo,
+        // }),
+        // [QUIT_ADMIN_ROLE_FAILURE]: (state, { payload: getMemberInfoError }) => ({
+        //     ...state,
+        //     getMemberInfoError,
+        // }),
     }
     , initialState
 )

@@ -129,6 +129,8 @@ const MemberManagementForm = ({
 	deleteClubPos,
 	updateClubPos,
 	assignParticipateClubPos,
+	assginAdmin,
+	quitAdmin,
 }) => {
 
 	const [unitIndex, setUnitIndex] = useState(0);
