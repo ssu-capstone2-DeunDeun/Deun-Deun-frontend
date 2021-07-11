@@ -448,6 +448,23 @@ export const AuthSetBlock = styled.div`
             font-weight:900;
             margin-bottom:11px;
         }
+        .authListItem{
+            display:flex;
+            align-items:center;
+            font-weight:bold;
+            margin-bottom:21px;
+            
+            svg{
+                margin-right:10px;
+                width:18px;
+                height:18px;
+                opacity:0.2;
+            }
+            .posInfo{
+                margin-right:15px;
+                font-size:14px;
+            }
+        }
         .authChangeItemBox{
                 display:flex;
                 flex-direction:column;
@@ -481,7 +498,7 @@ export const AuthSetBlock = styled.div`
                     
                 }
                 .authSetBtn{
-                    margin-top:220px;
+                    margin-top:120px;
                     text-align:center;
                     
                 }

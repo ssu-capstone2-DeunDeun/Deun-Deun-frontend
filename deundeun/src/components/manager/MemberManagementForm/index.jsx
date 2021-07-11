@@ -51,13 +51,15 @@ const MemberInfo = ({ info }) => {
 			<div className="unit">{generation}기</div>
 			<div className="role">{positionName}</div>
 			<div className="authorized">{admin ? "운영진" : "일반 회원"}</div>
-			<div className="other">
+
+			{/* 차후에 추가할 수도 있다. */}
+			{/* <div className="other">
 				<DropdownMenuDot
 					options={menu}
 					selectedIndex={menuIndex}
 					setSelectedIndex={setMenuIndex}
 				/>
-			</div>
+			</div> */}
 		</ApplicantInfoBlock >
 	);
 }
@@ -80,6 +82,7 @@ const MemberManagementForm = ({
 	deleteClubPos,
 	updateClubPos,
 	assignParticipateClubPos,
+	deleteParticipateClubPos,
 	assignAdmin,
 	quitAdmin,
 }) => {
@@ -95,7 +98,7 @@ const MemberManagementForm = ({
 
 
 	const [authIndex, setAuthIndex] = useState(0);
-	const auth = ['운영진', '멤버'];
+	const auth = ['권한', '운영진', '일반 회원'];
 
 	const [msgClick, setMsgClick] = useState(false);
 	const [roleClick, setRoleClick] = useState(false);
@@ -313,6 +316,7 @@ const MemberManagementForm = ({
 									<div className="selectedMember">{member}</div>
 									<select id={sendMsgIdLists[index]} name="roleMenu" className="roleSelectList">
 										<option value="">역할선택</option>
+										<option value="미정">미정</option>
 										{
 											clubPositions.map(value =>
 												<option value={value.positionId}>{value.positionName}</option>
@@ -327,13 +331,14 @@ const MemberManagementForm = ({
 							<Button addRoleBtn1 onClick={() => {
 								const roleSelectedLists = Array.from(document.querySelectorAll('.roleSelectList'));
 								roleSelectedLists.map(value =>
-									// console.log("fe", value.options[value.selectedIndex].value)
-									// console.log(value.id)
-									assignParticipateClubPos(Number(value.id), Number(value.options[value.selectedIndex].value))
+									value.options[value.selectedIndex].value === "미정" ?
+										deleteParticipateClubPos(Number(value.id))
+										:
+										assignParticipateClubPos(Number(value.id), Number(value.options[value.selectedIndex].value))
 								)
 								setRoleClick(false);
 								rolePopupClear();
-							}}>저장하기</Button>
+							}} > 저장하기</Button>
 							<Button addRoleBtn2 onClick={() => {
 								rolePopupClear();
 								setRoleClick(false);
@@ -353,7 +358,15 @@ const MemberManagementForm = ({
 							setAuthClick(false);
 						}} />
 					</div>
+					<div className="authList">권한 리스트</div>
+					<div className="authListItem">
 
+						<ImCheckboxUnchecked />
+						<div className="posInfo">운영진</div>
+						<ImCheckboxUnchecked />
+						<div className="posInfo">일반 회원</div>
+
+					</div>
 					<div className="authList">권한 변경</div>
 					<div className="authChangeItemBox">
 						{
@@ -362,8 +375,8 @@ const MemberManagementForm = ({
 									<div className="authSelectedMember">{member}</div>
 									<select id={sendMsgIdLists[index]} name="authMenu" className="authSelectList">
 										<option value="">권한선택</option>
-										<option value="admin">관리자 권한</option>
-										<option value="staff">일반 권한</option>
+										<option value="admin">운영진</option>
+										<option value="staff">일반 회원</option>
 									</select>
 								</div>
 							)
@@ -433,8 +446,6 @@ const MemberManagementForm = ({
 				</div>
 			</ AddRoleBlock>
 
-
-
 			{/*역할을 삭제할때 뜨는 팝업창 */}
 			<DeleteModal>
 				<div id="modalId" className="delete">
@@ -456,9 +467,3 @@ const MemberManagementForm = ({
 };
 
 export default withRouter(MemberManagementForm);
-
-
-
-// const hello = document.querySelectorAll('.roleSelectList');
-// const hello_a = Array.from(hello);
-// hello_a.map(value => console.log("fe", value.options[value.selectedIndex].value));

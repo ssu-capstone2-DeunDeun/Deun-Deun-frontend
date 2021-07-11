@@ -1,7 +1,7 @@
 import MemberManagementForm from 'components/manager/MemberManagementForm';
 import { getClubs, sendAlarm } from 'lib/api/auth';
 import { addClubPosition, deleteClubPosition, getClubPositions, updateClubPosition } from 'modules/manageMemberPosition';
-import { assignAdminRole, assignParticipatePositions, getMemberInfo, quitAdminRole } from 'modules/memberManageInfo';
+import { assignAdminRole, assignParticipatePositions, deleteParticipatePositions, getMemberInfo, quitAdminRole } from 'modules/memberManageInfo';
 import { initialValue, inputContentType, inputValue } from 'modules/sendMsgForm';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -98,6 +98,12 @@ const MemberManagePage = () => {
 		dispatch(assignParticipatePositions(value))
 	}
 
+	const deleteParticipateClubPos = (participateId) => {
+		dispatch(deleteParticipatePositions(participateId));
+
+		// dispatch(getMemberInfo(clubName));
+	}
+
 	const assignAdmin = (participateId) => {
 		dispatch(assignAdminRole(participateId));
 	};
@@ -126,6 +132,7 @@ const MemberManagePage = () => {
 					deleteClubPos={deleteClubPos}
 					updateClubPos={updateClubPos}
 					assignParticipateClubPos={assignParticipateClubPos}
+					deleteParticipateClubPos={deleteParticipateClubPos}
 					assignAdmin={assignAdmin}
 					quitAdmin={quitAdmin}
 				/>
