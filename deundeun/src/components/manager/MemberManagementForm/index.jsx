@@ -63,7 +63,6 @@ const deleteRolePopupMake = (event) => {
 
 
 
-
 let sendMsgLists = [];  //닉네임 리스트
 let msgLists = [];     //이메일 리스트
 
@@ -129,10 +128,14 @@ const MemberManagementForm = ({
 }) => {
 
 	const [unitIndex, setUnitIndex] = useState(0);
-	const unit = ['1기', '2기', '3기'];
+	const unit = ['기수', '1기', '2기', '3기'];
 
 	const [roleIndex, setRoleIndex] = useState(0);
-	const role = ['서버', '디자이너', '개발자'];
+	const role = clubPositions ?
+		["역할"].concat(clubPositions.map(value => value.positionName))
+		:
+		["역할"];
+
 
 	const [authIndex, setAuthIndex] = useState(0);
 	const auth = ['운영진', '멤버'];
@@ -263,22 +266,22 @@ const MemberManagementForm = ({
 							type === 1 ? <ImCheckboxChecked onClick={() => { setType(null); onChangeType(""); }} /> :
 								<ImCheckboxUnchecked onClick={() => { setType(1); onChangeType("INTERVIEW"); }} />
 						}
-						<div>1차 합격</div>
+						<div className="kindItemTit">1차 합격</div>
 						{
 							type === 2 ? <ImCheckboxChecked onClick={() => { setType(null); onChangeType(""); }} /> :
 								<ImCheckboxUnchecked onClick={() => { setType(2); onChangeType("FAIL"); }} />
 						}
-						<div>1차 탈락</div>
+						<div className="kindItemTit">1차 탈락</div>
 						{
 							type === 3 ? <ImCheckboxChecked onClick={() => { setType(null); onChangeType(""); }} /> :
 								<ImCheckboxUnchecked onClick={() => { setType(3); onChangeType("PASS"); }} />
 						}
-						<div>최종 합격</div>
+						<div className="kindItemTit">최종 합격</div>
 						{
 							type === 4 ? <ImCheckboxChecked onClick={() => { setType(null); onChangeType(""); }} /> :
 								<ImCheckboxUnchecked onClick={() => { setType(4); onChangeType("FAIL"); }} />
 						}
-						<div>최종 탈락</div>
+						<div className="kindItemTit">최종 탈락</div>
 					</div>
 					<div className="receiver">받는 사람</div>
 					<div className="receiverIist">
@@ -324,8 +327,8 @@ const MemberManagementForm = ({
 						<div> 새 역할 추가하기</div>
 					</div>
 
-					<div className="kind">역할 리스트</div>
-					<div className="kindItem">
+					<div className="roleList">역할 리스트</div>
+					<div className="roleListItem">
 						{
 							clubPositions && (clubPositions.length !== 0 ? (
 								clubPositions.map((value, index) =>
@@ -343,6 +346,25 @@ const MemberManagementForm = ({
 								(
 									<div>*현재 등록된 역할이 없습니다.</div>
 								))
+						}
+					</div>
+					<div className="roleList">역할 변경</div>
+					<div className="roleChangeItemBox">
+						{
+							sendMsgLists.map(member =>
+								<div className="roleChangeItem">
+									<div className="selectedMember">{member}</div>
+									<select name="roleMenu" className="roleSelectList">
+										<option value="">역할선택</option>
+										{
+											clubPositions.map(value =>
+												<option value={value.positionName}>{value.positionName}</option>
+											)
+										}
+									</select>
+								</div>
+							)
+
 						}
 					</div>
 
@@ -385,7 +407,7 @@ const MemberManagementForm = ({
 					</div>
 					<div className="addRole">
 						<div class="addRoleInfo">
-							<div className="addRoleTit">역할 이름*</div>
+							<div className="addRoleTit">역할 이름</div>
 							<input value={addValue} onChange={(e) => setAddValue(e.target.value)} className="addRoleInput" />
 						</div>
 						{error && <ErrorMessage>*모든 값을 입력하세요.</ErrorMessage>}
@@ -435,3 +457,9 @@ const MemberManagementForm = ({
 };
 
 export default withRouter(MemberManagementForm);
+
+
+
+// const hello = document.querySelectorAll('.roleSelectList');
+// const hello_a = Array.from(hello);
+// hello_a.map(value => console.log("fe", value.options[value.selectedIndex].value));

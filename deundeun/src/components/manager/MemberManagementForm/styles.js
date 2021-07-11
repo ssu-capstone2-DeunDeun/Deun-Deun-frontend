@@ -220,7 +220,7 @@ export const PopupBlock = styled.div`
                 height:18px;
                 opacity:0.2;
             }
-            .div{
+            .kindItemTit{
                 margin-right:20px;
                 font-size:14px;
             }
@@ -332,12 +332,12 @@ export const RoleSetBlock = styled.div`
             }
         }
         
-        .kind{
+        .roleList{
             font-size:15px;
             font-weight:900;
             margin-bottom:11px;
         }
-        .kindItem{
+        .roleListItem{
             display:flex;
             align-items:center;
             font-weight:bold;
@@ -364,14 +364,44 @@ export const RoleSetBlock = styled.div`
                     opacity:1;
                 }
             }
+        }
+        .roleChangeItemBox{
+                display:flex;
+                flex-direction:column;
 
+                .roleChangeItem{
+                    display:flex;
+                    height:32px;
+                    align-items: center;
+                    margin-bottom:15px;
+                    font-size:12px;
+                    .selectedMember{
+                        width:100px;
+                        height:32px;
+                        margin:15px 15px 0 0;
+                        color:#282828;
+                        background-color:#C8F1E9;
+                        border:none;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center; 
+                    }
+                    
+                    .roleSelectList{
+                        margin-top:14px;
+                        height:100%;
+                        width:100px;
+                        border:none;
+                        background-color:#f7f7f7;
+                        padding:0 8px;
+                    }
         }
 
         .roleSetBtn{
             text-align:center;
         }
     }
-    
+}
 `;
 
 
