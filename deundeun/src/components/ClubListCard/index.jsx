@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { ContainerRow } from 'styles';
 import {
 	Container,
@@ -13,8 +13,6 @@ import {
 } from './styles';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { withRouter } from 'react-router-dom';
-import axios from '../../../node_modules/axios/index';
-import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import { useEffect } from 'react';
 const ClubListCard = ({
 	id,

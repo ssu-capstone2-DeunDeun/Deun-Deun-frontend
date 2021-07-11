@@ -3,22 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch, useLocation, useParams } from 'react-router-dom';
 import loadable from '@loadable/component';
 import { ContainerRow } from 'styles';
-import OAuth2RedirectHandler from 'components/login/oauth2/OAuth2RedirectHandler';
-import RegisterInfoContainer from 'container/register/RegisterInfoContainer';
-import RegisterHashtagContainer from 'container/register/RegisterHashtagContainer';
-import ClubAddInfoContainer from 'container/clubRegister/ClubAddInfoContainer';
-import ClubModifyPageContainer from 'container/clubRegister/ClubModifyPageContainer';
-import HeaderContainer from 'container/common/HeaderContainer';
-import MyProfileModifyPageContainer from 'container/myProfileModify/MyProfileModifyPageContainer';
-import RecruitAddInfoContainer from 'container/recruit/RecruitAddInfoContainer';
-import ApplicationAddInfoContainer from 'container/application/ApplicationAddInfoContainer';
-import SideBar from '../src/components/common/SideBar';
-import SendMsgSuccess from 'components/SendMsgSuccess/index';
 
+const HeaderContainer = loadable(() => import('container/common/HeaderContainer'));
+const SideBar = loadable(() => import('components/common/SideBar'));
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryPage = loadable(() => import('pages/CategoryPage'));
 const ClubDetailPage = loadable(() => import('pages/ClubDetailPage'));
-const MyProfileModifyPage = loadable(() => import('pages/MyProfileModifyPage'));
 const MyClubListPage = loadable(() => import('pages/MyClubListPage'));
 const MyApplicationPage = loadable(() => import('pages/MyApplicationPage'));
 const MyLikeListPage = loadable(() => import('pages/MyLikeListPage'));
@@ -42,13 +32,20 @@ const ApplyPageSuccessPage = loadable(() => import('pages/ApplyPageSuccessPage')
 const RecruitDetailPage = loadable(() => import('pages/RecruitDetailPage'));
 const PostDetailPage = loadable(() => import('pages/PostDetailPage'));
 
-// const ClubModifyPage = loadable(() => import('pages/ClubModifyPage'));
-const ApplicationAddPage = loadable(() => import('pages/ApplicationAddPage'));
 const ApplicationManagePage = loadable(() => import('pages/ApplicationManagePage'));
-const RecruitAddPage = loadable(() => import('pages/RecruitAddPage'));
 const RecruitManagePage = loadable(() => import('pages/RecruitManagePage'));
 const ApplicantManagePage = loadable(() => import('pages/ApplicantManagePage'));
 const MemberManagePage = loadable(() => import('pages/MemberManagePage'));
+
+const OAuth2RedirectHandler = loadable(() => import('components/login/oauth2/OAuth2RedirectHandler'));
+const RegisterInfoContainer = loadable(() => import('container/register/RegisterInfoContainer'));
+const RegisterHashtagContainer = loadable(() => import('container/register/RegisterHashtagContainer'));
+const ClubAddInfoContainer = loadable(() => import('container/clubRegister/ClubAddInfoContainer'));
+const ClubModifyPageContainer = loadable(() => import('container/clubRegister/ClubModifyPageContainer'));
+const MyProfileModifyPageContainer = loadable(() => import('container/myProfileModify/MyProfileModifyPageContainer'));
+const RecruitAddInfoContainer = loadable(() => import('container/recruit/RecruitAddInfoContainer'));
+const ApplicationAddInfoContainer = loadable(() => import('container/application/ApplicationAddInfoContainer'));
+const SendMsgSuccess = loadable(() => import('components/SendMsgSuccess/index'));
 
 const App = () => {
 	let location = useLocation();

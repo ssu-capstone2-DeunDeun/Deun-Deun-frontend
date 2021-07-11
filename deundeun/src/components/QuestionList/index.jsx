@@ -1,9 +1,9 @@
 import { Add, ChoiceAddButton, ChoiceDeleteButton, ChoiceInput } from 'components/common/AnswerCard/styles';
-import QuestionCard from 'components/common/QuestionCard/index';
+// import QuestionCard from 'components/common/QuestionCard/index';
 import { QuestionDeleteButton, QuestionInput, QuestionNumber } from 'components/common/QuestionCard/styles';
-import { modifyQuestionContent } from 'modules/applicationModifyInfo';
+// import { modifyQuestionContent } from 'modules/applicationModifyInfo';
 import { DropdownContainer } from 'pages/ApplicationAddPage/styles';
-import React, { useRef } from 'react';
+import React from 'react';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { ContainerColumn, ContainerRow } from 'styles';

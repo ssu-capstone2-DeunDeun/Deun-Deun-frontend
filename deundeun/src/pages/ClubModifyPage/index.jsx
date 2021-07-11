@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import DropdownMenu from 'components/common/DropdownMenu';
 import { ContainerPage, ContainerRow } from 'styles';
 
 import {
@@ -20,7 +19,6 @@ import {
 	ImageDeleteButton,
 	HashtagContainer
 } from 'pages/ClubAddPage/styles';
-import { ImageButton } from 'pages/RecruitAddPage/styles';
 import styled from 'styled-components';
 import ImageUpload from 'components/common/ImageUpload/index';
 import { useSelector } from 'react-redux';

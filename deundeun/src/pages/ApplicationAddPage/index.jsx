@@ -1,14 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Prompt, useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import QuestionCard from 'components/common/QuestionCard/index';
 import { TitleKorean } from 'pages/RecruitAddPage/styles';
 import { ContainerColumn, ContainerPage } from 'styles';
 import { AddQuestionButton, ApplicationTitleInput, InnerContainer, SubmitButton, Header, Error } from './styles';
 import { Footer } from 'pages/ClubAddPage/styles';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import Snackbar from '@material-ui/core/Snackbar';
-import Alert from '@material-ui/lab/Alert';
 import applicationAddInfo, {
 	addApplication,
 	addQuestion,
@@ -18,6 +14,13 @@ import applicationAddInfo, {
 	modifyQuestionContent
 } from 'modules/applicationAddInfo';
 import { List } from 'immutable';
+import loadable from '@loadable/component';
+
+const QuestionCard = loadable(() => import('components/common/QuestionCard/index'));
+const AddCircleOutlineIcon = loadable(() => import('@material-ui/icons/AddCircleOutline'));
+const Snackbar = loadable(() => import('@material-ui/core/Snackbar'));
+const Alert = loadable(() => import('@material-ui/lab/Alert'));
+
 const ApplicationAddPage = ({
 	setAddNewForm,
 	onChangeAppTitle,

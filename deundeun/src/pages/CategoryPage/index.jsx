@@ -1,6 +1,5 @@
 import React from 'react';
 import { ContentKorean } from 'components/ClubPostCard/styles';
-import ClubListCard from 'components/ClubListCard';
 import { TitleEnglish, ContentContainer, CardContainer, Content } from './styles';
 import { ContainerPage } from 'styles';
 import { withRouter } from 'react-router-dom';
@@ -11,6 +10,9 @@ import { getAllClubs } from 'modules/initHomePage';
 import { useState } from 'react';
 import { withStyles } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
+import loadable from '@loadable/component';
+
+const ClubListCard = loadable(() => import('components/ClubListCard'));
 
 const ColoredCheckbox = withStyles({
 	root: {

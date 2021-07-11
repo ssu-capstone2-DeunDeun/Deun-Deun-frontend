@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import Carousel from 'react-material-ui-carousel';
 import { Card, Container } from './styles';
+import loadable from '@loadable/component';
+
+const Carousel = loadable(() => import('react-material-ui-carousel'));
 
 const Item = (props) => {
 	return (
@@ -16,13 +18,13 @@ const Item = (props) => {
 };
 
 const ClubImageCarousel = ({ setFocusClubImage, recruitingClubDtos }) => {
-	let tempImage = [
+	let items = [
 		{
 			id: 1,
 			imageURL: '/images/default_image.png'
 		}
 	];
-	const [items, setItems] = useState([]);
+	// const [items, setItems] = useState([]);
 
 	const [loading, setLoading] = useState(true);
 
@@ -35,19 +37,20 @@ const ClubImageCarousel = ({ setFocusClubImage, recruitingClubDtos }) => {
 		[setFocusClubImage, loading]
 	);
 
-	useEffect(() => {
-		if (recruitingClubDtos) {
-			setFocusClubImage(0);
-			// need to set recruiting club images
-			setLoading(false);
-		} else {
-			setItems(items.concat(tempImage));
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (recruitingClubDtos) {
+	// 		setFocusClubImage(0);
+	// 		// need to set recruiting club images
+	// 		setLoading(false);
+	// 	} else {
+	// 		setItems(items.concat(tempImage));
+	// 		setLoading(false);
+	// 	}
+	// }, []);
 
-	useEffect(() => {
-		return () => setLoading(true);
-	}, []);
+	// useEffect(() => {
+	// 	return () => setLoading(true);
+	// }, []);
 
 	return (
 		<Container>

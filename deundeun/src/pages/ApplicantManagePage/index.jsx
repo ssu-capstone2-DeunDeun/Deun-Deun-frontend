@@ -1,4 +1,3 @@
-import ApplicantManagementForm from 'components/manager/ApplicantManagementForm'
 import { sendAlarm } from 'lib/api/auth';
 import { getApplicant, getClubs, getRecruits, initialApplicant } from 'modules/currentApplyForm';
 import { initialValue, inputContentType, inputValue } from 'modules/sendMsgForm';
@@ -7,6 +6,9 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import loadable from '@loadable/component';
+
+const ApplicantManagementForm = loadable(() => import('components/manager/ApplicantManagementForm'));
 
 const ApplicantManagePage = () => {
 	const dispatch = useDispatch();
@@ -15,19 +17,19 @@ const ApplicantManagePage = () => {
 		recruits: currentApplyForm.getRecruits,
 		applicants: currentApplyForm.getApplicant,
 		message: sendMsgForm.message,
-		sendMsgForm: sendMsgForm,
-	}))
+		sendMsgForm: sendMsgForm
+	}));
 	const [clubName, setClubName] = useState(null);
 
 	const onClick = (recruitId) => {
 		dispatch(getApplicant(recruitId));
-	}
+	};
 
 	useEffect(() => {
 		if (getClub) {
 			dispatch(getRecruits(getClub[0].clubResponseDto.clubName));
 			setClubName(getClub[0].clubResponseDto.clubName);
-			dispatch(inputValue({ type: "clubId", value: getClub[0].clubResponseDto.clubId }));
+			dispatch(inputValue({ type: 'clubId', value: getClub[0].clubResponseDto.clubId }));
 		}
 		dispatch(initialApplicant());
 	}, [dispatch, getClub]);
@@ -37,32 +39,32 @@ const ApplicantManagePage = () => {
 	}, [dispatch]);
 
 	const onChangeContent = (e) => {
-		dispatch(inputValue({ type: "message", value: e.target.value }))
-	}
+		dispatch(inputValue({ type: 'message', value: e.target.value }));
+	};
 
 	const onResetContent = (e) => {
-		dispatch(inputValue({ type: "message", value: "" }))
-	}
+		dispatch(inputValue({ type: 'message', value: '' }));
+	};
 	const onResetType = (e) => {
-		dispatch(inputValue({ type: "contentType", value: "" }))
-	}
+		dispatch(inputValue({ type: 'contentType', value: '' }));
+	};
 
 	const onChangeEmail = (emailList) => {
-		dispatch(inputValue({ type: "emails", value: emailList }))
-	}
+		dispatch(inputValue({ type: 'emails', value: emailList }));
+	};
 	const onResetEmail = () => {
-		dispatch(inputValue({ type: "emails", value: [] }))
-	}
+		dispatch(inputValue({ type: 'emails', value: [] }));
+	};
 	useEffect(() => {
-		dispatch(initialValue())
+		dispatch(initialValue());
 	}, [dispatch]);
 
 	const sendEmail = () => {
 		sendAlarm(sendMsgForm);
-	}
+	};
 	const onChangeType = (value) => {
-		dispatch(inputContentType(value))
-	}
+		dispatch(inputContentType(value));
+	};
 
 	return (
 		<ApplicantManagementForm

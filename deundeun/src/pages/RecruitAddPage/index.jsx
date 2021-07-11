@@ -29,7 +29,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { setHours, setMinutes } from 'date-fns';
 import { Prompt, useHistory } from 'react-router';
-import recruitAddInfo, { changeInput, initializeState, addRecruit } from 'modules/recruitAddInfo';
+import { changeInput, initializeState } from 'modules/recruitAddInfo';
 import axios from '../../../node_modules/axios/index';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -48,9 +48,7 @@ const RecruitAddPage = ({
 	onChangeFinalPassAnnounceDate,
 	applicationList,
 	clubName,
-	whenState,
-	setWhenState,
-	location
+	setWhenState
 }) => {
 	const [dateError, setDateError] = useState(false);
 	const [generationError, setGenerationError] = useState(true);
@@ -59,8 +57,6 @@ const RecruitAddPage = ({
 	const [title, setTitle] = useState('');
 	const [showLoadApplicationModal, setShowLoadApplicationModal] = useState(false);
 	const [generation, setGeneration] = useState('');
-	const [intro, setIntro] = useState('');
-	const [editorContent, setEditorContent] = useState('');
 
 	const editorRef = useRef();
 	const dispatch = useDispatch();
@@ -68,7 +64,6 @@ const RecruitAddPage = ({
 
 	let editorInstance = null;
 	let content = null;
-	let modifiedContent = null;
 
 	const times = [
 		setHours(setMinutes(new Date(), 1), 0),
@@ -197,11 +192,6 @@ const RecruitAddPage = ({
 		},
 		[formError, titleError, generationError, recruitAddInfo, clubName, history]
 	);
-
-	useEffect(() => {
-		// console.log(editorContent);
-	}, [editorContent]);
-
 	useEffect(() => {
 		dispatch(initializeState());
 	}, []);
