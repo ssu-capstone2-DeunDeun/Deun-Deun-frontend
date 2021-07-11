@@ -55,5 +55,21 @@ export const assignParticipateClubPositions = (positionChangeDto) =>
         }
     });
 
+// -------------------------------------------------------------------------------------------------
 
 
+// 해당 멤버의 관리자 권한읇 부여하는 것
+export const assignAdminRole = (participatedId) =>
+    client.post(API_BASE_URL + `/participates/${participatedId}/admins` {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });
+
+// 해당 멤버의 관리자 권한읇 박탈하는 것
+export const quitAdminRole = (participatedId) =>
+    client.patch(API_BASE_URL + `/participates/${participatedId}/admins` {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem(ACCESS_TOKEN)}`
+        }
+    });

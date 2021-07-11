@@ -68,16 +68,13 @@ let sendMsgIdLists = []; // 닉네임 id 리스트
 let msgLists = [];     //이메일 리스트
 
 const MemberInfo = ({ info }) => {
-	const { nickname, userId, email, positionName, generation, admin, id } = info;
+	const { nickname, userId, email, positionName, generation, admin, id, name } = info;
 	const [click, setClick] = useState(false);
 
 	const [menuIndex, setMenuIndex] = useState(0);
 	const menu = ['멤버 정보 수정', '강제 퇴장'];
 
 	if (!sendMsgLists.includes(nickname) && click === true) {
-		// const list = { nickname, userId };
-		// sendMsgLists.push(list);
-
 		sendMsgLists.push(nickname);
 		sendMsgIdLists.push(id);
 		msgLists.push(email);
@@ -85,7 +82,7 @@ const MemberInfo = ({ info }) => {
 	if (sendMsgLists.includes(nickname) && click === false) {
 		sendMsgLists = sendMsgLists.filter(value => value !== nickname);
 		msgLists = msgLists.filter(value => value !== email);
-		sendMsgIdLists = sendMsgIdLists.filter(value => value !== userId);
+		sendMsgIdLists = sendMsgIdLists.filter(value => value !== id);
 	}
 
 	return (
@@ -96,9 +93,9 @@ const MemberInfo = ({ info }) => {
 			}
 			<div className="userInfo">
 				{/* <div className="userImg"></div> */}
-				<div className="nickname">{nickname}</div>
+				<div className="nickname">{name} ({nickname})</div>
 			</div>
-			{/* <div className="phoneNumber"></div> */}
+			{/* <div className="phoneNumber">{name}</div> */}
 			<div className="email">{email}</div>
 			<div className="unit">{generation}기</div>
 			<div className="role">{positionName}</div>

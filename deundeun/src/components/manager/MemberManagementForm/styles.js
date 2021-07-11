@@ -398,8 +398,9 @@ export const RoleSetBlock = styled.div`
                     
                 }
                 .roleSetBtn{
-                    margin-top:100px;
+                    margin-top:120px;
                     text-align:center;
+                    
                 }
         }
     }
