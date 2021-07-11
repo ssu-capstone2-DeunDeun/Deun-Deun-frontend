@@ -28,6 +28,21 @@ const MemberManagePage = () => {
 		loadClubs();
 	}, [dispatch]);
 
+	// 추가한 내용
+	useEffect(() => {
+		if (clubPositions) {
+			dispatch(getMemberInfo(clubName));
+		}
+	}, [clubPositions, clubName, dispatch]);
+
+	useEffect(() => {
+		let deleteUserPos = memberInfo.deleteUserPos;
+		if (deleteUserPos) {
+			dispatch(getMemberInfo(clubName));
+		}
+
+	}, [dispatch, clubName, memberInfo.deleteUserPos])
+
 	useEffect(() => {
 		clubName && dispatch(getMemberInfo(clubName))
 	}, [dispatch, clubName]);
@@ -100,8 +115,6 @@ const MemberManagePage = () => {
 
 	const deleteParticipateClubPos = (participateId) => {
 		dispatch(deleteParticipatePositions(participateId));
-
-		// dispatch(getMemberInfo(clubName));
 	}
 
 	const assignAdmin = (participateId) => {

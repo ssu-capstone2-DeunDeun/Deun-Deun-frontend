@@ -41,7 +41,7 @@ export function* memberManageSaga() {
 const initialState = {
     getMemberInfo: null,
     getMemberInfoError: null,
-    deleteUserPos: null,
+    deleteUserPos: 0,
 }
 
 
@@ -55,10 +55,10 @@ const memberManageInfo = handleActions(
             ...state,
             getMemberInfoError,
         }),
-        [DELETE_PARTICIPATE_POSITIONS_SUCCESS]: (state, { payload: deleteUserPos }) => ({
-            ...state,
-            deleteUserPos,
-        }),
+        [DELETE_PARTICIPATE_POSITIONS_SUCCESS]: (state, { payload: deleteUserPos }) =>
+            produce(state, draft => {
+                draft.deleteUserPos = draft.deleteUserPos + 1;
+            }),
         [DELETE_PARTICIPATE_POSITIONS_FAILURE]: (state, { payload: getMemberInfoError }) => ({
             ...state,
             getMemberInfoError,
