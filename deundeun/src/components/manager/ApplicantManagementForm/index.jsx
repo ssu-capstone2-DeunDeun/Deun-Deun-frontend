@@ -96,8 +96,6 @@ const ApplicantManagementForm = ({
 	const [type, setType] = useState(null);
 	const [error, setError] = useState(false);
 
-	console.log("nunber", number);
-
 	return (
 		<BasicBlock>
 			<ContentBlock>

@@ -17,6 +17,7 @@ const ApplicantManagePage = () => {
 		message: sendMsgForm.message,
 		sendMsgForm: sendMsgForm,
 	}))
+
 	const [clubName, setClubName] = useState(null);
 
 	const onClick = (recruitId) => {
@@ -53,6 +54,7 @@ const ApplicantManagePage = () => {
 	const onResetEmail = () => {
 		dispatch(inputValue({ type: "emails", value: [] }))
 	}
+
 	useEffect(() => {
 		dispatch(initialValue())
 	}, [dispatch]);
@@ -60,6 +62,7 @@ const ApplicantManagePage = () => {
 	const sendEmail = () => {
 		sendAlarm(sendMsgForm);
 	}
+
 	const onChangeType = (value) => {
 		dispatch(inputContentType(value))
 	}
