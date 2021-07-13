@@ -1,5 +1,11 @@
 ---
 
+<p align="center">
+<img src=https://user-images.githubusercontent.com/19235163/125189374-bd98f800-e272-11eb-8273-a23e4e1ea2bb.png width="30%"/>
+</p>
+
+바로가기 - [https://groopy.site](https://groopy.site)
+
 [동아리가 쉬워진다, GROOPY](https://www.notion.so/GROOPY-33cbed4df4424240bda1318a787809fb)
 
 안녕하세요! 저희는 숭실대 소프트웨어학부 4학년 웹서비스 개발팀 '든든'입니다.
@@ -16,7 +22,7 @@
 
 [GROOPY 한눈에 보기 ](https://www.notion.so/GROOPY-a63127b3f24b4485b4ea2fb575f38a4d)
 
-GROOPY는 6월 초 정식 서비스 출시를 앞두고 **사전 신청**을 받고 있어요. 
+GROOPY는 8월 초 정식 서비스 출시를 앞두고 **사전 신청**을 받고 있어요. 
 좀 더 쉬운 동아리 관리를 만들어 나갈 파트너 동아리들의 많은 신청을 기다리고 있습니다.
 
 사전신청을 원하시는 경우, 
