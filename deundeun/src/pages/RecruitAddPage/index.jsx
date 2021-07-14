@@ -29,12 +29,12 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { setHours, setMinutes } from 'date-fns';
 import { Prompt, useHistory } from 'react-router';
-import ReactQuill, { Quill } from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import ImageResize from 'quill-image-resize';
 import recruitAddInfo, { changeInput, initializeState, addRecruit } from 'modules/recruitAddInfo';
 import axios from '../../../node_modules/axios/index';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import { Editor } from '@toast-ui/react-editor';
+import { useLocation } from 'react-router-dom';
 Quill.register('modules/ImageResize', ImageResize);
 
 registerLocale('ko', ko);
@@ -49,7 +49,9 @@ const RecruitAddPage = ({
 	onChangeDocumentPassAnnounceDate,
 	onChangeFinalPassAnnounceDate,
 	applicationList,
-	clubName
+	clubName,
+	whenState,
+	setWhenState
 }) => {
 	const [dateError, setDateError] = useState(false);
 	const [generationError, setGenerationError] = useState(true);
@@ -59,47 +61,12 @@ const RecruitAddPage = ({
 	const [showLoadApplicationModal, setShowLoadApplicationModal] = useState(false);
 	const [generation, setGeneration] = useState('');
 	const [intro, setIntro] = useState('');
-	const [whenState, setWhenState] = useState(true);
-	const quillRef = useRef();
+	const editorRef = useRef();
+	const [editorContent, setEditorContent] = useState('');
 	const dispatch = useDispatch();
 
-	const imageHandler = () => {
-		const input = document.createElement('input');
-		input.setAttribute('type', 'file');
-		input.setAttribute('accept', 'image/*');
-		input.click();
-		input.onchange = async function () {
-			const file = input.files[0];
-			console.log('User trying to uplaod this:', file);
-
-			//   const id = await uploadFile(file); // I'm using react, so whatever upload function
-			//   const range = quillRef.getSelection();
-			//   const link = `${ROOT_URL}/file/${id}`;
-
-			//   // this part the image is inserted
-			//   // by 'image' option below, you just have to put src(link) of img here.
-			//   this.quill.insertEmbed(range.index, 'image', link);
-		};
-	};
-
-	const modules = {
-		toolbar: [
-			[{ header: [1, 2, false] }],
-			['bold', 'italic', 'underline', 'strike', 'blockquote'],
-			[{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
-			['image'],
-			[{ align: [] }, { color: [] }, { background: [] }], // dropdown with defaults from theme
-			['clean']
-		],
-		// handlers: {
-		// 	image: imageHandler
-		// },
-		ImageResize: {
-			parchment: Quill.import('parchment')
-		}
-	};
-
 	const history = useHistory();
+	const location = useLocation();
 
 	const times = [
 		setHours(setMinutes(new Date(), 1), 0),
@@ -107,14 +74,42 @@ const RecruitAddPage = ({
 		setHours(setMinutes(new Date(), 59), 23)
 	];
 
+	const removeBase64 = () => {
+		let editorInstance = editorRef.current.getInstance();
+		let content = editorInstance.getMarkdown();
+		console.log(content.match(/!\[.*\]\(data:image\/.*\)!/, '!'));
+		editorInstance.setMarkdown(content.replace(/!\[.*\]\(data:image\/.*\)!/, '!'));
+		editorInstance.insertText('\n');
+	};
+
 	const CustomDateInput = forwardRef(({ value, onClick }, ref) => (
 		<DateInputButton onClick={onClick} ref={ref}>
 			{value}
 		</DateInputButton>
 	));
 
+	const uploadImage = (blob) => {
+		setWhenState(true);
+		let formData = new FormData();
+		formData.append('multipartFiles', blob);
+
+		return axios({
+			method: 'post',
+			url: `${API_BASE_URL}/image`,
+			data: formData,
+			headers: {
+				'Content-type': 'multipart/form-data',
+				Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
+			}
+		}).then((res) => {
+			return res.data[0];
+		});
+	};
+
 	const onChangeTitle = useCallback(
 		(e) => {
+			setWhenState(true);
+
 			console.log(e.target.value);
 			if (e.target.value === '') {
 				setTitleError(true);
@@ -124,10 +119,12 @@ const RecruitAddPage = ({
 				setTitleError(false);
 			}
 		},
-		[dispatch]
+		[dispatch, setWhenState]
 	);
 
 	const onChangeGeneration = (e) => {
+		setWhenState(true);
+
 		if (Number(e.target.value) > 0 && Number(e.target.value <= 999)) {
 			setGeneration(e.target.value);
 			dispatch(changeInput({ type: 'generation', value: e.target.value }));
@@ -137,9 +134,13 @@ const RecruitAddPage = ({
 		}
 	};
 
-	const onClickLoadApplication = useCallback((e) => {
-		setShowLoadApplicationModal(true);
-	}, []);
+	const onClickLoadApplication = useCallback(
+		(e) => {
+			setWhenState(true);
+			setShowLoadApplicationModal(true);
+		},
+		[setWhenState]
+	);
 
 	const onCloseModal = useCallback((e) => {
 		setShowLoadApplicationModal(false);
@@ -148,13 +149,6 @@ const RecruitAddPage = ({
 	const onCloseSnackbar = useCallback(() => {
 		setDateError(false);
 	}, []);
-
-	const onChangeEditor = useCallback(
-		(e) => {
-			dispatch(changeInput({ type: 'content', value: e }));
-		},
-		[dispatch]
-	);
 
 	const { recruitAddInfo } = useSelector(({ recruitAddInfo }) => ({
 		recruitAddInfo: recruitAddInfo
@@ -169,6 +163,9 @@ const RecruitAddPage = ({
 				console.log(formError, titleError, generationError);
 				return;
 			} else {
+				let editorInstance = editorRef.current.getInstance();
+				let editorContent = editorInstance.getMarkdown();
+				console.log(editorContent);
 				const data = {
 					newRecruit: {
 						clubApplyFormId: recruitAddInfo.clubApplyFormId,
@@ -180,10 +177,12 @@ const RecruitAddPage = ({
 						finalPassAnnounceDate: recruitAddInfo.finalPassAnnounceDate,
 						title: recruitAddInfo.title,
 						generation: parseInt(recruitAddInfo.generation),
-						content: recruitAddInfo.content
+						content: editorContent
 					},
 					clubName: clubName
 				};
+				// dispatch(addRecruit(data));
+        
 				axios({
 					method: 'post',
 					url: `${API_BASE_URL}/clubs/${clubName}/recruits`,
@@ -195,7 +194,6 @@ const RecruitAddPage = ({
 					console.log(res);
 					history.push('/recruit/success');
 				});
-
 			}
 		},
 		[formError, titleError, generationError, recruitAddInfo, clubName, history]
@@ -207,6 +205,10 @@ const RecruitAddPage = ({
 			dispatch(initializeState());
 		};
 	}, []);
+
+	useEffect(() => {
+		console.log(editorContent);
+	}, [editorContent]);
 
 	useEffect(() => {
 		dispatch(initializeState());
@@ -333,15 +335,27 @@ const RecruitAddPage = ({
 					/> */}
 				</ContainerRow>
 			</ContainerColumn>
-			<TitleKorean>모집 내용</TitleKorean>
-			<ReactQuill
-				ref={quillRef}
-				style={{ height: '500px', marginBottom: '5em', marginTop: '1em' }}
-				modules={modules}
-				theme="snow"
-				onChange={onChangeEditor}
+			<TitleKorean style={{ marginBottom: '1.3em' }}>모집 내용</TitleKorean>
+
+			<Editor
+				previewStyle="vertical"
+				height="600px"
+				initialEditType="wysiwyg"
+				useCommandShortcut={true}
+				ref={editorRef}
+				hooks={{
+					addImageBlobHook: async (blob, callback) => {
+						const src = await uploadImage(blob);
+						callback(src, 'alt_markdown_image');
+						removeBase64();
+						return false;
+					}
+				}}
 			/>
-			<SubmitButton onClick={onSubmit}>모집 공고 등록하기</SubmitButton>
+
+			<SubmitButton style={{ marginTop: '2em' }} onClick={onSubmit}>
+				모집 공고 등록하기
+			</SubmitButton>
 
 			<LoadApplicationModal
 				applicationList={applicationList}
@@ -351,15 +365,16 @@ const RecruitAddPage = ({
 			/>
 			<ErrorMessage open={dateError} onCloseSnackbar={onCloseSnackbar} message="마감일은 시작일 이후여야 합니다." />
 			<Footer />
-			{/* <Prompt
+			<Prompt
 				when={whenState}
-				navigate={(path) => {
-					history.push(path);
-				}}
 				yes="확인"
 				no="취소"
-				message="작성된 정보가 모두 삭제됩니다. 정말 나가시겠어요?"
-			/> */}
+				message={(location) => {
+					return location.pathname === '/recruit/success'
+						? true
+						: '작성 중인 정보가 모두 삭제됩니다. 정말 이동하시겠어요?';
+				}}
+			/>
 		</ContainerColumn>
 	);
 };

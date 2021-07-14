@@ -18,22 +18,22 @@ const ClubManagePostPage = ({ history }) => {
     }));
 
     useEffect(() => {
-        dispatch(getClubInfo());
         if (clubInfo && clubInfo[0]) {
             dispatch(getClubsPosts(clubInfo[0].clubResponseDto.clubId));
         }
     }, [clubInfo, dispatch]);
 
     useEffect(() => {
+        dispatch(getClubInfo());
+    }, [dispatch])
 
-    })
 
     // if (clubInfo) {
     //     const { clubName, likeCount } = clubInfo[0].clubResponseDto;
     // }
 
     return (
-        < ClubManagePostPageContainer >
+        <ClubManagePostPageContainer >
             <div className="title">게시글 리스트</div>
             <div className="writeBtnBox">
                 <div className="writeBtn">

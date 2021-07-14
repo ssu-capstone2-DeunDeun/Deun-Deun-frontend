@@ -1,13 +1,12 @@
 import LoadingSpinner from 'components/common/LoadingSpinner/index';
 import { API_BASE_URL, ACCESS_TOKEN } from 'constants/index';
 import { ApplicationTitleInput, Header } from 'pages/ApplicationAddPage/styles';
-import { SpinnerContainer } from 'pages/ApplicationManagePage/styles';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { ContainerColumn, ContainerPage } from 'styles';
+import { SpinnerContainer } from './styles';
 import axios from '../../../node_modules/axios/index';
 import { TitleKorean } from 'pages/RecruitAddPage/styles';
-import QuestionCard from 'components/common/QuestionCard/index';
 import QuestionList from 'components/QuestionList/index';
 
 const ApplicationOverviewPage = () => {
@@ -24,7 +23,6 @@ const ApplicationOverviewPage = () => {
 				Authorization: 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
 			}
 		}).then((res) => {
-			console.log(res.data);
 			setTitle(res.data.title);
 			setQuestionList(res.data.recruitQuestionResponseDtos);
 			setLoading(false);
@@ -38,7 +36,7 @@ const ApplicationOverviewPage = () => {
 				<>
 					<ContainerPage style={{ width: '1300px' }}>
 						<ContainerColumn style={{ marginBottom: '3em' }}>
-							<Header>지원서 양식 미리보기</Header>
+							<Header>지원서 미리보기</Header>
 							<TitleKorean>제목</TitleKorean>
 							<ApplicationTitleInput
 								type="text"
@@ -55,7 +53,7 @@ const ApplicationOverviewPage = () => {
 			) : (
 				<>
 					<SpinnerContainer>
-						<LoadingSpinner size="large" style={{ margin: '0 auto' }} />
+						<LoadingSpinner size="large" />
 					</SpinnerContainer>
 				</>
 			)}

@@ -16,9 +16,11 @@ const ApplicationAddInfoContainer = ({ setAddNewForm }) => {
 	const [clubName, setClubName] = useState('');
 	const [loading, setLoading] = useState(true);
 	const [appLoading, setAppLoading] = useState(true);
+	const [whenState, setWhenState] = useState(false);
 
 	const onChangeAppTitle = useCallback(
 		(e) => {
+			setWhenState(true);
 			setAppTitle(e.target.value);
 			dispatch(changeInput(e.target.value));
 		},
@@ -27,6 +29,7 @@ const ApplicationAddInfoContainer = ({ setAddNewForm }) => {
 
 	const onChangeQuestionType = useCallback(
 		(e) => {
+			setWhenState(true);
 			const id = e.target.id;
 			const type = e.currentTarget.innerText;
 			if (type === '선다형') {
@@ -65,6 +68,8 @@ const ApplicationAddInfoContainer = ({ setAddNewForm }) => {
 			setLoading={setLoading}
 			appLoading={appLoading}
 			setAppLoading={setAppLoading}
+			whenState={whenState}
+			setWhenState={setWhenState}
 		/>
 	);
 };

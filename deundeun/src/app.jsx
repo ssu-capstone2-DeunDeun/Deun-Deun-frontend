@@ -24,6 +24,8 @@ import ApplySuccessPage from 'pages/ApplySuccessPage/index';
 import RecruitSuccessPage from 'pages/RecruitSuccessPage/index';
 import MyApplyPage from 'pages/MyApplyPage/index';
 import ApplicationOverviewPage from 'pages/ApplicationOverviewPage/index';
+import ApplicationModifyPage from 'pages/ApplicationModifyPage/index';
+import SendMsgSuccess from 'components/SendMsgSuccess/index';
 
 const ClubHomePage = loadable(() => import('pages/ClubHomePage'));
 const CategoryITPage = loadable(() => import('pages/CategoryITPage'));
@@ -115,6 +117,14 @@ const App = () => {
 				<HeaderContainer />
 				<ApplicationSuccessPage />
 			</Route>
+			<Route exact path="/applicant/message/success">
+				<HeaderContainer />
+				<SendMsgSuccess applicant />
+			</Route>
+			<Route exact path="/member/message/success">
+				<HeaderContainer />
+				<SendMsgSuccess member />
+			</Route>
 			<Route exact path="/apply/success">
 				<HeaderContainer />
 				<ApplySuccessPage />
@@ -128,6 +138,13 @@ const App = () => {
 				<ContainerRow>
 					<SideBar location={location} />
 					<ApplicationOverviewPage />
+				</ContainerRow>
+			</Route>
+			<Route exact path="/application/:clubName/:id/modify">
+				<HeaderContainer />
+				<ContainerRow>
+					<SideBar location={location} />
+					<ApplicationModifyPage />
 				</ContainerRow>
 			</Route>
 			{/* <Route exact path="/club/" */}
@@ -201,23 +218,23 @@ const ClubManagePage = () => {
 						<ApplicationAddInfoContainer setAddNewForm={setAddNewApplication} />
 					</Fragment>
 				) : (
-						<Fragment>
-							<Redirect to="/club/manage/application" />
-							<ApplicationManagePage setAddNewForm={setAddNewApplication} />
-						</Fragment>
-					))}
+					<Fragment>
+						<Redirect to="/club/manage/application" />
+						<ApplicationManagePage setAddNewForm={setAddNewApplication} />
+					</Fragment>
+				))}
 			{name === 'recruit' &&
 				(addNewRecruit ? (
-					<Fragment>
+					<>
 						<Redirect to="/club/manage/recruit/new" />
 						<RecruitAddInfoContainer setAddNewForm={setAddNewRecruit} />
-					</Fragment>
+					</>
 				) : (
-						<Fragment>
-							<Redirect to="/club/manage/recruit" />
-							<RecruitManagePage setAddNewForm={setAddNewRecruit} />
-						</Fragment>
-					))}
+					<>
+						<Redirect to="/club/manage/recruit" />
+						<RecruitManagePage setAddNewForm={setAddNewRecruit} />
+					</>
+				))}
 			{name === 'applicant' && <ApplicantManagePage />}
 			{name === 'member' && <MemberManagePage />}
 			{name === 'post' && <ClubManagePostPage />}

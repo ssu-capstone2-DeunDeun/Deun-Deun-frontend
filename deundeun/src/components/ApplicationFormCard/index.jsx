@@ -13,6 +13,10 @@ const ApplicationFormCard = ({ id, title, clubName, onDeleteApplication }) => {
 		[history, clubName, id]
 	);
 
+	const onModify = (e) => {
+		history.push(`/application/${clubName}/${id}/modify`);
+	};
+
 	return (
 		//
 		<Container>
@@ -22,7 +26,9 @@ const ApplicationFormCard = ({ id, title, clubName, onDeleteApplication }) => {
 			<Divider />
 			<ApplicationDetail>{clubName}</ApplicationDetail>
 			<ButtonContainer>
-				<Button style={{ marginRight: '16px' }}>수정하기</Button>
+				<Button onClick={onModify} style={{ marginRight: '16px' }}>
+					수정하기
+				</Button>
 				<Button id={id} onClick={onDeleteApplication}>
 					삭제하기
 				</Button>
