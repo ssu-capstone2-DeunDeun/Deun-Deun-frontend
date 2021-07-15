@@ -35,7 +35,7 @@ import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import { useLocation } from 'react-router-dom';
-Quill.register('modules/ImageResize', ImageResize);
+// Quill.register('modules/ImageResize', ImageResize);x
 
 registerLocale('ko', ko);
 
@@ -182,7 +182,7 @@ const RecruitAddPage = ({
 					clubName: clubName
 				};
 				// dispatch(addRecruit(data));
-        
+
 				axios({
 					method: 'post',
 					url: `${API_BASE_URL}/clubs/${clubName}/recruits`,

@@ -195,7 +195,7 @@ const ApplicantManagementForm = ({
 						{
 							sendMsgLists.map(sendMsgList => <button id={sendMsgList}>{sendMsgList}</button>)
 						}
-					</div>
+					</div> 
 					<div className="content">
 						<div>내용</div>
 						<StyledTextarea className="message" value={message} onChange={onChangeContent} placeholder="내용을 입력하세요." ></StyledTextarea>

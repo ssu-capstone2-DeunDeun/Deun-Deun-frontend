@@ -52,7 +52,7 @@ const MemberInfo = ({ info }) => {
 			<div className="role">{positionName}</div>
 			<div className="authorized">{admin ? "운영진" : "일반 회원"}</div>
 
-			{/* 차후에 추가할 수도 있다. */}
+			{/* 차후에 추가할 수도 있다 */}
 			{/* <div className="other">
 				<DropdownMenuDot
 					options={menu}

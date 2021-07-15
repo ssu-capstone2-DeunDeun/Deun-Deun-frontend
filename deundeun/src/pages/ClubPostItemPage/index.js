@@ -110,7 +110,6 @@ const ClubPostItemPage = ({ match, history }) => {
                         </div>
                     </ModalBox>
                 </div>
-
             </DeleteModal>
         </>
     );

@@ -12,8 +12,8 @@ const ApplicantManagePage = () => {
 	const dispatch = useDispatch();
 	const { getClub, recruits, applicants, message, sendMsgForm } = useSelector(({ currentApplyForm, sendMsgForm }) => ({
 		getClub: currentApplyForm.getClubs,
-		recruits: currentApplyForm.getRecruits,
-		applicants: currentApplyForm.getApplicant,
+		recruits: currentApplyForm.getRecruits,  //동아리의 모집공고 리스트
+		applicants: currentApplyForm.getApplicant, //모집공고에 해당하는 지원자 리스트
 		message: sendMsgForm.message,
 		sendMsgForm: sendMsgForm,
 	}))

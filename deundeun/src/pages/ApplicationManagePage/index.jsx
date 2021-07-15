@@ -9,6 +9,7 @@ import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import { Container, SpinnerContainer } from './styles';
 import LoadingSpinner from 'components/common/LoadingSpinner/index';
 import DeleteApplicationModal from 'components/modal/DeleteApplicationModal/index';
+import { Fragment } from 'react';
 const ApplicationManagePage = ({ setAddNewForm }) => {
 	const [clubName, setClubName] = useState('');
 	const [applicationList, setApplicationList] = useState([]);
@@ -78,15 +79,16 @@ const ApplicationManagePage = ({ setAddNewForm }) => {
 				))
 			) : (
 
-			{/* <SpinnerContainer>
-				<LoadingSpinner size="large" style={{ margin: '0 auto' }} />
-			</SpinnerContainer> */}
-					<>
-						<SpinnerContainer>
-							<LoadingSpinner size="large" style={{ margin: '0 auto' }} />
-						</SpinnerContainer>
-					</>
-				)}
+					// <SpinnerContainer>
+					// 	<LoadingSpinner size="large" style={{ margin: '0 auto' }} />
+					// </SpinnerContainer> 
+
+					<pinnerContainer>
+						<LoadingSpinner size="large" style={{ margin: '0 auto' }} />
+					</pinnerContainer >
+
+				)
+			}
 			<DeleteApplicationModal
 				id={deleteId}
 				show={showDeleteModal}
@@ -97,7 +99,7 @@ const ApplicationManagePage = ({ setAddNewForm }) => {
 				setApplicationList={setApplicationList}
 				clubName={clubName}
 			/>
-		</Container>
+		</Container >
 	);
 };
 

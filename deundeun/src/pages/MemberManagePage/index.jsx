@@ -28,7 +28,7 @@ const MemberManagePage = () => {
 		loadClubs();
 	}, [dispatch]);
 
-	// 추가한 내용
+	// 추가한 내용-> 리덕스 부분 리팩토링 가능하다!! -> 나중에 고려하기
 	useEffect(() => {
 		if (clubPositions) {
 			dispatch(getMemberInfo(clubName));
