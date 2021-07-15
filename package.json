@@ -6,6 +6,7 @@
   "author": "Suyoung <jsy19970512@naver.com>",
   "license": "MIT",
   "dependencies": {
+    "immer": "^9.0.5",
     "react-router-dom": "^5.2.0"
   }
 }

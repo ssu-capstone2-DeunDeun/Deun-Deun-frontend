@@ -7,8 +7,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import loadable from '@loadable/component';
-
-const ApplicantManagementForm = loadable(() => import('components/manager/ApplicantManagementForm'));
+import ApplicantManagementForm from 'components/manager/ApplicantManagementForm/index';
 
 const ApplicantManagePage = () => {
 	const dispatch = useDispatch();
@@ -55,6 +54,7 @@ const ApplicantManagePage = () => {
 	const onResetEmail = () => {
 		dispatch(inputValue({ type: 'emails', value: [] }));
 	};
+
 	useEffect(() => {
 		dispatch(initialValue());
 	}, [dispatch]);
@@ -62,6 +62,7 @@ const ApplicantManagePage = () => {
 	const sendEmail = () => {
 		sendAlarm(sendMsgForm);
 	};
+
 	const onChangeType = (value) => {
 		dispatch(inputContentType(value));
 	};

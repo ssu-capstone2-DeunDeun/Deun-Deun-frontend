@@ -152,7 +152,6 @@ const RecruitAddPage = ({
 	const onSubmit = useCallback(
 		(e) => {
 			e.preventDefault();
-			console.log('qefqe');
 			if (formError || titleError || generationError) {
 				window.scrollTo(0, 0);
 				console.log(formError, titleError, generationError);
@@ -176,7 +175,6 @@ const RecruitAddPage = ({
 					},
 					clubName: clubName
 				};
-
 				axios({
 					method: 'post',
 					url: `${API_BASE_URL}/clubs/${clubName}/recruits`,

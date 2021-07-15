@@ -64,17 +64,10 @@ export const ContentBlock = styled.div`
                         }
                     }
                     .skill{
-                        text-decoration:underline;
                         margin-right:17.5px;
                         font-size:14px;
                         font-weight:bold;
                         color:#282828;
-                    }
-                    .roleSet{
-                        cursor:pointer;
-                    }
-                    .authSet{
-                        cursor:pointer;
                     }
                 }
 
@@ -138,6 +131,8 @@ export const ApplicantInfoBlock = styled.div`
     .userInfo{
         display:flex;
         align-items:center;
+        
+        //나중에 지워도 상관 없음
         .userImg{
             width:30px;
             height:30px;
@@ -179,7 +174,7 @@ export const PopupBlock = styled.div`
     }
     .msgPopupBlock{
         width:782px;
-        height:672px;
+        height:750px;
         position:absolute;
         box-shadow:15px 15px 30px 0 rgba(0,0,0,0.16);
         margin:auto;
@@ -225,7 +220,7 @@ export const PopupBlock = styled.div`
                 height:18px;
                 opacity:0.2;
             }
-            div{
+            .kindItemTit{
                 margin-right:20px;
                 font-size:14px;
             }
@@ -238,8 +233,9 @@ export const PopupBlock = styled.div`
         .receiverIist{
             display:flex;
             flex-wrap:wrap;
+            height:40px;
             button{
-                width:220px;
+                width:120px;
                 height:32px;
                 font-size:12px;
                 margin:15px 8px 0 0;
@@ -259,10 +255,12 @@ export const PopupBlock = styled.div`
             }
         }
         .content{
-            font-weight:bold;
-            margin-top:19px;
+            font-weight:bold; 
+            margin-top:20px;
+            height:270px;
         }
         .msgSubmitBtn{
+            margin-top:38px;
             text-align:center;
         }
     }
@@ -272,7 +270,7 @@ export const StyledTextarea = styled.textarea`
     width:688px;
     height:188px;
     margin-top:15px;
-    margin-bottom:38px;
+    margin-bottom:0;
     font-size:14px;
     border:none;
     background-color:#f7f7f7;
@@ -317,20 +315,306 @@ export const RoleSetBlock = styled.div`
                 }
             }
         }
-        .addAuth{
+        .addRole{
             display:flex;
             align-items:center;
             justify-content:flex-end;
             font-size:14px;
             color:#b5b5b5;
+            font-weight:400;
+            cursor:pointer;
             margin-bottom:11.5px;
             svg{
                 margin-right:6px;
             }
+            &:hover{
+                color:#282828;
+            }
         }
-        .roleSetBtn{
+        
+        .roleList{
+            font-size:15px;
+            font-weight:900;
+            margin-bottom:11px;
+        }
+        .roleListItem{
+            display:flex;
+            align-items:center;
+            font-weight:bold;
+            margin-bottom:21px;
+            
+            svg{
+                margin-right:10px;
+                width:18px;
+                height:18px;
+                opacity:0.2;
+            }
+            .posInfo{
+                margin-right:15px;
+                font-size:14px;
+            }
+            .delIcon{
+                margin-right :15px;
+                
+                svg{
+                    cursor:pointer;
+                }
+                svg:hover{
+                    color:#1CD0B5;
+                    opacity:1;
+                }
+            }
+        }
+        .roleChangeItemBox{
+                display:flex;
+                flex-direction:column;
+
+                .roleChangeItem{
+                    display:flex;
+                    height:32px;
+                    align-items: center;
+                    margin-bottom:15px;
+                    font-size:12px;
+                    .selectedMember{
+                        width:100px;
+                        height:32px;
+                        margin:15px 15px 0 0;
+                        color:#282828;
+                        background-color:#C8F1E9;
+                        border:none;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center; 
+                    }
+                    
+                    .roleSelectList{
+                        margin-top:14px;
+                        height:100%;
+                        width:100px;
+                        border:none;
+                        background-color:#f7f7f7;
+                        padding:0 8px;
+                    }
+                    
+                }
+                .roleSetBtn{
+                    margin-top:120px;
+                    text-align:center;
+                    
+                }
+        }
+    }
+`;
+
+
+export const AuthSetBlock = styled.div`
+    .authDelete{
+        display:none;
+    }
+    .authPopupBlock{
+        width:782px;
+        height:580px;
+        position:absolute;
+        box-shadow:15px 15px 30px 0 rgba(0,0,0,0.16);
+        margin:auto;
+        right:0;
+        left:0;
+        top:0;
+        bottom:0;
+        z-index:100;
+        background-color:#ffffff;
+        padding:38px 40.5px 49px 44px;
+        color:#282828;
+
+        .authPopupTitle{
+            font-size:25px;
+            font-weight:900;
+            color:#282828;
+            margin-bottom:36px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            svg{
+                opacity :0.3;
+                width:25px;
+                height:25px;
+                &:hover{
+                    opacity:0.7;
+                }
+            }
+        }
+        .authList{
+            font-size:15px;
+            font-weight:900;
+            margin-bottom:11px;
+        }
+        .authListItem{
+            display:flex;
+            align-items:center;
+            font-weight:bold;
+            margin-bottom:21px;
+            
+            svg{
+                margin-right:10px;
+                width:18px;
+                height:18px;
+                opacity:0.2;
+            }
+            .posInfo{
+                margin-right:15px;
+                font-size:14px;
+            }
+        }
+        .authChangeItemBox{
+                display:flex;
+                flex-direction:column;
+
+                .authChangeItem{
+                    display:flex;
+                    height:32px;
+                    align-items: center;
+                    margin-bottom:15px;
+                    font-size:12px;
+                    .authSelectedMember{
+                        width:100px;
+                        height:32px;
+                        margin:15px 15px 0 0;
+                        color:#282828;
+                        background-color:#C8F1E9;
+                        border:none;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center; 
+                    }
+                    
+                    .authSelectList{
+                        margin-top:14px;
+                        height:32px;
+                        width:100px;
+                        border:none;
+                        background-color:#f7f7f7;
+                        padding:0 8px;
+                    }
+                    
+                }
+                .authSetBtn{
+                    margin-top:120px;
+                    text-align:center;
+                    
+                }
+        }
+    }
+    
+`;
+
+
+
+
+export const AddRoleBlock = styled.div`
+    .addRoleDelete{
+        display:none;
+    }
+
+    .addRolePopupBlock{
+        width:600px;
+        height:310px;
+        position:fixed;
+        box-shadow:15px 15px 30px 0 rgba(0,0,0,0.16);
+        margin:auto;
+        right:0;
+        left:0;
+        top:0;
+        bottom:15%;
+        z-index:120;
+        background-color:#ffffff;
+        padding:38px 40.5px 49px 44px;
+        color:#282828;
+
+        .addRolePopupTitle{
+            font-size:25px;
+            font-weight:900;
+            color:#282828;
+            margin-bottom:36px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            svg{
+                opacity :0.3;
+                width:25px;
+                height:25px;
+                &:hover{
+                    opacity:0.7;
+                }
+            }
+        }
+        .addRole{
+            height:100px;
+            .addRoleInfo{
+                display:flex;
+                align-items:center;
+                font-size:20px;
+                
+                .addRoleTit{
+                    margin-right:20px;
+                }
+                input{
+                    padding:5px;
+                    padding-left:10px;
+                    border:2px solid #808080;
+                    border-radius:5px;
+                    outline:none;
+                    height:40px;
+
+                    &:focus{
+                        border:2px solid black;
+                    }
+                }
+            }
+        }
+        .addRoleSetBtn{
             text-align:center;
         }
     }
     
+`;
+
+
+export const DeleteModal = styled.div`
+    .make{
+        position:fixed;
+        top:0;
+        right:0;
+        left:0;
+        bottom:0; 
+        background:rgba(0,0,0,0.3);
+        
+
+        display:flex;
+        justify-content: center;
+		z-index:100;
+    }
+    .delete{
+        display:none;
+    }
+`;
+
+export const ModalBox = styled.div`
+    width:530px;
+    height:220px;
+    background:white;
+    margin-top: 15%;
+    display:flex;
+    flex-direction: column;
+    align-items:center; 
+
+    .deleteBtn{
+        font-size:24px;
+        font-weight:900;
+        margin-top:40px;
+        
+    }
+    .removeBtn{
+        display:flex;
+        margin-top:60px;
+    }
 `;

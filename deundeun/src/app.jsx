@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Switch, useLocation, useParams } from 'react-router-dom';
 import loadable from '@loadable/component';
 import { ContainerRow } from 'styles';
+import { Fragment } from 'react';
 
 const HeaderContainer = loadable(() => import('container/common/HeaderContainer'));
 const SideBar = loadable(() => import('components/common/SideBar'));
@@ -132,8 +133,12 @@ const App = () => {
 				<ApplicationSuccessPage />
 			</Route>
 			<Route exact path="/applicant/message/success">
-				<HeaderContainer setUser={setUser} />
-				<SendMsgSuccess />
+				<HeaderContainer />
+				<SendMsgSuccess applicant />
+			</Route>
+			<Route exact path="/member/message/success">
+				<HeaderContainer />
+				<SendMsgSuccess member />
 			</Route>
 			<Route exact path="/apply/success">
 				<HeaderContainer setUser={setUser} />
