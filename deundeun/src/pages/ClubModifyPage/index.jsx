@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import DropdownMenu from 'components/common/DropdownMenu';
 import { ContainerPage, ContainerRow } from 'styles';
 
 import {
@@ -17,15 +16,22 @@ import {
 	Placeholder,
 	InputButtonContainer,
 	IntroImageContainer,
-	ImageDeleteButton
+	ImageDeleteButton,
+	HashtagContainer
 } from 'pages/ClubAddPage/styles';
-import { ImageButton } from 'pages/RecruitAddPage/styles';
 import styled from 'styled-components';
 import ImageUpload from 'components/common/ImageUpload/index';
 import { useSelector } from 'react-redux';
 import DropdownMenuSelect from 'components/common/DropdownMenuSelect/index';
 import { Error } from 'pages/ApplicationAddPage/styles';
 import { ClubName } from './styles';
+import ClubHashtag from 'components/common/ClubHashtag/index';
+import { useCallback } from 'react';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+
 const CoverImage = styled.div`
 	max-width: 100%;
 	height: 138px;
@@ -78,8 +84,6 @@ const ClubModifyPage = ({
 	generationError,
 	categoryError,
 	onChangeGeneration,
-	imageFileList,
-	setImageFileList,
 	onChangeItem,
 	onChangeClubImage,
 	onChangeImage,
@@ -89,7 +93,13 @@ const ClubModifyPage = ({
 	const { menuOptions } = useSelector(({ initCategory }) => ({
 		menuOptions: initCategory.category
 	}));
+	const hashtagOptions = ['개발', '문화', '예술', '경제', '스포츠', '친목', '디자인', '봉사'];
+	const [anchorEl, setAnchorEl] = useState(null);
+	const ITEM_HEIGHT = 48;
+
 	const [menuIndex, setMenuIndex] = useState(0);
+	const [hashtagList, setHashtagList] = useState([]);
+	const [hashtagError, setHashtagError] = useState(false);
 
 	useEffect(() => {
 		switch (clubInfo.categoryType) {
@@ -121,6 +131,52 @@ const ClubModifyPage = ({
 				break;
 		}
 	}, [clubInfo.categoryType]);
+
+	const onAddHashtag = useCallback((e) => {
+		setAnchorEl(e.currentTarget);
+	}, []);
+
+	const onSelectHashtag = (event, index) => {
+		const newHashtag = {
+			id: index + 1,
+			name: hashtagOptions[index]
+		};
+		const found = hashtagList.find((hashtag) => hashtag.name === hashtagOptions[index]);
+		if (!found) {
+			setHashtagList(hashtagList.concat(newHashtag));
+		} else {
+			setHashtagError(true);
+		}
+		setAnchorEl(null);
+	};
+
+	const onDeleteHashtag = useCallback(
+		(e) => {
+			setHashtagList(hashtagList.filter((hashtag) => hashtag.id !== Number(e.target.id)));
+		},
+		[setHashtagList, hashtagList]
+	);
+
+	const onCloseMenu = useCallback(() => {
+		setAnchorEl(null);
+	}, []);
+
+	const onCloseSnackbar = useCallback(() => {
+		setHashtagError(false);
+	}, []);
+
+	const handleDuplicate = useCallback((e) => {
+		e.preventDefault();
+		// if(e.target.value !== '') {
+
+		// }
+	}, []);
+
+	useEffect(() => {
+		if (clubInfo.clubHashtags) {
+			setHashtagList(clubInfo.clubHashtags);
+		}
+	}, [clubInfo.clubHashtags]);
 
 	return (
 		//
@@ -158,7 +214,7 @@ const ClubModifyPage = ({
 						<MenuTitle>동아리 이름</MenuTitle>
 						<ContainerRow style={{ marginBottom: '2em' }}>
 							<ClubName>{clubInfo.clubName}</ClubName>
-							{/* <DuplicateCheckButton>중복 검사</DuplicateCheckButton> */}
+							<DuplicateCheckButton onClick={handleDuplicate}>중복 검사</DuplicateCheckButton>
 						</ContainerRow>
 						<MenuTitle>동아리 소개</MenuTitle>
 						<ClubInfoTextarea
@@ -167,9 +223,36 @@ const ClubModifyPage = ({
 						></ClubInfoTextarea>
 						<MenuTitle>관련 태그</MenuTitle>
 						<ContainerRow style={{ marginBottom: '2em' }}>
-							<AddHashtagButton>+ 태그 추가하기</AddHashtagButton>
-							<AddHashtagButton>IT / 개발</AddHashtagButton>
-							<AddHashtagButton>IT / 개발</AddHashtagButton>
+							<AddHashtagButton onClick={onAddHashtag}>+ 태그 추가하기</AddHashtagButton>
+							<Menu
+								id="hashtag-menu"
+								anchorEl={anchorEl}
+								keepMounted
+								open={Boolean(anchorEl)}
+								onClose={onCloseMenu}
+								PaperProps={{
+									style: {
+										maxHeight: ITEM_HEIGHT * 4.5,
+										width: '18ch'
+									}
+								}}
+							>
+								{hashtagOptions.map((option, index) => (
+									<MenuItem key={option} onClick={(event) => onSelectHashtag(event, index)}>
+										{option}
+									</MenuItem>
+								))}
+							</Menu>
+							<HashtagContainer>
+								{hashtagList.map((hashtag) => (
+									<ClubHashtag
+										key={hashtag.id}
+										id={hashtag.id}
+										value={hashtag.name}
+										onDeleteHashtag={onDeleteHashtag}
+									/>
+								))}
+							</HashtagContainer>
 						</ContainerRow>
 						<MenuTitle>커버 이미지 업로드</MenuTitle>
 						{/* <CoverImageContainer> */}
@@ -181,7 +264,7 @@ const ClubModifyPage = ({
 							<InputButtonContainer>
 								<ImageUpload onChangeFile={onChangeClubImage} multiple={true} />
 							</InputButtonContainer>
-							{imageFileList.map((image) => (
+							{clubInfo.clubImageUrls.map((image) => (
 								<div key={image}>
 									<IntroImageContainer>
 										<ImageDeleteButton id={image} onClick={onDeleteImage}>
@@ -196,6 +279,11 @@ const ClubModifyPage = ({
 					</MenuContainer>
 				</Container>
 				<Footer />
+				<Snackbar open={hashtagError} autoHideDuration={1000} onClose={onCloseSnackbar}>
+					<Alert onClose={onCloseSnackbar} severity="error">
+						이미 추가된 태그입니다.
+					</Alert>
+				</Snackbar>
 			</ContainerPage>
 		</>
 	);

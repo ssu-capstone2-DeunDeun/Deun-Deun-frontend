@@ -1,27 +1,29 @@
 import React from 'react';
 import { Content, Header, CardContainer } from './styles';
 import { TitleKorean } from 'components/RecruitingClubSection/styles';
-import ClubPostCard from 'components/ClubPostCard';
 import { ContentKorean } from 'components/PopularClubSection/styles';
 import { withRouter } from 'react-router-dom';
+import loadable from '@loadable/component';
+
+const ClubPostCard = loadable(() => import('components/ClubPostCard'));
 
 const ClubPostSection = ({ popularPostDtos, history }) => {
 	const onMove = () => {
 		history.push('/post/all');
-	}
+	};
 	return (
 		//
 		<>
 			<Header>
 				<TitleKorean>인기 게시글</TitleKorean>
-				<ContentKorean onClick={onMove} id="posts" >
+				<ContentKorean onClick={onMove} id="posts">
 					전체보기
 				</ContentKorean>
 			</Header>
 			<CardContainer>
 				<Content>
-					{
-						popularPostDtos && popularPostDtos.map(post =>
+					{popularPostDtos &&
+						popularPostDtos.map((post) => (
 							<ClubPostCard
 								title={post.title}
 								content={post.content}
@@ -31,8 +33,7 @@ const ClubPostSection = ({ popularPostDtos, history }) => {
 								postId={post.postId}
 								viewCount={post.viewCount}
 							/>
-						)
-					}
+						))}
 				</Content>
 			</CardContainer>
 		</>

@@ -29,13 +29,11 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { setHours, setMinutes } from 'date-fns';
 import { Prompt, useHistory } from 'react-router';
-import recruitAddInfo, { changeInput, initializeState, addRecruit } from 'modules/recruitAddInfo';
+import { changeInput, initializeState } from 'modules/recruitAddInfo';
 import axios from '../../../node_modules/axios/index';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
-import { useLocation } from 'react-router-dom';
-Quill.register('modules/ImageResize', ImageResize);
 
 registerLocale('ko', ko);
 
@@ -50,7 +48,6 @@ const RecruitAddPage = ({
 	onChangeFinalPassAnnounceDate,
 	applicationList,
 	clubName,
-	whenState,
 	setWhenState
 }) => {
 	const [dateError, setDateError] = useState(false);
@@ -60,13 +57,13 @@ const RecruitAddPage = ({
 	const [title, setTitle] = useState('');
 	const [showLoadApplicationModal, setShowLoadApplicationModal] = useState(false);
 	const [generation, setGeneration] = useState('');
-	const [intro, setIntro] = useState('');
-	const editorRef = useRef();
-	const [editorContent, setEditorContent] = useState('');
-	const dispatch = useDispatch();
 
+	const editorRef = useRef();
+	const dispatch = useDispatch();
 	const history = useHistory();
-	const location = useLocation();
+
+	let editorInstance = null;
+	let content = null;
 
 	const times = [
 		setHours(setMinutes(new Date(), 1), 0),
@@ -74,19 +71,17 @@ const RecruitAddPage = ({
 		setHours(setMinutes(new Date(), 59), 23)
 	];
 
-	const removeBase64 = () => {
-		let editorInstance = editorRef.current.getInstance();
-		let content = editorInstance.getMarkdown();
-		console.log(content.match(/!\[.*\]\(data:image\/.*\)!/, '!'));
-		editorInstance.setMarkdown(content.replace(/!\[.*\]\(data:image\/.*\)!/, '!'));
-		editorInstance.insertText('\n');
-	};
-
 	const CustomDateInput = forwardRef(({ value, onClick }, ref) => (
 		<DateInputButton onClick={onClick} ref={ref}>
 			{value}
 		</DateInputButton>
 	));
+
+	const removeBase64 = () => {
+		editorInstance = editorRef.current.getInstance();
+		content = editorInstance.getMarkdown();
+		editorInstance.setMarkdown(content.replace(/!\[.*\]\(data:image\/.*\)!/, '!'), true);
+	};
 
 	const uploadImage = (blob) => {
 		setWhenState(true);
@@ -157,7 +152,6 @@ const RecruitAddPage = ({
 	const onSubmit = useCallback(
 		(e) => {
 			e.preventDefault();
-			console.log("qefqe");
 			if (formError || titleError || generationError) {
 				window.scrollTo(0, 0);
 				console.log(formError, titleError, generationError);
@@ -181,8 +175,6 @@ const RecruitAddPage = ({
 					},
 					clubName: clubName
 				};
-				// dispatch(addRecruit(data));
-        
 				axios({
 					method: 'post',
 					url: `${API_BASE_URL}/clubs/${clubName}/recruits`,
@@ -198,20 +190,15 @@ const RecruitAddPage = ({
 		},
 		[formError, titleError, generationError, recruitAddInfo, clubName, history]
 	);
+	useEffect(() => {
+		dispatch(initializeState());
+	}, []);
 
 	useEffect(() => {
 		return () => {
 			setAddNewForm(false);
 			dispatch(initializeState());
 		};
-	}, []);
-
-	useEffect(() => {
-		console.log(editorContent);
-	}, [editorContent]);
-
-	useEffect(() => {
-		dispatch(initializeState());
 	}, []);
 
 	return (
@@ -228,8 +215,8 @@ const RecruitAddPage = ({
 						</InnerContainer>
 					</>
 				) : (
-						<AppTitle style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>{recruitAddInfo.clubApplyFormTitle}</AppTitle>
-					)}
+					<AppTitle style={{ fontSize: '1.1rem', paddingTop: '0.13em' }}>{recruitAddInfo.clubApplyFormTitle}</AppTitle>
+				)}
 			</ApplicationLoadCard>
 			{formError && <Error style={{ marginLeft: '0.5em' }}>* 지원서 양식이 필요합니다.</Error>}
 			<TitleKorean style={{ marginBottom: '1em', marginTop: '1.3em' }}>모집 기수 / 제목</TitleKorean>
@@ -279,21 +266,12 @@ const RecruitAddPage = ({
 						customInput={<CustomDateInput />}
 						dateFormat="yyyy.MM.dd aa h:mm"
 					/>
-					{/* <Tilde>~</Tilde>
-					<DatePicker
-						locale="ko"
-						selected={deadline.submitEndDate}
-						onChange={onChangeSubmitEndDate}
-						showTimeSelect
-						injectTimes={times}
-						customInput={<CustomDateInput />}
-						dateFormat="yyyy.MM.dd aa h:mm"
-					/> */}
 				</ContainerRow>
 				<ContainerRow>
 					<RecruitInfo>면접 진행</RecruitInfo>
 					<DatePicker
 						locale="ko"
+						popperPlacement="top"
 						selected={deadline.interviewStartDate}
 						onChange={onChangeInterviewStartDate}
 						showTimeSelect
@@ -304,6 +282,7 @@ const RecruitAddPage = ({
 					<Tilde>~</Tilde>
 					<DatePicker
 						locale="ko"
+						popperPlacement="top"
 						selected={deadline.interviewEndDate}
 						onChange={onChangeInterviewEndDate}
 						showTimeSelect
@@ -316,6 +295,7 @@ const RecruitAddPage = ({
 					<RecruitInfo>최종 발표</RecruitInfo>
 					<DatePicker
 						locale="ko"
+						popperPlacement="top"
 						selected={deadline.finalPassAnnounceDate}
 						onChange={onChangeFinalPassAnnounceDate}
 						showTimeSelect
@@ -323,16 +303,6 @@ const RecruitAddPage = ({
 						customInput={<CustomDateInput />}
 						dateFormat="yyyy.MM.dd aa h:mm"
 					/>
-					{/* <Tilde>~</Tilde>
-					<DatePicker
-						locale="ko"
-						selected={deadline.finalPassEndDate}
-						onChange={onChangeFinalPassEndDate}
-						showTimeSelect
-						injectTimes={times}
-						customInput={<CustomDateInput />}
-						dateFormat="yyyy.MM.dd aa h:mm"
-					/> */}
 				</ContainerRow>
 			</ContainerColumn>
 			<TitleKorean style={{ marginBottom: '1.3em' }}>모집 내용</TitleKorean>
@@ -346,7 +316,7 @@ const RecruitAddPage = ({
 				hooks={{
 					addImageBlobHook: async (blob, callback) => {
 						const src = await uploadImage(blob);
-						callback(src, 'alt_markdown_image');
+						callback(src, 'image');
 						removeBase64();
 						return false;
 					}
@@ -365,7 +335,7 @@ const RecruitAddPage = ({
 			/>
 			<ErrorMessage open={dateError} onCloseSnackbar={onCloseSnackbar} message="마감일은 시작일 이후여야 합니다." />
 			<Footer />
-			<Prompt
+			{/* <Prompt
 				when={whenState}
 				yes="확인"
 				no="취소"
@@ -374,7 +344,7 @@ const RecruitAddPage = ({
 						? true
 						: '작성 중인 정보가 모두 삭제됩니다. 정말 이동하시겠어요?';
 				}}
-			/>
+			/> */}
 		</ContainerColumn>
 	);
 };

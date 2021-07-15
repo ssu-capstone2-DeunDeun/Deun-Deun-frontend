@@ -1,5 +1,5 @@
-import AddApplicationFormCard from 'components/AddApplicationFormCard';
-import ApplicationFormCard from 'components/ApplicationFormCard';
+import AddApplicationFormCard from 'components/applicationForm/AddApplicationFormCard';
+import ApplicationFormCard from 'components/applicationForm/ApplicationFormCard';
 import { initializeQuestion } from 'modules/applicationAddInfo';
 import { initialField } from 'modules/registerUserInfo';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -77,16 +77,12 @@ const ApplicationManagePage = ({ setAddNewForm }) => {
 					/>
 				))
 			) : (
-
-			{/* <SpinnerContainer>
-				<LoadingSpinner size="large" style={{ margin: '0 auto' }} />
-			</SpinnerContainer> */}
-					<>
-						<SpinnerContainer>
-							<LoadingSpinner size="large" style={{ margin: '0 auto' }} />
-						</SpinnerContainer>
-					</>
-				)}
+				<>
+					<SpinnerContainer>
+						<LoadingSpinner size="large" style={{ margin: '0 auto' }} />
+					</SpinnerContainer>
+				</>
+			)}
 			<DeleteApplicationModal
 				id={deleteId}
 				show={showDeleteModal}

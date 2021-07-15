@@ -8,13 +8,13 @@ const ApplicationFormCard = ({ id, title, clubName, onDeleteApplication }) => {
 	const onClickApplication = useCallback(
 		(e) => {
 			console.log(e.target.id);
-			history.push(`/application/${clubName}/${id}`);
+			history.push(`/club/manage/application/${id}`);
 		},
-		[history, clubName, id]
+		[history, id]
 	);
 
 	const onModify = (e) => {
-		history.push(`/application/${clubName}/${id}/modify`);
+		history.push(`/club/manage/application/modify/${id}/`);
 	};
 
 	return (

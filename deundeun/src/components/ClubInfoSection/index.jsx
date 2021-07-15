@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
-import { useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 import {
 	Container,
 	Category,
@@ -20,7 +19,8 @@ import {
 } from './styles';
 
 const ClubInfoSection = ({ clubInfo }) => {
-	const { categoryType, clubName, introduction, clubHashtags, backgroundImageUrl, representImageUrl, clubImageUrls } = clubInfo;
+	const { categoryType, clubName, introduction, clubHashtags, backgroundImageUrl, representImageUrl, clubImageUrls } =
+		clubInfo;
 	const history = useHistory();
 	const onClickLogo = useCallback(
 		(e) => {
@@ -29,9 +29,9 @@ const ClubInfoSection = ({ clubInfo }) => {
 		[history]
 	);
 
-	const onClickNotification = useCallback((e) => {
-		console.log('send notification');
-	}, []);
+	// const onClickNotification = useCallback((e) => {
+	// 	console.log('send notification');
+	// }, []);
 
 	return (
 		//
@@ -49,14 +49,16 @@ const ClubInfoSection = ({ clubInfo }) => {
 						<ClubName>{clubName}</ClubName>
 						<ClubPreview>{introduction} </ClubPreview>
 						<ContainerHashtag>
-							{clubHashtags.map(clubHashtag => <Hashtag key={clubHashtag.id}>{clubHashtag.name}</Hashtag>)}
+							{clubHashtags.map((clubHashtag) => (
+								<Hashtag key={clubHashtag.id}>{clubHashtag.name}</Hashtag>
+							))}
 							<ContainerImage>
 								<ClubImage />
 								<ClubImage />
 								<ClubImage>+40</ClubImage>
-								{
-									clubImageUrls.map(clubImageUrl => <ClubImage clubImageUrl={clubImageUrl} ></ClubImage>)
-								}
+								{clubImageUrls.map((clubImageUrl) => (
+									<ClubImage clubImageUrl={clubImageUrl}></ClubImage>
+								))}
 							</ContainerImage>
 						</ContainerHashtag>
 					</ContainerContent>

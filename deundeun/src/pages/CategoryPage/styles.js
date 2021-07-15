@@ -25,3 +25,11 @@ export const CardContainer = styled.div`
 	width: 1400px;
 	/* min-height: 100vh; */
 `;
+
+export const Content = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-left: auto;
+	margin-top: auto;
+`;

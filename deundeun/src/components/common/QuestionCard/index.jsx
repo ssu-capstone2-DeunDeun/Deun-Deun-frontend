@@ -13,33 +13,6 @@ const QuestionCard = ({ index, onDeleteQuestion, setQuestionTypeIdx, onChangeQue
 	const questionTypes = ['주관식', '선다형'];
 	const answerTypes = ['단일 선택', '복수 선택'];
 
-	// useEffect(() => {
-	// 	const question = {
-	// 		multipleChoiceRequestDtos: [],
-	// 		questionContent: '',
-	// 		questionType: ''
-	// 	};
-	// 	const title = document.getElementById('questionTitle');
-
-	// 	if (questionTypeIndex === 0) {
-	// 		//주관식
-	// 		if (title.value) {
-	// 			question.questionContent = title.value;
-	// 		}
-	// 	} else {
-	// 		//객관식
-	// 		if (title.value) {
-	// 			question.questionContent = title.value;
-	// 		}
-	// 		if (answerTypeIndex === 0) {
-	// 			question.questionType = 'SUBJECTIVE'; //단답형
-	// 		} else {
-	// 			question.questionType = 'MULTIPLE'; //복수형
-	// 		}
-	// 	}
-	// 	console.log('question', question);
-	// }, [questionTypeIndex, setQuestionTypeIdx, answerTypeIndex]);
-
 	return (
 		//
 		<div style={{ marginBottom: '2em' }}>

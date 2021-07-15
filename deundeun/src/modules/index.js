@@ -11,6 +11,7 @@ import initCategory from './initCategory';
 import recruitAddInfo, { recruitAddSaga } from './recruitAddInfo';
 
 import applicationAddInfo, { applicationAddSaga } from './applicationAddInfo';
+import applicationModifyInfo from './applicationModifyInfo';
 import write, { writeSaga } from './write';
 import currentClubPostList, { currentClubPostListSaga } from './currentClubPostList';
 import likePost, { likePostSaga } from './likePost';
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
 	initCategory,
 	clubModifyInfo,
 	applicationAddInfo,
+	applicationModifyInfo,
 	write,
 	currentClubPostList,
 	initHomePage,
@@ -38,10 +40,8 @@ const rootReducer = combineReducers({
 	sendMsgForm,
 	memberManageInfo,
 	currentMemberForm,
-	manageMemberPosition,
+	manageMemberPosition
 });
-
-
 
 export function* rootSaga() {
 	yield all([
@@ -59,9 +59,8 @@ export function* rootSaga() {
 		recruitAddSaga(),
 		memberManageSaga(),
 		currentMemberSaga(),
-		manageMemberPositionSaga(),
+		manageMemberPositionSaga()
 	]);
 }
-
 
 export default rootReducer;

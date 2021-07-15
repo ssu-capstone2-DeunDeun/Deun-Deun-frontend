@@ -38,7 +38,7 @@ const MyApplyForm = ({ match }) => {
 	return (
 		<RegisterFormBlock>
 			<ApplyInfoBox>
-				<div class="step">지원서 보기 [{clubName}]</div>
+				<div class="step">지원서 미리보기 [{clubName}]</div>
 				<div class="info">
 					<div>{title ? title : ''}</div>
 				</div>

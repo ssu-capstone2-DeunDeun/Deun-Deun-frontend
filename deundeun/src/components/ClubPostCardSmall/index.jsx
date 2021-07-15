@@ -11,7 +11,6 @@ import {
 	PostDate
 } from './styles';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import styled from '@emotion/styled';
 import { withRouter } from 'react-router-dom';
@@ -28,16 +27,14 @@ const ClubPostCardSmall = ({ history, postInfo, clubName }) => {
 	// post image 도 나중에 필요하다!!!
 
 	const onMove = () => {
-		history.push(`/club/${clubName}/post/${postInfo.postId}`)
-	}
+		history.push(`/club/${clubName}/post/${postInfo.postId}`);
+	};
 	return (
 		<Container onClick={onMove}>
 			<PostImage />
 			<PostOverview>
 				<TitleKorean>{title}</TitleKorean>
-				<ContentKorean>
-					{content}
-				</ContentKorean>
+				<ContentKorean>{content}</ContentKorean>
 				<PostDate>{createdAt}</PostDate>
 			</PostOverview>
 			<DetailContainer>

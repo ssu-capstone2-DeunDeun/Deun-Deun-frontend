@@ -1,7 +1,10 @@
-import React, { useCallback, useEffect } from 'react';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import React, { useCallback } from 'react';
 import { ContentKorean } from 'components/ClubPostCardSmall/styles';
 import { Container, InnerContainer } from './styles';
+import loadable from '@loadable/component';
+
+const AddCircleOutlineIcon = loadable(() => import('@material-ui/icons/AddCircleOutline'));
+
 const AddRecruitAnnounceCard = ({ setAddNewForm }) => {
 	const onClickAddNewForm = useCallback(
 		(e) => {

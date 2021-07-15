@@ -9,7 +9,7 @@ import axios from '../../../node_modules/axios/index';
 import { TitleKorean } from 'pages/RecruitAddPage/styles';
 import QuestionList from 'components/QuestionList/index';
 
-const ApplicationOverviewPage = () => {
+const ApplicationPreviewPage = () => {
 	const { clubName, id } = useParams();
 	const [questionList, setQuestionList] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -61,4 +61,4 @@ const ApplicationOverviewPage = () => {
 	);
 };
 
-export default ApplicationOverviewPage;
+export default ApplicationPreviewPage;

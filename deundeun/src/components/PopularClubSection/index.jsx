@@ -1,7 +1,9 @@
 import { TitleKorean } from 'components/RecruitingClubSection/styles';
-import PopularClubCard from 'components/PopularClubCard';
 import React from 'react';
 import { Header, CardContainer, ContentKorean } from './styles';
+import loadable from '@loadable/component';
+
+const PopularClubCard = loadable(() => import('components/PopularClubCard'));
 
 const PopularClubSection = ({ popularClubDtos, onClickSeeAll }) => {
 	return (
@@ -14,8 +16,8 @@ const PopularClubSection = ({ popularClubDtos, onClickSeeAll }) => {
 				</ContentKorean>
 			</Header>
 			<CardContainer>
-				{
-					popularClubDtos && popularClubDtos.map((club, index) =>
+				{popularClubDtos &&
+					popularClubDtos.map((club, index) => (
 						<PopularClubCard
 							order={index + 1}
 							clubName={club.clubName}
@@ -23,8 +25,8 @@ const PopularClubSection = ({ popularClubDtos, onClickSeeAll }) => {
 							isRecruiting={club.dday < 0 ? false : true}
 							clubId={club.clubId}
 							key={club.clubId}
-						/>)
-				}
+						/>
+					))}
 
 				{/* <PopularClubCard order={1} imageURL={'/images/test6.jpeg'} isRecruiting={true} clubName={'트와이스'} />
 				<PopularClubCard order={2} imageURL={'/images/test7.jpeg'} isRecruiting={true} clubName={'트와이스'} />

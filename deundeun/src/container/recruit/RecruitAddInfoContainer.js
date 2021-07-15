@@ -4,7 +4,7 @@ import axios from '../../../node_modules/axios/index';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import { changeInput } from 'modules/recruitAddInfo';
 import { useDispatch } from 'react-redux';
-const RecruitAddInfoContainer = ({ setAddNewForm }) => {
+const RecruitAddInfoContainer = ({ setAddNewForm, location }) => {
 	const [clubName, setClubName] = useState('');
 	const [applicationList, setApplicationList] = useState([]);
 	const [applicationId, setApplicationId] = useState(-1);
@@ -129,6 +129,7 @@ const RecruitAddInfoContainer = ({ setAddNewForm }) => {
 			clubName={clubName}
 			whenState={whenState}
 			setWhenState={setWhenState}
+			location={location}
 		/>
 	);
 };

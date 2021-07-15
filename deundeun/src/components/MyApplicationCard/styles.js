@@ -17,6 +17,7 @@ export const ApplicationTitle = styled.span`
 	font-size: 1.625rem;
 	font-weight: bold;
 	color: #282828;
+	cursor: pointer;
 `;
 
 export const ClubName = styled.span`

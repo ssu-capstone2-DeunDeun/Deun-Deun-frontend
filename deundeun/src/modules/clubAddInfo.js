@@ -5,9 +5,11 @@ import { takeLatest } from 'redux-saga/effects';
 import { createRequestActionType } from 'lib/createRequestActionTypes';
 
 const CHANGE_INPUT = 'clubAddInfo/CHANGE_INPUT';
+const INITIALIZE_INFO = 'clubAddInfo/INITIALIZE_INFO';
 const [DUPLICATED, DUPLICATED_SUCCESS, DUPLICATED_FAILURE] = createRequestActionType('clubAddInfo/DUPLICATED');
 const [ADDCLUB, ADDCLUB_SUCCESS, ADDCLUB_FAILURE] = createRequestActionType('clubAddInfo/ADDCLUB');
 
+export const initializeInfo = createAction(INITIALIZE_INFO);
 export const changeInput = createAction(CHANGE_INPUT);
 export const duplicated = createAction(DUPLICATED);
 export const clubAdd = createAction(ADDCLUB);
@@ -36,6 +38,9 @@ const initialState = {
 
 const clubAddInfo = handleActions(
 	{
+		[INITIALIZE_INFO]: () => {
+			return initialState;
+		},
 		[CHANGE_INPUT]: (state, { payload: { type, value } }) => ({
 			...state,
 			[type]: value

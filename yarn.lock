@@ -28,11 +28,14 @@
   dependencies:
     "react-is" "^16.7.0"
 
+<<<<<<< HEAD
+=======
 "immer@^9.0.5":
   "integrity" "sha512-2WuIehr2y4lmYz9gaQzetPR2ECniCifk4ORaQbU3g5EalLt+0IVTosEPJ5BoYl/75ky2mivzdRzV8wWgQGOSYQ=="
   "resolved" "https://registry.npmjs.org/immer/-/immer-9.0.5.tgz"
   "version" "9.0.5"
 
+>>>>>>> 6a4f8a923e4fe8691615da00976f8392ee28141a
 "isarray@0.0.1":
   "integrity" "sha1-ihis/Kmo9Bd+Cav8YDiTmwXR7t8="
   "resolved" "https://registry.npmjs.org/isarray/-/isarray-0.0.1.tgz"

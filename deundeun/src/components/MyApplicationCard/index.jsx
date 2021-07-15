@@ -4,9 +4,15 @@ import { Container, ApplicationTitle, ClubName, ButtonContainer, Button } from '
 
 const MyApplicationCard = ({ id, title, clubName }) => {
 	const history = useHistory();
+	const onClickTitle = useCallback(
+		(e) => {
+			history.push(`/apply/${clubName}/${id}`);
+		},
+		[history, id, clubName]
+	);
+
 	const onClickDetailButton = useCallback(
 		(e) => {
-			console.log('application detail');
 			history.push(`/apply/${clubName}/${id}`);
 		},
 		[history, id, clubName]
@@ -19,11 +25,11 @@ const MyApplicationCard = ({ id, title, clubName }) => {
 	return (
 		//
 		<Container>
-			<ApplicationTitle>{title}</ApplicationTitle>
+			<ApplicationTitle onClick={onClickTitle}>{title}</ApplicationTitle>
 			<ClubName>{clubName}</ClubName>
 			<ButtonContainer>
 				<Button onClick={onClickDetailButton} style={{ marginRight: '1.23em' }}>
-					지원서 보기
+					지원서 수정
 				</Button>
 				<Button onClick={onClickResultButton}>지원 결과</Button>
 			</ButtonContainer>

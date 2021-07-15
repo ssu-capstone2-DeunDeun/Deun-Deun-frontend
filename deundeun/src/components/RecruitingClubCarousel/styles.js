@@ -11,4 +11,7 @@ export const Card = styled.div`
 	width: 719px;
 	height: 413px;
 	background-color: #e8e8e8;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;

@@ -5,25 +5,25 @@ import axios from '../../../node_modules/axios/index';
 import { ACCESS_TOKEN, API_BASE_URL } from 'constants/index';
 import { useDispatch, useSelector } from 'react-redux';
 const ClubModifyPageContainer = () => {
-	const {
-		generation,
-		categoryType,
-		clubName,
-		clubHashtags,
-		introduction,
-		backgroundImageUrl,
-		representImageUrl,
-		clubImages
-	} = useSelector(({ clubModifyInfo }) => ({
-		generation: clubModifyInfo.generation,
-		categoryType: clubModifyInfo.categoryType,
-		clubName: clubModifyInfo.clubName,
-		clubHashtags: clubModifyInfo.clubHashtags,
-		introduction: clubModifyInfo.introduction,
-		backgroundImageUrl: clubModifyInfo.backgroundImageUrl,
-		representImageUrl: clubModifyInfo.representImageUrl,
-		clubImages: clubModifyInfo.clubImages
-	}));
+	// const {
+	// 	generation,
+	// 	categoryType,
+	// 	clubName,
+	// 	clubHashtags,
+	// 	introduction,
+	// 	backgroundImageUrl,
+	// 	representImageUrl,
+	// 	clubImages
+	// } = useSelector(({ clubModifyInfo }) => ({
+	// 	generation: clubModifyInfo.generation,
+	// 	categoryType: clubModifyInfo.categoryType,
+	// 	clubName: clubModifyInfo.clubName,
+	// 	clubHashtags: clubModifyInfo.clubHashtags,
+	// 	introduction: clubModifyInfo.introduction,
+	// 	backgroundImageUrl: clubModifyInfo.backgroundImageUrl,
+	// 	representImageUrl: clubModifyInfo.representImageUrl,
+	// 	clubImages: clubModifyInfo.clubImages
+	// }));
 
 	const [clubInfo, setClubInfo] = useState({
 		generation: 0,
@@ -37,7 +37,6 @@ const ClubModifyPageContainer = () => {
 	});
 
 	const dispatch = useDispatch();
-	const [imageFileList, setImageFileList] = useState([]);
 	const [generationError, setGenerationError] = useState(false);
 	const [categoryError, setCategoryError] = useState(false);
 
@@ -85,14 +84,6 @@ const ClubModifyPageContainer = () => {
 			.then((response) => {
 				const res = response.data[0].clubResponseDto;
 				console.log(res);
-				// dispatch(changeInput({ type: 'generation', value: res.generation }));
-				// dispatch(changeInput({ type: 'categoryType', value: res.categoryType }));
-				// dispatch(changeInput({ type: 'clubName', value: res.clubName }));
-				// dispatch(changeInput({ type: 'clubHashtags', value: res.clubHashtags }));
-				// dispatch(changeInput({ type: 'introduction', value: res.introduction }));
-				// dispatch(changeInput({ type: 'backgroundImageUrl', value: res.backgroundImageUrl }));
-				// dispatch(changeInput({ type: 'representImageUrl', value: res.representImageUrl }));
-				// dispatch(changeInput({ type: 'clubImageUrls', value: res.clubImageUrls }));
 				setClubInfo({
 					generation: res.generation,
 					categoryType: res.categoryType,
@@ -100,9 +91,9 @@ const ClubModifyPageContainer = () => {
 					introduction: res.introduction,
 					backgroundImageUrl: res.backgroundImageUrl,
 					representImageUrl: res.representImageUrl,
-					clubImageUrls: res.clubImageUrls
+					clubImageUrls: res.clubImageUrls,
+					clubHashtags: res.clubHashtags
 				});
-				setImageFileList(clubInfo.clubImageUrls);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -120,8 +111,6 @@ const ClubModifyPageContainer = () => {
 			onChangeImage={onChangeImage}
 			onDeleteImage={onDeleteImage}
 			onClickImage={onClickImage}
-			imageFileList={imageFileList}
-			setImageFileList={setImageFileList}
 		/>
 	);
 };

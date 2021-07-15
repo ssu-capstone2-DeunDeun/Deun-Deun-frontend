@@ -1,14 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import Carousel from 'react-material-ui-carousel';
 import { Card, Container } from './styles';
+import loadable from '@loadable/component';
+
+const Carousel = loadable(() => import('react-material-ui-carousel'));
 
 const Item = (props) => {
 	return (
 		<Card>
-			{/* <h2>{props.item.name}</h2>
-			<p>{props.item.description}</p> */}
 			<img
-				style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+				// style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+				style={{ width: '70%', objectFit: 'cover' }}
 				src={`${props.item.imageURL}`}
 				alt="clubimage"
 			/>
@@ -20,45 +21,36 @@ const ClubImageCarousel = ({ setFocusClubImage, recruitingClubDtos }) => {
 	let items = [
 		{
 			id: 1,
-			imageURL: '/images/mcl.png'
-		},
-		{
-			id: 2,
-			imageURL: '/images/test7.jpeg'
-		},
-		{
-			id: 3,
-			imageURL: '/images/test8.jpeg'
-		},
-		{
-			id: 4,
-			imageURL: '/images/test9.jpeg'
-		},
-		{
-			id: 5,
-			imageURL: '/images/test10.jpeg'
+			imageURL: '/img/logo/GROOPY.svg'
 		}
 	];
+	// const [items, setItems] = useState([]);
 
-	const [mounted, setMounted] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	const onChangeCarousel = useCallback(
 		(e) => {
-			if (mounted) {
+			if (!loading) {
 				setFocusClubImage(e);
 			}
 		},
-		[setFocusClubImage, mounted]
+		[setFocusClubImage, loading]
 	);
 
-	useEffect(() => {
-		setFocusClubImage(0);
-		setMounted(true);
-	}, []);
+	// useEffect(() => {
+	// 	if (recruitingClubDtos) {
+	// 		setFocusClubImage(0);
+	// 		// need to set recruiting club images
+	// 		setLoading(false);
+	// 	} else {
+	// 		setItems(items.concat(tempImage));
+	// 		setLoading(false);
+	// 	}
+	// }, []);
 
-	useEffect(() => {
-		return () => setMounted(false);
-	}, []);
+	// useEffect(() => {
+	// 	return () => setLoading(true);
+	// }, []);
 
 	return (
 		<Container>

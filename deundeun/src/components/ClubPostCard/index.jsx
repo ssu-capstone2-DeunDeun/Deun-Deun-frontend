@@ -12,7 +12,6 @@ import {
 	DetailContainer,
 	ClubName
 } from './styles';
-import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { ContainerRow } from 'styles';
@@ -20,27 +19,23 @@ import { withRouter } from 'react-router-dom';
 
 const ClubPostCard = ({ history, title, content, createdAt, clubName, likeCount, postId, viewCount }) => {
 	const onMove = () => {
-		history.push(`/club/${clubName}/post/${postId}`)
-	}
+		history.push(`/club/${clubName}/post/${postId}`);
+	};
 	return (
 		<Container onClick={onMove}>
 			<PostImage />
-			< PostOverview >
+			<PostOverview>
 				<TitleKorean>{title}</TitleKorean>
 				<ContentContainer>
-					<ContentKorean>
-						{content}
-					</ContentKorean>
+					<ContentKorean>{content}</ContentKorean>
 				</ContentContainer>
 				<PostDate>{createdAt}</PostDate>
-			</PostOverview >
+			</PostOverview>
 			<DetailContainer>
 				<ClubName>{clubName}</ClubName>
 				<ContainerRow style={{ marginLeft: 'auto' }}>
 					<Comment>
-						<VisibilityIcon
-							style={{ width: '20.2px', height: '20.2px', marginRight: '0.2em', cursor: 'pointer' }}
-						/>
+						<VisibilityIcon style={{ width: '20.2px', height: '20.2px', marginRight: '0.2em', cursor: 'pointer' }} />
 						{viewCount}
 					</Comment>
 					<Like>
@@ -49,7 +44,7 @@ const ClubPostCard = ({ history, title, content, createdAt, clubName, likeCount,
 					</Like>
 				</ContainerRow>
 			</DetailContainer>
-		</Container >
+		</Container>
 	);
 };
 
