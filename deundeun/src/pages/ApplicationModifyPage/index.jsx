@@ -16,10 +16,10 @@ import axios from '../../../node_modules/axios/index';
 import { TitleKorean } from 'pages/RecruitAddPage/styles';
 import QuestionList from 'components/QuestionList/index';
 import { Footer } from 'components/PostSection/styles';
-import { changeInput } from 'modules/applicationModifyInfo';
+import { changeInput, deleteQuestion, addQuestion } from 'modules/applicationModifyInfo';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { fromJS } from 'immutable';
+import { fromJS, List } from 'immutable';
 const ApplicationModifyPage = () => {
 	const { clubName, id } = useParams();
 	const dispatch = useDispatch();
@@ -27,8 +27,6 @@ const ApplicationModifyPage = () => {
 	const [questionIndex, setQuestionIndex] = useState(0);
 	const [loading, setLoading] = useState(true);
 	const [title, setTitle] = useState('');
-
-	const applicationModifyInfo = useSelector((state) => state.applicationModifyInfo, shallowEqual);
 
 	const findNextQuestionIndex = useCallback(() => {
 		let largestQuestionNumber = -1;
@@ -60,11 +58,11 @@ const ApplicationModifyPage = () => {
 					multipleChoiceResponseDtos: []
 				};
 				setQuestionList(questionList.concat(newQuestion));
-				// dispatch new question
+				dispatch(addQuestion(questionIndex, List([]), '', 'SUBJECTIVE'));
 				setQuestionIndex(questionIndex + 1);
 			}
 		},
-		[questionIndex, questionList]
+		[questionIndex, questionList, dispatch]
 	);
 
 	const handleAddChoice = useCallback((e) => {}, []);
@@ -75,9 +73,9 @@ const ApplicationModifyPage = () => {
 				return;
 			}
 			setQuestionList(questionList.filter((question) => question.questionNumber !== parseInt(e.target.id)));
-			// dispatch delete question
+			dispatch(deleteQuestion(e.target.id));
 		},
-		[questionList]
+		[questionList, dispatch]
 	);
 
 	const handleDeleteChoice = useCallback((e) => {}, []);

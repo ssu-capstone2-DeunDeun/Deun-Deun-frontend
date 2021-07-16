@@ -1,19 +1,22 @@
 import { Add, ChoiceAddButton, ChoiceDeleteButton, ChoiceInput } from 'components/common/AnswerCard/styles';
-// import QuestionCard from 'components/common/QuestionCard/index';
 import { QuestionDeleteButton, QuestionInput, QuestionNumber } from 'components/common/QuestionCard/styles';
-// import { modifyQuestionContent } from 'modules/applicationModifyInfo';
+import { modifyQuestionContent } from 'modules/applicationModifyInfo';
 import { DropdownContainer } from 'pages/ApplicationAddPage/styles';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { ContainerColumn, ContainerRow } from 'styles';
 
 const QuestionList = ({ questionList, handleDeleteQuestion, handleAddChoice, handleDeleteChoice }) => {
 	const dispatch = useDispatch();
+	const questions = useSelector(
+		(state) => state.applicationModifyInfo.recruitQuestionResponseDtos.toJS(),
+		shallowEqual
+	);
 
 	const handleQuestionChange = useCallback(
 		(e) => {
-			// dispatch(modifyQuestionContent(e.target.id, e.target.value));
+			dispatch(modifyQuestionContent(e.target.id, e.target.value));
 		},
 		[dispatch]
 	);
@@ -23,7 +26,7 @@ const QuestionList = ({ questionList, handleDeleteQuestion, handleAddChoice, han
 	return (
 		//
 		<>
-			{questionList.map((question) =>
+			{questions.map((question) =>
 				question.questionType === 'SUBJECTIVE' ? (
 					<div key={question.questionNumber}>
 						<ContainerRow style={{ marginBottom: '2em', height: '60px' }}>
@@ -32,9 +35,7 @@ const QuestionList = ({ questionList, handleDeleteQuestion, handleAddChoice, han
 							<QuestionInput
 								type="text"
 								id={question.questionNumber}
-								// ref={subjectiveQuestionRef}
 								value={question.questionContent}
-								// placeholder={question.questionContent}
 								onChange={handleQuestionChange}
 							></QuestionInput>
 							<QuestionDeleteButton
